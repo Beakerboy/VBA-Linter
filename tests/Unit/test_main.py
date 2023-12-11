@@ -5,7 +5,7 @@ err = "line: " + "incorrect line ending"
 
 
 line_ending_data = [
-    ('\n', err),
+    ('Public Function Foo(num)\nEnd Function', err),
     ('\r\n', ''),
 ]
 
