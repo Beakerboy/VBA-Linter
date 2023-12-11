@@ -17,12 +17,12 @@ class Linter:
         tokens = lexer.getAllTokens()
         line_num = 1
         output = []
-        prev_tok = ""
+        prev_tok: antlr4.Token = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.text == "\n" or token.text == "\r":
                     output.append((line_num, "W400"))
-                if prev_tok != "" and prev_tok.type == vbaLexer.WS:
+                if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
                 line_num += 1
             prev_tok = token
