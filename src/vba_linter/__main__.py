@@ -20,7 +20,7 @@ def main() -> None:
             full_results[file] = results
 
 
-def find_files(path: os.DirEntry) -> list:
+def find_files(path: str) -> list:
     files = []
     obj = os.scandir(path)
     for entry in obj:
