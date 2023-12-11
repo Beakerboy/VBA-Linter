@@ -10,7 +10,7 @@ line_ending_data = [
     ),
     (
         'Public Function Foo(num)\nEnd Function\n',
-        [(1, "W400", 1), (2, "W400")]
+        [(1, "W400"), (2, "W400")]
     ),
 ]
 
