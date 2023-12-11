@@ -1,6 +1,5 @@
 import argparse
 import os
-import sys
 from vba_linter.linter import Linter
 
 
