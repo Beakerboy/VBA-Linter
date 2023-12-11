@@ -23,7 +23,7 @@ def test_line_ending(code: str, expected: str) -> None:
 
 eol_ws_data = [
     (
-        'Public Function Foo(num) \r\nEnd Function\n',
+        'Public Function Foo(num) \r\nEnd Function\r\n',
         "line: 1 whitespace at the end of the line.\n"
     ),
 ]
