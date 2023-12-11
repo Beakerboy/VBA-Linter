@@ -1,12 +1,10 @@
 import pytest
 from vba_linter.__main__ import main
 
-err = "line: " + "incorrect line ending"
-
 
 line_ending_data = [
-    ('Public Function Foo(num)\nEnd Function', err),
-    ('\r\n', None),
+    ('Public Function Foo(num)\nEnd Function', "line: 1 incorrect line ending"),
+    ('\r\n', ""),
 ]
 
 
