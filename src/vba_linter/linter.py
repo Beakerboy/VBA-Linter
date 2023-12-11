@@ -12,7 +12,8 @@ class Linter:
         pass
 
     def lint(self: T, code: str) -> list:
-        lexer = vbaLexer(code)
+        input_stream = InputStream(code)
+        lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
         line_num = 1
         output = ""
