@@ -1,13 +1,13 @@
 import sys
-from antlr4 import CommonTokenStream, InputStream
+from antlr4 import InputStream
 from vba_linter.vbaLexer import vbaLexer
 
 
 def main(argv: list) -> str:
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    tokens = stream.getTokens()
+    #stream = CommonTokenStream(lexer)
+    tokens = lexer.getAllTokens()
     for token in tokens:
         if token.type == vbaLexer.WS:
             cr = False
