@@ -6,13 +6,13 @@ from antlr.vbaLexer import vbaLexer
 def main(argv: list) -> str:
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
-    #stream = CommonTokenStream(lexer)
     tokens = lexer.getAllTokens()
     for token in tokens:
         output = ""
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
                 return "line: " + "incorrect line ending"
+
 
 if __name__ == '__main__':
     main(sys.argv)
