@@ -21,10 +21,10 @@ class Linter:
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.text == "\n" or token.text == "\r":
-                    output.append(("W400", line_num))
+                    output.append((line_num, "W400"))
                 if prev_tok != "" and prev_tok.type == vbaLexer.WS:
-                    output.append(("W200", line_num))
+                    output.append((line_num, "W200"))
                 line_num += 1
             prev_tok = token
-        output.sort(key=lambda a: a[1])
+        output.sort()
         return output
