@@ -1,6 +1,6 @@
 import sys
 from antlr4 import InputStream
-from vba_linter.vbaLexer import vbaLexer
+from antlr.vbaLexer import vbaLexer
 
 
 def main(argv: list) -> str:
