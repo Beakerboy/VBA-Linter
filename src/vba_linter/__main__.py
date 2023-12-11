@@ -8,7 +8,6 @@ def main(argv: list) -> str:
     lexer = vbaLexer(input_stream)
     tokens = lexer.getAllTokens()
     for token in tokens:
-        output = ""
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
                 return "line: " + "incorrect line ending"
