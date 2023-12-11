@@ -40,6 +40,10 @@ def test_sort() -> None:
     Test that the results are sorted by line, then type.
     """
     code = 'Public Function Foo(num) \n\nEnd Function \n'
-    expected = [(1, "W200"), (1, "W400"), (2, "W400"), (3, "W200"), (3, "W400")]
+    expected = [
+        (1, "W200"), (1, "W400"),
+        (2, "W400"), (3, "W200"),
+        (3, "W400")
+    ]
     linter = Linter()
     assert linter.lint(code) == expected
