@@ -18,4 +18,5 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * W300 blank line at end of file
 
 ### W4 Line break warning
-* W400 line too long
+* W400 incorrect line ending
+* W401 line too long
