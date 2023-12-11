@@ -20,7 +20,7 @@ def main(argv: list) -> str:
             elif prev_tok != "":
                 output += str(prev_tok.type)
             line_num += 1
-            prev_tok = token
+        prev_tok = token
     return output
 
 
