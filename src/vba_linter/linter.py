@@ -1,4 +1,4 @@
-from antlr4 import InputStream
+from antlr4 import InputStream, Token
 from antlr.vbaLexer import vbaLexer
 from typing import TypeVar
 
@@ -17,7 +17,7 @@ class Linter:
         tokens = lexer.getAllTokens()
         line_num = 1
         output = []
-        prev_tok:antlr4.Token = None
+        prev_tok: Token = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.text == "\n" or token.text == "\r":
