@@ -3,7 +3,7 @@ from antlr4 import CommonTokenStream, InputStream
 from vbaLexer import vbaLexer
 
 
-def main(argv):
+def main(argv: list) -> None:
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
     stream = CommonTokenStream(lexer)
