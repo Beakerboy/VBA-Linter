@@ -9,10 +9,13 @@ def main(argv: list) -> str:
     tokens = lexer.getAllTokens()
     line_num = 1
     output = ""
+    prev_tok = ""
     for token in tokens:
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
                 output += "line: " + str(line_num) + " incorrect line ending\n"
+            if prev_tok == vbaLexer.WS:
+                output += "line: " + str(line_num) + " whitespace at the end of the line.\n"
             line_num += 1
     return output
 
