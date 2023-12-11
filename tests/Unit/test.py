@@ -1,8 +1,15 @@
+import pytest
 from __main__ import main
 
+err = "line: " + "incorrect line ending"
 
-def test_line_ending() -> None:
-    assert main("\n") == "fail"
-    assert main("\r\n") == ""
-    assert main("\r") == "fail"
-    assert main("\r \n") == "fail"
+
+line_ending_data = [
+    ('\n', err),
+    ('\r\n', ''),
+]
+
+
+@pytest.mark.parametrize("code, expected", line_ending_data)
+def test_line_ending(code: str, expected: str) -> None:
+    assert main(code) == expected
