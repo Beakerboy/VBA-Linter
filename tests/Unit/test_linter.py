@@ -34,6 +34,7 @@ def test_eol_ws(code: str, expected: list) -> None:
     linter = Linter()
     assert linter.lint(code) == expected
 
+
 def test_sort() -> None:
     """
     Test that the results are sorted by line, then type.
