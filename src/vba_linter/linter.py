@@ -21,9 +21,9 @@ class Linter:
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.text == "\n" or token.text == "\r":
-                    output.append(("W400", line))
+                    output.append(("W400", line_num))
                 if prev_tok != "" and prev_tok.type == vbaLexer.WS:
-                    output.append(("W200", line))
+                    output.append(("W200", line_num))
                 line_num += 1
             prev_tok = token
         return output
