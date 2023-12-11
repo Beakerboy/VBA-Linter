@@ -8,7 +8,7 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     tokens = stream.getTokens()
     for token in tokens:
-        if token.type == VBALexer.WS:
+        if token.type == vbaLexer.WS:
             cr = False
             lf = False
             if "\n" in token.text:
