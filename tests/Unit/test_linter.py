@@ -1,5 +1,5 @@
 import pytest
-from vba_linter.__main__ import main
+from vba_linter.linter import Linter
 
 
 line_ending_data = [
@@ -17,8 +17,8 @@ line_ending_data = [
 
 @pytest.mark.parametrize("code, expected", line_ending_data)
 def test_line_ending(code: str, expected: str) -> None:
-    argv = ["main", code]
-    assert main(argv) == expected
+    linter = Linter()
+    assert linter.lint(code) == expected
 
 
 eol_ws_data = [
@@ -31,5 +31,5 @@ eol_ws_data = [
 
 @pytest.mark.parametrize("code, expected", eol_ws_data)
 def test_eol_ws(code: str, expected: str) -> None:
-    argv = ["main", code]
-    assert main(argv) == expected
+    linter = Linter()
+    assert linter.lint(code) == expected
