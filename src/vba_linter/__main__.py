@@ -32,4 +32,4 @@ def find_files(path: os.DirEntry) -> list:
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
