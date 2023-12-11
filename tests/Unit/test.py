@@ -12,4 +12,5 @@ line_ending_data = [
 
 @pytest.mark.parametrize("code, expected", line_ending_data)
 def test_line_ending(code: str, expected: str) -> None:
-    assert main(code) == expected
+    argv = ["main", code]
+    assert main(argv) == expected
