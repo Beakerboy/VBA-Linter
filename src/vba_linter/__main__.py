@@ -21,10 +21,9 @@ def main() -> None:
             full_results[file] = results
     
 
-
 def find_files(path: str) -> list:
     files = []
-    obj = os.scandir(args.directory)
+    obj = os.scandir(path)
     for entry in obj:
         if entry.is_dir():
             files.extend(find_files(entry))
