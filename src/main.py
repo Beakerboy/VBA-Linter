@@ -1,11 +1,10 @@
 import sys
 from antlr4 import CommonTokenStream, InputStream
-import VBALexer
-import VBAParser
+from vbaLexer import vbaLexer
 
 def main(argv):
     input_stream = InputStream(argv[1])
-    lexer = CalcLexer(input_stream)
+    lexer = vbaLexer(input_stream)
     stream = CommonTokenStream(lexer)
     tokens = stream.getTokens()
     for token in tokens:
