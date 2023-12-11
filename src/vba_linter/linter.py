@@ -16,16 +16,14 @@ class Linter:
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
         line_num = 1
-        output = ""
+        output = []
         prev_tok = ""
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if token.text == "\n":
-                    output += ("line: " + str(line_num) +
-                               " incorrect line ending\n")
+                if token.text == "\n" or token.text == "\r":
+                    output.append(("W400", line))
                 if prev_tok != "" and prev_tok.type == vbaLexer.WS:
-                    output += "line: " + str(line_num)
-                    output += " trailing whitespace\n"
+                    output.append(("W200", line))
                 line_num += 1
             prev_tok = token
         return output
