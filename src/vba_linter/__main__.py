@@ -18,6 +18,7 @@ def main(argv: list) -> str:
                 output += "line: " + str(line_num)
                 output += " whitespace at the end of the line.\n"
             line_num += 1
+            prev_tok = token
     return output
 
 
