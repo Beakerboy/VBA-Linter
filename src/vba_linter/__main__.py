@@ -17,6 +17,7 @@ def main(argv: list) -> str:
             if prev_tok != "" and prev_tok.type == vbaLexer.WS:
                 output += "line: " + str(line_num)
                 output += " whitespace at the end of the line.\n"
+            else output += str(prev_tok.type)
             line_num += 1
             prev_tok = token
     return output
