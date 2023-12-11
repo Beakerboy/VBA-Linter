@@ -3,7 +3,7 @@ from antlr4 import CommonTokenStream, InputStream
 from vbaLexer import vbaLexer
 
 
-def main(argv: list) -> None:
+def main(argv: list) -> str:
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
     stream = CommonTokenStream(lexer)
@@ -18,9 +18,9 @@ def main(argv: list) -> None:
                 cr = True
             if cr and lf:
                 if token.text.index("\r") + 1 != token.text.index("\n"):
-                    print("line: " + "incorrect line ending")
+                    return "line: " + "incorrect line ending"
             if cr != lf:
-                print("line: " + "incorrect line ending")
+                return "line: " + "incorrect line ending"
 
 
 if __name__ == '__main__':
