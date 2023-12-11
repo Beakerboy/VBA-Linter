@@ -1,7 +1,7 @@
 import argparse
 import os
 import sys
-from linter import Linter
+from vba_linter.linter import Linter
 
 
 def main() -> None:
