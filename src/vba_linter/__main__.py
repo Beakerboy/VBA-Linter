@@ -1,8 +1,6 @@
 import argparse
 import os
 import sys
-from antlr4 import InputStream
-from antlr.vbaLexer import vbaLexer
 
 
 def main() -> None:
