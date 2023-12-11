@@ -1,5 +1,5 @@
 import pytest
-from __main__ import main
+from vba_linter.__main__ import main
 
 err = "line: " + "incorrect line ending"
 
