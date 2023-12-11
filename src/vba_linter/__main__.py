@@ -16,7 +16,7 @@ def main(argv: list) -> str:
                 output += "line: " + str(line_num) + " incorrect line ending\n"
             if prev_tok != "" and prev_tok.type == vbaLexer.WS:
                 output += "line: " + str(line_num)
-                output += " whitespace at the end of the line.\n"
+                output += " trailing whitespace\n"
             line_num += 1
         prev_tok = token
     return output
