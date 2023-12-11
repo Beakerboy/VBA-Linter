@@ -6,7 +6,7 @@ def main(argv):
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    tokens = stream.getTokens()
+    tokens = stream.getAllTokens()
     for token in tokens:
         if token.type == vbaLexer.WS:
             cr = False
