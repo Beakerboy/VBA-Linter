@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+from linter import Linter
 
 
 def main() -> None:
@@ -10,6 +11,7 @@ def main() -> None:
     parser.add_argument("directory", default='.',
                         help="The input or output directory.")
     args = parser.parse_args()
+    linter = Linter()
     file_list = find_files(args.directory)
     full_results = []
     for file in file_list:
