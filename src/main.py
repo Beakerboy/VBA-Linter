@@ -17,8 +17,8 @@ def main(argv):
             if "\r" in token.text:
                 cr = True
             if cr and lf:
-                if token.text.index("\r") + 1 != token.text.index("\n")
-                        print("line: " + "incorrect line ending")
+                if token.text.index("\r") + 1 != token.text.index("\n"):
+                    print("line: " + "incorrect line ending")
             if cr != lf:
                 print("line: " + "incorrect line ending")
 
