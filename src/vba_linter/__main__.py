@@ -29,6 +29,7 @@ def find_files(path: os.DirEntry) -> list:
             files.extend(find_files(entry))
         else:
             files.append(entry)
+    return files
 
 
 if __name__ == '__main__':
