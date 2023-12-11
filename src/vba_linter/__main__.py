@@ -7,11 +7,14 @@ def main(argv: list) -> str:
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
     tokens = lexer.getAllTokens()
+    line_num = 1
+    output = ""
     for token in tokens:
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
-                return "line: " + "incorrect line ending"
-
+                output = "line: " + str(lin_num) + " incorrect line ending\n"
+            line_num += 1
+    return output
 
 if __name__ == '__main__':
     main(sys.argv)
