@@ -9,6 +9,7 @@ def main(argv: list) -> str:
     #stream = CommonTokenStream(lexer)
     tokens = lexer.getAllTokens()
     for token in tokens:
+        output = ""
         if token.type == vbaLexer.WS:
             cr = False
             lf = False
@@ -21,7 +22,8 @@ def main(argv: list) -> str:
                     return "line: " + "incorrect line ending"
             if cr != lf:
                 return "line: " + "incorrect line ending"
-
+        output += str((token.text, token.type))
+        return output
 
 if __name__ == '__main__':
     main(sys.argv)
