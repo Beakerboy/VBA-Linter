@@ -26,4 +26,5 @@ class Linter:
                     output.append(("W200", line_num))
                 line_num += 1
             prev_tok = token
+        output.sort(key=lambda a: a[1])
         return output
