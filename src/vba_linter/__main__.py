@@ -1,6 +1,6 @@
 import sys
 from antlr4 import CommonTokenStream, InputStream
-from vbaLexer import vbaLexer
+from vba_linter.vbaLexer import vbaLexer
 
 
 def main(argv: list) -> str:
