@@ -1,27 +1,26 @@
 import sys
-from antlr4 import *
-from CalcLexer import CalcLexer
-from CalcParser import CalcParser
-
-class CalcListener(ParseTreeListener):
-    def exitExpr(self, ctx: CalcParser.ExprContext):
-        if ctx.op is not None:
-            ctx.value = int(ctx.expr(0).value) + int(ctx.expr(1).value) if ctx.op.text == '+' else int(ctx.expr(0).value) - int(ctx.expr(1).value)
-        else:
-            ctx.value = int(ctx.INT().getText())
+from antlr4 import CommonTokenStream, InputStream
+import VBALexer
+import VBAParser
 
 def main(argv):
     input_stream = InputStream(argv[1])
     lexer = CalcLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = CalcParser(stream)
-    tree = parser.expr()
-
-    listener = CalcListener()
-    walker = ParseTreeWalker()
-    walker.walk(listener, tree)
-
-    print(tree.value)
+    tokens = stream.getTokens()
+    for token in tokens:
+        if token.type() == VBALexer.WS:
+            cr = False
+            lf = False
+            if "\n" in token.text:
+                lf = True
+            if "\r" in token.text:
+                cr = True
+            if cr and lf:
+                if token.text.index("\r") + 1 != token.text.index("\n")
+                        print("line: " + "incorrect line ending")
+            if cr != lf:
+                print("line: " + "incorrect line ending")
 
 if __name__ == '__main__':
     main(sys.argv)
