@@ -12,7 +12,7 @@ def main(argv: list) -> str:
     for token in tokens:
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
-                output = "line: " + str(lin_num) + " incorrect line ending\n"
+                output = "line: " + str(line_num) + " incorrect line ending\n"
             line_num += 1
     return output
 
