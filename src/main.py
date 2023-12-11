@@ -2,6 +2,7 @@ import sys
 from antlr4 import CommonTokenStream, InputStream
 from vbaLexer import vbaLexer
 
+
 def main(argv):
     input_stream = InputStream(argv[1])
     lexer = vbaLexer(input_stream)
@@ -20,6 +21,7 @@ def main(argv):
                     print("line: " + "incorrect line ending")
             if cr != lf:
                 print("line: " + "incorrect line ending")
+
 
 if __name__ == '__main__':
     main(sys.argv)
