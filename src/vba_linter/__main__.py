@@ -15,7 +15,7 @@ def main(argv: list) -> str:
             if token.text == "\n":
                 output += "line: " + str(line_num) + " incorrect line ending\n"
             else:
-                if prev_tok != ""
+                if prev_tok != "":
                     output += str(prev_tok.type)
             if prev_tok == vbaLexer.WS:
                 output += "line: " + str(line_num)
