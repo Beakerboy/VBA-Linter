@@ -3,11 +3,15 @@ from vba_linter.__main__ import main
 
 
 line_ending_data = [
-    (
-        'Public Function Foo(num)\nEnd Function',
-        "line: 1 incorrect line ending\n"
-    ),
     ('\r\n', ""),
+    (
+        'Public Function Foo(num)\r\nEnd Function\n',
+        "line: 2 incorrect line ending\n"
+    ),
+    (
+        'Public Function Foo(num)\nEnd Function\n',
+        "line: 1 incorrect line ending\nline: 2 incorrect line ending\n"
+    ),
 ]
 
 
