@@ -62,4 +62,4 @@ jobs:
         flake8 . --count --show-source --statistics --exclude antlr
     - name: Static Test with Mypy
       run: |
-        mypy src/
+        mypy --exclude /antlr/ src/
