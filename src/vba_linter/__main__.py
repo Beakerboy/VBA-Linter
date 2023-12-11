@@ -19,7 +19,7 @@ def main() -> None:
         results = linter.lint(code)
         if len(results) > 0:
             full_results[file] = results
-    
+
 
 def find_files(path: str) -> list:
     files = []
