@@ -19,3 +19,17 @@ line_ending_data = [
 def test_line_ending(code: str, expected: str) -> None:
     argv = ["main", code]
     assert main(argv) == expected
+
+
+eol_ws_data = [
+    (
+        'Public Function Foo(num) \r\nEnd Function\r\n',
+        "line: 1 trailing whitespace\n"
+    ),
+]
+
+
+@pytest.mark.parametrize("code, expected", eol_ws_data)
+def test_eol_ws(code: str, expected: str) -> None:
+    argv = ["main", code]
+    assert main(argv) == expected

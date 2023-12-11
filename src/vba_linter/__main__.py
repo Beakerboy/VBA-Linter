@@ -9,11 +9,16 @@ def main(argv: list) -> str:
     tokens = lexer.getAllTokens()
     line_num = 1
     output = ""
+    prev_tok = ""
     for token in tokens:
         if token.type == vbaLexer.NEWLINE:
             if token.text == "\n":
                 output += "line: " + str(line_num) + " incorrect line ending\n"
+            if prev_tok != "" and prev_tok.type == vbaLexer.WS:
+                output += "line: " + str(line_num)
+                output += " trailing whitespace\n"
             line_num += 1
+        prev_tok = token
     return output
 
 
