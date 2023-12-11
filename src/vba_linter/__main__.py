@@ -16,5 +16,6 @@ def main(argv: list) -> str:
             line_num += 1
     return output
 
+
 if __name__ == '__main__':
     main(sys.argv)
