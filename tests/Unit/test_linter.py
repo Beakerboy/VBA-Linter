@@ -33,6 +33,11 @@ eol_ws_data = [
 ]
 
 
+def test_no_newline() -> None:
+    code = 'Public Function Foo(num)\r\nEnd Function'
+    linter = Linter()
+    assert linter.lint(code) == [(2, "W201")]
+
 @pytest.mark.parametrize("code, expected", eol_ws_data)
 def test_eol_ws(code: str, expected: list) -> None:
     linter = Linter()
