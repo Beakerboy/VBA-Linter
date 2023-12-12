@@ -1,6 +1,6 @@
 from antlr4 import InputStream, Token
 from antlr.vbaLexer import vbaLexer
-from typing import TypeVar
+from typing import Type, TypeVar
 
 
 T = TypeVar('T', bound='Linter')
@@ -19,7 +19,7 @@ class Linter:
         tokens = lexer.getAllTokens()
         line_num = 1
         output = []
-        prev_tok = None  # type: Generic[A]
+        prev_tok = None  # type: Type[A]
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
