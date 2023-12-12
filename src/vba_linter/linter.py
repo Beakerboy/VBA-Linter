@@ -21,7 +21,7 @@ class Linter:
         prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if not (prev_tok in None) and prev_tok.type == vbaLexer.WS:
+                if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
                 num = len(token.text)
                 i = 0
