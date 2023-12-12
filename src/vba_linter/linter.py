@@ -25,11 +25,12 @@ class Linter:
                 num = len(token.text)
                 i = 0
                 while i < num:
-                    if num >= 2 and token.text[i:2] == '\r\n':
+                    if num >= 2 and token.text[i:i+2] == '\r\n':
                         line_num += 1
                         i += 2
                     else:
                         output.append((line_num, "W400"))
+                        line_num += 1
                         i += 1
             prev_tok = token
         output.sort()
