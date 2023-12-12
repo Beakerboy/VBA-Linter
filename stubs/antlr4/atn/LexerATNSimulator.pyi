@@ -21,7 +21,6 @@ class SimState:
     def reset(self) -> None: ...
 
 Lexer: Incomplete
-LexerATNSimulator: Incomplete
 
 class LexerATNSimulator(ATNSimulator):
     debug: bool
