@@ -3,7 +3,6 @@ from antlr4.tree.Tree import INVALID_INTERVAL as INVALID_INTERVAL, ParseTreeVisi
 from antlr4.tree.Trees import Trees as Trees
 from collections.abc import Generator
 
-RuleContext: Incomplete
 Parser: Incomplete
 
 class RuleContext(RuleNode):
