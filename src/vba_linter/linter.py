@@ -1,6 +1,6 @@
 from antlr4 import InputStream, Token
 from antlr.vbaLexer import vbaLexer
-from typing import Gemeric, TypeVar
+from typing import Generic, TypeVar
 
 
 T = TypeVar('T', bound='Linter')
