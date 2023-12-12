@@ -54,14 +54,19 @@ def test_sort() -> None:
 
 
 name_formats = [
-    ['snake_case', [True]],
-    ['camelCase', [False]],
-    ['PascalCase', [False]],
-    ['hUngarian', [False]],
-    ['camelsnake', [True]]
+    ['snake_case', [True, False]],
+    ['camelCase', [False, True]],
+    ['PascalCase', [False, False]],
+    ['hUngarian', [False, False]],
+    ['camelsnake', [True, True]]
 ]
 
 
 @pytest.mark.parametrize("name, expected", name_formats)
 def test_snake_case(name: str, expected: list) -> None:
     assert Linter.is_snake_case(name) == expected[0]
+
+
+@pytest.mark.parametrize("name, expected", name_formats)
+def test_snake_case(name: str, expected: list) -> None:
+    assert Linter.is_camel_case(name) == expected[1]
