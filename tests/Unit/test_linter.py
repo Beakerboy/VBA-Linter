@@ -51,3 +51,16 @@ def test_sort() -> None:
     ]
     linter = Linter()
     assert linter.lint(code) == expected
+
+
+name_formats = [
+    ['snake_case', [True]],
+    ['camelCase', [False]],
+    ['PascalCase', [False]],
+    ['hUngarian', [False]]
+]
+
+
+@pytest.mark.parametrize("name, expected", name_formats)
+def test_snake_case(name: str, expected: list) -> None
+    assert Linter.is_snake_case(name) == expected[0]
