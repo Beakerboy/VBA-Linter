@@ -1,7 +1,5 @@
 from _typeshed import Incomplete
 
-ATNDeserializationOptions: Incomplete
-
 class ATNDeserializationOptions:
     defaultOptions: Incomplete
     readonly: bool
