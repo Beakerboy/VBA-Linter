@@ -4,8 +4,6 @@ from antlr4.Token import Token as Token
 from antlr4.tree.Tree import ErrorNodeImpl as ErrorNodeImpl, INVALID_INTERVAL as INVALID_INTERVAL, ParseTree as ParseTree, ParseTreeListener as ParseTreeListener, TerminalNode as TerminalNode, TerminalNodeImpl as TerminalNodeImpl
 from collections.abc import Generator
 
-ParserRuleContext: Incomplete
-
 class ParserRuleContext(RuleContext):
     children: Incomplete
     start: Incomplete
