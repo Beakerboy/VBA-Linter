@@ -45,4 +45,14 @@ class Linter:
         if match:
             return True
         return False
-        
+
+    @classmethod
+    def is_camel_case(cls: Type[T], name: str) -> bool:
+        """
+        Also known as lowerCamelCase.
+        """
+        pattern = '[a-z]+([a-zA-Z]([a-z])+)*$'
+        match = re.match(pattern, name)
+        if match:
+            return True
+        return False
