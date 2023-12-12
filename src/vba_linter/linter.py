@@ -20,7 +20,7 @@ class Linter:
         output = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if prev_tok in locals() and prev_tok.type == vbaLexer.WS:
+                if 'prev_tok' in locals() and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
                 num = len(token.text)
                 i = 0
