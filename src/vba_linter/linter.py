@@ -31,7 +31,7 @@ class Linter:
                         line_num += 1
                         i += 2
                     else:
-                        output.append((line_num, "W400"))
+                        output.append((line_num, "W500"))
                         line_num += 1
                         i += 1
             prev_tok = token
