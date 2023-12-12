@@ -7,6 +7,7 @@ line_ending_data = [
     ('\r\n\r\n', []),
     ('\n\r\n', [(1, "W400")]),
     ('\r\n\n', [(2, "W400")]),
+    ('\r\n\r\nFoo\n', [(3, "W400")]),
     (
         'Public Function Foo(num)\r\nEnd Function\n',
         [(2, "W400")]
