@@ -1,8 +1,6 @@
 from _typeshed import Incomplete
 from antlr4.Token import Token as Token
 
-IntervalSet: Incomplete
-
 class IntervalSet:
     intervals: Incomplete
     readonly: bool
