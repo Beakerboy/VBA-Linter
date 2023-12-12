@@ -16,7 +16,9 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ### W3 Blank line warning
 * W300 blank line at end of file
+* W301 Too few blank lines before function
+* W302 Too many blank lines before function
 
-### W4 Line break warning
-* W400 incorrect line ending
-* W401 line too long
+### W5 Line break warning
+* W500 incorrect line ending
+* W501 line too long
