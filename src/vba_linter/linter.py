@@ -51,7 +51,7 @@ class Linter:
         """
         Also known as lowerCamelCase.
         """
-        pattern = '[a-z]+([a-zA-Z]([a-z])+)*$'
+        pattern = '[a-z]{2,}([a-zA-Z]([a-z])+)*$'
         match = re.match(pattern, name)
         if match:
             return True
