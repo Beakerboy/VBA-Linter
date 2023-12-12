@@ -68,5 +68,5 @@ def test_snake_case(name: str, expected: list) -> None:
 
 
 @pytest.mark.parametrize("name, expected", name_formats)
-def test_snake_case(name: str, expected: list) -> None:
+def test_camel_case(name: str, expected: list) -> None:
     assert Linter.is_camel_case(name) == expected[1]
