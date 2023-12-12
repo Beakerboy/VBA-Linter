@@ -62,5 +62,5 @@ name_formats = [
 
 
 @pytest.mark.parametrize("name, expected", name_formats)
-def test_snake_case(name: str, expected: list) -> None
+def test_snake_case(name: str, expected: list) -> None:
     assert Linter.is_snake_case(name) == expected[0]
