@@ -5,16 +5,16 @@ from vba_linter.linter import Linter
 line_ending_data = [
     ('\r\n', []),
     ('\r\n\r\n', []),
-    ('\n\r\n', [(1, "W400")]),
-    ('\r\n\n', [(2, "W400")]),
-    ('\r\n\r\nFoo\n', [(3, "W400")]),
+    ('\n\r\n', [(1, "W500")]),
+    ('\r\n\n', [(2, "W500")]),
+    ('\r\n\r\nFoo\n', [(3, "W500")]),
     (
         'Public Function Foo(num)\r\nEnd Function\n',
-        [(2, "W400")]
+        [(2, "W500")]
     ),
     (
         'Public Function Foo(num)\nEnd Function\n',
-        [(1, "W400"), (2, "W400")]
+        [(1, "W500"), (2, "W500")]
     ),
 ]
 
@@ -45,9 +45,9 @@ def test_sort() -> None:
     """
     code = 'Public Function Foo(num) \n\nEnd Function \n'
     expected = [
-        (1, "W200"), (1, "W400"),
-        (2, "W400"),
-        (3, "W200"), (3, "W400")
+        (1, "W200"), (1, "W500"),
+        (2, "W500"),
+        (3, "W200"), (3, "W500")
     ]
     linter = Linter()
     assert linter.lint(code) == expected
