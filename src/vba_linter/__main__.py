@@ -1,26 +1,36 @@
-import sys
-from antlr4 import InputStream
-from antlr.vbaLexer import vbaLexer
+import argparse
+import os
+from vba_linter.linter import Linter
 
 
-def main(argv: list) -> str:
-    input_stream = InputStream(argv[1])
-    lexer = vbaLexer(input_stream)
-    tokens = lexer.getAllTokens()
-    line_num = 1
-    output = ""
-    prev_tok = ""
-    for token in tokens:
-        if token.type == vbaLexer.NEWLINE:
-            if token.text == "\n":
-                output += "line: " + str(line_num) + " incorrect line ending\n"
-            if prev_tok != "" and prev_tok.type == vbaLexer.WS:
-                output += "line: " + str(line_num)
-                output += " trailing whitespace\n"
-            line_num += 1
-        prev_tok = token
-    return output
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("ruleset", nargs='?', default='.',
+                        help="Configuration file of linting rules.")
+    parser.add_argument("directory", default='.',
+                        help="The input or output directory.")
+    args = parser.parse_args()
+    linter = Linter()
+    file_list = find_files(args.directory)
+    full_results: dict[str, list] = {}
+    for file in file_list:
+        code = open(file, 'r').read()
+        results = linter.lint(code)
+        if len(results) > 0:
+            full_results[file] = results
+
+
+def find_files(path: str) -> list:
+    files = []
+    obj = os.scandir(path)
+    for entry in obj:
+        if entry.is_dir():
+            files.extend(find_files(entry.name))
+        else:
+            # if extension is bas, cls. or frm
+            files.append(entry)
+    return files
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()

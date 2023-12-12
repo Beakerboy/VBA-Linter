@@ -18,11 +18,12 @@ classifiers = [
 ]
 dependencies = [
   'PyYAML',
-  'antlr4-tools',
-  'antlr4-python3-runtime'
+  'antlr4-python3-runtime',
+  'antlr4-tools'
 ]
 [project.optional-dependencies]
 tests = [
+  'mypy',
   'pytest',
   'pytest-cov',
   'pytest-mock',
@@ -39,3 +40,6 @@ pythonpath = "src"
 testpaths = [
     "tests",
 ]
+
+[tool.mypy]
+mypy_path = "./stubs"
