@@ -5,7 +5,6 @@ from antlr4.Recognizer import Recognizer as Recognizer
 
 Token: Incomplete
 Lexer: Incomplete
-Parser: Incomplete
 TokenStream: Incomplete
 ATNConfigSet: Incomplete
 ParserRulecontext: Incomplete
