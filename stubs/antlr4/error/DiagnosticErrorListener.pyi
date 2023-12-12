@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from antlr4 import DFA as DFA, Parser as Parser
+from antlr4 import DFA as DFA
 from antlr4.atn.ATNConfigSet import ATNConfigSet as ATNConfigSet
 from antlr4.error.ErrorListener import ErrorListener as ErrorListener
 
