@@ -4,8 +4,6 @@ from antlr4.atn.ATNState import ATNState as ATNState, DecisionState as DecisionS
 from antlr4.atn.LexerActionExecutor import LexerActionExecutor as LexerActionExecutor
 from antlr4.atn.SemanticContext import SemanticContext as SemanticContext
 
-ATNConfig: Incomplete
-
 class ATNConfig:
     state: Incomplete
     alt: Incomplete
