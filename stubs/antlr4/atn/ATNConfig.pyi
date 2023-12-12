@@ -17,8 +17,6 @@ class ATNConfig:
     def hashCodeForConfigSet(self): ...
     def equalsForConfigSet(self, other): ...
 
-LexerATNConfig: Incomplete
-
 class LexerATNConfig(ATNConfig):
     lexerActionExecutor: Incomplete
     passedThroughNonGreedyDecision: Incomplete
