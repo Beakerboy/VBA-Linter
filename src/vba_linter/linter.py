@@ -20,11 +20,17 @@ class Linter:
         prev_tok: Token = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if token.text == "\n" or token.text == "\r":
-                    output.append((line_num, "W400"))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
-                line_num += 1
+                num = len(token.text)
+                i = 0
+                while i < num:
+                    if num >= 2 and token.text[i:2] == '\r\n':
+                        line_num += 1
+                        i += 2
+                    else:
+                        output.append((line_num, "W400"))
+                        i += 1
             prev_tok = token
         output.sort()
         return output
