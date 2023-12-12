@@ -4,6 +4,7 @@ from antlr4.ParserRuleContext import ParserRuleContext as ParserRuleContext
 from antlr4.Recognizer import Recognizer as Recognizer
 
 Token: Incomplete
+Parser: Incomplete
 Lexer: Incomplete
 TokenStream: Incomplete
 ATNConfigSet: Incomplete
