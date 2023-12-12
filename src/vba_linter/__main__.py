@@ -12,7 +12,7 @@ def main() -> None:
     args = parser.parse_args()
     linter = Linter()
     file_list = find_files(args.directory)
-    full_results: dict[str, list] = []
+    full_results: dict[str, list] = {}
     for file in file_list:
         code = open(file, 'r').read()
         results = linter.lint(code)
