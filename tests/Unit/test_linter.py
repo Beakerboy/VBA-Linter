@@ -57,7 +57,8 @@ name_formats = [
     ['snake_case', [True]],
     ['camelCase', [False]],
     ['PascalCase', [False]],
-    ['hUngarian', [False]]
+    ['hUngarian', [False]],
+    ['camelsnake', [True]]
 ]
 
 
