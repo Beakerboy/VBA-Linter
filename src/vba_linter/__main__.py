@@ -27,6 +27,7 @@ def find_files(path: str) -> list:
         if entry.is_dir():
             files.extend(find_files(entry.name))
         else:
+            # if extension is bas, cls. or frm
             files.append(entry)
     return files
 
