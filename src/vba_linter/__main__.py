@@ -25,7 +25,7 @@ def find_files(path: str) -> list:
     obj = os.scandir(path)
     for entry in obj:
         if entry.is_dir():
-            files.extend(find_files(entry))
+            files.extend(find_files(entry.name))
         else:
             files.append(entry)
     return files
