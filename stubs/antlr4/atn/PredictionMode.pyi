@@ -6,8 +6,6 @@ from antlr4.atn.ATNState import RuleStopState as RuleStopState
 from antlr4.atn.SemanticContext import SemanticContext as SemanticContext
 from enum import Enum
 
-PredictionMode: Incomplete
-
 class PredictionMode(Enum):
     SLL: int
     LL: int
