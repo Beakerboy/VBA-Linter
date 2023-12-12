@@ -4,8 +4,6 @@ from antlr4.IntervalSet import IntervalSet as IntervalSet
 from antlr4.Token import Token as Token
 from antlr4.atn.SemanticContext import PrecedencePredicate as PrecedencePredicate, Predicate as Predicate
 
-RuleStartState: Incomplete
-
 class Transition:
     EPSILON: int
     RANGE: int
