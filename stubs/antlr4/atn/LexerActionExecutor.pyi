@@ -3,7 +3,6 @@ from antlr4.InputStream import InputStream as InputStream
 from antlr4.atn.LexerAction import LexerAction as LexerAction, LexerIndexedCustomAction as LexerIndexedCustomAction
 
 Lexer: Incomplete
-LexerActionExecutor: Incomplete
 
 class LexerActionExecutor:
     lexerActions: Incomplete
