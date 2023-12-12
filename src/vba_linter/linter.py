@@ -1,4 +1,4 @@
-from antlr4 import InputStream
+from antlr4 import InputStream, Token
 from antlr.vbaLexer import vbaLexer
 from typing import TypeVar
 
