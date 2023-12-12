@@ -1,6 +1,7 @@
+import re
 from antlr4 import InputStream
 from antlr.vbaLexer import vbaLexer
-from typing import TypeVar
+from typing import Type, TypeVar
 
 
 T = TypeVar('T', bound='Linter')
@@ -36,3 +37,12 @@ class Linter:
             prev_tok = token
         output.sort()
         return output
+
+    @classmethod
+    def is_snake_case(cls: Type[T], name: str) -> bool:
+        pattern = '[a-z]+(_[a-z]+)*$'
+        match = re.match(pattern, name)
+        if match:
+            return True
+        return False
+        
