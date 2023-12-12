@@ -17,7 +17,6 @@ class Linter:
         tokens = lexer.getAllTokens()
         line_num = 1
         output = []
-        x = None  # type: int
         prev_tok = None  # type: antlr4.Token
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
