@@ -94,3 +94,10 @@ extra_eol = [
 def test_extra_end_lines(code: str, expected: list) -> None:
     linter = Linter()
     assert linter.lint(code) == expected
+
+
+def test_line_length() -> None:
+    code = ('Public Function Supercalifragilisticexpialidocious("
+            'atrocious, precocious, indubitably)\r\nEnd Function\r\n")
+    linter = Linter()
+    assert linter.lint(code) == [(1, 'W301', 86)]
