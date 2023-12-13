@@ -19,7 +19,7 @@ class W500(RuleBase):
                 num_nl = len(newline_list)
                 for i in range(num_nl):
                     if newline_list[i] != self._line_ending:
-                        column = token.column if i == 0 else 1
+                        column = token.column if i == 0 else 0
                         output.append((token.line + i, column, "W500"))
         return output
 
