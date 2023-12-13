@@ -13,7 +13,7 @@ class RuleLoader:
         pass
 
     def test_all(self: T, tokens: list) -> list:
-        pass
+        return []
 
     def test_rule(self: T, tokens: list) -> list:
-        pass
+        return []
