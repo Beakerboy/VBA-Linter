@@ -15,6 +15,7 @@ class W201(RuleBase):
         final_token = tokens[-1]
         if final_token is None or final_token.type != vbaLexer.NEWLINE:
             line = 1 if final_token is None else final_token.line
-            column = 0 if final_token is None else final_token.column + len(final_token.text)
+            column = 0 if final_token is None else (final_token.column +
+                                                    len(final_token.text))
             output = [(line, column, "W201")]
         return output
