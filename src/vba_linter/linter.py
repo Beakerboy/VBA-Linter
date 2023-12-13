@@ -26,7 +26,7 @@ class Linter:
                     output.append((token.line, "W501", token.column))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((token.line, "W200"))
-                newline_list = Linter.split_nl(final_token.text)
+                newline_list = Linter.split_nl(token.text)
                 num_nl = len(newline_list)
                 for i in range(num_nl - 1):
                     if newline_list[i] != '\r\n':
