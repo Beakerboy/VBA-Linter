@@ -6,7 +6,7 @@ from typing import TypeVar
 T = TypeVar('T', bound='W200')
 
 
-class W200(RuleBase):
+class W200(TokenBeforeBase):
     def __init__(self: T) -> None:
         self._rule_name = "W200"
         self._token_find = vbaLexer.NEWLINE
