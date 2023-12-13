@@ -18,7 +18,6 @@ class Linter:
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
-        line_num = 1
         output: list[tuple] = []
         prev_tok = None
         for token in tokens:
@@ -27,15 +26,11 @@ class Linter:
                     output.append((token.line, "W501", token.column))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((token.line, "W200"))
-                num = len(token.text)
-                i = 0
-                while i < num:
-                    if num >= 2 and token.text[i:i+2] == '\r\n':
-                        i += 2
-                    else:
-                        output.append((line_num, "W500"))
-                        i += 1
-                    line_num += 1
+                newline_list = Linter.split_nl(final_token.text)
+                num_nl = len(newline_list)
+                for i in range(num_nl - 1):
+                    if newline_list[i] != '\r\n':
+                        output.append((token.line + 1, "W500"))
             prev_tok = token
 
         # End of file checks
@@ -48,7 +43,7 @@ class Linter:
             num_nl = len(newline_list)
             if num_nl > 1:
                 for i in range(num_nl - 1):
-                    output.append((line_num - num_nl + 1 + i, "W300"))
+                    output.append((final_token.line + i, "W300"))
         output.sort()
         return output
 
