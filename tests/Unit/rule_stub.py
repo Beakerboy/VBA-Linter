@@ -2,6 +2,9 @@ from typing import TypeVar
 from vba_linter.rules.rule_base import Rulebase
 
 
+T = TypeVar('T', bound='RuleStub')
+
+
 class RuleStub(RuleBase):
 
     def __init__(self: T) -> None:
