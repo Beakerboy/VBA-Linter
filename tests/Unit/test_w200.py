@@ -1,6 +1,5 @@
 import pytest
-from antlr4 import InputStream
-from antlr.vbaLexer import vbaLexer
+from vba_linter.linter import Linter
 from vba_linter.rules.w200 import W200
 
 
@@ -22,8 +21,8 @@ eol_ws_data = [
 
 @pytest.mark.parametrize("code, expected", eol_ws_data)
 def test_eol_ws(code: str, expected: list) -> None:
-    input_stream = InputStream(code)
-    lexer = vbaLexer(input_stream)
+    linter = Linter()
+    lexer = linter.get_lexer(code)
     tokens = lexer.getAllTokens()
     rule = W200()
 
