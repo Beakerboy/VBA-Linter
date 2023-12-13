@@ -21,11 +21,10 @@ class Linter:
         line_num = 1
         output: list[tuple] = []
         prev_tok = None
-        line_chars = 0
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if line_chars > max_len:
-                    output.append((line_num, "W501", line_chars))
+                if token.column > max_len:
+                    output.append((line_num, "W501", token.column))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
                 num = len(token.text)
@@ -37,9 +36,6 @@ class Linter:
                         output.append((line_num, "W500"))
                         i += 1
                     line_num += 1
-                    line_chars = 0
-            else:
-                line_chars += len(token.text)
             prev_tok = token
         if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
             output.append((line_num, "W201"))
