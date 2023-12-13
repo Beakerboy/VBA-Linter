@@ -15,7 +15,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * _W202 blank line contains whitespace_
 
 ### W3 Blank line warning
-* _W300 blank line at end of file_
+* W300 blank line at end of file
 * _W301 Too few blank lines before function_
 * _W302 Too many blank lines before function_
 

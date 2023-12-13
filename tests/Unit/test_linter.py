@@ -4,9 +4,9 @@ from vba_linter.linter import Linter
 
 line_ending_data = [
     ('\r\n', []),
-    ('\r\n\r\n', []),
-    ('\n\r\n', [(1, "W500")]),
-    ('\r\n\n', [(2, "W500")]),
+    ('Function Foo()\r\n\r\nEnd Function\r\n', []),
+    ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, "W500")]),
+    ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, "W500")]),
     ('\r\n\r\nFoo\n', [(3, "W500")]),
     (
         'Public Function Foo(num)\r\nEnd Function\n',
@@ -76,3 +76,21 @@ def test_snake_case(name: str, expected: list) -> None:
 @pytest.mark.parametrize("name, expected", name_formats)
 def test_camel_case(name: str, expected: list) -> None:
     assert Linter.is_camel_case(name) == expected[1]
+
+
+extra_eol = [
+    [
+        'Public Function Foo(num)\r\nEnd Function\r\n\r\n',
+        [(3, "W300")]
+    ],
+    [
+        'Public Function Foo(num)\r\nEnd Function\r\n\r\n\r\n',
+        [(3, "W300"), (4, "W300")]
+    ]
+]
+
+
+@pytest.mark.parametrize("code, expected", extra_eol)
+def test_extra_end_lines(code: str, expected: list) -> None:
+    linter = Linter()
+    assert linter.lint(code) == expected

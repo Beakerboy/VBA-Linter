@@ -37,8 +37,31 @@ class Linter:
             prev_tok = token
         if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
             output.append((line_num, "W201"))
+        elif prev_tok.type == vbaLexer.NEWLINE:
+            newline_list = Linter.split_nl(prev_tok.text)
+            num_nl = len(newline_list)
+            if num_nl > 1:
+                for i in range(num_nl - 1):
+                    output.append((line_num - num_nl + 1 + i, "W300"))
         output.sort()
         return output
+
+    @classmethod
+    def split_nl(cls: Type[T], nl: str) -> list:
+        """
+        split a newline token into separate line end characters.
+        """
+        num = len(nl)
+        i = 0
+        result = []
+        while i < num:
+            if num >= 2 and nl[i:i+2] == '\r\n':
+                result.append('\r\n')
+                i += 2
+            else:
+                result.append(nl[i:i+1])
+                i += 1
+        return result
 
     @classmethod
     def is_snake_case(cls: Type[T], name: str) -> bool:
