@@ -17,7 +17,9 @@ class RuleLoader:
     def test_all(self: T, tokens: list) -> list:
         output = []
         for rule in self._rules:
-            output.append(rule.test(tokens))
+            results = rule.test(tokens)
+            if results != []:
+              output.extend(results)
         return output
 
     def test_rule(self: T, tokens: list) -> list:
