@@ -4,7 +4,7 @@ from typing import TypeVar
 T = TypeVar('T', bound='W200')
 
 class W200(RuleBase):
-    def __init__(self: T) -> None
+    def __init__(self: T) -> None:
         self.rule_name = "W200"
 
     def test(self: T, tokens: list) -> list:
