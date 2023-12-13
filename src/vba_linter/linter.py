@@ -37,8 +37,25 @@ class Linter:
             prev_tok = token
         if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
             output.append((line_num, "W201"))
+        elif prev_tok.type != vbaLexer.NEWLINE:
+            
         output.sort()
         return output
+
+    @classmethod
+    def split_ws(cls: Type[T], ws: str) -> list:
+        """
+        split a whitespace token into separate whitespace characters.
+        """
+        num = len(ws)
+        i = 0
+        result = []
+        while i < num:
+            if num >= 2 and ws[i:i+2] == '\r\n':
+                result.append('\r\n')
+            else:
+                result.append(ws[i:i+1])
+        return result
 
     @classmethod
     def is_snake_case(cls: Type[T], name: str) -> bool:
