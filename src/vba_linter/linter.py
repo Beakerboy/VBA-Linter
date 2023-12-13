@@ -2,6 +2,7 @@ import re
 from antlr4 import InputStream
 from antlr.vbaLexer import vbaLexer
 from typing import Type, TypeVar
+from vba_linter.rule_loader import RuleLoader
 
 
 T = TypeVar('T', bound='Linter')
@@ -18,14 +19,13 @@ class Linter:
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
-        output: list[tuple] = []
+        loader = RuleLoader()
+        output = loader.test_all(tokens)
         prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > max_len:
                     output.append((token.line, "W501", token.column))
-                if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
-                    output.append((token.line, "W200"))
                 newline_list = Linter.split_nl(token.text)
                 num_nl = len(newline_list)
                 for i in range(num_nl):
