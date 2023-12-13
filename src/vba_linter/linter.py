@@ -28,7 +28,7 @@ class Linter:
                     output.append((token.line, "W200"))
                 newline_list = Linter.split_nl(token.text)
                 num_nl = len(newline_list)
-                for i in range(num_nl - 1):
+                for i in range(num_nl):
                     if newline_list[i] != '\r\n':
                         output.append((token.line + i, "W500"))
             prev_tok = token
