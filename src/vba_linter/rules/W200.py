@@ -1,7 +1,10 @@
+from antlr.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 
+
 T = TypeVar('T', bound='W200')
+
 
 class W200(RuleBase):
     def __init__(self: T) -> None:
