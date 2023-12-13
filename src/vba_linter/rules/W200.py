@@ -11,7 +11,7 @@ class W200(RuleBase):
         self.rule_name = "W200"
 
     def test(self: T, tokens: list) -> list:
-        output:list[tuple] = []
+        output: list[tuple] = []
         prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
