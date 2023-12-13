@@ -24,9 +24,9 @@ class Linter:
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > max_len:
-                    output.append((line_num, "W501", token.column))
+                    output.append((token.line, "W501", token.column))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
-                    output.append((line_num, "W200"))
+                    output.append((token.line, "W200"))
                 num = len(token.text)
                 i = 0
                 while i < num:
@@ -37,10 +37,13 @@ class Linter:
                         i += 1
                     line_num += 1
             prev_tok = token
-        if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
-            output.append((line_num, "W201"))
-        elif prev_tok.type == vbaLexer.NEWLINE:
-            newline_list = Linter.split_nl(prev_tok.text)
+
+        # End of file checks
+        final_token = prev_tok
+        if final_token is None or final_token.type != vbaLexer.NEWLINE:
+            output.append((final_token.line, "W201"))
+        elif final_token.type == vbaLexer.NEWLINE:
+            newline_list = Linter.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
                 for i in range(num_nl - 1):
