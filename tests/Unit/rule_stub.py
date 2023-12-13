@@ -1,5 +1,5 @@
 from typing import TypeVar
-from vba_linter.rules.rule_base import Rulebase
+from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='RuleStub')
@@ -14,7 +14,7 @@ class RuleStub(RuleBase):
     def set_message(self: T, message: str) -> None:
         self._message = message
 
-    def set_output(self:T, output: list) -> None:
+    def set_output(self: T, output: list) -> None:
         self._output = output
 
     def test(self: T, tokens: list) -> list:
