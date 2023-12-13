@@ -14,7 +14,7 @@ class Linter:
         # Read config file and set parameters for rules
         pass
 
-    def get_lexer(self: T, code) -> vbaLexer:
+    def get_lexer(self: T, code: str) -> vbaLexer:
         input_stream = InputStream(code)
         return vbaLexer(input_stream)
 
