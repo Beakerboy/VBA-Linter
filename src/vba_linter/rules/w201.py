@@ -16,4 +16,3 @@ class W201(RuleBase):
             line = 1 if final_token is None else final_token.line
             column = 0 if final_token is None else final_token.column
             return [(line, column, "W201")]
-          
