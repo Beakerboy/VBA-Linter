@@ -22,4 +22,4 @@ class W200(RuleBase):
     def create_message(self: T, data: tuple) -> str:
         output = RuleBase.create_message(self, data)
         return (output + "Line too long (" + str(data[1]) +
-                '>' + self._max_len + ')')
+                '>' + str(self._max_len) + ')')
