@@ -38,23 +38,27 @@ class Linter:
         if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
             output.append((line_num, "W201"))
         elif prev_tok.type != vbaLexer.NEWLINE:
-            
+            newline_list = Linter.split_nl(prev_tok.text)
+            num_nl = len(newline_list)
+            if num_nl > 1:
+                for i in range(num_nl - 1)
+                    output.append((line_num - num_nl + i, "W300"))
         output.sort()
         return output
 
     @classmethod
-    def split_ws(cls: Type[T], ws: str) -> list:
+    def split_nl(cls: Type[T], nl: str) -> list:
         """
-        split a whitespace token into separate whitespace characters.
+        split a newline token into separate line end characters.
         """
-        num = len(ws)
+        num = len(nl)
         i = 0
         result = []
         while i < num:
-            if num >= 2 and ws[i:i+2] == '\r\n':
+            if num >= 2 and nl[i:i+2] == '\r\n':
                 result.append('\r\n')
             else:
-                result.append(ws[i:i+1])
+                result.append(nl[i:i+1])
         return result
 
     @classmethod
