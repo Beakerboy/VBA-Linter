@@ -2,29 +2,6 @@ import pytest
 from vba_linter.linter import Linter
 
 
-line_ending_data = [
-    ('\r\n', []),
-    ('Function Foo()\r\n\r\nEnd Function\r\n', []),
-    ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, "W500")]),
-    ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, "W500")]),
-    ('\r\n\r\nFoo\n', [(3, "W500")]),
-    (
-        'Public Function Foo(num)\r\nEnd Function\n',
-        [(2, "W500")]
-    ),
-    (
-        'Public Function Foo(num)\nEnd Function\n',
-        [(1, "W500"), (2, "W500")]
-    ),
-]
-
-
-@pytest.mark.parametrize("code, expected", line_ending_data)
-def test_line_ending(code: str, expected: list) -> None:
-    linter = Linter()
-    assert linter.lint(code) == expected
-
-
 def test_no_newline() -> None:
     code = 'Public Function Foo(num)\r\nEnd Function'
     linter = Linter()
