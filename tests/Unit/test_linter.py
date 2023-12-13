@@ -39,6 +39,12 @@ def test_eol_ws(code: str, expected: list) -> None:
     assert linter.lint(code) == expected
 
 
+def test_no_newline() -> None:
+    code = 'Public Function Foo(num)\r\nEnd Function'
+    linter = Linter()
+    assert linter.lint(code) == [(2, "W201")]
+
+
 def test_sort() -> None:
     """
     Test that the results are sorted by line, then type.

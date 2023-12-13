@@ -35,6 +35,8 @@ class Linter:
                         line_num += 1
                         i += 1
             prev_tok = token
+        if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
+            output.append((line_num, "W201"))
         output.sort()
         return output
 
