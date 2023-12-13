@@ -4,7 +4,7 @@ from vba_linter.linter import Linter
 
 line_ending_data = [
     ('\r\n', []),
-    ('\r\n\r\n', []),
+    ('Function Foo()\r\n\r\nEnd Function\r\n', []),
     ('\n\r\n', [(1, "W500")]),
     ('\r\n\n', [(2, "W500")]),
     ('\r\n\r\nFoo\n', [(3, "W500")]),
