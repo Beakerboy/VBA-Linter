@@ -14,26 +14,32 @@ class Linter:
         pass
 
     def lint(self: T, code: str) -> list:
+        max_len = 80
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
         line_num = 1
-        output = []
+        output: list[tuple] = []
         prev_tok = None
+        line_chars = 0
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
+                if line_chars > max_len:
+                    output.append((line_num, "W501", line_chars))
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
                     output.append((line_num, "W200"))
                 num = len(token.text)
                 i = 0
                 while i < num:
                     if num >= 2 and token.text[i:i+2] == '\r\n':
-                        line_num += 1
                         i += 2
                     else:
                         output.append((line_num, "W500"))
-                        line_num += 1
                         i += 1
+                    line_num += 1
+                    line_chars = 0
+            else:
+                line_chars += len(token.text)
             prev_tok = token
         if prev_tok is None or prev_tok.type != vbaLexer.NEWLINE:
             output.append((line_num, "W201"))
