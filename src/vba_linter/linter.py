@@ -14,9 +14,12 @@ class Linter:
         # Read config file and set parameters for rules
         pass
 
-    def lint(self: T, code: str) -> list:
+    def get_lexer(self: T, code) -> vbaLexer:
         input_stream = InputStream(code)
-        lexer = vbaLexer(input_stream)
+        return vbaLexer(input_stream)
+
+    def lint(self: T, code: str) -> list:
+        lexer = self.get_lexer(code)
         tokens = lexer.getAllTokens()
         loader = RuleLoader()
         output = loader.test_all(tokens)
