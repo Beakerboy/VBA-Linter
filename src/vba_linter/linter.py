@@ -15,7 +15,6 @@ class Linter:
         pass
 
     def lint(self: T, code: str) -> list:
-        max_len = 80
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
@@ -23,12 +22,6 @@ class Linter:
         output = loader.test_all(tokens)
         prev_tok = None
         for token in tokens:
-            if token.type == vbaLexer.NEWLINE:
-                newline_list = Linter.split_nl(token.text)
-                num_nl = len(newline_list)
-                for i in range(num_nl):
-                    if newline_list[i] != '\r\n':
-                        output.append((token.line + i, "W500"))
             prev_tok = token
 
         # End of file checks
