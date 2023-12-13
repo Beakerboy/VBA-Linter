@@ -19,7 +19,8 @@ class W500(RuleBase):
                 num_nl = len(newline_list)
                 for i in range(num_nl):
                     if newline_list[i] != self._line_ending:
-                        output.append((token.line + i, "W500"))
+                        column = token.column if i == 0 else 1
+                        output.append((token.line + i, column, "W500"))
         return output
 
     def create_message(self: T, data: tuple) -> str:
