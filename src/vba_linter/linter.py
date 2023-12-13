@@ -30,7 +30,7 @@ class Linter:
                 num_nl = len(newline_list)
                 for i in range(num_nl - 1):
                     if newline_list[i] != '\r\n':
-                        output.append((token.line + 1, "W500"))
+                        output.append((token.line + i, "W500"))
             prev_tok = token
 
         # End of file checks
