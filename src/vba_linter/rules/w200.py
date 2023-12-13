@@ -13,5 +13,5 @@ class W200(RuleBase):
         self._token_bad = vbaLexer.WS
 
     def create_message(self: T, data: tuple) -> str:
-        output = RuleBase.create_message(self, data)
+        output = TokenBeforeBase.create_message(self, data)
         return output + "Unexpected whitespace at the end of the line"
