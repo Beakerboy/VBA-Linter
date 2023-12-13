@@ -37,9 +37,9 @@ def test_sort() -> None:
     """
     code = 'Public Function Foo(num) \n\nEnd Function \n'
     expected = [
-        (1, "W200"), (1, "W500"),
+        (1, 25, "W200"), (1, "W500"),
         (2, "W500"),
-        (3, "W200"), (3, "W500")
+        (3, 13, "W200"), (3, "W500")
     ]
     linter = Linter()
     assert linter.lint(code) == expected
