@@ -3,7 +3,7 @@ from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 
 
-T = TypeVar('T', bound='W200')
+T = TypeVar('T', bound='W501')
 
 
 class W501(RuleBase):
