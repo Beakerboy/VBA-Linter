@@ -12,7 +12,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### W2 Whitespace warning
 * W200 trailing whitespace
 * W201 no newline at end of file
-* W202 blank line contains whitespace
+* _W202 blank line contains whitespace_
 
 ### W3 Blank line warning
 * _W300 blank line at end of file_
