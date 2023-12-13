@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import Type, TypeVar
 
 T = TypeVar('T', bound='RuleBase')
 
