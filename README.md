@@ -22,4 +22,4 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ### W5 Line break warning
 * W500 incorrect line ending
-* _W501 line too long_
+* W501 line too long
