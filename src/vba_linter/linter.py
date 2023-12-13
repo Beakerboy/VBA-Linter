@@ -19,7 +19,7 @@ class Linter:
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
         line_num = 1
-        output = []
+        output: list[tuple] = []
         prev_tok = None
         line_chars = 0
         for token in tokens:
