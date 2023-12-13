@@ -97,7 +97,7 @@ def test_extra_end_lines(code: str, expected: list) -> None:
 
 
 def test_line_length() -> None:
-    code = ('Public Function Supercalifragilisticexpialidocious("
-            'atrocious, precocious, indubitably)\r\nEnd Function\r\n")
+    code = ('Public Function Supercalifragilisticexpialidocious('
+            'atrocious, precocious, indubitably)\r\nEnd Function\r\n')
     linter = Linter()
     assert linter.lint(code) == [(1, 'W501', 86)]
