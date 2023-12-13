@@ -78,7 +78,19 @@ def test_camel_case(name: str, expected: list) -> None:
     assert Linter.is_camel_case(name) == expected[1]
 
 
-def test_extra_end_lines() -> None:
-    code = 'Public Function Foo(num)\r\nEnd Function\r\n\r\n'
+extra_eol = [
+    [
+        'Public Function Foo(num)\r\nEnd Function\r\n\r\n',
+        [(3, "W300")]
+    ],
+    [
+        'Public Function Foo(num)\r\nEnd Function\r\n\r\n\r\n',
+        [(3, "W300"), (4, "W300")]
+    ]
+]
+
+
+@pytest.mark.parametrize("name, expected", extra_eol)
+def test_extra_end_lines(code: str, expected: list) -> None:
     linter = Linter()
-    assert linter.lint(code) == [(3, "W300")]
+    assert linter.lint(code) == expected
