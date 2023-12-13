@@ -13,7 +13,7 @@ class RuleBase:
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
         """
-        split a newline token into separate line end characters.
+        split a newline token into separate line-end characters.
         """
         num = len(nl)
         i = 0
