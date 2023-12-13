@@ -1,3 +1,4 @@
+import pytest
 from antlr4 import InputStream
 from antlr.vbaLexer import vbaLexer
 from vba_linter.rules.w200 import W200
