@@ -9,6 +9,7 @@ T = TypeVar('T', bound='W200')
 class W200(RuleBase):
     def __init__(self: T) -> None:
         self.rule_name = "W501"
+        self._max_len = 80
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
@@ -21,4 +22,4 @@ class W200(RuleBase):
 
     def create_message(self: T, data: tuple) -> str:
         output = RuleBase.create_message(self, data)
-        return output + "Line too long (" + str(data[1]) + '>' + self._max + ')'
+        return output + "Line too long (" + str(data[1]) + '>' + self._max_len + ')'
