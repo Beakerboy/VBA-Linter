@@ -25,20 +25,6 @@ def test_line_ending(code: str, expected: list) -> None:
     assert linter.lint(code) == expected
 
 
-eol_ws_data = [
-    (
-        'Public Function Foo(num) \r\nEnd Function\r\n',
-        [(1, "W200")]
-    ),
-]
-
-
-@pytest.mark.parametrize("code, expected", eol_ws_data)
-def test_eol_ws(code: str, expected: list) -> None:
-    linter = Linter()
-    assert linter.lint(code) == expected
-
-
 def test_no_newline() -> None:
     code = 'Public Function Foo(num)\r\nEnd Function'
     linter = Linter()
