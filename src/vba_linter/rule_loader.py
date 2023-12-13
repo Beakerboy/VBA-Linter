@@ -4,7 +4,6 @@ from vba_linter.rules.w500 import W500
 from vba_linter.rules.w501 import W501
 
 
-
 T = TypeVar('T', bound='RuleLoader')
 
 
