@@ -42,7 +42,7 @@ class Linter:
             num_nl = len(newline_list)
             if num_nl > 1:
                 for i in range(num_nl - 1):
-                    output.append((line_num - num_nl + i, "W300"))
+                    output.append((line_num - num_nl + 1 + i, "W300"))
         output.sort()
         return output
 
