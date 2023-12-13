@@ -4,7 +4,7 @@ T = TypeVar('T', bound='RuleBase')
 
 
 class RuleBase:
-    def test(self: T, tokens) -> list:
+    def test(self: T, tokens: list) -> list:
         return []
 
     def create_message(self: T, data: tuple) -> str:
