@@ -5,6 +5,7 @@ from vba_linter.linter import Linter
 def test_sort() -> None:
     """
     Test that the results are sorted by line, then type.
+    This should be modified to use RuleStub. 
     """
     code = 'Public Function Foo(num) \n\nEnd Function \n'
     expected = [
@@ -14,6 +15,20 @@ def test_sort() -> None:
     ]
     linter = Linter()
     assert linter.lint(code) == expected
+
+
+bad_code = [
+    ['<?php phpinfo(); ?>'],
+    ['Function Foo()\r\nEnd Sub\r\n']
+]   
+
+@pytest.mark.parametrize("code", bad_code)
+def test_bad_file(code: str) -> None:
+    """
+    Something bad should happen if the code cannot parse
+    """
+    linter = Linter()
+    assert linter.lint(code) == []
 
 
 name_formats = [
