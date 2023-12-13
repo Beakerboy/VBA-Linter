@@ -24,8 +24,6 @@ class Linter:
         prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if token.column > max_len:
-                    output.append((token.line, "W501", token.column))
                 newline_list = Linter.split_nl(token.text)
                 num_nl = len(newline_list)
                 for i in range(num_nl):
