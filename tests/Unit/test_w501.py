@@ -9,5 +9,5 @@ def test_line_length() -> None:
     input_stream = InputStream(code)
     lexer = vbaLexer(input_stream)
     tokens = lexer.getAllTokens()
-    
+    rule = W501()
     assert rule.test(tokens) == [(1, 86, 'W501')]
