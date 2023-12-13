@@ -76,3 +76,9 @@ def test_snake_case(name: str, expected: list) -> None:
 @pytest.mark.parametrize("name, expected", name_formats)
 def test_camel_case(name: str, expected: list) -> None:
     assert Linter.is_camel_case(name) == expected[1]
+
+
+def test_extra_end_lines() -> None:
+    code = 'Public Function Foo(num)\r\nEnd Function\r\n\r\n'
+    linter = Linter()
+    assert linter.lint(code) == [(3, "W300")]
