@@ -23,15 +23,6 @@ class Linter:
         tokens = lexer.getAllTokens()
         loader = RuleLoader()
         output = loader.test_all(tokens)
-
-        # End of file checks
-        final_token = tokens[-1]
-        if not (final_token is None or final_token.type != vbaLexer.NEWLINE):
-            newline_list = Linter.split_nl(final_token.text)
-            num_nl = len(newline_list)
-            if num_nl > 1:
-                for i in range(num_nl - 1):
-                    output.append((final_token.line + i + 1, "W300"))
         output.sort()
         return output
 
