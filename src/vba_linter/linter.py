@@ -28,7 +28,7 @@ class Linter:
             prev_tok = token
 
         # End of file checks
-        final_token = prev_tok
+        final_token = tokens[-1]
         if final_token is None or final_token.type != vbaLexer.NEWLINE:
             line = 1 if final_token is None else final_token.line
             output.append((line, "W201"))
