@@ -1,6 +1,6 @@
 import pytest
 from vba_linter.linter import Linter
-from vba_linter.rules.w200 import W200
+from vba_linter.rules.w500 import W500
 
 
 line_ending_data = [
