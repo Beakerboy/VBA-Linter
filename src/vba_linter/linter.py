@@ -23,9 +23,6 @@ class Linter:
         tokens = lexer.getAllTokens()
         loader = RuleLoader()
         output = loader.test_all(tokens)
-        prev_tok = None
-        for token in tokens:
-            prev_tok = token
 
         # End of file checks
         final_token = tokens[-1]
