@@ -21,7 +21,8 @@ name_formats = [
     ['camelCase', [False, True]],
     ['PascalCase', [False, False]],
     ['hUngarian', [False, False]],
-    ['camelsnake', [True, True]]
+    ['kebab-case', [False, False]],
+    ['i', [True, True]]
 ]
 
 
