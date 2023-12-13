@@ -62,7 +62,7 @@ class Linter:
     @classmethod
     def is_snake_case(cls: Type[T], name: str) -> bool:
         pattern = '[a-z]+(_[a-z]+)*$'
-        return self.text_matches(pattern, name)
+        return cls.text_matches(pattern, name)
 
     @classmethod
     def is_camel_case(cls: Type[T], name: str) -> bool:
@@ -70,4 +70,4 @@ class Linter:
         Also known as lowerCamelCase.
         """
         pattern = '[a-z]{2,}([a-zA-Z]([a-z])+)*$'
-        return self.text_matches(pattern, name)
+        return cls.text_matches(pattern, name)
