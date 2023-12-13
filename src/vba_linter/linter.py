@@ -15,7 +15,10 @@ class Linter:
         pass
 
     def get_lexer(self: T, code: str) -> vbaLexer:
-        input_stream = InputStream(code)
+        try:
+            input_stream = InputStream(code)
+        except:
+            raise Exception("Bad Code")
         return vbaLexer(input_stream)
 
     def lint(self: T, code: str) -> list:
