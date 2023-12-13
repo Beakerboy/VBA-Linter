@@ -16,7 +16,7 @@ class W200(RuleBase):
         prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
-                if token.column > max_len:
+                if token.column > self._max_len:
                     output.append((token.line, token.column, "W501"))
         return output
 
