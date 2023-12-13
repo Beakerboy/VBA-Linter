@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/Beakerboy/VBA-Linter/badge.svg?branch=main)](https://coveralls.io/github/Beakerboy/VBA-Linter?branch=main)
 # VBA-Linter
 Lint VBA code
 
