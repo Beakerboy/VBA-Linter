@@ -12,7 +12,7 @@ class W201(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
-        final_token = tokens[-1]
+        final_token = tokens.pop()
         if final_token is None or final_token.type != vbaLexer.NEWLINE:
             line = 1 if final_token is None else final_token.line
             column = 0 if final_token is None else final_token.column
