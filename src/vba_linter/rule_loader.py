@@ -1,5 +1,7 @@
 from typing import TypeVar
 from vba_linter.rules.w200 import W200
+from vba_linter.rules.w501 import W501
+
 
 
 T = TypeVar('T', bound='RuleLoader')
@@ -12,7 +14,7 @@ class RuleLoader:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules = [W200()]
+        self._rules = [W200(), W501()]
 
     def test_all(self: T, tokens: list) -> list:
         output = []
