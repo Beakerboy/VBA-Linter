@@ -11,7 +11,7 @@ class RuleLoader:
         # create list of name to path
         # load config file.
         pass
-    
+
     def test_all(self: T, tokens: list) -> list:
         pass
 
