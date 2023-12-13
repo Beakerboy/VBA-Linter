@@ -13,7 +13,6 @@ class W200(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
-        prev_tok = None
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > self._max_len:
