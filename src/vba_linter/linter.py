@@ -26,7 +26,7 @@ class Linter:
 
         # End of file checks
         final_token = tokens[-1]
-        if not(final_token is None or final_token.type != vbaLexer.NEWLINE):
+        if not (final_token is None or final_token.type != vbaLexer.NEWLINE):
             newline_list = Linter.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
