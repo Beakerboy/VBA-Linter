@@ -16,7 +16,7 @@ class W200(RuleBase):
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if not (prev_tok is None) and prev_tok.type == vbaLexer.WS:
-                    output.append((token.line, token.column - 1, "W200"))
+                    output.append((token.line, token.column, "W200"))
             prev_tok = token
         return output
 
