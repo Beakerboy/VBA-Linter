@@ -20,7 +20,7 @@ def test_sort() -> None:
 bad_code = [
     ['<?php phpinfo(); ?>'],
     ['Function Foo()\r\nEnd Sub\r\n']
-]   
+]
 
 
 @pytest.mark.parametrize("code", bad_code)
