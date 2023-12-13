@@ -14,7 +14,7 @@ class Linter:
         pass
 
     def lint(self: T, code: str) -> list:
-        max_len = 20
+        max_len = 80
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         tokens = lexer.getAllTokens()
