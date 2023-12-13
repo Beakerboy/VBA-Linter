@@ -1,5 +1,5 @@
 from antlr.vbaLexer import vbaLexer
-from vba_linter.rules.token_before_base import TokwnBeforeBase
+from vba_linter.rules.token_before_base import TokenBeforeBase
 from typing import TypeVar
 
 
