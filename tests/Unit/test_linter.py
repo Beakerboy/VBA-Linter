@@ -90,7 +90,7 @@ extra_eol = [
 ]
 
 
-@pytest.mark.parametrize("name, expected", extra_eol)
+@pytest.mark.parametrize("code, expected", extra_eol)
 def test_extra_end_lines(code: str, expected: list) -> None:
     linter = Linter()
     assert linter.lint(code) == expected
