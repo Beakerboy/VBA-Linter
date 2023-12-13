@@ -6,7 +6,7 @@ from typing import TypeVar
 T = TypeVar('T', bound='W200')
 
 
-class W200(RuleBase):
+class W501(RuleBase):
     def __init__(self: T) -> None:
         self.rule_name = "W501"
         self._max_len = 80
