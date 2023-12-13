@@ -17,5 +17,5 @@ def test_eol_ws(code: str, expected: list) -> None:
     lexer = vbaLexer(input_stream)
     tokens = lexer.getAllTokens()
     rule = W200()
-    
+
     assert rule.test(tokens) == expected
