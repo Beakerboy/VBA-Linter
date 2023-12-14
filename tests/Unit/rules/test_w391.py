@@ -33,7 +33,8 @@ Public Function Foo(num)
 End Function
 ''',  # noqa
      []
-]]
+    ]
+]
 
 
 @pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
