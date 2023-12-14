@@ -29,7 +29,7 @@ best_practice_data = [
 ]
 
 
-@pytest.mark.parametrize("code, expected", [anti_pattern_data, best_practice_data])
+@pytest.mark.parametrize("code, expected", anti_pattern_data + best_practice_data)
 def test_test(code: str, expected: list) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
