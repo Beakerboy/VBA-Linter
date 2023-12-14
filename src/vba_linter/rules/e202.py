@@ -9,7 +9,6 @@ T = TypeVar('T', bound='E202')
 class E202(TokenBeforeBase):
     def __init__(self: T) -> None:
         self._rule_name = "E202"
-        self._token_find = vbaLexer.RPAREN
-        self._token_bad = vbaLexer.WS
+        self._token_first = vbaLexer.WS
+        self._token_second = vbaLexer.RPAREN
         self._message = "Whitespace before ')'"
-        self._find_value = ''
