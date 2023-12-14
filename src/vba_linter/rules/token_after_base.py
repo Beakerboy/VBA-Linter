@@ -14,7 +14,7 @@ class TokenAfterBase(TokenBeforeBase):
         self._message = ""
 
     def test(self: T, tokens: list) -> list:
-        temp = super().test(data)
+        temp = super().test(tokens)
         output: list[tuple] = []
         for err in temp:
             output.append((err[0], err[1] + 1, err[2]))
