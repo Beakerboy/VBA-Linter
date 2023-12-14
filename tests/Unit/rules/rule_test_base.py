@@ -8,8 +8,14 @@ T = TypeVar('T', bound='RuleTestBase')
 
 class RuleTestBase:
     def __init__(self: T) -> None:
-        self.anti_patterns = []
-        self.best_practice = []
+        self.best_practice = [
+            ['''\
+Public Function Foo(num)
+End Function
+''',  # noqa
+             []
+            ]
+        ]
         self.rule: RuleBase
 
     def test_test(self: T, code: str, expected: list) -> None:
