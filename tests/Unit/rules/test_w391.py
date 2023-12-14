@@ -36,7 +36,7 @@ def test_test(code, expected) -> None:
     RuleTestBase(code, expected)
     
 
-def test_message(self: T) -> None:
+def test_message() -> None:
     data = (3, 13, "W391")
     rule = W391()
     expected = ":3:13: W391 blank line at end of file"
