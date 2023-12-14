@@ -13,3 +13,9 @@ class E203(TokenBeforeBase):
         self._token_bad = vbaLexer.WS
         self._message = "Whitespace before ','"
         self._find_value = ','
+
+    def test(self: T, tokens: list) -> list:
+        output: list[tuple] = []
+        for token in tokens:
+            output.append((line, column, name, text))
+        return output
