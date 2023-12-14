@@ -4,11 +4,11 @@ T = TypeVar('T', bound='RuleBase')
 
 
 class RuleBase:
-    def test(self: T, tokens: list) -> list:
-        return []
+    def __init__(swlf: T) -> None:
+        self._rule_name = ""
 
     def create_message(self: T, data: tuple) -> str:
-        return ':' + str(data[0]) + ':' + str(data[1]) + ' '
+        return ':' + str(data[0]) + ':' + str(data[1]) + ': ' + self._rule_name + " "
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
