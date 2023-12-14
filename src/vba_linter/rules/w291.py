@@ -9,4 +9,4 @@ T = TypeVar('T', bound='W291')
 class W291(TokenBeforeBase):
     def __init__(self: T) -> None:
         message = "trailing whitespace"
-        super().__init__("W291", vbaLexer.NEWLINE, vbaLexer.WS, message)
+        super().__init__("W291", vbaLexer.WS, vbaLexer.NEWLINE, message)
