@@ -6,6 +6,11 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ## Formatting Checks
 
+### E2 Whitespace errors
+* E201 Whitespace after '('
+* E202 Whitespace before ')'
+* E203 whitespace before ‘,’
+
 ### W2 Whitespace warning
 * W201 no newline at end of file
 * W291 trailing whitespace
@@ -18,9 +23,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * W501 line too long
 
 ## To Do
-* E201 Whitespace after (
-* E202 Whitespace before )
-* E203 whitespace before ‘,’
 * E211 Whitespace before (
 * E221 multiple spaces before operator
 * E222 multiple spaces after operator
