@@ -33,3 +33,8 @@ T = TypeVar('T', bound='TestW391')
     anti_patterns + RuleTestBase.best_practice
 )
 class TestW391(RuleTestBase):
+    def test_message(self: T, rule: RuleBase) -> None:
+        data = (3, 13, "W391")
+        rule = W391()
+        expected = ":3:13: W391 blank line at end of file"
+        assert rule.create_message(data) == expected
