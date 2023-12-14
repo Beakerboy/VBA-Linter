@@ -4,7 +4,7 @@ T = TypeVar('T', bound='RuleBase')
 
 
 class RuleBase:
-    def __init__(swlf: T) -> None:
+    def __init__(self: T) -> None:
         self._rule_name = ""
 
     def create_message(self: T, data: tuple) -> str:
