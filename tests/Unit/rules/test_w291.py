@@ -20,7 +20,7 @@ End Function
 Public Function Foo(num)
 
 End Function 
-'''),  # noqa
+''',  # noqa
         [(3, 13, "W291")]
     ],
     [
