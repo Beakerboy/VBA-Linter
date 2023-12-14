@@ -13,7 +13,7 @@ class TokenBeforeBase(RuleBase):
         self._token_second = second
         self._token_first = first
         self._message = message
-        
+
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
         prev_tok = None
