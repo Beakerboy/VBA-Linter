@@ -1,3 +1,4 @@
+import pytest
 from typing import TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
@@ -10,7 +11,7 @@ class RuleTestBase:
         self.anti_patterns = []
         self.best_practice = []
         self.rule: RuleBase
-    
+
     @pytest.mark.parametrize("code, expected",
                              self.anti_patterns + self.best_practice)
     def test_test(self: T, code: str, expected: list) -> None:
