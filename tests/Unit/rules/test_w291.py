@@ -3,7 +3,7 @@ from vba_linter.linter import Linter
 from vba_linter.rules.w291 import W291
 
 
-anti_pattern_data = [
+anti_patterns = [
     [
         ('Public Function Foo(num) \r\n' +
          'End Function\r\n'),
@@ -24,12 +24,12 @@ anti_pattern_data = [
 ]
 
 
-best_practice_data = [
+best_practice = [
     ['Public Function Foo(num)\r\nEnd Function\r\n', []]
 ]
 
 
-@pytest.mark.parametrize("code, expected", anti_pattern_data + best_practice_data)
+@pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
 def test_test(code: str, expected: list) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
