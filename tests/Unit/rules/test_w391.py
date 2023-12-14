@@ -27,17 +27,7 @@ End Function
 ]
 
 
-best_practice = [
-    ['''\
-Public Function Foo(num)
-End Function
-''',  # noqa
-     []
-    ]
-]
-
-
-@pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
+@pytest.mark.parametrize("code, expected", anti_patterns + RuleTestBase.best_practice)
 class TestW391(RuleTestBase):
     def __init__(self: T) -> None:
         self.rule = W391()
