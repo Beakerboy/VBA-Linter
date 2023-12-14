@@ -16,7 +16,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * W291 trailing whitespace
 
 ### W3 Blank line warning
-* W300 blank line at end of file
+* W391 blank line at end of file
 
 ### W5 Line break warning
 * W500 incorrect line ending
