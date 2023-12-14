@@ -1,6 +1,6 @@
 import pytest
 from typing import TypeVar
-from Unit.rules.rule_test_base import RulesTestBase
+from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w291 import W291
 
 
@@ -45,6 +45,6 @@ End Function
 
 
 @pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
-class TestW291(RulesTestBase):
+class TestW291(RuleTestBase):
     def __init__(self: T) -> None:
         self.rule = W291()
