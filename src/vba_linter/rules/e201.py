@@ -8,7 +8,5 @@ T = TypeVar('T', bound='E201')
 
 class E201(TokenAfterBase):
     def __init__(self: T) -> None:
-        self._rule_name = "E201"
-        self._token_first = vbaLexer.LPAREN
-        self._token_second = vbaLexer.WS
-        self._message = "Whitespace after '('"
+        message = "Whitespace after '('"
+        super().__init__("E201", vbaLexer.LPAREN, vbaLexer.WS, message)
