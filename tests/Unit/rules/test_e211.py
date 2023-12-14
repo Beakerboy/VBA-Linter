@@ -28,9 +28,11 @@ End Function
 
 
 best_practice = [
-    [('Public Function Foo(num)\r\n' +
-      'End Function\r\n'),
-      []]
+    [('''\
+Public Function Foo(num)
+End Function
+'''  #noqa
+     ), []]
 ]
 
 
