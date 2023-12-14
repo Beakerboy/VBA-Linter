@@ -15,7 +15,7 @@ End Function
          []
         ]
     ]
-    
+
     def __init__(self: T) -> None:
         self.rule: RuleBase
 
