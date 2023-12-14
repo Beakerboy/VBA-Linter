@@ -8,7 +8,8 @@ class RuleBase:
         self._rule_name = ""
 
     def test(self: T, data: tuple) -> list:
-        return []
+        output: list[tuple] = []
+        return output
 
     def create_message(self: T, data: tuple) -> str:
         return (':' + str(data[0]) + ':' + str(data[1]) +
