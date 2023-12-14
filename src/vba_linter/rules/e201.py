@@ -11,4 +11,4 @@ class E201(TokenAfterBase):
         self._rule_name = "E201"
         self._token_find = vbaLexer.LPAREN
         self._token_bad = vbaLexer.WS
-        self._message = "Unexpected whitespace after '('"
+        self._message = "Whitespace after '('"
