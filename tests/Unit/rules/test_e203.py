@@ -12,6 +12,10 @@ test_data = [
         'Foo = Bar num , baz\r\n',
         [(1, 14, "E203")]
     ],
+    [
+        'Foo = Bar a, b , c\r\n',
+        [(1, 13, "E203")]
+    ],
 ]
 
 
