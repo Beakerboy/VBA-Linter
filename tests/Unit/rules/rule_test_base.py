@@ -7,15 +7,16 @@ T = TypeVar('T', bound='RuleTestBase')
 
 
 class RuleTestBase:
-    def __init__(self: T) -> None:
-        self.best_practice = [
-            ['''\
+    best_practice = [
+        ['''\
 Public Function Foo(num)
 End Function
 ''',  # noqa
-             []
-            ]
+         []
         ]
+    ]
+    
+    def __init__(self: T) -> None:
         self.rule: RuleBase
 
     def test_test(self: T, code: str, expected: list) -> None:
