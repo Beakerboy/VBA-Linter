@@ -4,8 +4,6 @@ from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w391 import W391
 
 
-T = TypeVar('T', bound='TestW391')
-
 anti_patterns = [
     [
         '''\
@@ -25,6 +23,9 @@ End Function
         [(3, 0, "W300"), (4, 0, "W300")]
     ]
 ]
+
+
+T = TypeVar('T', bound='TestW391')
 
 
 @pytest.mark.parametrize("code, expected", anti_patterns + RuleTestBase.best_practice)
