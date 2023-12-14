@@ -8,8 +8,7 @@ anti_patterns = [
         ('''\
 Public Function Foo(num) 
 End Function
-'''  # noqa
-    ),
+'''),  # noqa
         [(1, 25, "W291")]
     ],
     [
