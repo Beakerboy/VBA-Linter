@@ -6,7 +6,11 @@ T = TypeVar('T', bound='TokenBeforeBase')
 
 
 class TokenBeforeBase(RuleBase):
-
+    """
+    Find a token of the given type, and the optional value.
+    If the precious token is of the given type, return the
+    line and column of the end of the previous token.
+    """
     def __init__(self: T, name: str,
                  find: int, bad: int,
                  message: str) -> None:
