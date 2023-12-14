@@ -12,4 +12,4 @@ class E203(TokenBeforeBase):
         self._token_find = vbaLexer.T__0
         self._token_bad = vbaLexer.WS
         self._message = "Whitespace before ','"
-        self._find_value = ','
+        # self._find_value = ','
