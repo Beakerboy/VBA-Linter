@@ -6,11 +6,11 @@ from vba_linter.rules.e202 import E202
 test_data = [
     [
         'Public Function Foo(num )\r\nEnd Function\r\n',
-        [(1, 24, "W202")]
+        [(1, 24, "E202")]
     ],
     [
         'Foo = Bar( )\r\n',
-        [(3, 11, "W200")]
+        [(3, 11, "E202")]
     ],
 ]
 
@@ -20,6 +20,6 @@ def test_test(code: str, expected: list) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
     tokens = lexer.getAllTokens()
-    rule = W202()
+    rule = E202()
 
     assert rule.test(tokens) == expected
