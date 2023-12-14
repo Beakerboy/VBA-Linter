@@ -7,11 +7,11 @@ T = TypeVar('T', bound='TokenBeforeBase')
 
 class TokenBeforeBase(RuleBase):
 
-    def __init__(self: T, find: int, bad: int) -> None:
-        self._rule_name = ""
+    def __init__(self: T, name: str, find: int, bad: int, message: str) -> None:
+        self._rule_name = name
         self._token_find = find
         self._token_bad = bad
-        self._message = ""
+        self._message = message
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
