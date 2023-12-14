@@ -1,6 +1,6 @@
 import pytest
 from typing import TypeVar
-from tests.rules.rules_test_base import RulesTestBase
+from Unit.rules.rules_test_base import RulesTestBase
 from vba_linter.rules.w291 import W291
 
 
