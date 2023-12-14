@@ -23,3 +23,10 @@ def test_test(code: str, expected: list) -> None:
     rule = E201()
 
     assert rule.test(tokens) == expected
+
+
+def test_message() -> None:
+    rule = E201()
+    data = (3, 13, "E201")
+    expected = ":3:13: E201 Whitespace after '('"
+    assert rule.create_message(data) == expected
