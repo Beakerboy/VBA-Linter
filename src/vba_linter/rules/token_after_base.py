@@ -18,8 +18,8 @@ class TokenAfterBase(RuleBase):
         prev_tok = None
         for token in tokens:
             if token.type == self._token_bad:
-                if (not (prev_tok is None) and
-                    prev_tok.type == self._token_find):
+                prev_none = prev_tok is None
+                if not prev_none and prev_tok.type == self._token_find:
                     name = self._rule_name
                     column = token.column + 1
                     output.append((token.line, column, name))
