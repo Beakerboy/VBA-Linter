@@ -27,11 +27,9 @@ End Function
 
 T = TypeVar('T', bound='TestW391')
 
-
+@pytest.mark.parametrize('rule', W391())
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
 class TestW391(RuleTestBase):
-    def __init__(self: T) -> None:
-        self.rule = W391()
