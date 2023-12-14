@@ -24,7 +24,7 @@ End Function
         [(3, 13, "W291")]
     ],
     [
-         '''\
+        '''\
 Public Function Foo(num)
  
 End Function
