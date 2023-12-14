@@ -7,6 +7,7 @@ T = TypeVar('T', bound='RuleTestBase')
 
 
 class RuleTestBase:
+    rule: RuleBase
     best_practice = [
         ['''\
 Public Function Foo(num)
@@ -20,7 +21,7 @@ End Function
         linter = Linter()
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
-        assert rule.test(tokens) == expected
+        assert RuleTestBase.rule.test(tokens) == expected
 
     def test_message(self: T, rule: RuleBase) -> None:
         data = (3, 13, "W291")
