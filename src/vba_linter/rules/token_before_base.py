@@ -14,14 +14,23 @@ class TokenBeforeBase(RuleBase):
         self._token_find = find
         self._token_bad = bad
         self._message = message
+        self._find_value = ""
+
+    def set_find_value(self: T, value: str) -> None:
+        self._find_value = value
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
         prev_tok = None
         for token in tokens:
-            if token.type == self._token_find:
-                if not (prev_tok is None) and prev_tok.type == self._token_bad:
-                    output.append((token.line, token.column, self._rule_name))
+            value = token.text if self._find_value else self._find_value
+            if token.type == self._token_find and token.text == value:
+                bad = self._token_bad
+                if not (prev_tok is None) and prev_tok.type == bad:
+                    line = token.line
+                    column = token.column
+                    name = self._rule_name
+                    output.append((line, column, name))
             prev_tok = token
         return output
 
