@@ -7,6 +7,9 @@ class RuleBase:
     def __init__(self: T) -> None:
         self._rule_name = ""
 
+    def test(self: T, data: tuple) -> list:
+        return []
+
     def create_message(self: T, data: tuple) -> str:
         return (':' + str(data[0]) + ':' + str(data[1]) +
                 ': ' + self._rule_name + " ")
