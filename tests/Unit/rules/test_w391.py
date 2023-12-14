@@ -1,5 +1,4 @@
 import pytest
-from typing import TypeVar
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w391 import W391
 
