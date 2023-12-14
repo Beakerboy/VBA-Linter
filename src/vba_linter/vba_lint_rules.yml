@@ -1,0 +1,17 @@
+active:
+  - W200
+  - W201
+  - W500
+  - W501
+
+W501:
+  max: 80
+
+N800:
+  format: "PascalCase"
+
+N801:
+  format: "camelCase"
+
+N802:
+  formal: "hUngarian"

@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vba_lint"
+version = "0.0.1"
+authors = [
+  { name="Kevin Nowaczyk", email="beakerboy99@yahoo.com" },
+]
+description = "Lint VBA code."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  'PyYAML',
+  'antlr4-python3-runtime',
+  'antlr4-tools'
+]
+[project.optional-dependencies]
+tests = [
+  'mypy',
+  'pytest',
+  'pytest-cov',
+  'pytest-mock',
+  'coveralls',
+  'pep8-naming',
+  'flake8-annotations'
+]
+[project.urls]
+"Homepage" = "https://github.com/Beakerboy/VBA-Linter"
+"Bug Tracker" = "https://github.com/Beakerboy/VBA-Linter/issues"
+
+[tool.coverage.run]
+omit = [
+    # omit this directory
+    "src/antlr/*",
+    ]
+    
+[tool.pytest.ini_options]
+pythonpath = "src"
+testpaths = [
+    "tests",
+]
+
+[tool.mypy]
+mypy_path = "./stubs"
