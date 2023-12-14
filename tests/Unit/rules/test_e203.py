@@ -17,8 +17,8 @@ test_data = [
         [(1, 15, "E203")]
     ],
     [
-        'Foo = 3 : Bar = 4\r\n',
-        []
+        'Public Function Foo(num ; bar)\r\nEnd Function\r\n',
+        [(1, 24, "E203")]
     ]
 ]
 
