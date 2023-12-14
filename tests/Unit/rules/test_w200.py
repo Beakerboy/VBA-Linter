@@ -32,5 +32,5 @@ def test_test(code: str, expected: list) -> None:
 def test_message() -> None:
     rule = W200()
     data = (3, 13, "W200")
-    expected = ":3:13: W200 Unexpected whitespace at the end of the line"
+    expected = ":3:13: W291 trailing whitespace"
     assert rule.create_message(data) == expected
