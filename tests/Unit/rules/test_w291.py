@@ -33,6 +33,7 @@ End Function
 
 T = TypeVar('T', bound='TestW291')
 
+
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
