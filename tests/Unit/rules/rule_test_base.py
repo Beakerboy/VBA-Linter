@@ -6,7 +6,7 @@ T = TypeVar('T', bound='RuleTestBase')
 
 
 class RuleTestBase:
-    def __init__(self: T) -> None
+    def __init__(self: T) -> None:
         self.anti_patterns = []
         self.best_practice = []
         self.rule: RuleBase
