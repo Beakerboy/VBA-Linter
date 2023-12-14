@@ -11,7 +11,4 @@ class E202(TokenBeforeBase):
         self._rule_name = "E202"
         self._token_find = vbaLexer.RPAREN
         self._token_bad = vbaLexer.WS
-
-    def create_message(self: T, data: tuple) -> str:
-        output = TokenBeforeBase.create_message(self, data)
-        return output + "Unexpected whitespace bedore ')'"
+        self._message = "Whitespace before ')'"
