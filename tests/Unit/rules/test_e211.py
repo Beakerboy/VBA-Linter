@@ -5,10 +5,10 @@ from vba_linter.rules.w291 import W291
 
 anti_patterns = [
     [
-        ('''\
+        '''\
 Public Function Foo(num) 
 End Function
-'''),  # noqa
+''',  # noqa
         [(1, 25, "W291")]
     ],
     [
@@ -27,11 +27,11 @@ End Function
 
 
 best_practice = [
-    [('''\
+    ['''\
 Public Function Foo(num)
 End Function
-'''  # noqa
-     ), []]
+''',  # noqa
+     []]
 ]
 
 
