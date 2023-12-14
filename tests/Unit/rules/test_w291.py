@@ -34,10 +34,14 @@ End Function
 T = TypeVar('T', bound='TestW291')
 
 
+@pytest.mark.parametrize('rule', W291())
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
 class TestW291(RuleTestBase):
-    def __init__(self: T) -> None:
-        self.rule = W291()
+    def test_message(self: T) -> None:
+        data = (3, 13, "W291")
+        rule = W291()
+        expected = ":3:13: W291 trailing whitespace"
+        assert rule.create_message(data) == expected
