@@ -20,7 +20,6 @@ class RuleTestBase:
         tokens = lexer.getAllTokens()
         assert self.rule.test(tokens) == expected
 
-
     def test_message(self: T) -> None:
         data = (3, 13, "W291")
         expected = ":3:13: W291 trailing whitespace"
