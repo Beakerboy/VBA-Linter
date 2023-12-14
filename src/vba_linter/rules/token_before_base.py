@@ -7,7 +7,7 @@ T = TypeVar('T', bound='TokenBeforeBase')
 
 class TokenBeforeBase(RuleBase):
     def __init__(self: T, name: str,
-                 second: int, first: int,
+                 first: int, second: int,
                  message: str) -> None:
         self._rule_name = name
         self._token_second = second
