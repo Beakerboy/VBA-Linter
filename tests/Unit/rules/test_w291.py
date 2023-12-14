@@ -9,7 +9,8 @@ T = TypeVar('T', bound='TestW291')
 
 
 class TestW291(RuleTestBase):
-    __init__(self: T) -> None:
+    def __init__(self: T) -> None:
+        self.rule = W291()
         self.anti_patterns = [
             [
                 '''\
