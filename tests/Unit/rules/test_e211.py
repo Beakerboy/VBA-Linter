@@ -31,7 +31,7 @@ best_practice = [
     [('''\
 Public Function Foo(num)
 End Function
-'''  #noqa
+'''  # noqa
      ), []]
 ]
 
