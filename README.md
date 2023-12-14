@@ -7,8 +7,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ## Formatting Checks
 
 ### W2 Whitespace warning
-* W200 trailing whitespace
 * W201 no newline at end of file
+* W291 trailing whitespace
 
 ### W3 Blank line warning
 * W300 blank line at end of file
