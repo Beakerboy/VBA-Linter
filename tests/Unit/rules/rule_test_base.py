@@ -1,5 +1,6 @@
 import pytest
 from typing import TypeVar
+from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
 
 
