@@ -1,34 +1,32 @@
 import pytest
 from vba_linter.linter import Linter
-from vba_linter.rules.w291 import W291
+from vba_linter.rules.e211 import E211
 
 
 anti_patterns = [
     [
         '''\
-Public Function Foo(num) 
+Public Function Foo (num)
 End Function
 ''',  # noqa
-        [(1, 25, "W291")]
+        [(1, 20, "E211")]
     ],
     [
-        ('Public Function Foo(num)\r\n' +
-         '\r\n' +
-         'End Function \r\n'),
-        [(3, 13, "W291")]
-    ],
-    [
-        ('Public Function Foo(num)\r\n' +
-         '\n' +
-         'End Function \r\n'),
-        [(3, 13, "W291")]
+        '''\
+Public Function Foo(data)
+    bar = data (1)
+End Function
+''',  # noqa
+        [(2, 15, "E211")]
     ],
 ]
 
 
 best_practice = [
     ['''\
-Public Function Foo(num)
+Public Function Foo(data)
+    bar = data(1)
+    baz = (2 + 1)
 End Function
 ''',  # noqa
      []]
@@ -40,7 +38,7 @@ def test_test(code: str, expected: list) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
     tokens = lexer.getAllTokens()
-    rule = W291()
+    rule = E211()
 
     assert rule.test(tokens) == expected
 
