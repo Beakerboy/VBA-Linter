@@ -4,9 +4,6 @@ from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w291 import W291
 
 
-T = TypeVar('T', bound='TestW291')
-
-
 anti_patterns = [
     [
         '''\
@@ -34,17 +31,12 @@ End Function
 ]
 
 
-best_practice = [
-    ['''\
-Public Function Foo(num)
+T = TypeVar('T', bound='TestW291')
 
-End Function
-''',  # noqa
-     []]
-]
-
-
-@pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
+@pytest.mark.parametrize(
+    "code, expected",
+    anti_patterns + RuleTestBase.best_practice
+)
 class TestW291(RuleTestBase):
     def __init__(self: T) -> None:
         self.rule = W291()
