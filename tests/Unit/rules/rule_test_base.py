@@ -12,8 +12,7 @@ class RuleTestBase:
 Public Function Foo(num)
 End Function
 ''',  # noqa
-         []
-        ]
+         []]
     ]
 
     def __init__(self: T) -> None:
