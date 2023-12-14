@@ -40,7 +40,7 @@ Public Function Foo(num)
 
 End Function
 ''',  # noqa
-       []]
+     []]
 ]
 
 
