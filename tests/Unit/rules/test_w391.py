@@ -27,13 +27,14 @@ End Function
 
 T = TypeVar('T', bound='TestW391')
 
+
 @pytest.mark.parametrize('rule', W391())
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
 class TestW391(RuleTestBase):
-    def test_message(self: T, rule: RuleBase) -> None:
+    def test_message(self: T) -> None:
         data = (3, 13, "W391")
         rule = W391()
         expected = ":3:13: W391 blank line at end of file"
