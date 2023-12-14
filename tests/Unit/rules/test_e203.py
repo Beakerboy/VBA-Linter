@@ -1,6 +1,6 @@
 import pytest
 from vba_linter.linter import Linter
-from vba_linter.rules.e203 import E203 as Rule
+from vba_linter.rules.e203 import E203
 
 
 test_data = [
@@ -20,6 +20,6 @@ def test_test(code: str, expected: list) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
     tokens = lexer.getAllTokens()
-    rule = Rule()
+    rule = E203()
 
     assert rule.test(tokens) == expected
