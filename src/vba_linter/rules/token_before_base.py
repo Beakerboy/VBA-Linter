@@ -23,7 +23,7 @@ class TokenBeforeBase(RuleBase):
         output: list[tuple] = []
         prev_tok = None
         for token in tokens:
-            value = token.text if self._find_value else self._find_value
+            value = token.text if self._find_value == '' else self._find_value
             if token.type == self._token_find and token.text == value:
                 bad = self._token_bad
                 if not (prev_tok is None) and prev_tok.type == bad:
