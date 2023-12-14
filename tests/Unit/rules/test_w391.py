@@ -16,7 +16,7 @@ End Function
         [(3, 0, "W300")]
     ],
     [
-        '''
+        '''\
 Public Function Foo(num)
 End Function
 
@@ -37,6 +37,6 @@ End Function
 
 
 @pytest.mark.parametrize("code, expected", anti_patterns + best_practice)
-class TestW291(RuleTestBase):
+class TestW391(RuleTestBase):
     def __init__(self: T) -> None:
         self.rule = W391()
