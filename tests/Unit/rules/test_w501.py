@@ -28,6 +28,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 86, "W501")
-    expected = ":3:86: W501 incorrect line ending"
+    data = (3, 80, "W501", 86)
+    expected = ":3:80: W501 line too long (86 > 79 characters)"
     assert rule.create_message(data) == expected
