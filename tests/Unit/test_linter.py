@@ -3,8 +3,8 @@ from vba_linter.linter import Linter
 
 
 def test_constructor() -> None:
-    base = RuleBase()
-    assert isinstance(base, RuleBase)
+    obj = Linter()
+    assert isinstance(obj, Linter)
 
 
 def xtest_sort() -> None:
