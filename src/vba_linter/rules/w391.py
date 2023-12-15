@@ -8,7 +8,8 @@ T = TypeVar('T', bound='W391')
 
 class W391(RuleBase):
     def __init__(self: T) -> None:
-        self.rule_name = "W391"
+        self._rule_name = "W391"
+        self._message = 'trailing whitespace'
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
