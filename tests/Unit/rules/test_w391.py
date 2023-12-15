@@ -37,7 +37,7 @@ End Function
 rule = W391()
 
 
-@pytest.mark.parametrize('rule', [rule], scope='module')
+@pytest.mark.parametrize('rule', [rule])
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
@@ -46,6 +46,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     RuleTestBase.test_test(rule, code, expected)
 
 
+@pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
     data = (3, 13, "W391")
     expected = ":3:13: W391 blank line at end of file"
