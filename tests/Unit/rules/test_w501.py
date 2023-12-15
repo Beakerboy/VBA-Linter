@@ -1,5 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w501 import W501
 
@@ -23,7 +24,10 @@ rule = W501()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    RuleTestBase.test_test(rule, code, expected)
+    linter = Linter()
+    lexer = linter.get_lexer(code)
+    tokens = lexer.getAllTokens()
+    assert rule.test(tokens) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])
