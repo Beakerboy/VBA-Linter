@@ -1,6 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.RuleBase import RuleBase
+from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w500 import W500
 
 
