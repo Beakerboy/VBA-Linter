@@ -21,3 +21,7 @@ class W391(RuleBase):
                 for i in range(num_nl - 1):
                     output.append((final_token.line + i + 1, "W391"))
         return output
+
+    def create_message(self: T, data: tuple) -> str:
+        output = RuleBase.create_message(self, data)
+        return output + self._message
