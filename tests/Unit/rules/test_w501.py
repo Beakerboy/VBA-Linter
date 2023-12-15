@@ -9,7 +9,7 @@ anti_patterns = [
 Public Function Supercalifragilisticexpialidocious(atrocious, precocious, indubitably)
 End Function
 ''',  # noqa
-     [(1, 86, 'W501')]
+     [(1, 80, 'W501', 86)]
     ]
 ]
 
