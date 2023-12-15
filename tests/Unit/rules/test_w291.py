@@ -33,6 +33,7 @@ End Function
 
 rule = W291()
 
+
 @pytest.mark.parametrize('rule', rule)
 @pytest.mark.parametrize(
     "code, expected",
