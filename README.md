@@ -29,6 +29,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E222 multiple spaces after operator
 * E712 comparison to True should be ‘If cond Then’
 * E713 comparison to False should be 'If Not cond Then'
+* F841 local variable 'foo' is assigned to but never used
 * W100 indentation contains spaces
 * W101 improper indentation level
 * W301 Too few blank lines before function
