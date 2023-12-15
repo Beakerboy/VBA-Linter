@@ -7,7 +7,6 @@ T = TypeVar('T', bound='RuleTestBase')
 
 
 class RuleTestBase:
-    rule: RuleBase
     best_practice = [
         [
             ('Public Function Foo(num)\r\n' +
@@ -24,4 +23,4 @@ class RuleTestBase:
         linter = Linter()
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
-        assert cls.rule.test(tokens) == expected
+        assert rule.test(tokens) == expected
