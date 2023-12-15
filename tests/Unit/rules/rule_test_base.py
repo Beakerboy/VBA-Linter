@@ -24,3 +24,10 @@ class RuleTestBase:
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
         assert rule.test(tokens) == expected
+
+    @classmethod
+    def tokenize(cls: Type[T], rule: RuleBase,
+                  code: str, expected: list) -> None:
+        linter = Linter()
+        lexer = linter.get_lexer(code)
+        return rule.test(lexer.getAllTokens())
