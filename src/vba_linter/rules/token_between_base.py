@@ -21,9 +21,8 @@ class TokenBetweenBase(RuleBase):
         tok2 = tokens[1]
         for token in tokens[2:]:
             if (token.type == self._token_third and
-                tok1 == self._token_first and
-                tok2 == self._token_second):
-
+                    tok1 == self._token_first and
+                    tok2 == self._token_second):
                 line = token.line
                 column = token.column
                 name = self._rule_name
