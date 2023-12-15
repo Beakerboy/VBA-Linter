@@ -23,4 +23,4 @@ class RuleTestBase:
         linter = Linter()
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
-        assert RuleTestBase.rule.test(tokens) == expected
+        assert cls.rule.test(tokens) == expected
