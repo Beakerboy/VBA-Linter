@@ -12,8 +12,7 @@ class RuleBase:
         return []
 
     def create_message(self: T, data: tuple) -> str:
-        return (':' + str(data[0]) + ':' + str(data[1]) +
-                ': ' + self._rule_name + " " + self._message)
+        return ( ":%s:%s: %s " + self._message) % data
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
