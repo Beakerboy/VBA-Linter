@@ -6,13 +6,14 @@ T = TypeVar('T', bound='RuleBase')
 class RuleBase:
     def __init__(self: T) -> None:
         self._rule_name = ""
+        self._message = ''
 
     def test(self: T, tokens: list) -> list:
         return []
 
     def create_message(self: T, data: tuple) -> str:
         return (':' + str(data[0]) + ':' + str(data[1]) +
-                ': ' + self._rule_name + " ")
+                ': ' + self._rule_name + " " + self._message)
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
