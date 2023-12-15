@@ -19,9 +19,18 @@ End Function
 Public Function Foo(num)
 End Function
 
+ 
+''',  # noqa
+        []
+    ],
+    [
+        '''\
+Public Function Foo(num)
+End Function
+
 
 ''',  # noqa
-        [(3, 1, "W391"), (4, 1, "W391")]
+        [(4, 1, "W391")]
     ]
 ]
 
