@@ -27,7 +27,3 @@ class TokenBeforeBase(RuleBase):
                     output.append((line, column, name))
             prev_tok = token
         return output
-
-    def create_message(self: T, data: tuple) -> str:
-        output = RuleBase.create_message(self, data)
-        return output + self._message
