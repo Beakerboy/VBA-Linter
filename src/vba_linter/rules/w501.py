@@ -9,17 +9,16 @@ T = TypeVar('T', bound='W501')
 class W501(RuleBase):
     def __init__(self: T) -> None:
         self.rule_name = "W501"
-        self._max_len = 80
+        self._max_len = 79
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > self._max_len:
-                    output.append((token.line, token.column, "W501"))
+                    output.append((token.line, self._max_len, "W501", token.column))
         return output
 
     def create_message(self: T, data: tuple) -> str:
-        output = RuleBase.create_message(self, data)
-        return (output + "Line too long (" + str(data[1]) +
-                '>' + str(self._max_len) + ')')
+        template = ":%s:%s: %s line too long (%s > %s characters)"
+        return template % (data[0], data[1], self._rule_name, data[3], self._max_len)
