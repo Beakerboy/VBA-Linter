@@ -33,7 +33,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E712 comparison to True should be ‘If cond Then’
 * E713 comparison to False should be 'If Not cond Then'
 * F841 local variable 'foo' is assigned to but never used
-* W100 indentation contains spaces
 * W101 improper indentation level
 * W301 Too few blank lines before function
 * W302 Too many blank lines before function
