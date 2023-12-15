@@ -1,7 +1,6 @@
 import pytest
-from vba_linter.linter import Linter
+from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w500 import W500
-
 
 anti_patterns = [
     ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "W500")]),
