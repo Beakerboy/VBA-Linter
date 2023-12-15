@@ -6,6 +6,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ## Formatting Checks
 
+### E1 Indentation
+* E101 indentation contains mixed spaces and tabs
 ### E2 Whitespace errors
 * E201 Whitespace after '('
 * E202 Whitespace before ')'
