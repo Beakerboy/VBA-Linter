@@ -32,7 +32,7 @@ RuleTestBase.rule = W391()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(code: str, expected: tuple) -> None:
-    RuleTestBase(code, expected)
+    RuleTestBase.test(code, expected)
 
 
 def test_message() -> None:
