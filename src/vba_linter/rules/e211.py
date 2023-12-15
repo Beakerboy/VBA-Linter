@@ -8,7 +8,7 @@ T = TypeVar('T', bound='E211')
 
 class E211(TokenBetweenBase):
     def __init__(self: T) -> None:
-        self._rule_name = "E203"
+        self._rule_name = "E211"
         self._token_first = vbaLexer.IDENTIFIER
         self._token_second = vbaLexer.WS
         self._token_third = vbaLexer.LPAREN
