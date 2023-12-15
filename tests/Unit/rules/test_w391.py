@@ -51,6 +51,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     assert rule.test(tokens) == expected
 
 
+@pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
     data = (3, 13, "W391")
     expected = ":3:13: W391 blank line at end of file"
