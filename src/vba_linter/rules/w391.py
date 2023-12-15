@@ -19,7 +19,7 @@ class W391(RuleBase):
             num_nl = len(newline_list)
             if num_nl > 1:
                 for i in range(num_nl - 1):
-                    output.append((final_token.line + i + 1, "W391"))
+                    output.append((final_token.line + i + 1, 1, "W391"))
         return output
 
     def create_message(self: T, data: tuple) -> str:
