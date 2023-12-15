@@ -1,5 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.RuleBase import RuleBase
 from vba_linter.rules.w500 import W500
 
 anti_patterns = [
@@ -17,15 +18,15 @@ anti_patterns = [
 ]
 
 
-RuleTestBase.rule = W500()
+rule = W500()
 
-
+@pytest.mark.parametrize('rule', rule)
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
-def test_test(code: str, expected: tuple) -> None:
-    RuleTestBase.test_test(code, expected)
+def test_test(rule, code: str, expected: tuple) -> None:
+    RuleTestBase.test_test(rule, code, expected)
 
 
 def test_message() -> None:
