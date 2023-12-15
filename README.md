@@ -9,9 +9,10 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### E1 Indentation
 * E101 indentation contains mixed spaces and tabs
 ### E2 Whitespace errors
-* E201 Whitespace after '('
-* E202 Whitespace before ')'
+* E201 whitespace after '('
+* E202 whitespace before ')'
 * E203 whitespace before ‘,’
+* E211 whitespace before (
 ### W1 Indentation warning
 * W191 indentation contains tabs - should be error.
 ### W2 Whitespace warning
@@ -27,7 +28,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * W501 line too long
 
 ## To Do
-* E211 Whitespace before (
 * E221 multiple spaces before operator
 * E222 multiple spaces after operator
 * E712 comparison to True should be ‘If cond Then’
