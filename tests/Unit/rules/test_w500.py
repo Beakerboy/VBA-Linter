@@ -27,7 +27,7 @@ rule = W500()
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
-def test_test(rule, code: str, expected: tuple) -> None:
+def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     RuleTestBase.test_test(rule, code, expected)
 
 
