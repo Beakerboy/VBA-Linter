@@ -3,9 +3,7 @@ from vba_linter.linter import Linter
 from vba_linter.rules.w500 import W500
 
 
-line_ending_data = [
-    ('\r\n', []),
-    ('\r\n\r\n', []),
+anti_patterns = [
     ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "W500")]),
     ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, 0, "W500")]),
     ('\r\n\r\nFoo\n', [(3, 3, "W500")]),
@@ -20,10 +18,19 @@ line_ending_data = [
 ]
 
 
-@pytest.mark.parametrize("code, expected", line_ending_data)
-def test_line_ending(code: str, expected: list) -> None:
-    linter = Linter()
-    tokens = linter.get_lexer(code).getAllTokens()
-    rule = W500()
+RuleTestBase.rule = W500()
 
-    assert rule.test(tokens) == expected
+
+@pytest.mark.parametrize(
+    "code, expected",
+    anti_patterns + RuleTestBase.best_practice
+)
+def test_test(code: str, expected: tuple) -> None:
+    RuleTestBase.test_test(code, expected)
+
+
+def test_message() -> None:
+    data = (3, 13, "W500")
+    rule = W500()
+    expected = ":3:13: W500 incorrect line ending"
+    assert rule.create_message(data) == expected
