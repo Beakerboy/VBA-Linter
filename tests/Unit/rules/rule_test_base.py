@@ -10,7 +10,10 @@ class RuleTestBase:
     rule: RuleBase
     best_practice = [
         [
-            'Public Function Foo(num)\r\nEnd Function\r\n',
+            ('Public Function Foo(num)\r\n' + 
+             '.   bar = data(1)\r\n' +
+             '    baz = (2 + 1)\r\n' +
+             'End Function\r\n',
             []
         ]
     ]
