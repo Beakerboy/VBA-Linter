@@ -9,11 +9,10 @@ T = TypeVar('T', bound='RuleTestBase')
 class RuleTestBase:
     rule: RuleBase
     best_practice = [
-        ['''\
-Public Function Foo(num)
-End Function
-''',  # noqa
-         []]
+        [
+            'Public Function Foo(num)\r\nEnd Function\r\n',
+            []
+        ]
     ]
 
     @classmethod
