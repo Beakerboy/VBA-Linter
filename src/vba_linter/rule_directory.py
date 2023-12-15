@@ -6,10 +6,10 @@ from vba_linter.rules.w500 import W500
 from vba_linter.rules.w501 import W501
 
 
-T = TypeVar('T', bound='RuleLoader')
+T = TypeVar('T', bound='RuleDirectory')
 
 
-class RuleLoader:
+class RuleDirectory:
     def __init__(self: T) -> None:
         # scan specified rule directory
         # scan ./rules
