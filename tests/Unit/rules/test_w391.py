@@ -37,7 +37,7 @@ End Function
 rule = W391()
 
 
-@pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize('rule', [rule], scope='module')
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
