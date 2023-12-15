@@ -7,6 +7,9 @@ T = TypeVar('T', bound='W391')
 
 
 class W391(RuleBase):
+    """
+    Returns an error if the final line is solely a newline character.
+    """
     def __init__(self: T) -> None:
         self._rule_name = "W391"
         self._message = 'blank line at end of file'
@@ -18,8 +21,7 @@ class W391(RuleBase):
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
-                for i in range(num_nl - 1):
-                    output.append((final_token.line + i + 1, 1, "W391"))
+                output.append((final_token.line + num_nl + 1, 1, "W391"))
         return output
 
     def create_message(self: T, data: tuple) -> str:
