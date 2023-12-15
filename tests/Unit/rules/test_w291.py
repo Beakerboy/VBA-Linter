@@ -31,6 +31,12 @@ End Function
 ]
 
 
+message_data = [
+    [(3, 13, "W291"), ":3:13: W291 trailing whitespace"],
+    [(2, 1, "W291"), ":2:1: W293 blank line contains whitespace"]
+]
+
+
 rule = W291()
 
 
@@ -40,11 +46,12 @@ rule = W291()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    RuleTestBase.test_test(rule, code, expected)
+    assert RuleTestBase.tokenize(rule, code) == expected
 
 
-def test_message() -> None:
-    data = (3, 13, "W291")
-    rule = W291()
-    expected = ":3:13: W291 trailing whitespace"
+@pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize(
+    "data, expected", message_data
+)
+def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
     assert rule.create_message(data) == expected
