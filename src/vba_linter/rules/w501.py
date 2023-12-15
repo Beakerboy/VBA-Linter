@@ -20,5 +20,6 @@ class W501(RuleBase):
                 if token.column > self._max_len:
                     line = token.line
                     column = token.column
-                    output.append((line, self._max_len, "W501", column))
+                    pos = self._max_len + 1
+                    output.append((line, pos, "W501", column))
         return output
