@@ -33,7 +33,7 @@ End Function
 
 message_data = [
     [(3, 13, "W291"), ":3:13: W291 trailing whitespace"],
-    [(2, 1, "W291"), ":2:1: W202 blank line contains whitespace"]
+    [(2, 1, "W291"), ":2:1: W293 blank line contains whitespace"]
 ]
 
 
