@@ -21,7 +21,7 @@ class W391(RuleBase):
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
-                output.append((final_token.line + num_nl + 1, 1, "W391"))
+                output.append((final_token.line + num_nl - 1, 1, "W391"))
         return output
 
     def create_message(self: T, data: tuple) -> str:
