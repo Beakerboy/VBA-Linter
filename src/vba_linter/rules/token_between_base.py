@@ -19,15 +19,15 @@ class TokenBetweenBase(RuleBase):
         output: list[tuple] = []
         tok1 = tokens[0]
         tok2 = tokens[1]
-        i = 0
         for token in tokens[2:]:
             if (token.type == self._token_third and
                 tok1 == self._token_first and
                 tok2 == self._token_second):
-                    line = token.line
-                    column = token.column
-                    name = self._rule_name
-                    output.append((line, column, name))
+
+                line = token.line
+                column = token.column
+                name = self._rule_name
+                output.append((line, column, name))
             tok1 = tok2
             tok2 = token
         return output
