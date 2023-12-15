@@ -19,7 +19,7 @@ class RuleTestBase:
     ]
 
     @classmethod
-    def test_test(cls: Type[T], code: str, expected: list) -> None:
+    def test_test(cls: Type[T], rule: RuleBase, code: str, expected: list) -> None:
         linter = Linter()
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
