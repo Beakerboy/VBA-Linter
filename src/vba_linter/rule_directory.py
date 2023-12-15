@@ -18,6 +18,10 @@ class RuleDirectory:
         # load config file.
         self._rules = [W291(), W201(), W391(), W500(), W501()]
 
+    def add_rule(self: T, rule: RuleBase) -> None
+        pass
+
+    
     def test_all(self: T, tokens: list) -> list:
         output = []
         for rule in self._rules:
