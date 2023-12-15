@@ -1,5 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w391 import W391
 
 
@@ -24,19 +25,20 @@ End Function
 ]
 
 
-RuleTestBase.rule = W391()
+rule = W391()
 
 
+@pytest.mark.parametrize('rule', [rule])
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
-def test_test(code: str, expected: tuple) -> None:
-    RuleTestBase.test_test(code, expected)
+def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
+    RuleTestBase.test_test(rule, code, expected)
 
 
 def test_message() -> None:
     data = (3, 13, "W391")
-    rule = W391()
+    rule = W500()
     expected = ":3:13: W391 blank line at end of file"
     assert rule.create_message(data) == expected
