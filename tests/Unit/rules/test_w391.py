@@ -11,7 +11,7 @@ Public Function Foo(num)
 End Function
 
 ''',  # noqa
-        [(3, 0, "W300")]
+        [(3, 0, "W391")]
     ],
     [
         '''\
@@ -20,7 +20,7 @@ End Function
 
 
 ''',  # noqa
-        [(3, 0, "W300"), (4, 0, "W300")]
+        [(3, 0, "W391"), (4, 0, "W391")]
     ]
 ]
 
