@@ -13,7 +13,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E202 Whitespace before ')'
 * E203 whitespace before ‘,’
 ### W1 Indentation warning
-* W191 indentation contains tabs
+* W191 indentation contains tabs - should be error.
 ### W2 Whitespace warning
 * W201 no newline at end of file
 * W291 trailing whitespace
