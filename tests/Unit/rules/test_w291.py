@@ -39,7 +39,7 @@ RuleTestBase.rule = W291()
 )
 def test_test(code: str, expected: tuple) -> None:
     RuleTestBase(code, expected)
-    
+
 
 def test_message() -> None:
     data = (3, 13, "W291")
