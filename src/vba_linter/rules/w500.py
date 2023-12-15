@@ -10,7 +10,7 @@ class W500(RuleBase):
     def __init__(self: T) -> None:
         self._rule_name = "W500"
         self._line_ending = '\r\n'
-        self._message = 'Incorrect line ending'
+        self._message = 'incorrect line ending'
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
