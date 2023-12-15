@@ -31,6 +31,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     RuleTestBase.test_test(rule, code, expected)
 
 
+@pytest.mark.parametrize('rule', [rule])
 def test_message() -> None:
     data = (3, 13, "W500")
     rule = W500()
