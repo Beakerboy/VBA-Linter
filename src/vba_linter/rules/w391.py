@@ -9,7 +9,7 @@ T = TypeVar('T', bound='W391')
 class W391(RuleBase):
     def __init__(self: T) -> None:
         self._rule_name = "W391"
-        self._message = 'trailing whitespace'
+        self._message = 'blank line at end of file'
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
