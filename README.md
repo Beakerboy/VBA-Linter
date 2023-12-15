@@ -6,11 +6,14 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ## Formatting Checks
 
+### E1 Indentation
+* E101 indentation contains mixed spaces and tabs
 ### E2 Whitespace errors
 * E201 Whitespace after '('
 * E202 Whitespace before ')'
 * E203 whitespace before ‘,’
-
+### W1 Indentation warning
+* W191 indentation contains tabs
 ### W2 Whitespace warning
 * W201 no newline at end of file
 * W291 trailing whitespace
@@ -30,7 +33,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E712 comparison to True should be ‘If cond Then’
 * E713 comparison to False should be 'If Not cond Then'
 * F841 local variable 'foo' is assigned to but never used
-* W100 indentation contains spaces
 * W101 improper indentation level
 * W301 Too few blank lines before function
 * W302 Too many blank lines before function
