@@ -39,6 +39,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 def test_message() -> None:
     data = (3, 13, "W391")
-    rule = W500()
+    rule = W391()
     expected = ":3:13: W391 blank line at end of file"
     assert rule.create_message(data) == expected
