@@ -1,6 +1,7 @@
 import pytest
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
+from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.w391 import W391
 
 
