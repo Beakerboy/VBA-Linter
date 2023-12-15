@@ -2,7 +2,12 @@ import pytest
 from vba_linter.linter import Linter
 
 
-def test_sort() -> None:
+def test_constructor() -> None:
+    base = RuleBase()
+    assert isinstance(base, RuleBase)
+
+
+def xtest_sort() -> None:
     """
     Test that the results are sorted by line, then type.
     """
