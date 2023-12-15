@@ -26,8 +26,7 @@ class RuleTestBase:
         assert rule.test(tokens) == expected
 
     @classmethod
-    def tokenize(cls: Type[T], rule: RuleBase,
-                  code: str, expected: list) -> None:
+    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> None:
         linter = Linter()
         lexer = linter.get_lexer(code)
         return rule.test(lexer.getAllTokens())
