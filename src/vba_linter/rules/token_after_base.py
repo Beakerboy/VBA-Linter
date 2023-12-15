@@ -7,11 +7,13 @@ T = TypeVar('T', bound='TokenAfterBase')
 
 class TokenAfterBase(TokenBeforeBase):
 
-    def __init__(self: T, first: int, second: int) -> None:
-        self._rule_name = ""
+    def __init__(self: T, name: str,
+                 first: int, second: int,
+                 message: str) -> None:
+        self._rule_name = name
         self._token_first = first
         self._token_second = second
-        self._message = ""
+        self._message = message
 
     def test(self: T, tokens: list) -> list:
         temp = super().test(tokens)
