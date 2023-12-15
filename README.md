@@ -14,6 +14,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### W2 Whitespace warning
 * W201 no newline at end of file
 * W291 trailing whitespace
+* W293 blank line contains whitespace
 
 ### W3 Blank line warning
 * W391 blank line at end of file
@@ -30,7 +31,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E713 comparison to False should be 'If Not cond Then'
 * W100 indentation contains spaces
 * W101 improper indentation level
-* W202 blank line contains whitespace
 * W301 Too few blank lines before function
 * W302 Too many blank lines before function
 * N800 Keyword formating
