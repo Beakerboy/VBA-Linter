@@ -13,7 +13,7 @@ class RuleTestBase:
             ('Public Function Foo(num)\r\n' + 
              '.   bar = data(1)\r\n' +
              '    baz = (2 + 1)\r\n' +
-             'End Function\r\n',
+             'End Function\r\n'),
             []
         ]
     ]
