@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import Type, TypeVar
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
 
@@ -16,8 +16,8 @@ End Function
          []]
     ]
 
-    def test_test(self: T, rule: RuleBase,
-                  code: str, expected: list) -> None:
+    @classmethod
+    def test_test(cls: Type[T], code: str, expected: list) -> None:
         linter = Linter()
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
