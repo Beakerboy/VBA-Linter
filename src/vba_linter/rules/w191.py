@@ -16,10 +16,11 @@ class W191(RuleBase):
         self._message = "indentation contains tabs"
 
     def test(self: T, tokens: list) -> list:
+        output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.WS and token.column == 0:
                 # if next token exists and is not NEWLINE
-                # should the scope be checked to decide if this 
+                # should the scope be checked to decide if this
                 # is unexpeced indentation?
                 i = 1
                 for char in token.text:
@@ -27,3 +28,4 @@ class W191(RuleBase):
                         line = token.line
                         rule = self._rule_name
                         output.append((line, i, rule))
+        return output
