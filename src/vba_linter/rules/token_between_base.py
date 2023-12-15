@@ -23,7 +23,7 @@ class TokenBetweenBase(RuleBase):
             if (token.type == self._token_third and
                     tok1.type == self._token_first and
                     tok2.type == self._token_second):
-                line = token.text
+                line = token.line
                 column = token.column
                 name = self._rule_name
                 output.append((line, column, name))
