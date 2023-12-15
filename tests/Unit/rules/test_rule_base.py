@@ -1,4 +1,3 @@
-import pytest
 from vba_linter.rules.rule_base import RuleBase
 
 
