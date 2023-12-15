@@ -17,4 +17,3 @@ class W291(TokenBeforeBase):
             new_data = (data[0], 1, "W293")
             message = "blank line contains whitespace"
         return (":%s:%s: %s " + message) % new_data
- 
