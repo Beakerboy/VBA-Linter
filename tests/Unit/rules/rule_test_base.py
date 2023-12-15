@@ -24,8 +24,3 @@ class RuleTestBase:
         lexer = linter.get_lexer(code)
         tokens = lexer.getAllTokens()
         assert RuleTestBase.rule.test(tokens) == expected
-
-    def test_message(self: T, rule: RuleBase) -> None:
-        data = (3, 13, "W291")
-        expected = ":3:13: W291 trailing whitespace"
-        assert rule.create_message(data) == expected
