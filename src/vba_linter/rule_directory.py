@@ -16,10 +16,13 @@ class RuleDirectory:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules = [W291(), W201(), W391(), W500(), W501()]
+        self._rules = []
 
     def add_rule(self: T, rule: RuleBase) -> None
         pass
+
+    def load_all_rules() -> list:
+        return [W291(), W201(), W391(), W500(), W501()]
 
     
     def test_all(self: T, tokens: list) -> list:
