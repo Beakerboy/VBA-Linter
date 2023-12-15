@@ -3,6 +3,7 @@ from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.RuleBase import RuleBase
 from vba_linter.rules.w500 import W500
 
+
 anti_patterns = [
     ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "W500")]),
     ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, 0, "W500")]),
@@ -19,6 +20,7 @@ anti_patterns = [
 
 
 rule = W500()
+
 
 @pytest.mark.parametrize('rule', rule)
 @pytest.mark.parametrize(
