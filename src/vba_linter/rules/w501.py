@@ -10,7 +10,7 @@ class W501(RuleBase):
     def __init__(self: T) -> None:
         self.rule_name = "W501"
         self._max_len = 79
-        self._message = ":%s:%s: %s line too long (%s > " + str(self._max_len) + " characters)"
+        self._message = "line too long (%s > " + str(self._max_len) + " characters)"
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
