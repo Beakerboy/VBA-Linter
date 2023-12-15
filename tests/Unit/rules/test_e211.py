@@ -24,7 +24,7 @@ End Function
 
 
 message_data = [
-    [(1, 20, "E211"), ":1:20: E211 Whitespace before '('"],
+    [(1, 20, "E211"), ":1:20: E211 whitespace before '('"],
  ]
 
 
