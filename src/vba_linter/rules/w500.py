@@ -8,7 +8,7 @@ T = TypeVar('T', bound='W500')
 
 class W500(RuleBase):
     def __init__(self: T) -> None:
-        self.rule_name = "W500"
+        self._rule_name = "W500"
         self._line_ending = '\r\n'
 
     def test(self: T, tokens: list) -> list:
