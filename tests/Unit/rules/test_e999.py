@@ -17,6 +17,6 @@ End Sub
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
-def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
+def test_test(code: str, expected: tuple) -> None:
     linter = Linter()
     assert linter.lint(code) == expected
