@@ -25,7 +25,7 @@ class RuleDirectory:
         self._rules.append(rule)
 
     def load_all_rules(self: T) -> None:
-        E201 = TokenAfterBase("E201",
+        e201 = TokenAfterBase("E201",
                               vbaLexer.LPAREN, vbaLexer.WS,
                               "Whitespace after '('")
         self._rules.append(e201)
