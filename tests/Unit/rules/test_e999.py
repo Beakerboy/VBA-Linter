@@ -13,7 +13,11 @@ Public Function Foo(num)
     End If
 End Sub
 ''',  # noqa
-        [(3, 1, "E101")]
+        [(3, 1, "E999")]
+    ],
+    [
+        '<?php phpinfo() ?>',
+        [(3, 1, "E999")]
     ],
 ]
 
