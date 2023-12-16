@@ -12,6 +12,7 @@ def test_add() -> None:
     obj = RuleDirectory()
     rule1 = RuleStub()
     obj.add_rule(rule1)
+    assert rule1.test_count == 0
     obj.test_all()
     assert rule1.test_count == 1
     rule2 = RuleStub()
