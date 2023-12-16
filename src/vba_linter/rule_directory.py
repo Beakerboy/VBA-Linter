@@ -22,7 +22,7 @@ class RuleDirectory:
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules.append(rule)
 
-    def load_all_rules() -> list:
+    def load_all_rules(self: T) -> list:
         return [W291(), W201(), W391(), W500(), W501()]
 
     def test_all(self: T, tokens: list) -> list:
