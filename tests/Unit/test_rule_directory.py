@@ -17,6 +17,7 @@ def test_add() -> None:
     rule2 = RuleStub()
     obj.add_rule(rule2)
 
+    code = ""
     linter = Linter()
     obj.test_all(linter.get_lexer(code).getAllTokens())
     assert rule1.test_count == 2
