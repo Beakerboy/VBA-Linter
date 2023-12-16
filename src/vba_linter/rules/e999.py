@@ -1,4 +1,5 @@
 from antlr.vbaLexer import vbaLexer
+from antlr4 import InputStream
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 
