@@ -17,7 +17,7 @@ class RuleDirectory:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules = []
+        self._rules: list[RuleBase] = []
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules.append(rule)
