@@ -5,11 +5,12 @@ from vba_linter.rules.rule_base import RuleBase
 
 
 anti_patterns = [
-    ('''\
+    ['''\
 Function Foo()
 End Sub
 ''',  # noqa
-     [(1, 0, "E999")]),
+     [(1, 0, "E999")]],
+    ['<?php phpinfo(); ?>', [(1, 0, "E999")]]
 ]
 
 
