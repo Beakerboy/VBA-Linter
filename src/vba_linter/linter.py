@@ -24,10 +24,10 @@ class Linter:
         return vbaLexer(input_stream)
 
     def lint(self: T, code: str) -> list:
-        try:
+        #try:
             lexer = self.get_lexer(code)
-        except:
-            return [(1, 1, "E999", "message")]
+        #except:
+         #   return [(1, 1, "E999", "message")]
         tokens = lexer.getAllTokens()
         loader = RuleDirectory()
         output = loader.test_all(tokens)
