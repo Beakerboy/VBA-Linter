@@ -24,7 +24,6 @@ class RuleDirectory:
     def load_all_rules() -> list:
         return [W291(), W201(), W391(), W500(), W501()]
 
-    
     def test_all(self: T, tokens: list) -> list:
         output = []
         for rule in self._rules:
