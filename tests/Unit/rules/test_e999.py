@@ -8,8 +8,8 @@ anti_patterns = [
     [
         '''\
 Public Function Foo(num)
-    If True Then
-    \tBar = 2
+    If True
+        Bar = 2
     End If
 End Sub
 ''',  # noqa
