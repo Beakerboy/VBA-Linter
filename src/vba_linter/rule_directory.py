@@ -18,7 +18,7 @@ class RuleDirectory:
         # load config file.
         self._rules = []
 
-    def add_rule(self: T, rule: RuleBase) -> None
+    def add_rule(self: T, rule: RuleBase) -> None:
         self._rules.append(rule)
 
     def load_all_rules() -> list:
