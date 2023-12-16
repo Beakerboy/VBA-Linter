@@ -14,12 +14,11 @@ def test_add() -> None:
     linter = Linter()
     obj.add_rule(rule1)
     assert rule1.test_count == 0
+    code = ""
     obj.test_all(linter.get_lexer(code).getAllTokens())
     assert rule1.test_count == 1
     rule2 = RuleStub()
     obj.add_rule(rule2)
-
-    code = ""
     obj.test_all(linter.get_lexer(code).getAllTokens())
     assert rule1.test_count == 2
     assert rule2.test_count == 1
