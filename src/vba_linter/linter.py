@@ -1,7 +1,7 @@
 import re
 from antlr4 import InputStream, CommonTokenStream
-from antlr import vbaLexer, vbaParser
-
+from antlr.vbaLexer import vbaLexer
+from antlr.vbaParser import vbaParser
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
 
