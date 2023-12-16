@@ -1,4 +1,5 @@
 from typing import TypeVar
+from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w291 import W291
 from vba_linter.rules.w201 import W201
 from vba_linter.rules.w391 import W391
