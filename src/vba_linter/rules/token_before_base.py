@@ -16,14 +16,13 @@ class TokenBeforeBase(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
-        prev_tok = None
-        for token in tokens:
-            if token.type == self._token_second:
-                first = self._token_first
-                if not (prev_tok is None) and prev_tok.type == first:
-                    line = token.line
-                    column = token.column
-                    name = self._rule_name
-                    output.append((line, column, name))
+        prev_tok = tokens[0]
+        for token in tokens[1:]:
+            if (prev_tok.type == self._token_first and
+                    token.type == self._token_second):
+                line = token.line
+                column = token.column
+                name = self._rule_name
+                output.append((line, column, name))
             prev_tok = token
         return output

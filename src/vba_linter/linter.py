@@ -2,7 +2,7 @@ import re
 from antlr4 import InputStream
 from antlr.vbaLexer import vbaLexer
 from typing import Type, TypeVar
-from vba_linter.rule_loader import RuleLoader
+from vba_linter.rule_directory import RuleDirectory
 
 
 T = TypeVar('T', bound='Linter')
@@ -21,7 +21,7 @@ class Linter:
     def lint(self: T, code: str) -> list:
         lexer = self.get_lexer(code)
         tokens = lexer.getAllTokens()
-        loader = RuleLoader()
+        loader = RuleDirectory()
         output = loader.test_all(tokens)
         output.sort()
         return output
