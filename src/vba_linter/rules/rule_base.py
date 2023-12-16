@@ -15,6 +15,11 @@ class RuleBase:
         return (":%s:%s: %s " + self._message) % data
 
     @classmethod
+    def get_lexer() -> vbaLexer
+        input_stream = InputStream(code)
+        return vbaLexer(input_stream)
+
+    @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
         """
         split a newline token into separate line-end characters.
