@@ -1,9 +1,9 @@
 import pytest
 from vba_linter.linter import Linter
-from vba_linter.rules.e201 import E201
+from vba_linter.rules.token_after_base import TokenAfterBase
 
 
-test_data = [
+anti_patterns = [
     [
         'Public Function Foo( num)\r\nEnd Function\r\n',
         [(1, 21, "E201")]
@@ -15,18 +15,25 @@ test_data = [
 ]
 
 
-@pytest.mark.parametrize("code, expected", test_data)
-def test_test(code: str, expected: list) -> None:
+rule = TokenAfterBase("E201",
+                      vbaLexer.LPAREN, vbaLexer.WS,
+                      "Whitespace after '('")
+
+
+@pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize(
+    "code, expected",
+    anti_patterns + RuleTestBase.best_practice
+)
+def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
     tokens = lexer.getAllTokens()
-    rule = E201()
-
     assert rule.test(tokens) == expected
 
 
-def test_message() -> None:
-    rule = E201()
+@pytest.mark.parametrize('rule', [rule])
+def test_message(rule: RuleBase) -> None:
     data = (3, 13, "E201")
     expected = ":3:13: E201 Whitespace after '('"
     assert rule.create_message(data) == expected
