@@ -1,7 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.linter import Linter
-from vba_linter.rules.rule_base import RuleBase
 
 
 anti_patterns = [
