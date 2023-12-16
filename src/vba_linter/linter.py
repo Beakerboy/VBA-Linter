@@ -18,9 +18,9 @@ class Linter:
     def get_lexer(self: T, code: str) -> vbaLexer:
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
-        stream: CommonTokenStream = CommonTokenStream(lexer)
-        parser: vbaParser = vbaParser(stream)
-        tree: ParseTree = parser.startRule()
+        stream = CommonTokenStream(lexer)
+        parser = vbaParser(stream)
+        tree = parser.startRule()
         return vbaLexer(input_stream)
 
     def lint(self: T, code: str) -> list:
