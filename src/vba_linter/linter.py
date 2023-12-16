@@ -25,7 +25,7 @@ class Linter:
 
     def lint(self: T, code: str) -> list:
         #try:
-            lexer = self.get_lexer(code)
+        lexer = self.get_lexer(code)
         #except:
          #   return [(1, 1, "E999", "message")]
         tokens = lexer.getAllTokens()
