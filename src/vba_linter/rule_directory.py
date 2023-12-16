@@ -19,7 +19,7 @@ class RuleDirectory:
         self._rules = []
 
     def add_rule(self: T, rule: RuleBase) -> None
-        pass
+        self._rules.append(rule)
 
     def load_all_rules() -> list:
         return [W291(), W201(), W391(), W500(), W501()]
