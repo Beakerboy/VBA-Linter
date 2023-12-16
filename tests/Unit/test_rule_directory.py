@@ -10,7 +10,6 @@ def test_constructor() -> None:
 def test_add() -> None:
     obj = RuleDirectory()
     rule1 = RuleStub()
-    a = len(obj.get_rules())
     obj.add_rule(rule1)
     obj.test_all()
     assert rule1.test_count == 1
