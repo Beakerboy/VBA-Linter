@@ -7,11 +7,8 @@ from vba_linter.rules.e101 import E101
 anti_patterns = [
     [
         '''\
-Public Function Foo(num)
-    If True
-        Bar = 2
-    End If
-End Sub
+Public Function Foo (num)
+End Function
 ''',  # noqa
         [(3, 1, "E999")]
     ],
