@@ -2,6 +2,7 @@ import re
 from antlr4 import InputStream, CommonTokenStream
 from antlr.vbaLexer import vbaLexer
 from antlr.vbaParser import vbaParser
+from antlr.throwing_error_listener import ThrowingErrorListener
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
 
@@ -22,8 +23,13 @@ class Linter:
     def lint(self: T, code: str) -> list:
         # check for parse errors
         lexer = self.get_lexer(code)
+        lexer.removeErrorListeners()
+        lexer.addErrorListener(ThrowingErrorListener())
+
         stream = CommonTokenStream(lexer)
         parser = vbaParser(stream)
+        parser.removeErrorListeners()
+        parser.addErrorListener(ThrowingErrorListener())
         parser.startRule()
         if parser.getNumberOfSyntaxErrors() > 0:
             return [('x', 'x', "E999")]
