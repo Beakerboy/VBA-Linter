@@ -19,6 +19,13 @@ class Linter:
         return vbaLexer(input_stream)
 
     def lint(self: T, code: str) -> list:
+        # check for parse errors
+        lexer = self.get_lexer(code)
+        stream = CommonTokenStream(lexer)
+        parser = vbaParser(stream)
+        tree = parser.startRule()
+        # if check lost option is set
+        # check for lint errors
         lexer = self.get_lexer(code)
         tokens = lexer.getAllTokens()
         loader = RuleDirectory()
