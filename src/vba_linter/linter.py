@@ -21,7 +21,9 @@ class Linter:
         stream = CommonTokenStream(lexer)
         parser = vbaParser(stream)
         tree = parser.startRule()
-        return lexer
+        input_stream2 = InputStream(code)
+        lexer2 = vbaLexer(input_stream2)
+        return lexer2
 
     def lint(self: T, code: str) -> list:
         lexer = self.get_lexer(code)
