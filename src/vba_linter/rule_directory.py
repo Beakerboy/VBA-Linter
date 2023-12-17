@@ -34,7 +34,11 @@ class RuleDirectory:
     def test_all(self: T, tokens: list) -> list:
         output = []
         for rule in self._rules:
-            output.extend(rule.test(tokens))
+            try:
+                result = rule.test(tokens)
+            except:
+                result =(1, 1, "E999")
+            output.extend(result)
         return output
 
     def test_rule(self: T, tokens: list) -> list:
