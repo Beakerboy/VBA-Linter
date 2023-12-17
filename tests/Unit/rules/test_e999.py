@@ -9,11 +9,11 @@ anti_patterns = [
 Public Function Foo(num)
 End Sub
 ''',  # noqa
-        [('x', 'x' "E999")]
+        [('x', 'x', "E999")]
     ],
     [
         '<?php phpinfo() ?>',
-        [('x', 'x' "E999")]
+        [('x', 'x', "E999")]
     ],
 ]
 
