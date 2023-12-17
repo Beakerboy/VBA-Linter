@@ -1,6 +1,7 @@
 import re
 from antlr4 import InputStream, CommonTokenStream
 from antlr.vbaLexer import vbaLexer
+from antlr.vbaParser import vbaParser
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
 
@@ -18,6 +19,7 @@ class Linter:
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
         stream = CommonTokenStream(lexer)
+        parser = vbaParser(stream)
         return lexer
 
     def lint(self: T, code: str) -> list:
