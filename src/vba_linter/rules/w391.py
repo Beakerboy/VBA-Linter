@@ -16,6 +16,8 @@ class W391(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
+        if len(tokens) == 0:
+            return output
         final_token = tokens[-1]
         if final_token.type == vbaLexer.NEWLINE:
             newline_list = RuleBase.split_nl(final_token.text)
