@@ -24,9 +24,10 @@ class Linter:
         lexer = self.get_lexer(code)
         stream = CommonTokenStream(lexer)
         parser = vbaParser(stream)
+        parser.startRule()
         if parser.getNumberOfSyntaxErrors() > 0:
             return [('x', 'x', "E999")]
-        # tree = parser.startRule()
+
         # if check lost option is set
         # check for lint errors
         lexer = self.get_lexer(code)
