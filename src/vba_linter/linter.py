@@ -18,6 +18,9 @@ class Linter:
     def get_lexer(self: T, code: str) -> vbaLexer:
         input_stream = InputStream(code)
         lexer = vbaLexer(input_stream)
+        stream = CommonTokenStream(lexer)
+        parser = vbaParser(stream)
+        tree = parser.startRule()
         return lexer
 
     def lint(self: T, code: str) -> list:
@@ -25,12 +28,6 @@ class Linter:
         tokens = lexer.getAllTokens()
         loader = RuleDirectory()
         output = loader.test_all(tokens)
-        stream = CommonTokenStream(lexer)
-        parser = vbaParser(stream)
-        try:
-            tree = parser.startRule()
-        except:
-            output.append((1, 1, 'E999'))
         output.sort()
         return output
 
