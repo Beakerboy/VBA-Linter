@@ -16,6 +16,8 @@ class TokenBeforeBase(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
+        if len() == 1:
+            return output
         prev_tok = tokens[0]
         for token in tokens[1:]:
             if (prev_tok.type == self._token_first and
