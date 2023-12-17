@@ -9,6 +9,7 @@ T = TypeVar('T', bound='RuleTestBase')
 class RuleTestBase:
     best_practice = [
         ['', []],
+        ['\r\n', []],
         [
             ('Public Function Foo(num)\r\n' +
              '    bar = data(1)\r\n' +
