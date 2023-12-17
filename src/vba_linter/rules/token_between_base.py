@@ -17,6 +17,8 @@ class TokenBetweenBase(RuleBase):
 
     def test(self: T, tokens: list) -> list:
         output: list[tuple] = []
+        if len(tokens) < 3:
+            return output
         tok1 = tokens[0]
         tok2 = tokens[1]
         for token in tokens[2:]:
