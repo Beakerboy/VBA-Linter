@@ -22,24 +22,8 @@ class Linter:
         return vbaLexer(input_stream)
 
     def lint(self: T, code: str) -> list:
-        # check for parse errors
         lexer = self.get_lexer(code)
-        lexer.removeErrorListeners()
-        lexer.addErrorListener(ThrowingErrorListener())
 
-        stream = CommonTokenStream(lexer)
-        parser = vbaParser(stream)
-        parser.removeErrorListeners()
-        parser.addErrorListener(ThrowingErrorListener())
-        try:
-            parser.startRule()
-        except ThrownException as ex:
-            return [(ex.line, ex.column, "E999", ex.msg)]
-
-        # if check lost option is set
-        # check for lint errors
-        lexer = self.get_lexer(code)
-        
         loader = RuleDirectory()
         output = loader.test_all(lexer)
         output.sort()
