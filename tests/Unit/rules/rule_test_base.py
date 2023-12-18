@@ -30,7 +30,9 @@ class RuleTestBase:
             fi.write(code)
         linter = Linter()
         lexer = linter.get_lexer(file_name)
-        return rule.test(lexer)
+        results = rule.test(lexer)
+        p.unlink()
+        return results
 
     @classmethod
     def create_filename(cls: Type[T], num: int = 16, ext: str = ".txt") -> str:
