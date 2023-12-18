@@ -14,7 +14,7 @@ class RuleStub(RuleBase):
         self.test_count = 0
 
     def set_name(self: T, name: str) -> None:
-        self._name = name
+        self._rule_name = name
 
     def set_message(self: T, message: str) -> None:
         self._message = message
