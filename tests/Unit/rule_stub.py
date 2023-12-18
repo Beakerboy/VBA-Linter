@@ -8,9 +8,13 @@ T = TypeVar('T', bound='RuleStub')
 class RuleStub(RuleBase):
 
     def __init__(self: T) -> None:
+        self._rule_name = ""
         self._output: list[tuple] = []
         self._message = ''
         self.test_count = 0
+
+    def set_name(self: T, name: str) -> None:
+        self._name = name
 
     def set_message(self: T, message: str) -> None:
         self._message = message
