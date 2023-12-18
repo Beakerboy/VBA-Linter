@@ -31,6 +31,12 @@ def test_sort() -> None:
     assert linter.lint(dir, path) == expected
 
 
+def test_not_file() -> None:
+    linter = Linter()
+    with pytest.raises(Exception):
+        linter.lint(dir, "foo.txt")
+
+
 name_formats = [
     ['snake_case', [True, False]],
     ['camelCase', [False, True]],
