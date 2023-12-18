@@ -5,7 +5,6 @@ from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
 
 
-
 anti_patterns = [
     [
         'Public Function Foo(num , bar)\r\nEnd Function\r\n',
