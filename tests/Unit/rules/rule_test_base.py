@@ -30,4 +30,5 @@ class RuleTestBase:
     @classmethod
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> None:
         linter = Linter()
-        return rule.test(linter.get_tokens(code))
+        lexer = linter.get_lexer(code)
+        return rule.test(lexer.getAllTokens())
