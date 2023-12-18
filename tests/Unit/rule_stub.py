@@ -1,4 +1,5 @@
 from typing import TypeVar
+from antlr.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -22,7 +23,7 @@ class RuleStub(RuleBase):
     def set_output(self: T, output: list) -> None:
         self._output = output
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
         self.test_count += 1
         return self._output
 
