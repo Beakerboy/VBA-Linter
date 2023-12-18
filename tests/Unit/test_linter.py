@@ -33,6 +33,7 @@ def test_sort() -> None:
 
 def test_not_file() -> None:
     linter = Linter()
+    dir = RuleDirectory()
     with pytest.raises(Exception):
         linter.lint(dir, "foo.txt")
 
