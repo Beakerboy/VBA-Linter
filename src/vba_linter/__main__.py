@@ -1,6 +1,7 @@
 import argparse
 import os
 from vba_linter.linter import Linter
+from vba_linter.rule_directory import RuleDirectory
 
 
 def main() -> None:
@@ -15,7 +16,9 @@ def main() -> None:
     full_results: dict[str, list] = {}
     for file in file_list:
         code = open(file, 'r').read()
-        results = linter.lint(code)
+        dir = RuleDirectory()
+        dir.load_all_rules()
+        results = linter.lint(dir, code)
         if len(results) > 0:
             full_results[file] = results
 

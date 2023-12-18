@@ -56,11 +56,3 @@ class RuleDirectory:
                 rule = self._rules[key]
                 output.extend(rule.test(lexer))
         return output
-
-    def test_rule(self: T, rule_name: str, lexer: vbaLexer) -> list:
-        e999 = E999()
-        output = e999.test(lexer)
-        if output == []:
-            rule = self.get_rule(rule_name)
-            output = rule.test(lexer)
-        return output
