@@ -1,6 +1,6 @@
 from antlr4.error.Errors import ParseCancellationException
 
-class ThrownException(ParseCancellationException)
+class ThrownException(ParseCancellationException):
 
     def __init__(self, message):
         super().__init(message)
