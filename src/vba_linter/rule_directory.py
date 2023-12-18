@@ -35,7 +35,7 @@ class RuleDirectory:
                                vbaLexer.WS, vbaLexer.RPAREN,
                                "Whitespace before ')'")
         e203 = TokenBeforeBase("E203",
-                               vbaLexer.WS, vbaLexer.T__0
+                               vbaLexer.WS, vbaLexer.T__0,
                                "Whitespace before ','")
         e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
                                 vbaLexer.LPAREN, "whitespace before '('")
