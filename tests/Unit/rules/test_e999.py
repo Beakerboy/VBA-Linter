@@ -9,7 +9,7 @@ anti_patterns = [
 Public Function Foo(num)
 End Sub
 ''',  # noqa
-        [('x', 'x', "E999",
+        [(2, 0, "E999",
           "mismatched input 'End Sub' expecting {'.', '!', 'ACCESS', " +
           "'ADDRESSOF', 'ALIAS', 'AND', 'ATTRIBUTE', 'APPACTIVATE', " +
           "'APPEND', 'AS', 'BEGIN', 'BEEP', 'BINARY', 'BOOLEAN', " +
@@ -42,7 +42,7 @@ End Sub
     ],
     [
         '<?php phpinfo() ?>',
-        [('x', 'x', "E999", "mismatched input '<?php' expecting <EOF>")]
+        [(1, 0, "E999", "mismatched input '<?php' expecting <EOF>")]
     ],
 ]
 
