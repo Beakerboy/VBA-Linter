@@ -25,7 +25,7 @@ class RuleDirectory:
         self._rules: dict[str, RuleBase] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        self._rule[rule.get_rule_name()] = rule
+        self._rules[rule.get_rule_name()] = rule
 
     def load_all_rules(self: T) -> None:
         e201 = TokenAfterBase("E201",
@@ -52,7 +52,7 @@ class RuleDirectory:
         e999 = E999()
         output = e999.test(lexer)
         if output == []:
-            for rule in self._rules:
+            for rule in self._rules.items():
                 output.extend(rule.test(lexer))
         return output
 
