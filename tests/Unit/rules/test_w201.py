@@ -15,7 +15,7 @@ End Function''',  # noqa
 rule = W201()
 
 
-pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize('rule', [rule])
 @pytest.mark.parametrize(
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
