@@ -1,6 +1,6 @@
 import random
 import string
-from pathlib import Path 
+from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
@@ -34,5 +34,6 @@ class RuleTestBase:
         return rule.test(lexer)
 
     def create_filename(cls: Type[T], num:int=16, ext:str=".txt") -> str:
-        file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(num))
+        chars = random.choice(string.ascii_lowercase)
+        file_name = ''.join(chars for i in range(num))
         return file_name + ext
