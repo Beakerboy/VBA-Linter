@@ -1,5 +1,6 @@
 import pytest
 from vba_linter.linter import Linter
+from Unit.rule_stub import RuleStub
 
 
 def test_constructor() -> None:
