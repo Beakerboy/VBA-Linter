@@ -21,8 +21,8 @@ class Linter:
     def lint(self: T, code: str) -> list:
         lexer = self.get_lexer(code)
 
-        loader = RuleDirectory()
-        output = loader.test_all(lexer)
+        dir = RuleDirectory()
+        output = dir.test_all(lexer)
         output.sort()
         return output
 
