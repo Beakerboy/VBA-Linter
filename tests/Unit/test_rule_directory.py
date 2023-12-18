@@ -11,6 +11,7 @@ def test_constructor() -> None:
 def test_add() -> None:
     obj = RuleDirectory()
     rule1 = RuleStub()
+    rule1.set_name("E001")
     linter = Linter()
     obj.add_rule(rule1)
     assert rule1.test_count == 0
@@ -18,6 +19,7 @@ def test_add() -> None:
     obj.test_all(linter.get_lexer(code).getAllTokens())
     assert rule1.test_count == 1
     rule2 = RuleStub()
+    rule2.set_name("E002")
     obj.add_rule(rule2)
     obj.test_all(linter.get_lexer(code).getAllTokens())
     assert rule1.test_count == 2
