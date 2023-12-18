@@ -25,7 +25,9 @@ anti_patterns = [
 ]
 
 
-rule = RuleDirectory().load_all_rules().get_rule("E203")
+rd = RuleDirectory()
+rd.load_all_rules()
+rule = rd.get_rule("E203")
 
 
 @pytest.mark.parametrize('rule', [rule])
