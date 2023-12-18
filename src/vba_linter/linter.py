@@ -18,10 +18,9 @@ class Linter:
         input_stream = InputStream(code)
         return vbaLexer(input_stream)
 
-    def lint(self: T, code: str) -> list:
+    def lint(self: T, dir: RuleDirectory, code: str) -> list:
         lexer = self.get_lexer(code)
 
-        dir = RuleDirectory()
         output = dir.test_all(lexer)
         output.sort()
         return output
