@@ -13,10 +13,11 @@ class W201(RuleBase):
     def test(self: T, lexer: vbaLexer) -> list:
         tokens = lexer.getAllTokens()
         output: list[tuple] = []
+        if len(tokens) == 0:
+            return output
         final_token = tokens[-1]
-        if final_token is None or final_token.type != vbaLexer.NEWLINE:
-            line = 1 if final_token is None else final_token.line
-            column = 0 if final_token is None else (final_token.column +
-                                                    len(final_token.text))
+        if final_token.type != vbaLexer.NEWLINE:
+            line = final_token.line
+            column = final_token.column + len(final_token.text) + 1
             output = [(line, column, "W201")]
         return output
