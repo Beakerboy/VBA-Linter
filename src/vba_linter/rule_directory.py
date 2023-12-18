@@ -31,10 +31,11 @@ class RuleDirectory:
         self._rules.append(e201)
         self._rules.extend([W291(), W201(), W391(), W500(), W501()])
 
-    def test_all(self: T, tokens: list) -> list:
+    def test_all(self: T, lexer: vbaLexer) -> list:
         output = []
+        
         for rule in self._rules:
-            output.extend(rule.test(tokens))
+            output.extend(rule.test(lexer))
         return output
 
     def test_rule(self: T, tokens: list) -> list:
