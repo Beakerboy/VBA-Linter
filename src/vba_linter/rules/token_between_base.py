@@ -1,3 +1,4 @@
+from antlr import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 
@@ -15,7 +16,8 @@ class TokenBetweenBase(RuleBase):
         self._token_third = third
         self._message = message
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         if len(tokens) < 3:
             return output
