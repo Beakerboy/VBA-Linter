@@ -39,10 +39,10 @@ class RuleDirectory:
                                "Whitespace before ','")
         e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
                                 vbaLexer.LPAREN, "whitespace before '('")
-        self._rules.update({"E201" : e201, "E202" : e202, "E203" : e203, "E211" : e211})
-        self._rules.update({"W291" : W291(), "W201" : W201(),
-                            "W391" : W391(), "W500" : W500(),
-                            "W501" : W501()})
+        self._rules.update({"E201": e201, "E202": e202, "E203": e203, "E211": e211})
+        self._rules.update({"W291": W291(), "W201": W201(),
+                            "W391": W391(), "W500": W500(),
+                            "W501": W501()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         return self._rules[rule_name]
