@@ -1,5 +1,4 @@
 import pytest
-from antlr.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
