@@ -21,6 +21,10 @@ class Linter:
         input_stream = InputStream(code)
         return vbaLexer(input_stream)
 
+    def get_tokens(self: T, code: str) -> vbaLexer:
+        input_stream = InputStream(code)
+        return CommonTokenStream(vbaLexer(input_stream))
+
     def lint(self: T, code: str) -> list:
         # check for parse errors
         lexer = self.get_lexer(code)
