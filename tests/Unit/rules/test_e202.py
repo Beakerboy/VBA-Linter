@@ -27,4 +27,4 @@ rule = rd.get_rule("E202")
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    assert RuleTestBase(rule, code) == expected
+    assert RuleTestBase.tokenize(rule, code) == expected
