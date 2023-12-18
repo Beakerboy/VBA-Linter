@@ -7,15 +7,23 @@ def test_constructor() -> None:
     assert isinstance(obj, Linter)
 
 
-def xtest_sort() -> None:
+def test_sort() -> None:
     """
-    Test that the results are sorted by line, then type.
+    Test that the results are sorted by line, then char, type.
     """
-    code = 'Public Function Foo(num) \n\nEnd Function \n'
+    code = 'Public Function Foo(num) \n\nEnd Function\n'
+    rule1 = RuleStub()
+    rule1.set_name("E001")
+    rule1.set_output([(1, 1, "E001"), (5, 5, "E001")])
+    rule2 = RuleStub()
+    rule2.set_name("E002")
+    rule2.set_output([(1, 1, "E000"), (1, 4, "E002")])
+    dir = RuleDirectory()
+    dir.add_rule(rule1)
+    dir.add_rule(rule2)
     expected = [
-        (1, 25, "W291"), (1, 25, "W500"),
-        (2, 0, "W500"),
-        (3, 13, "W291"), (3, 13, "W500")
+        (1, 1, "E000"), (1, 1, "E001"),
+        (1, 4, "E002"), (5, 5, "E001")
     ]
     linter = Linter()
     assert linter.lint(code) == expected
