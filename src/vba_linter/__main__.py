@@ -1,5 +1,6 @@
 import argparse
 import os
+from pathlib import Path
 import sys
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
@@ -13,6 +14,7 @@ def main() -> None:
                         help="The input or output directory.")
     args = parser.parse_args()
     linter = Linter()
+    path = Path(args.directory).resolve()
     file_list = find_files(args.directory)
     full_results: dict[str, list] = {}
     for file_name in file_list:
@@ -33,7 +35,7 @@ def find_files(path: str) -> list:
     for entry in obj:
         if entry.is_dir():
             files.extend(find_files(entry.name))
-        else:
+        elif entry.is_file():
             # if extension is bas, cls. or frm
             files.append(entry)
     return files
