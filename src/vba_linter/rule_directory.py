@@ -25,7 +25,7 @@ class RuleDirectory:
         self._rules: dict[str, RuleBase] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        self._rules.append(rule)
+        self._rule[rule.__class__.__name__] = rule
 
     def load_all_rules(self: T) -> None:
         e201 = TokenAfterBase("E201",
