@@ -52,7 +52,7 @@ class RuleDirectory:
         e999 = E999()
         output = e999.test(lexer)
         if output == []:
-            for key in self._rules.items():
+            for key in self._rules:
                 rule = self._rules[key]
                 output.extend(rule.test(lexer))
         return output
