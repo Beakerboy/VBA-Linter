@@ -55,3 +55,9 @@ End Sub
 def test_test(code: str, expected: tuple) -> None:
     rule = E999()
     assert rule.test(Linter().get_lexer(code)) == expected
+
+def test_message() -> None:
+    rule = E999()
+    data = (1, 0, "E999", "mismatched input '<?php' expecting <EOF>")
+    expected = (":1:0: E999 mismatched input '<?php' expecting <EOF>"
+    assert rule.create_message(data) == expected
