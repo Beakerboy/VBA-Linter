@@ -38,5 +38,4 @@ rule = rd.get_rule("E203")
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
-    tokens = lexer.getAllTokens()
-    assert rule.test(tokens) == expected
+    assert rule.test(lexer) == expected
