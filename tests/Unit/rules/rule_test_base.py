@@ -1,3 +1,6 @@
+import random
+import string
+from pathlib import Path 
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
@@ -19,15 +22,17 @@ class RuleTestBase:
         ]
     ]
 
-    @classmethod
-    def test_test(cls: Type[T], rule: RuleBase,
-                  code: str, expected: list) -> None:
-        # save code to tmp file
-        # create Path object
-        assert rule.test(Linter().get_lexer(code)) == expected
 
     @classmethod
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> None:
+        file_name = RuleTestBase.create_filename(ext='.bas')
+        p = Path(file_name)
+        with p.open(mode='a') as fi:
+            fi.write(code)
         linter = Linter()
-        lexer = linter.get_lexer(code)
+        lexer = linter.get_lexer(p)
         return rule.test(lexer)
+
+    def create_filename(cls: Type[T], num:int=16, ext:str=".txt") -> str:
+        file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(num))
+        return file_name + ext
