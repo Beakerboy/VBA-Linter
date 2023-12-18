@@ -18,6 +18,7 @@ anti_patterns = [
     ],
 ]
 
+
 rule = RuleDirectory().load_all_rules().get_rule("E201")
 
 
