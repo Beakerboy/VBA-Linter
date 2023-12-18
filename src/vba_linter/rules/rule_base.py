@@ -9,6 +9,9 @@ class RuleBase:
         self._rule_name = ""
         self._message = ''
 
+    def get_rule_name(self: T) -> str:
+        return self._rule_name
+
     def test(self: T, lexer: vbaLexer) -> list:
         return []
 
