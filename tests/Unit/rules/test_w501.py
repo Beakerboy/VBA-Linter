@@ -23,7 +23,7 @@ rule = W501()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    assert rule.test(Linter().get_lexer(code)) == expected
+    assert RuleBase.tokenize(rule, code) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])
