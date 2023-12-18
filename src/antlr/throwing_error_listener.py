@@ -6,4 +6,5 @@ class ThrowingErrorListener(ErrorListener):
         ex = ParseCancellationException(f'line {line}: {column} {msg}')
         ex.line = line
         ex.column = column
+        ex.msg = msg
         raise ex
