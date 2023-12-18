@@ -10,7 +10,8 @@ class W201(RuleBase):
     def __init__(self: T) -> None:
         self.rule_name = "W201"
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         final_token = tokens[-1]
         if final_token is None or final_token.type != vbaLexer.NEWLINE:
