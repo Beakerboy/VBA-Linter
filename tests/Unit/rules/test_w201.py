@@ -8,7 +8,7 @@ anti_patterns = [
     ['''\
 Public Function Foo(num)
 End Function''',  # noqa
-     [(2, 12, 'W201')]]
+     [(2, 13, 'W201')]]
 ]
 
 
