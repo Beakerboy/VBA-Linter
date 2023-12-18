@@ -22,7 +22,6 @@ class RuleTestBase:
         ]
     ]
 
-
     @classmethod
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> None:
         file_name = RuleTestBase.create_filename(ext='.bas')
@@ -32,7 +31,6 @@ class RuleTestBase:
         linter = Linter()
         lexer = linter.get_lexer(p)
         return rule.test(lexer)
-
 
     def create_filename(cls: Type[T], num: int = 16, ext: str = ".txt") -> str:
         chars = random.choice(string.ascii_lowercase)
