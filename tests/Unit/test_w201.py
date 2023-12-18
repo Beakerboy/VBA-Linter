@@ -6,6 +6,5 @@ def test_line_length() -> None:
     code = ('Public Function Foo(num)\r\nEnd Function')
     linter = Linter()
     lexer = linter.get_lexer(code)
-    tokens = lexer.getAllTokens()
     rule = W201()
-    assert rule.test(tokens) == [(2, 12, 'W201')]
+    assert rule.test(lexer) == [(2, 12, 'W201')]
