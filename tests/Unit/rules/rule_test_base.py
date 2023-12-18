@@ -34,7 +34,7 @@ class RuleTestBase:
         return rule.test(lexer)
 
 
-    def create_filename(cls: Type[T], num:int=16, ext:str=".txt") -> str:
+    def create_filename(cls: Type[T], num:int = 16, ext:str = ".txt") -> str:
         chars = random.choice(string.ascii_lowercase)
         file_name = ''.join(chars for i in range(num))
         return file_name + ext
