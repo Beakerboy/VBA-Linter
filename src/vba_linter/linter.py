@@ -1,6 +1,6 @@
 import re
 from antlr4 import InputStream, CommonTokenStream
-from antlr4.error.Errors import ParseCancellationException
+from antlr.thrown_exception import ThrownException
 from antlr.vbaLexer import vbaLexer
 from antlr.vbaParser import vbaParser
 from antlr.throwing_error_listener import ThrowingErrorListener
