@@ -5,9 +5,9 @@ from Unit.rules.rule_test_base import RuleTestBase
 
 
 anti_patterns = [
-    ('''\
+    '''\
 Public Function Foo(num)
-nEnd Function''',  # noqa
+End Function''',  # noqa
     [(2, 12, 'W201')]
 ]
 
