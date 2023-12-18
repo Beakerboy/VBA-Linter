@@ -29,7 +29,10 @@ class RuleDirectory:
         e201 = TokenAfterBase("E201",
                               vbaLexer.LPAREN, vbaLexer.WS,
                               "Whitespace after '('")
-        self._rules["E201"] = e201
+        e202 = TokenBeforeBase("E202",
+                               vbaLexer.WS, vbaLexer.RPAREN,
+                               "Whitespace before ')'"
+        self._rules.update({"E201" : e201, "E202" : e202})
         self._rules.update({"W291" : W291(), "W201" : W201(),
                             "W391" : W391(), "W500" : W500(),
                             "W501" : W501()})
