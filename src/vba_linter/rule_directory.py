@@ -6,6 +6,7 @@ from vba_linter.rules.w201 import W201
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.w391 import W391
 from vba_linter.rules.w500 import W500
+from vba_linter.rules.w501 import W501
 from vba_linter.rules.e999 import E999
 
 
