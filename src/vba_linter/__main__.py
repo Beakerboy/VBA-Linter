@@ -16,7 +16,6 @@ def main() -> None:
     file_list = find_files(args.directory)
     full_results: dict[str, list] = {}
     for file_name in file_list:
-        code = open(file, 'r').read()
         dir = RuleDirectory()
         dir.load_all_rules()
         results = linter.lint(dir, file_name)
