@@ -20,7 +20,7 @@ class RuleDirectory:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules: list[RuleBase] = []
+        self._rules: dict[str, RuleBase] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules.append(rule)
@@ -29,8 +29,13 @@ class RuleDirectory:
         e201 = TokenAfterBase("E201",
                               vbaLexer.LPAREN, vbaLexer.WS,
                               "Whitespace after '('")
-        self._rules.append(e201)
-        self._rules.extend([W291(), W201(), W391(), W500(), W501()])
+        self._rules["E201"] = e201
+        self._rules.update(["W291" : W291(), "W201" : W201(),
+                            "W391" : W391(), "W500" : W500(),
+                            "W501" : W501()])
+
+    def get_rule(self: T, rule_name: str) -> RuleBase:
+        return self._rules[rule_name]
 
     def test_all(self: T, lexer: vbaLexer) -> list:
         e999 = E999()
