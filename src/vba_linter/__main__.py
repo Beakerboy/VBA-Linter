@@ -7,8 +7,8 @@ from vba_linter.rule_directory import RuleDirectory
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("ruleset", nargs='?', default='.',
-                        help="Configuration file of linting rules.")
+    # parser.add_argument("ruleset", nargs='?', default='.',
+    #                     help="Configuration file of linting rules.")
     parser.add_argument("directory", default='.',
                         help="The input or output directory.")
     args = parser.parse_args()
