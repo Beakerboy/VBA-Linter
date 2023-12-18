@@ -32,7 +32,7 @@ class Linter:
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
         try:
-           parser.startRule()
+            parser.startRule()
         except ParseCancellationException as ex:
             return [(ex.line, ex.column, "E999", ex.msg)]
 
