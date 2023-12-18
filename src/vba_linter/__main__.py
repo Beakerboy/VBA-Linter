@@ -15,7 +15,7 @@ def main() -> None:
     args = parser.parse_args()
     linter = Linter()
     path = Path(args.directory).resolve()
-    file_list = find_files(args.directory)
+    file_list = find_files(path)
     full_results: dict[str, list] = {}
     for file_name in file_list:
         dir = RuleDirectory()
