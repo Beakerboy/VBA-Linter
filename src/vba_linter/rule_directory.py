@@ -30,9 +30,9 @@ class RuleDirectory:
                               vbaLexer.LPAREN, vbaLexer.WS,
                               "Whitespace after '('")
         self._rules["E201"] = e201
-        self._rules.update(["W291" : W291(), "W201" : W201(),
+        self._rules.update({"W291" : W291(), "W201" : W201(),
                             "W391" : W391(), "W500" : W500(),
-                            "W501" : W501()])
+                            "W501" : W501()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         return self._rules[rule_name]
