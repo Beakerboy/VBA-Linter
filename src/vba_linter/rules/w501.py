@@ -13,7 +13,8 @@ class W501(RuleBase):
         self._message = ("line too long (%s > " +
                          str(self._max_len) + " characters)")
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
