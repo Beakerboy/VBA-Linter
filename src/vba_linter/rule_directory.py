@@ -31,8 +31,11 @@ class RuleDirectory:
                               "Whitespace after '('")
         e202 = TokenBeforeBase("E202",
                                vbaLexer.WS, vbaLexer.RPAREN,
-                               "Whitespace before ')'"
-        self._rules.update({"E201" : e201, "E202" : e202})
+                               "Whitespace before ')'")
+        e203 = TokenBeforeBase("E203",
+                               vbaLexer.WS, vbaLexer.T__0
+                               "Whitespace before ','")
+        self._rules.update({"E201" : e201, "E202" : e202, "E203" : e203})
         self._rules.update({"W291" : W291(), "W201" : W201(),
                             "W391" : W391(), "W500" : W500(),
                             "W501" : W501()})
