@@ -28,7 +28,9 @@ message_data = [
  ]
 
 
-rule = RuleDirectory().load_all_rules().get_rule("E211")
+rd = RuleDirectory()
+rd.load_all_rules()
+rule = rd.get_rule("E211")
 
 
 @pytest.mark.parametrize('rule', [rule])
