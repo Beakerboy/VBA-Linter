@@ -1,6 +1,7 @@
 import argparse
 import os
 from vba_linter.linter import Linter
+from vba_linter.rule_directory import RuleDirectory
 
 
 def main() -> None:
