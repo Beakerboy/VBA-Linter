@@ -1,5 +1,5 @@
 from typing import Type, TypeVar
-from antlr import vbaLexer
+from antlr.vbaLexer import vbaLexer
 
 T = TypeVar('T', bound='RuleBase')
 
