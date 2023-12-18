@@ -1,5 +1,6 @@
 import re
 from antlr4 import InputStream, CommonTokenStream
+from antlr4.error.Errors import ParseCancellationException
 from antlr.vbaLexer import vbaLexer
 from antlr.vbaParser import vbaParser
 from antlr.throwing_error_listener import ThrowingErrorListener
@@ -30,9 +31,10 @@ class Linter:
         parser = vbaParser(stream)
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
-        parser.startRule()
-        if parser.getNumberOfSyntaxErrors() > 0:
-            return [('x', 'x', "E999")]
+        try:
+           cparser.startRule()
+        except ParseCancellationException as ex:
+            return [(ex.line, ex.column, "E999", ex.msg)]
 
         # if check lost option is set
         # check for lint errors
