@@ -1,4 +1,5 @@
 from typing import Type, TypeVar
+from antlr import vbaLexer
 
 T = TypeVar('T', bound='RuleBase')
 
@@ -8,7 +9,7 @@ class RuleBase:
         self._rule_name = ""
         self._message = ''
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
         return []
 
     def create_message(self: T, data: tuple) -> str:
