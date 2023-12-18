@@ -28,7 +28,7 @@ def test_sort() -> None:
         (1, 4, "E002"), (5, 5, "E001")
     ]
     linter = Linter()
-    assert linter.lint(code) == expected
+    assert linter.lint(dir, code) == expected
 
 
 name_formats = [
