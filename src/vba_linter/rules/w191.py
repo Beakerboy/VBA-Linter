@@ -15,7 +15,8 @@ class W191(RuleBase):
         self._rule_name = 'W191'
         self._message = "indentation contains tabs"
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.WS and token.column == 0:
