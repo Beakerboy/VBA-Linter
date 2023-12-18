@@ -14,7 +14,8 @@ class W391(RuleBase):
         self._rule_name = "W391"
         self._message = 'blank line at end of file'
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         if len(tokens) == 0:
             return output

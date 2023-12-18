@@ -1,9 +1,11 @@
 import pytest
 from vba_linter.linter import Linter
-from vba_linter.rules.e202 import E202
+from vba_linter.rule_directory import RuleDirectory
+from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.rule_base import RuleBase
 
 
-test_data = [
+anti_patterns = [
     [
         'Public Function Foo(num )\r\nEnd Function\r\n',
         [(1, 24, "E202")]
@@ -15,11 +17,17 @@ test_data = [
 ]
 
 
-@pytest.mark.parametrize("code, expected", test_data)
-def test_test(code: str, expected: list) -> None:
+rd = RuleDirectory()
+rd.load_all_rules()
+rule = rd.get_rule("E202")
+
+
+@pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize(
+    "code, expected",
+    anti_patterns + RuleTestBase.best_practice
+)
+def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     linter = Linter()
     lexer = linter.get_lexer(code)
-    tokens = lexer.getAllTokens()
-    rule = E202()
-
-    assert rule.test(tokens) == expected
+    assert rule.test(lexer) == expected

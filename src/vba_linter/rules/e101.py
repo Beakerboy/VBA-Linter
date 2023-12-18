@@ -15,7 +15,8 @@ class E101(RuleBase):
         self._rule_name = 'E101'
         self._message = "indentation contains mixed spaces and tabs"
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.WS and token.column == 0:

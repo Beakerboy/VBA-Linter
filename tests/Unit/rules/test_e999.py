@@ -1,6 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.linter import Linter
+from vba_linter.rules.e999 import E999
 
 
 anti_patterns = [
@@ -52,5 +53,12 @@ End Sub
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(code: str, expected: tuple) -> None:
-    linter = Linter()
-    assert linter.lint(code) == expected
+    rule = E999()
+    assert rule.test(Linter().get_lexer(code)) == expected
+
+
+def test_message() -> None:
+    rule = E999()
+    data = (1, 0, "E999", "mismatched input '<?php' expecting <EOF>")
+    expected = ":1:0: E999 mismatched input '<?php' expecting <EOF>"
+    assert rule.create_message(data) == expected

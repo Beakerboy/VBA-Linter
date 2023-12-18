@@ -1,9 +1,8 @@
 import pytest
-from antlr.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.linter import Linter
+from vba_linter.rule_directory import RuleDirectory
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.token_after_base import TokenAfterBase
 
 
 anti_patterns = [
@@ -18,9 +17,9 @@ anti_patterns = [
 ]
 
 
-rule = TokenAfterBase("E201",
-                      vbaLexer.LPAREN, vbaLexer.WS,
-                      "Whitespace after '('")
+rd = RuleDirectory()
+rd.load_all_rules()
+rule = rd.get_rule("E201")
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -29,10 +28,7 @@ rule = TokenAfterBase("E201",
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    linter = Linter()
-    lexer = linter.get_lexer(code)
-    tokens = lexer.getAllTokens()
-    assert rule.test(tokens) == expected
+    assert rule.test(Linter().get_lexer(code)) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])

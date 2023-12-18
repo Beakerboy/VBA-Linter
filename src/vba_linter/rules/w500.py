@@ -12,7 +12,8 @@ class W500(RuleBase):
         self._line_ending = '\r\n'
         self._message = 'incorrect line ending'
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
