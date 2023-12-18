@@ -39,9 +39,9 @@ class Linter:
         # if check lost option is set
         # check for lint errors
         lexer = self.get_lexer(code)
-        tokens = lexer.getAllTokens()
+        
         loader = RuleDirectory()
-        output = loader.test_all(tokens)
+        output = loader.test_all(lexer)
         output.sort()
         return output
 
