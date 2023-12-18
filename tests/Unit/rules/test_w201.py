@@ -1,24 +1,18 @@
 import pytest
-from vba_linter.rule_directory import RuleDirectory
-from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.w201 import W201
+from Unit.rules.rule_test_base import RuleTestBase
 
 
 anti_patterns = [
-    [
-        'Public Function Foo(num )\r\nEnd Function\r\n',
-        [(1, 24, "E202")]
-    ],
-    [
-        'Foo = Bar( )\r\n',
-        [(1, 11, "E202")]
-    ],
+    ['''\
+Public Function Foo(num)
+End Function''',  # noqa
+     [(2, 13, 'W201')]]
 ]
 
 
-rd = RuleDirectory()
-rd.load_all_rules()
-rule = rd.get_rule("E202")
+rule = W201()
 
 
 @pytest.mark.parametrize('rule', [rule])

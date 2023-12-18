@@ -13,7 +13,7 @@ def test_sort() -> None:
     """
     Test that the results are sorted by line, then char, type.
     """
-    code = 'Public Function Foo(num) \n\nEnd Function\n'
+    path = 'tests/Files/all_errors.bas'
     rule1 = RuleStub()
     rule1.set_name("E001")
     rule1.set_output([(1, 1, "E001"), (5, 5, "E001")])
@@ -28,7 +28,7 @@ def test_sort() -> None:
         (1, 4, "E002"), (5, 5, "E001")
     ]
     linter = Linter()
-    assert linter.lint(dir, code) == expected
+    assert linter.lint(dir, path) == expected
 
 
 name_formats = [

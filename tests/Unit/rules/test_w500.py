@@ -28,7 +28,7 @@ rule = W500()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    RuleTestBase.test_test(rule, code, expected)
+    assert RuleTestBase.tokenize(rule, code) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])
