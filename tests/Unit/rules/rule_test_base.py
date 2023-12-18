@@ -29,7 +29,7 @@ class RuleTestBase:
         with p.open(mode='a') as fi:
             fi.write(code)
         linter = Linter()
-        lexer = linter.get_lexer(p)
+        lexer = linter.get_lexer(file_name)
         return rule.test(lexer)
 
     @classmethod
