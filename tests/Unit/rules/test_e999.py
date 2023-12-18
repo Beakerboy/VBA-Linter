@@ -38,8 +38,7 @@ End Sub
           "'THEN', 'TIME', 'TO', 'TRUE', 'TYPE', 'TYPEOF', 'UNLOAD', " +
           "'UNLOCK', 'UNTIL', 'VARIANT', 'VERSION', 'WEND', 'WHILE', " +
           "'WIDTH', 'WITH', 'WITHEVENTS', 'WRITE', 'XOR', " +
-          "SHORTLITERAL, INTEGERLITERAL, LINE_CONTINUATION, IDENTIFIER}"
-        )]
+          "SHORTLITERAL, INTEGERLITERAL, LINE_CONTINUATION, IDENTIFIER}")]
     ],
     [
         '<?php phpinfo() ?>',
