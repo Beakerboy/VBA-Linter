@@ -54,7 +54,7 @@ End Sub
 )
 def test_test(code: str, expected: tuple) -> None:
     rule = E999()
-    assert rule.test(Linter().get_lexer(code)) == expected
+    assert RuleTestBase.tokenize(rule, code) == expected
 
 
 def test_message() -> None:
