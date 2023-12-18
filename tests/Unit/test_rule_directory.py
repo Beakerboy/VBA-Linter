@@ -16,7 +16,6 @@ def test_add() -> None:
     linter = Linter()
     obj.add_rule(rule1)
     assert rule1.test_count == 0
-    code = "Public Function Foo()\r\nEnd Function\r\n"
     obj.test_all(linter.get_lexer(path))
     assert rule1.test_count == 1
     rule2 = RuleStub()
