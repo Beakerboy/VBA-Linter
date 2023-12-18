@@ -33,7 +33,7 @@ class Linter:
         parser.addErrorListener(ThrowingErrorListener())
         try:
             parser.startRule()
-        except ParseCancellationException as ex:
+        except ThrownException as ex:
             return [(ex.line, ex.column, "E999", ex.msg)]
 
         # if check lost option is set
