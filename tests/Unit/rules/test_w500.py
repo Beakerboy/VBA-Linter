@@ -1,24 +1,25 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rule_directory import RuleDirectory
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.w500 import W500
 
 
 anti_patterns = [
-    [
-        'Public Function Foo( num)\r\nEnd Function\r\n',
-        [(1, 21, "E201")]
-    ],
-    [
-        'Foo = Bar( )\r\n',
-        [(1, 11, "E201")]
-    ],
+    ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "W500")]),
+    ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, 0, "W500")]),
+    ('\r\n\r\nFoo\n', [(3, 3, "W500")]),
+    (
+        'Public Function Foo(num)\r\nEnd Function\n',
+        [(2, 12, "W500")]
+    ),
+    (
+        'Public Function Foo(num)\nEnd Function\n',
+        [(1, 24, "W500"), (2, 12, "W500")]
+    ),
 ]
 
 
-rd = RuleDirectory()
-rd.load_all_rules()
-rule = rd.get_rule("E201")
+rule = W500()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -32,6 +33,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 13, "E201")
-    expected = ":3:13: E201 Whitespace after '('"
+    data = (3, 13, "W500")
+    expected = ":3:13: W500 incorrect line ending"
     assert rule.create_message(data) == expected

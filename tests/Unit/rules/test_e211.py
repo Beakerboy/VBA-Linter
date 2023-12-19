@@ -1,43 +1,36 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w291 import W291
+from vba_linter.rule_directory import RuleDirectory
 
 
 anti_patterns = [
     [
         '''\
-Public Function Foo(num) 
+Public Function Foo (num)
 End Function
 ''',  # noqa
-        [(1, 25, "W291")]
+        [(1, 20, "E211")]
     ],
     [
         '''\
-Public Function Foo(num)
-
-End Function 
-''',  # noqa
-        [(3, 13, "W291")]
-    ],
-    [
-        '''\
-Public Function Foo(num)
- 
+Public Function Foo(data)
+    bar = data (1)
 End Function
 ''',  # noqa
-        [(2, 1, "W291")]
+        [(2, 15, "E211")]
     ],
 ]
 
 
 message_data = [
-    [(3, 13, "W291"), ":3:13: W291 trailing whitespace"],
-    [(2, 1, "W291"), ":2:1: W293 blank line contains whitespace"]
-]
+    [(1, 20, "E211"), ":1:20: E211 whitespace before '('"],
+ ]
 
 
-rule = W291()
+rd = RuleDirectory()
+rd.load_all_rules()
+rule = rd.get_rule("E211")
 
 
 @pytest.mark.parametrize('rule', [rule])

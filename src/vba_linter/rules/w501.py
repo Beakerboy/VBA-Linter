@@ -8,18 +8,19 @@ T = TypeVar('T', bound='W501')
 
 class W501(RuleBase):
     def __init__(self: T) -> None:
-        self.rule_name = "W501"
-        self._max_len = 80
+        self._rule_name = "W501"
+        self._max_len = 79
+        self._message = ("line too long (%s > " +
+                         str(self._max_len) + " characters)")
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > self._max_len:
-                    output.append((token.line, token.column, "W501"))
+                    line = token.line
+                    column = token.column
+                    pos = self._max_len + 1
+                    output.append((line, pos, "W501", column))
         return output
-
-    def create_message(self: T, data: tuple) -> str:
-        output = RuleBase.create_message(self, data)
-        return (output + "Line too long (" + str(data[1]) +
-                '>' + str(self._max_len) + ')')

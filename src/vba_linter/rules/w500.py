@@ -8,10 +8,12 @@ T = TypeVar('T', bound='W500')
 
 class W500(RuleBase):
     def __init__(self: T) -> None:
-        self.rule_name = "W500"
+        self._rule_name = "W500"
         self._line_ending = '\r\n'
+        self._message = 'incorrect line ending'
 
-    def test(self: T, tokens: list) -> list:
+    def test(self: T, lexer: vbaLexer) -> list:
+        tokens = lexer.getAllTokens()
         output: list[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
@@ -22,7 +24,3 @@ class W500(RuleBase):
                         column = token.column if i == 0 else 0
                         output.append((token.line + i, column, "W500"))
         return output
-
-    def create_message(self: T, data: tuple) -> str:
-        output = RuleBase.create_message(self, data)
-        return (output + 'Incorrect line ending')

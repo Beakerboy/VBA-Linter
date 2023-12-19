@@ -1,43 +1,40 @@
 import pytest
-from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w291 import W291
+from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.w391 import W391
 
 
 anti_patterns = [
     [
         '''\
-Public Function Foo(num) 
+Public Function Foo(num)
 End Function
-''',  # noqa
-        [(1, 25, "W291")]
-    ],
-    [
-        '''\
-Public Function Foo(num)
 
-End Function 
 ''',  # noqa
-        [(3, 13, "W291")]
+        [(3, 1, "W391")]
     ],
     [
         '''\
 Public Function Foo(num)
+End Function
+
  
-End Function
 ''',  # noqa
-        [(2, 1, "W291")]
+        []
     ],
+    [
+        '''\
+Public Function Foo(num)
+End Function
+
+
+''',  # noqa
+        [(4, 1, "W391")]
+    ]
 ]
 
 
-message_data = [
-    [(3, 13, "W291"), ":3:13: W291 trailing whitespace"],
-    [(2, 1, "W291"), ":2:1: W293 blank line contains whitespace"]
-]
-
-
-rule = W291()
+rule = W391()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -50,8 +47,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 
 @pytest.mark.parametrize('rule', [rule])
-@pytest.mark.parametrize(
-    "data, expected", message_data
-)
-def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
+def test_message(rule: RuleBase) -> None:
+    data = (3, 13, "W391")
+    expected = ":3:13: W391 blank line at end of file"
     assert rule.create_message(data) == expected
