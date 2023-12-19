@@ -1,8 +1,9 @@
 from pytest_mock import MockerFixture
+import _pytest.capture.CaptureFixture
 from vba_linter.__main__ import main
 
 
-def test_bad_file(mocker: MockerFixture, capsys) -> None:
+def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/project"
     mocker.patch(
         "sys.argv",
@@ -16,7 +17,7 @@ def test_bad_file(mocker: MockerFixture, capsys) -> None:
     assert captured.err == "foo"
 
 
-def test_fail_file(mocker: MockerFixture, capsys) -> None:
+def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/Fail"
     mocker.patch(
         "sys.argv",
