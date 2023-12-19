@@ -12,7 +12,7 @@ def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
             dir_path
         ],
     )
-    with mock.patch.object(main.sys, "exit") as mock_exit:
+    with mocker.patch.object(main.sys, "exit") as mock_exit:
         main()
         assert mock_exit.call_args[0][0] == 1
     captured = capsys.readouterr()
