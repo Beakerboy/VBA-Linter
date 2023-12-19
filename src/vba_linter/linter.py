@@ -28,7 +28,7 @@ class Linter:
         output = e999.test(self.get_lexer(code))
         if output == []:
             for key in rules:
-                rule = self._rules[key]
+                rule = rules[key]
                 lexer = self.get_lexer(code)
                 output.extend(rule.test(lexer))
         output.sort()
