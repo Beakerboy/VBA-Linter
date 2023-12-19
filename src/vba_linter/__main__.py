@@ -29,15 +29,12 @@ def main() -> None:
             print(file_name + msg, file=sys.stderr)
 
 
-def find_files(path: str) -> list:
+def find_files(path: Path) -> list:
     files = []
-    obj = os.scandir(path)
-    for entry in obj:
-        if entry.is_dir():
-            files.extend(find_files(entry.name))
-        elif entry.is_file():
+    for child in p.iterdir():
+        if child.is_dir():
             # if extension is bas, cls. or frm
-            files.append(entry)
+            files.append(child)
     return files
 
 
