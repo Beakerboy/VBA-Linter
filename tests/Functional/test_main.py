@@ -12,9 +12,8 @@ def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
             dir_path
         ],
     )
-    with mocker.patch('vba_linter.__main__.sys.exit') as mock_exit:
+    with pytest.raises(SystemExit):
         main()
-        assert mock_exit.call_args[0][0] == 1
     captured = capsys.readouterr()
     expected = """\
 /home/runner/work/VBA-Linter/VBA-Linter/tests/Files/project/all_errors.bas:1:51: E211 whitespace before '('
