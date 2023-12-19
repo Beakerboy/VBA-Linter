@@ -29,7 +29,7 @@ def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     assert captured.err == expected
 
 
-def xtest_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/Fail"
     mocker.patch(
         "sys.argv",
