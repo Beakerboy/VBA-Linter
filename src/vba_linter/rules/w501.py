@@ -1,4 +1,3 @@
-import sys
 from antlr.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
@@ -23,6 +22,5 @@ class W501(RuleBase):
                     line = token.line
                     column = token.column
                     pos = self._max_len + 1
-                    print('501 error', file=sys.stderr)
                     output.append((line, pos, "W501", column))
         return output
