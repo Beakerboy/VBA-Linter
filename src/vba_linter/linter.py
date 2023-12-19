@@ -4,6 +4,7 @@ from antlr.vbaLexer import vbaLexer
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
+from vba_linter.rules.e999 import E999
 
 
 T = TypeVar('T', bound='Linter')
@@ -22,9 +23,14 @@ class Linter:
         raise Exception('file does not exist')
 
     def lint(self: T, dir: RuleDirectory, code: str) -> list:
-        lexer = self.get_lexer(code)
-
-        output = dir.test_all(lexer)
+        rules = dir.get_loaded_rules()
+        e999 = E999()
+        output = e999.test(self.get_lexer(code))
+        if output == []:
+            for key in rules:
+                rule = self._rules[key]
+                lexer = self.get_lexer(code)
+                output.extend(rule.test(lexer))
         output.sort()
         return output
 
