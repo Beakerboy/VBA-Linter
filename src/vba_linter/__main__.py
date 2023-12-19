@@ -31,7 +31,7 @@ def main() -> None:
 def find_files(path: Path) -> list:
     files = []
     for child in path.rglob("*"):
-        if child.suffix in [".bas", ".cls", ".frm"]: 
+        if child.suffix in [".bas", ".cls", ".frm"]:
             files.append(child)
     return files
 
