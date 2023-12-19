@@ -52,14 +52,3 @@ class RuleDirectory:
 
     def get_loaded_rules(self: T) -> dict:
         return self._rules
-
-    def test_all(self: T, lexer: vbaLexer) -> list:
-        e999 = E999()
-        new = lexer
-        output = e999.test(new)
-        if output == []:
-            for key in self._rules:
-                rule = self._rules[key]
-                new = lexer
-                output.extend(rule.test(new))
-        return output
