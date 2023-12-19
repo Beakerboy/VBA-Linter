@@ -1,5 +1,4 @@
 import argparse
-import os
 from pathlib import Path
 import sys
 from vba_linter.linter import Linter
