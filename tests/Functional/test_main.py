@@ -27,7 +27,7 @@ def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 /home/runner/work/VBA-Linter/VBA-Linter/tests/Files/project/all_errors.bas:2:0: W500 incorrect line ending
 /home/runner/work/VBA-Linter/VBA-Linter/tests/Files/project/all_errors.bas:3:13: W500 incorrect line ending
 /home/runner/work/VBA-Linter/VBA-Linter/tests/Files/project/all_errors.bas:4:12: W500 incorrect line ending
-10 Errors in 1 Files
+10 Errors in 1 File
 """  # noqa
     assert captured.err == expected
 
@@ -46,6 +46,6 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     captured = capsys.readouterr()
     expected = """\
 /home/runner/work/VBA-Linter/VBA-Linter/tests/Files/Fail/fail.bas:3:14: E999 extraneous input '+1' expecting {',', ')', WS}
-1 Errors in 1 Files
+1 Error in 1 File
 """  # noqa
     assert captured.err == expected
