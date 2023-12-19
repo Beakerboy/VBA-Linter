@@ -16,6 +16,7 @@ def main() -> None:
     path = Path(args.directory).resolve()
     file_list = find_files(path)
     full_results: dict[str, list] = {}
+    num_errors = 0
     for file_name in file_list:
         dir = RuleDirectory()
         dir.load_all_rules()
@@ -23,17 +24,19 @@ def main() -> None:
         if len(results) > 0:
             full_results[file_name] = results
     for file_name, file_results in full_results.items():
+        num_errors += len(file_results)
         for error in file_results:
             msg = dir.get_rule(error[2]).create_message(error)
             print(str(file_name) + msg, file=sys.stderr)
+    num_files = len(file_list)
+    print("%s Errors in %s Files\n" % (num_errors, num_files))
 
 
 def find_files(path: Path) -> list:
     files = []
     for child in path.rglob("*"):
-        # if child.extwnsion
-        # if extension is bas, cls. or frm
-        files.append(child)
+        if child.suffix in [".bas", ".cls", ".frm"]:
+            files.append(child)
     return files
 
 
