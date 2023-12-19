@@ -31,7 +31,7 @@ def main() -> None:
 
 def find_files(path: Path) -> list:
     files = []
-    for child in p.iterdir():
+    for child in path.iterdir():
         if child.is_dir():
             # if extension is bas, cls. or frm
             files.append(child)
