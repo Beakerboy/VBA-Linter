@@ -50,6 +50,9 @@ class RuleDirectory:
             return E999()
         return self._rules[rule_name]
 
+    def get_loaded_rules(self: T) -> dict:
+        return self._rules
+
     def test_all(self: T, lexer: vbaLexer) -> list:
         e999 = E999()
         new = lexer
