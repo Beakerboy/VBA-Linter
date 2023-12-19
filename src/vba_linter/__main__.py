@@ -31,6 +31,7 @@ def main() -> None:
     num_files = len(file_list)
     print("%s Errors in %s Files\n" % (num_errors, num_files))
 
+
 def find_files(path: Path) -> list:
     files = []
     for child in path.rglob("*"):
