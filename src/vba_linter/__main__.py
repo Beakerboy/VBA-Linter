@@ -29,8 +29,11 @@ def main() -> None:
             msg = dir.get_rule(error[2]).create_message(error)
             print(str(file_name) + msg, file=sys.stderr)
     num_files = len(file_list)
+    plural_e = "" if num_errors < 2 else "s"
+    plural_f = "" if num_files < 2 else "s"
+    data = (num_errors, plural_e, num_files, plural_f)
     print(
-        "%s Errors in %s Files\n" % (num_errors, num_files),
+        "%s Error%s in %s File%s" % data,
         file=sys.stderr
     )
 
