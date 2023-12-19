@@ -52,9 +52,11 @@ class RuleDirectory:
 
     def test_all(self: T, lexer: vbaLexer) -> list:
         e999 = E999()
-        output = e999.test(lexer)
+        new = lexer
+        output = e999.test(new)
         if output == []:
             for key in self._rules:
                 rule = self._rules[key]
-                output.extend(rule.test(lexer))
+                new = lexer
+                output.extend(rule.test(new))
         return output
