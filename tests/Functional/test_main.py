@@ -4,7 +4,7 @@ from vba_linter.__main__ import main
 
 
 def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
-    dir_path = "tests/Files/Fail"
+    dir_path = "tests/Files/project"
     mocker.patch(
         "sys.argv",
         [
