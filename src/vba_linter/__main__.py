@@ -29,7 +29,7 @@ def main() -> None:
             msg = dir.get_rule(error[2]).create_message(error)
             print(str(file_name) + msg, file=sys.stderr)
     num_files = len(file_list)
-    print("%s Errors in %s Files\n" % (num_errors, num_files)
+    print("%s Errors in %s Files\n" % (num_errors, num_files))
 
 def find_files(path: Path) -> list:
     files = []
