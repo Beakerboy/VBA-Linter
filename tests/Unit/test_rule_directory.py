@@ -9,7 +9,7 @@ def test_constructor() -> None:
 
 
 def test_add() -> None:
-    path = 'tests/Files/all_errors.bas'
+    path = 'tests/Files/project/all_errors.bas'
     obj = RuleDirectory()
     rule1 = RuleStub()
     rule1.set_name("E001")
