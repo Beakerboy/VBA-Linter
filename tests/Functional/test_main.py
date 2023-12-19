@@ -1,3 +1,4 @@
+import pytest
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
