@@ -25,7 +25,7 @@ def main() -> None:
     for file_name, file_results in full_results.items():
         for error in file_results:
             msg = dir.get_rule(error[2]).create_message(error)
-            print(file_name + msg, file=sys.stderr)
+            print(str(file_name) + msg, file=sys.stderr)
 
 
 def find_files(path: Path) -> list:
