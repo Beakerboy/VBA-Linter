@@ -30,5 +30,5 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     captured = capsys.readouterr()
     assert captured.err == (
         "/home/runner/work/VBA-Linter/VBA-Linter/tests/Files/Fail/fail.bas" +
-        ":3:14: E999 extraneous input '+1' expecting {',', ')', WS}"
+        ":3:14: E999 extraneous input '+1' expecting {',', ')', WS}\n"
     )
