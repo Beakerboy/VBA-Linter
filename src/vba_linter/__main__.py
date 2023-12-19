@@ -10,7 +10,7 @@ def main() -> None:
     # parser.add_argument("ruleset", nargs='?', default='.',
     #                     help="Configuration file of linting rules.")
     parser.add_argument("directory", default='.',
-                        help="The input or output directory.")
+                        help="The source directory.")
     args = parser.parse_args()
     linter = Linter()
     path = Path(args.directory).resolve()
