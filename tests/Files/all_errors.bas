@@ -1,4 +1,4 @@
 Public Function Supercalifragilisticexpialidocious ( atrocious , precocious, indubitably ) 
 
-    bar  =  2
+    bar  =  (2+1)
 End Function
