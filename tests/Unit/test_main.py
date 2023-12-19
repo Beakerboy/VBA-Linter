@@ -12,3 +12,15 @@ def test_bad_file(mocker: MockerFixture) -> None:
         ],
     )
     main()
+
+
+def test_fail_file(mocker: MockerFixture) -> None:
+    dir_path = "tests/Files/Fail"
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            dir_path
+        ],
+    )
+    main()
