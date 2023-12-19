@@ -46,6 +46,8 @@ class RuleDirectory:
                             "W501": W501()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
+        if rule_name == "E999":
+            return E999()
         return self._rules[rule_name]
 
     def test_all(self: T, lexer: vbaLexer) -> list:
