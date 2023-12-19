@@ -31,9 +31,8 @@ def main() -> None:
 def find_files(path: Path) -> list:
     files = []
     for child in path.rglob("*"):
-        # if child.extwnsion
-        # if extension is bas, cls. or frm
-        files.append(child)
+        if child.suffix in [".bas", ".cls", ".frm"]: 
+            files.append(child)
     return files
 
 
