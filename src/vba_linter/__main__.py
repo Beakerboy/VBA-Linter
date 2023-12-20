@@ -7,7 +7,7 @@ from vba_linter.rule_directory import RuleDirectory
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    help_string = ("Force Flake8 to use the exit status code 0 even" +
+    help_string = ("Force linter to use the exit status code 0 even" +
                    " if there are errors.")
     parser.add_argument("--exit-zero", action="store_true",
                         help=help_string)
