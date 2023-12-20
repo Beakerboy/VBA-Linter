@@ -1,6 +1,6 @@
 import re
 from antlr4 import FileStream
-from antlr.vbaLexer import vbaLexer
+from antlr4-vba.vbaLexer import vbaLexer
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
