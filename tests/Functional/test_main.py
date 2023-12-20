@@ -49,3 +49,23 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 1 Error in 1 File
 """  # noqa
     assert captured.err == expected
+
+
+def test_exit_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    dir_path = "tests/Files/Fail"
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "--exit-zero",
+            dir_path
+        ],
+    )
+
+    main()
+    captured = capsys.readouterr()
+    expected = """\
+/home/runner/work/VBA-Linter/VBA-Linter/tests/Files/Fail/fail.bas:3:14: E999 extraneous input '+1' expecting {',', ')', WS}
+1 Error in 1 File
+"""  # noqa
+    assert captured.err == expected
