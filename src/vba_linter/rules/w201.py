@@ -9,7 +9,7 @@ T = TypeVar('T', bound='W201')
 class W201(RuleBase):
     def __init__(self: T) -> None:
         self._rule_name = "W201"
-        self._message = "whitespace after '('"
+        self._message = "no newline at end of file"
 
     def test(self: T, lexer: vbaLexer) -> list:
         tokens = lexer.getAllTokens()
