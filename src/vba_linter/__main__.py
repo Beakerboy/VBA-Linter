@@ -7,8 +7,10 @@ from vba_linter.rule_directory import RuleDirectory
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    # parser.add_argument("ruleset", nargs='?', default='.',
-    #                     help="Configuration file of linting rules.")
+    help_string = ("Force Flake8 to use the exit status code 0 even" +
+                   " if there are errors.")
+    parser.add_argument("--exit-zero", action="store_true",
+                        help=help_string)
     parser.add_argument("directory", default='.',
                         help="The source directory.")
     args = parser.parse_args()
@@ -37,7 +39,7 @@ def main() -> None:
         file=sys.stderr
     )
 
-    exit_code = 1 if num_errors > 0 else 0
+    exit_code = 0 if (num_errors == 0 or args.exit_zero) else 1
     sys.exit(exit_code)
 
 
