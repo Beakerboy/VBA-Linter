@@ -1,4 +1,4 @@
-from antlr.vbaLexer import vbaLexer
+from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 

@@ -12,6 +12,11 @@ End Function''',  # noqa
 ]
 
 
+message_data = [
+    [(2, 1, "W201"), ":2:1: W201 no newline at end of file"],
+ ]
+
+
 rule = W201()
 
 
@@ -22,3 +27,11 @@ rule = W201()
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     assert RuleTestBase.tokenize(rule, code) == expected
+
+
+@pytest.mark.parametrize('rule', [rule])
+@pytest.mark.parametrize(
+    "data, expected", message_data
+)
+def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
+    assert rule.create_message(data) == expected

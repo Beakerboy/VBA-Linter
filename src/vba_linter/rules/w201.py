@@ -1,4 +1,4 @@
-from antlr.vbaLexer import vbaLexer
+from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
 
@@ -8,7 +8,8 @@ T = TypeVar('T', bound='W201')
 
 class W201(RuleBase):
     def __init__(self: T) -> None:
-        self.rule_name = "W201"
+        self._rule_name = "W201"
+        self._message = "no newline at end of file"
 
     def test(self: T, lexer: vbaLexer) -> list:
         tokens = lexer.getAllTokens()

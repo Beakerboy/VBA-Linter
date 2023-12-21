@@ -1,5 +1,5 @@
 from typing import TypeVar
-from antlr.vbaLexer import vbaLexer
+from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w291 import W291
 from vba_linter.rules.w201 import W201
