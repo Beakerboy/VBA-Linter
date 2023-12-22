@@ -9,4 +9,3 @@ except EditorConfigError:
 else:
     for key, value in options.items():
         print("%s=%s" % (key, value))
-        

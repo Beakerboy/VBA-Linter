@@ -1,7 +1,4 @@
-import pytest
 from editorconfig import get_properties, EditorConfigError
-
-
 
 def test_get_properties() -> None:
     filename = "/linter.py"
@@ -13,5 +10,3 @@ def test_get_properties() -> None:
     else:
         for key, value in options.items():
             print("%s=%s" % (key, value))
-
-
