@@ -30,7 +30,8 @@ tests = [
   'pytest-mock',
   'coveralls',
   'pep8-naming',
-  'flake8-annotations'
+  'flake8-annotations',
+  'editorconfig'
 ]
 [project.urls]
 "Homepage" = "https://github.com/Beakerboy/VBA-Linter"

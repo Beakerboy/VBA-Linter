@@ -5,7 +5,9 @@ name: Python package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
+      - editorconfig
   pull_request:
 
 jobs:
