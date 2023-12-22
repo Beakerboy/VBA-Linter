@@ -1,8 +1,8 @@
 from editorconfig import get_properties, EditorConfigError
 
+
 def test_get_properties() -> None:
     filename = "/linter.py"
-
     try:
         options = get_properties(filename)
     except EditorConfigError:
