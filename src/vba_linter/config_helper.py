@@ -1,5 +1,5 @@
 from editorconfig import get_properties, EditorConfigError
-
+from typing import Type, TypeVar
 
 T = TypeVar('T', bound='ConfigHelper')
 
