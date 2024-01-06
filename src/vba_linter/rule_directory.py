@@ -1,7 +1,7 @@
 from typing import Dict, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w291 import W291
+from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
@@ -41,7 +41,7 @@ class RuleDirectory:
                                 vbaLexer.LPAREN, "whitespace before '('")
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
-        self._rules.update({"W291": W291(), "W201": NewlineEof(),
+        self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong()})
 
