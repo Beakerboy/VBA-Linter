@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w291 import W291
+from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 
 
 anti_patterns = [
@@ -37,7 +37,7 @@ message_data = [
 ]
 
 
-rule = W291()
+rule = TrailingWhitespace()
 
 
 @pytest.mark.parametrize('rule', [rule])
