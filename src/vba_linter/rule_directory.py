@@ -8,7 +8,7 @@ from vba_linter.rules.token_before_base import TokenBeforeBase
 from vba_linter.rules.token_between_base import TokenBetweenBase
 from vba_linter.rules.w391 import W391
 from vba_linter.rules.w500 import W500
-from vba_linter.rules.w501 import LineTooLong
+from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.e999 import E999
 
 
