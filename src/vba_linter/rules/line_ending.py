@@ -1,6 +1,6 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import LTypeVar
 
 
 T = TypeVar('T', bound='W500')
