@@ -1,6 +1,6 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
 T = TypeVar('T', bound='E101')
@@ -17,7 +17,7 @@ class E101(RuleBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
         tokens = lexer.getAllTokens()
-        output: list[tuple] = []
+        output: List[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.WS and token.column == 0:
                 # if next token exists and is not NEWLINE
