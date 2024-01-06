@@ -7,7 +7,7 @@ from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
 from vba_linter.rules.token_between_base import TokenBetweenBase
 from vba_linter.rules.w391 import W391
-from vba_linter.rules.w500 import W500
+from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.e999 import E999
 
@@ -42,7 +42,7 @@ class RuleDirectory:
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
         self._rules.update({"W291": W291(), "W201": W201(),
-                            "W391": W391(), "W500": W500(),
+                            "W391": W391(), "W500": LineEnding(),
                             "W501": LineTooLong()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
