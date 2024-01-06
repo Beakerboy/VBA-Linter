@@ -2,7 +2,7 @@ from typing import TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w291 import W291
-from vba_linter.rules.w201 import W201
+from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
 from vba_linter.rules.token_between_base import TokenBetweenBase
