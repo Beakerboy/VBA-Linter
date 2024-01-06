@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 import sys
+from typing import Dict
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
 
@@ -15,7 +16,7 @@ def main() -> None:
     linter = Linter()
     path = Path(args.directory).resolve()
     file_list = find_files(path)
-    full_results: dict[str, list] = {}
+    full_results: Dict[str, list] = {}
     num_errors = 0
     for file_name in file_list:
         dir = RuleDirectory()

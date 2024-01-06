@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w500 import W500
+from vba_linter.rules.line_ending import LineEnding
 
 
 anti_patterns = [
@@ -19,7 +19,7 @@ anti_patterns = [
 ]
 
 
-rule = W500()
+rule = LineEnding()
 
 
 @pytest.mark.parametrize('rule', [rule])

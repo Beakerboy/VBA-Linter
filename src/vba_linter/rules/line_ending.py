@@ -1,12 +1,12 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='W500')
+T = TypeVar('T', bound='LineEnding')
 
 
-class W500(RuleBase):
+class LineEnding(RuleBase):
     def __init__(self: T) -> None:
         self._rule_name = "W500"
         self._line_ending = '\r\n'
@@ -14,7 +14,7 @@ class W500(RuleBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
         tokens = lexer.getAllTokens()
-        output: list[tuple] = []
+        output: List[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 newline_list = RuleBase.split_nl(token.text)

@@ -1,14 +1,14 @@
-from typing import TypeVar
+from typing import Dict, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w291 import W291
-from vba_linter.rules.w201 import W201
+from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
 from vba_linter.rules.token_between_base import TokenBetweenBase
-from vba_linter.rules.w391 import W391
-from vba_linter.rules.w500 import W500
-from vba_linter.rules.w501 import W501
+from vba_linter.rules.blank_line_eof import BlankLineEof
+from vba_linter.rules.line_ending import LineEnding
+from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.e999 import E999
 
 
@@ -22,7 +22,7 @@ class RuleDirectory:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules: dict[str, RuleBase] = {}
+        self._rules: Dict[str, RuleBase] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
@@ -41,9 +41,9 @@ class RuleDirectory:
                                 vbaLexer.LPAREN, "whitespace before '('")
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
-        self._rules.update({"W291": W291(), "W201": W201(),
-                            "W391": W391(), "W500": W500(),
-                            "W501": W501()})
+        self._rules.update({"W291": W291(), "W201": NewlineEof(),
+                            "W391": BlankLineEof(), "W500": LineEnding(),
+                            "W501": LineTooLong()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":

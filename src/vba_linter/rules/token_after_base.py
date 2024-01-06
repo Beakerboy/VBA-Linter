@@ -1,6 +1,6 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.token_before_base import TokenBeforeBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
 T = TypeVar('T', bound='TokenAfterBase')
@@ -18,7 +18,7 @@ class TokenAfterBase(TokenBeforeBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
         temp = super().test(lexer)
-        output: list[tuple] = []
+        output: List[tuple] = []
         for err in temp:
             output.append((err[0], err[1] + 1, err[2]))
         return output
