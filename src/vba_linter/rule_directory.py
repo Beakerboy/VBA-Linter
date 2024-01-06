@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import Dict, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.w291 import W291
@@ -22,7 +22,7 @@ class RuleDirectory:
         # merge list to allow users to override.
         # create list of name to path
         # load config file.
-        self._rules: dict[str, RuleBase] = {}
+        self._rules: Dict[str, RuleBase] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
