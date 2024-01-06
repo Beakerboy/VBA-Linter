@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w501 import W501
+from vba_linter.rules.line_too_long import LineTooLong
 
 
 anti_patterns = [
@@ -13,7 +13,7 @@ End Function
 ]
 
 
-rule = W501()
+rule = LineTooLong()
 
 
 @pytest.mark.parametrize('rule', [rule])
