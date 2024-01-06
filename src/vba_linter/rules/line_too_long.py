@@ -1,21 +1,21 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='W501')
+T = TypeVar('T', bound='LineTooLong')
 
 
-class W501(RuleBase):
+class LineTooLong(RuleBase):
     def __init__(self: T) -> None:
         self._rule_name = "W501"
         self._max_len = 79
         self._message = ("line too long (%s > " +
                          str(self._max_len) + " characters)")
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, lexer: vbaLexer) -> List:
         tokens = lexer.getAllTokens()
-        output: list[tuple] = []
+        output: List[tuple] = []
         for token in tokens:
             if token.type == vbaLexer.NEWLINE:
                 if token.column > self._max_len:
