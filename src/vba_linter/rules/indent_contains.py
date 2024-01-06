@@ -3,7 +3,7 @@ from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='W191')
+T = TypeVar('T', bound='IndentContains')
 
 
 class IndentContains(RuleBase):
