@@ -1,6 +1,6 @@
 import pytest
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w201 import W201
+from vba_linter.rules.newline_eof import NewlineEof
 from Unit.rules.rule_test_base import RuleTestBase
 
 
@@ -17,7 +17,7 @@ message_data = [
  ]
 
 
-rule = W201()
+rule = NewlineEof()
 
 
 @pytest.mark.parametrize('rule', [rule])
