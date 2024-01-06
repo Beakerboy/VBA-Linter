@@ -1,7 +1,7 @@
 import pytest
 from vba_linter.rules.rule_base import RuleBase
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.w391 import W391
+from vba_linter.rules.blank_line_eof import BlankLineEof
 
 
 anti_patterns = [
@@ -34,7 +34,7 @@ End Function
 ]
 
 
-rule = W391()
+rule = BlankLineEof()
 
 
 @pytest.mark.parametrize('rule', [rule])
