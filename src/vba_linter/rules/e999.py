@@ -4,7 +4,7 @@ from antlr4_vba.vbaParser import vbaParser
 from antlr.throwing_error_listener import ThrowingErrorListener
 from antlr4 import CommonTokenStream
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
 T = TypeVar('T', bound='E999')
@@ -13,7 +13,7 @@ T = TypeVar('T', bound='E999')
 class E999(RuleBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
-        output: list[tuple] = []
+        output: List[tuple] = []
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
 
