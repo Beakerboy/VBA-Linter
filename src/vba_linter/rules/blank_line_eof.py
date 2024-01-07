@@ -19,9 +19,9 @@ class BlankLineEof(RuleBase):
         output: List[tuple] = []
         if (ts.index > 0):
             output = [(1, 1, 1)]
-            if (ts.LT(1).type == Token.EOF):
+            if (ts.LA(1) == Token.EOF):
                 output = [(2, 2, 2)]
-                if (ts.LT(-1).type == vbaLexer.NEWLINE):
+                if (ts.LA(-1) == vbaLexer.NEWLINE):
                     final_token = ts.LT(-1)
                     output = [(1, 2, 3)]
                     newline_list = RuleBase.split_nl(final_token.text)
