@@ -24,16 +24,17 @@ class RuleTestBase:
     ]
 
     @classmethod
-    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> None:
+    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = RuleTestBase.create_filename(ext='.bas')
         p = Path(file_name)
         with p.open(mode='a') as fi:
             fi.write(code)
         linter = Linter()
+        results = []
         lexer = linter.get_lexer(file_name)
         ts = CommonTokenStream(lexer)
         while not ts.fetchedEOF:
-            results = rule.test(ts)
+            results.extend(rule.test(ts))
             token = ts.LT(1)
             if token.type != Token.EOF:
                 ts.consume()
