@@ -19,7 +19,7 @@ class TokenBeforeBase(RuleBase):
 
     def test(self: T, ts: BufferedTokenStream) -> list:
         output: List[tuple] = []
-        if ts.p < 2:
+        if ts.index < 2:
             return output
         token = ts.LT(1)
         if (token == self._token_second and
