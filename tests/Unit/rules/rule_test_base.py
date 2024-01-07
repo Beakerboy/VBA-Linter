@@ -1,6 +1,6 @@
 import random
 import string
-from antlr4 import CommonTokenStream
+from antlr4 import CommonTokenStream, Token
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
@@ -34,7 +34,9 @@ class RuleTestBase:
         ts = CommonTokenStream(lexer)
         while not ts.fetchedEOF:
             results = rule.test(ts)
-            ts.consume()
+            token = ts.LT(1)
+            if token.type != Token.EOF:
+                ts.consume()
         p.unlink()
         return results
 
