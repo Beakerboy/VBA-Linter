@@ -12,11 +12,8 @@ T = TypeVar('T', bound='ParsingError')
 
 class ParsingError(RuleBase):
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        lexer.removeErrorListeners()
-        lexer.addErrorListener(ThrowingErrorListener())
-
         stream = CommonTokenStream(lexer)
         parser = vbaParser(stream)
         parser.removeErrorListeners()
