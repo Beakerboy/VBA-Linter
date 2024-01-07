@@ -20,7 +20,6 @@ class BlankLineEof(RuleBase):
         if (ts.index > 0 and ts.LA(1) == vbaLexer.NEWLINE and
                 ts.LA(2) == Token.EOF):
             final_token = ts.LT(-1)
-            output = [(1, 2, 3)]
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
