@@ -1,5 +1,4 @@
-from antlr4 import Token
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import BufferedRokenStream
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
