@@ -19,12 +19,8 @@ class TokenBeforeBase(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        if ts.index < 2:
-            token = ts.LT(1)
-            output.append((ts.index, token.type, token.column))
-            return output
         token = ts.LT(1)
-        if (token.type == self._token_second and
+        if (ts.index > 1 and token.type == self._token_second and
                 ts.LT(-1).type == self._token_first):
             line = token.line
             column = token.column
