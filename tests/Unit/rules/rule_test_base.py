@@ -30,7 +30,10 @@ class RuleTestBase:
             fi.write(code)
         linter = Linter()
         lexer = linter.get_lexer(file_name)
-        results = rule.test(lexer)
+        ts = CommonTokenStream(lexer)
+        while not ts.fetchedEOF():
+            results = rule.test(ts)
+            ts.comsume()
         p.unlink()
         return results
 
