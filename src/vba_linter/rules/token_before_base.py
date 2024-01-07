@@ -25,5 +25,5 @@ class TokenBeforeBase(RuleBase):
             line = token.line
             column = token.column
             name = self._rule_name
-            output.append((line, column, name))
+            output = [(line, column, name)]
         return output
