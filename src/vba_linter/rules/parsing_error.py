@@ -7,7 +7,7 @@ from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='E999')
+T = TypeVar('T', bound='P')
 
 
 class E999(RuleBase):
