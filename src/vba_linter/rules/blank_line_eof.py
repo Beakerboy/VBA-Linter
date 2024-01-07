@@ -1,4 +1,4 @@
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import CommonTokenStream, Token
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
@@ -14,13 +14,14 @@ class BlankLineEof(RuleBase):
         self._rule_name = "W391"
         self._message = 'blank line at end of file'
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, ts: CommonTokenStream) -> list:
         tokens = lexer.getAllTokens()
         output: List[tuple] = []
         if len(tokens) == 0:
             return output
         final_token = tokens[-1]
-        if final_token.type == vbaLexer.NEWLINE:
+        if ts.LT(1).type == Token.EOL and ts.LT(-1).type == vbaLexer.NEWLINE:
+            final_token = ts.LT(-1)
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
