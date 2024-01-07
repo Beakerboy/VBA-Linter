@@ -17,7 +17,7 @@ class BlankLineEof(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        if ts.LT(1).type == Token.EOF and ts.LT(-1).type == vbaLexer.NEWLINE:
+        if ts.index > 0 and ts.LT(1).type == Token.EOF and ts.LT(-1).type == vbaLexer.NEWLINE:
             final_token = ts.LT(-1)
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
