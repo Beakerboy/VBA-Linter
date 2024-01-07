@@ -25,7 +25,6 @@ class Linter:
 
     def lint(self: T, dir: RuleDirectory, code: str) -> list:
         rules = dir.get_loaded_rules()
-        
         lexer = self.get_lexer(code)
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
