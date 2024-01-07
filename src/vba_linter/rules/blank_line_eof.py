@@ -15,11 +15,7 @@ class BlankLineEof(RuleBase):
         self._message = 'blank line at end of file'
 
     def test(self: T, ts: CommonTokenStream) -> list:
-        tokens = lexer.getAllTokens()
         output: List[tuple] = []
-        if len(tokens) == 0:
-            return output
-        final_token = tokens[-1]
         if ts.LT(1).type == Token.EOL and ts.LT(-1).type == vbaLexer.NEWLINE:
             final_token = ts.LT(-1)
             newline_list = RuleBase.split_nl(final_token.text)
