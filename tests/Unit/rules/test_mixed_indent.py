@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.e101 import E101
+from vba_linter.rules.mixed_indent import MixedIndent
 
 
 anti_patterns = [
@@ -23,7 +23,7 @@ message_data = [
  ]
 
 
-rule = E101()
+rule = MixedIndent()
 
 
 @pytest.mark.parametrize('rule', [rule])

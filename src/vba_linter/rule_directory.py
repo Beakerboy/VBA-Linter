@@ -1,7 +1,8 @@
 from typing import Dict, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w291 import W291
+from vba_linter.rules.mixed_indent import MixedIndent
+from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
@@ -9,7 +10,7 @@ from vba_linter.rules.token_between_base import TokenBetweenBase
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
-from vba_linter.rules.e999 import E999
+from vba_linter.rules.parsing_error import ParsingError
 
 
 T = TypeVar('T', bound='RuleDirectory')
@@ -41,13 +42,13 @@ class RuleDirectory:
                                 vbaLexer.LPAREN, "whitespace before '('")
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
-        self._rules.update({"W291": W291(), "W201": NewlineEof(),
+        self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
-                            "W501": LineTooLong()})
+                            "W501": LineTooLong(), "E101": MixedIndent()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
-            return E999()
+            return ParsingError()
         return self._rules[rule_name]
 
     def get_loaded_rules(self: T) -> dict:
