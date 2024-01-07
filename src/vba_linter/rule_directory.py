@@ -29,23 +29,30 @@ class RuleDirectory:
         self._rules[rule.get_rule_name()] = rule
 
     def load_all_rules(self: T) -> None:
+        """
         e201 = TokenAfterBase("E201",
                               vbaLexer.LPAREN, vbaLexer.WS,
                               "Whitespace after '('")
+        """
         e202 = TokenBeforeBase("E202",
                                vbaLexer.WS, vbaLexer.RPAREN,
                                "Whitespace before ')'")
         e203 = TokenBeforeBase("E203",
                                vbaLexer.WS, vbaLexer.T__0,
                                "Whitespace before ','")
+        """
         e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
                                 vbaLexer.LPAREN, "whitespace before '('")
+        
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
+        """
+        self._rules.update({"E202": e202, "E203": e203})
+        """
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
-
+        """
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
             return ParsingError()
