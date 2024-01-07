@@ -48,7 +48,7 @@ class RuleDirectory:
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
-            return ParaingError()
+            return ParsingError()
         return self._rules[rule_name]
 
     def get_loaded_rules(self: T) -> dict:
