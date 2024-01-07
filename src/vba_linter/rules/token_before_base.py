@@ -1,4 +1,4 @@
-from antlr4 import BufferedTokenStream
+from antlr4 import CommonTokenStream
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
@@ -17,7 +17,7 @@ class TokenBeforeBase(RuleBase):
         self._token_first = first
         self._message = message
 
-    def test(self: T, ts: BufferedTokenStream) -> list:
+    def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         if ts.index < 2:
             return output
