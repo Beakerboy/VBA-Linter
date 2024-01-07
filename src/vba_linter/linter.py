@@ -1,5 +1,5 @@
 import re
-from antlr4 import FileStream
+from antlr4 import CommonTokenStream, FileStream
 from antlr4_vba.vbaLexer import vbaLexer
 from pathlib import Path
 from typing import Type, TypeVar
