@@ -34,7 +34,7 @@ class RuleTestBase:
         ts = CommonTokenStream(lexer)
         while not ts.fetchedEOF:
             results = rule.test(ts)
-            ts.comsume()
+            ts.consume()
         p.unlink()
         return results
 
