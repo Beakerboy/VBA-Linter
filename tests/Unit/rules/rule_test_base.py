@@ -32,7 +32,7 @@ class RuleTestBase:
         linter = Linter()
         lexer = linter.get_lexer(file_name)
         ts = CommonTokenStream(lexer)
-        while not ts.fetchedEOF():
+        while not ts.fetchedEOF:
             results = rule.test(ts)
             ts.comsume()
         p.unlink()
