@@ -14,8 +14,7 @@ class ParsingError(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        stream = CommonTokenStream(lexer)
-        parser = vbaParser(stream)
+        parser = vbaParser(ts)
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
         try:
