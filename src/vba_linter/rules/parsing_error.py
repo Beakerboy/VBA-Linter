@@ -7,10 +7,10 @@ from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='P')
+T = TypeVar('T', bound='ParsingError')
 
 
-class E999(RuleBase):
+class ParsingError(RuleBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
         output: List[tuple] = []
