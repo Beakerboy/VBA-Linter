@@ -1,5 +1,4 @@
 from antlr.thrown_exception import ThrownException
-from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from antlr.throwing_error_listener import ThrowingErrorListener
 from antlr4 import CommonTokenStream
