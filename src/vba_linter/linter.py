@@ -4,7 +4,7 @@ from antlr4_vba.vbaLexer import vbaLexer
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
-from vba_linter.rules.parse_error import ParseError
+from vba_linter.rules.parsing_error import ParsingError
 
 
 T = TypeVar('T', bound='Linter')
@@ -24,7 +24,7 @@ class Linter:
 
     def lint(self: T, dir: RuleDirectory, code: str) -> list:
         rules = dir.get_loaded_rules()
-        e999 = ParseError()
+        e999 = ParsingError()
         output = e999.test(self.get_lexer(code))
         if output == []:
             for key in rules:
