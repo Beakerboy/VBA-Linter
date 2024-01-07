@@ -29,7 +29,7 @@ class Linter:
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
-        output = e999.test(lexer)
+        output = e999.test(CommonTokenStream(lexer))
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
         if output == []:
