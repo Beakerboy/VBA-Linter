@@ -20,7 +20,7 @@ class TokenBeforeBase(RuleBase):
 
     def test(self: T, ts: BufferedTokenStream) -> list:
         output: List[tuple] = []
-        if token_stream.p < 2
+        if token_stream.p < 2:
             return output
         if (ts.LT(1) == self._token_second and
                 ts.LT(-1) == self._token_first):
