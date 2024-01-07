@@ -10,7 +10,7 @@ from vba_linter.rules.token_between_base import TokenBetweenBase
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
-from vba_linter.rules.e999 import E999
+from vba_linter.rules.parsing_error import ParsingError
 
 
 T = TypeVar('T', bound='RuleDirectory')
@@ -48,7 +48,7 @@ class RuleDirectory:
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
-            return E999()
+            return ParaingError()
         return self._rules[rule_name]
 
     def get_loaded_rules(self: T) -> dict:
