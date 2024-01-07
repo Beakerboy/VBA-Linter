@@ -22,8 +22,8 @@ class TokenBeforeBase(RuleBase):
         if ts.index < 2:
             return output
         token = ts.LT(1)
-        if (token == self._token_second and
-                ts.LT(-1) == self._token_first):
+        if (token.type == self._token_second and
+                ts.LT(-1).type == self._token_first):
             line = token.line
             column = token.column
             name = self._rule_name
