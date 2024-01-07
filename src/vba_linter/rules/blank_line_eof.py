@@ -17,15 +17,13 @@ class BlankLineEof(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        if (ts.index > 0):
-            output = [(1, 1, 1)]
+        if (ts.index > 0 and ts.LA(-1) == vbaLexer.NEWLINE):
+            output = [(2, 2, 2)]
             if (ts.LA(1) == Token.EOF):
-                output = [(2, 2, 2)]
-                if (ts.LA(-1) == vbaLexer.NEWLINE):
-                    final_token = ts.LT(-1)
-                    output = [(1, 2, 3)]
-                    newline_list = RuleBase.split_nl(final_token.text)
-                    num_nl = len(newline_list)
-                    if num_nl > 1:
-                        output = [(final_token.line + num_nl - 1, 1, "W391")]
+                final_token = ts.LT(-1)
+                output = [(1, 2, 3)]
+                newline_list = RuleBase.split_nl(final_token.text)
+                num_nl = len(newline_list)
+                if num_nl > 1:
+                    output = [(final_token.line + num_nl - 1, 1, "W391")]
         return output
