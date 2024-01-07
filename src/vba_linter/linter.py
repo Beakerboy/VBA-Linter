@@ -26,11 +26,13 @@ class Linter:
         rules = dir.get_loaded_rules()
         e999 = ParsingError()
         output = e999.test(self.get_lexer(code))
+        lexer = self.get_lexer(code)
+        ts = CommonTokenStream(lexer)
         if output == []:
             for key in rules:
                 rule = rules[key]
-                lexer = self.get_lexer(code)
-                output.extend(rule.test(lexer))
+                output.extend(rule.test(ts))
+                ts.consume()
         output.sort()
         return output
 
