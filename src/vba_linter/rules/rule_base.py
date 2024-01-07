@@ -1,5 +1,5 @@
 from typing import Type, TypeVar
-from antlr4 import ComminTokenStream
+from antlr4 import CommonTokenStream
 
 T = TypeVar('T', bound='RuleBase')
 
