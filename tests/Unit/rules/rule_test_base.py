@@ -34,7 +34,6 @@ class RuleTestBase:
     @classmethod
     def create_tokens(cls: Type[T], file_name: str) -> CommonTokenStream:
         linter = Linter()
-        results = []
         lexer = linter.get_lexer(file_name)
         return CommonTokenStream(lexer)
         
