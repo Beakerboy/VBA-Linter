@@ -27,6 +27,7 @@ class RuleTestBase:
     worst_practice = (
         'Public Function ' + function +
         ' ( atrocious , precocious, indubitably ) \n' +
+        ' \n' +
         '\tbar  =  (2+1)\n' +
         'End Function\n'
     )
