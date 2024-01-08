@@ -27,5 +27,5 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
     data = (4, 1, "E741")
-    expected = ":4:1: E741 ambiguous identifier"
+    expected = ":4:1: E741 ambiguous variable name"
     assert rule.create_message(data) == expected
