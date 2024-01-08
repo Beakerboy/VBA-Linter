@@ -16,6 +16,15 @@ anti_patterns = [
         'Public Function Foo(num)\nEnd Function\n',
         [(1, 24, "W500"), (2, 12, "W500")]
     ),
+    (
+        RuleTestBase.best_practice,
+        [
+            (1, 91,"W500"),
+            (2, 0,"W500"),
+            (3, 13,"W500"),
+            (4, 12,"W500"),
+        ]
+    )
 ]
 
 
