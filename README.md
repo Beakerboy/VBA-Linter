@@ -13,6 +13,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E202 whitespace before ')'
 * E203 whitespace before ‘,’
 * E211 whitespace before (
+* E241 Multiple spaces after ','
 ### E3 Blank line errors
 * E303 Too many blank lines (3)
 ### W1 Indentation warning
