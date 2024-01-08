@@ -35,12 +35,12 @@ class Linter:
         if output == []:
             while not ts.fetchedEOF:
                 token = ts.LT(1)
-                for key in rules:
-                    rule = rules[key]
-                    output.extend(rule.test(ts))
                 if token.type != Token.EOF:
+                    for key in rules:
+                        rule = rules[key]
+                        output.extend(rule.test(ts))
                     ts.consume()
-        output.sort()
+            output.sort()
         return output
 
     @classmethod
