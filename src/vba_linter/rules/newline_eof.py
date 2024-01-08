@@ -17,6 +17,6 @@ class NewlineEof(RuleBase):
         token = ts.LT(1)
         if token.type == Token.EOF and ts.LB(1) != vbaLexer.NEWLINE:
             line = token.line
-            column = final_token.column + len(token.text) + 1
+            column = token.column + len(token.text) + 1
             output = [(line, column, "W201")]
         return output
