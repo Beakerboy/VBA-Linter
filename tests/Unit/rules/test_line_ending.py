@@ -17,7 +17,7 @@ anti_patterns = [
         [(1, 24, "W500"), (2, 12, "W500")]
     ),
     (
-        RuleTestBase.best_practice,
+        RuleTestBase.worst_practice,
         [
             (1, 91,"W500"),
             (2, 0,"W500"),
