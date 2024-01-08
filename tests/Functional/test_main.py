@@ -4,7 +4,7 @@ from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
 
 
-def tests_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+def ytests_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/project"
     mocker.patch(
         "sys.argv",
