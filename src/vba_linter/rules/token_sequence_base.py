@@ -24,7 +24,7 @@ class TokenSequenceBase(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         tokens: List[Token] = []
-        for i in range(len(self._sequence):
+        for i in range(len(self._sequence)):
             tokens.append(ts.LA(i + 1))
         pos = TokenSequenceBase.compare(tokens, self._sequence)
         if pos > 0:
