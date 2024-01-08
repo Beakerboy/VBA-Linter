@@ -34,10 +34,10 @@ class TokenSequenceBase(RuleBase):
             token_types.append(tok_type)
         if TokenSequenceBase.match(token_types, self._sequence):
             token = ts.LT(self._target)
-            output = self.match_action(token)
+            output = self._match_action(token)
         return output
 
-    def match_action(self: T, token: Token) -> list:
+    def _match_action(self: T, token: Token) -> list:
         line = token.line
         column = token.column
         name = self._rule_name
