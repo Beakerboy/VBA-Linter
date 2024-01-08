@@ -6,7 +6,7 @@ from vba_linter.rules.rule_base import RuleBase
 # from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_after_base import TokenAfterBase
 from vba_linter.rules.token_before_base import TokenBeforeBase
-# from vba_linter.rules.token_between_base import TokenBetweenBase
+from vba_linter.rules.token_between_base import TokenBetweenBase
 # from vba_linter.rules.blank_line_eof import BlankLineEof
 # from vba_linter.rules.line_ending import LineEnding
 # from vba_linter.rules.line_too_long import LineTooLong
@@ -38,14 +38,11 @@ class RuleDirectory:
         e203 = TokenBeforeBase("E203",
                                vbaLexer.WS, vbaLexer.T__0,
                                "Whitespace before ','")
-        """
         e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
                                 vbaLexer.LPAREN, "whitespace before '('")
 
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
-        """
-        self._rules.update({"E201": e201, "E202": e202, "E203": e203})
         """
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
