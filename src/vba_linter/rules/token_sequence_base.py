@@ -36,12 +36,11 @@ class TokenSequenceBase(RuleBase):
         return output
 
     @classmethod
-    def compare(cls: Type[T], sequence: list, signature: list) -> int:
+    def compare(cls: Type[T], sequence: list, signature: list) -> bool:
         """
-        Compare the two lists. Provide the index of the firat non-matching
-        element.
+        Compare the two lists to see if they match.
         """
         for i in range(len(signature)):
             if sequence[i] != signature[i]:
-                return i + 1
-            return 0
+                return False
+        return True
