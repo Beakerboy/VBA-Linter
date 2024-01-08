@@ -12,7 +12,7 @@ class MultipleSpacesComma(TokenSequenceBase):
         message = "Multiple spaces after ','"
         super().__init__("E241", [vbaLexer.T__0, vbaLexer.WS], 1, message)
 
-    def match_action(self: T, token: Token) -> list:
+    def _match_action(self: T, token: Token) -> list:
         if len(token.text) > 1:
             line = token.line
             column = token.column
