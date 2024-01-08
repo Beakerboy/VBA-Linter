@@ -24,3 +24,4 @@ class AmbiguousIdentifier(RuleBase):
     def _match_action(self: T, token: Token) -> list:
         if token.text in self._names:
             return [(token.line, token.column, self._rule_name)]
+        return []
