@@ -15,7 +15,7 @@ class NewlineEof(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token = ts.LT(1)
-        if token.type == Token.EOF and ts.LB(1) != vbaLexer.NEWLINE:
+        if token.LA(2) == Token.EOF and token.type != vbaLexer.NEWLINE:
             line = token.line
             column = token.column + len(token.text) + 1
             output = [(line, column, "W201")]
