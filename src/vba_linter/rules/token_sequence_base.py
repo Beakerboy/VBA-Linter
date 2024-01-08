@@ -34,11 +34,14 @@ class TokenSequenceBase(RuleBase):
             token_types.append(tok_type)
         if TokenSequenceBase.match(token_types, self._sequence):
             token = ts.LT(self._target)
-            line = token.line
-            column = token.column
-            name = self._rule_name
-            output = [(line, column + 1, name)]
+            output = self.match_action(token)
         return output
+
+    def match_action(self: T, token: Token) -> list:
+        line = token.line
+        column = token.column
+        name = self._rule_name
+        return [(line, column + 1, name)]
 
     @classmethod
     def match(cls: Type[T], sequence: list, signature: list) -> bool:
