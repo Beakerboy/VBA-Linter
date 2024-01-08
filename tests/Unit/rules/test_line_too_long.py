@@ -5,7 +5,7 @@ from vba_linter.rules.line_too_long import LineTooLong
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice[0], worst_error]
+    [RuleTestBase.worst_practice, worst_error]
 ]
 
 
