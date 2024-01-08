@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream
+from antlr4 import CommonTokenStream, Token
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, Type, TypeVar
 
@@ -25,7 +25,10 @@ class TokenSequenceBase(RuleBase):
         output: List[tuple] = []
         tokens: list = []
         for i in range(len(self._sequence)):
-            tokens.append(ts.LA(i + 1))
+            tok = ts.LA(i + 1)
+            if tok == Token.EOF:
+                return output
+            tokens.append(tok)
         if TokenSequenceBase.match(tokens, self._sequence):
             token = ts.LT(self._target)
             line = token.line
