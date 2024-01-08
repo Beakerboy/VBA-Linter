@@ -1,5 +1,5 @@
 import re
-from antlr4 import CommonTokenStream, FileStream
+from antlr4 import CommonTokenStream, FileStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr.throwing_error_listener import ThrowingErrorListener
 from pathlib import Path
@@ -34,6 +34,7 @@ class Linter:
         ts = CommonTokenStream(lexer)
         if output == []:
             while not ts.fetchedEOF:
+                token = ts.LT(1)
                 for key in rules:
                     rule = rules[key]
                     output.extend(rule.test(ts))
