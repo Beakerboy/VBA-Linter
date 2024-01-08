@@ -23,6 +23,13 @@ class RuleTestBase:
         ]
     ]
 
+    worst_practice = [
+        [
+            (
+            )
+        ]
+    ]
+
     @classmethod
     def save_code(cls: Type[T], code: str) -> str:
         file_name = RuleTestBase.create_filename(ext='.bas')
