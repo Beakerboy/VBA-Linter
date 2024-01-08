@@ -18,7 +18,7 @@ class TokenSequenceBase(RuleBase):
         self._sequence = sequence
 
         # The element who's position is reported
-        self._target = target
+        self._target = target + 1
         self._message = message
 
     def test(self: T, ts: CommonTokenStream) -> list:
