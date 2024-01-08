@@ -25,8 +25,12 @@ class RuleTestBase:
 
     worst_practice = [
         [
-            (
-            )
+            '''\
+Public Function Supercalifragilisticexpialidocious ( atrocious , precocious, indubitably ) 
+\tbar  =  (2+1)\r\nEnd Function
+''',  # noqa
+            [
+            ]
         ]
     ]
 
