@@ -31,7 +31,7 @@ class TokenSequenceBase(RuleBase):
             line = token.line
             column = token.column
             name = self._rule_name
-            output = [(line, column, name)]
+            output = [(line, column + 1, name)]
         return output
 
     @classmethod
