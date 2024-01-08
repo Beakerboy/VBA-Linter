@@ -26,6 +26,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 80, "W501", 86)
-    expected = ":3:80: W501 line too long (86 > 79 characters)"
+    data = (1, 65, "E241")
+    expected = ":1:65: E241 Multiple spaces after ','"
     assert rule.create_message(data) == expected
