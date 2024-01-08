@@ -24,8 +24,8 @@ class RuleTestBase:
     ]
 
     worst_practice = ('Public Function Supercalifragilisticexpialidocious ( atrocious , precocious, indubitably ) ' +
-                     '\tbar  =  (2+1)\r\n' +
-                     'End Function\r\n')  # noqa
+                      '\tbar  =  (2+1)\r\n' +
+                      'End Function\r\n')  # noqa
 
     @classmethod
     def save_code(cls: Type[T], code: str) -> str:
