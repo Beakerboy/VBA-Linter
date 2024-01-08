@@ -5,6 +5,7 @@ from vba_linter.rules.rule_base import RuleBase
 
 
 anti_patterns = [
+    [RuleTestBase.worst_practice, [(1, 53, 'E201')]]
     [
         'Public Function Foo( num)\r\nEnd Function\r\n',
         [(1, 21, "E201")]
