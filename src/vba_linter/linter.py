@@ -33,10 +33,12 @@ class Linter:
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
         if output == []:
-            for key in rules:
-                rule = rules[key]
-                output.extend(rule.test(ts))
-                ts.consume()
+            while not ts.fetchedEOF:
+                for key in rules:
+                    rule = rules[key]
+                    output.extend(rule.test(ts))
+                if token.type != Token.EOF:
+                    ts.consume()
         output.sort()
         return output
 
