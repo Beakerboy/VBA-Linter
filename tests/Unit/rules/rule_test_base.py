@@ -30,7 +30,7 @@ class RuleTestBase:
         '\n' +
         '\r\n' +
         '\r\n' +
-        'bar  =  (2+1)\n' +
+        'I  =  (2+1)\n' +
         'End Function\n' +
         '\r\n'
     )
