@@ -24,7 +24,7 @@ class LineEnding(RuleBase):
                 if newline_list[i] != self._line_ending:
                     column = token.column if i == 0 else 0
                     output.append((token.line + i, column, "W500"))
-                if i > self._allowed_blank_lines + 1:
+                if i > self._allowed_blank_lines:
                     output.append((token.line + i, -1, "W500"))
         return output
 
