@@ -16,6 +16,16 @@ anti_patterns = [
         'Public Function Foo(num)\nEnd Function\n',
         [(1, 24, "W500"), (2, 12, "W500")]
     ),
+    (
+        RuleTestBase.worst_practice,
+        [
+            (1, 91, "W500"),
+            (2, 0, "W500"),
+            (4, -1, "W500"),
+            (5, 13, "W500"),
+            (6, 12, "W500")
+        ]
+    )
 ]
 
 
@@ -35,4 +45,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 def test_message(rule: RuleBase) -> None:
     data = (3, 13, "W500")
     expected = ":3:13: W500 incorrect line ending"
+    assert rule.create_message(data) == expected
+    data = (3, -1, "W500")
+    expected = ":3:0: E303 Too many blank lines (3)"
     assert rule.create_message(data) == expected

@@ -23,6 +23,18 @@ class RuleTestBase:
         ]
     ]
 
+    function = 'Supercalifragilisticexpialidocious'
+    worst_practice = (
+        'Public Function ' + function +
+        ' ( atrocious , precocious, indubitably ) \n' +
+        '\n' +
+        '\r\n' +
+        '\r\n' +
+        'bar  =  (2+1)\n' +
+        'End Function\n' +
+        '\r\n'
+    )
+
     @classmethod
     def save_code(cls: Type[T], code: str) -> str:
         file_name = RuleTestBase.create_filename(ext='.bas')

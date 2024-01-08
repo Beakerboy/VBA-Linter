@@ -4,9 +4,7 @@ from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
-from vba_linter.rules.token_after_base import TokenAfterBase
-from vba_linter.rules.token_before_base import TokenBeforeBase
-from vba_linter.rules.token_between_base import TokenBetweenBase
+from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
@@ -29,20 +27,22 @@ class RuleDirectory:
         self._rules[rule.get_rule_name()] = rule
 
     def load_all_rules(self: T) -> None:
-        e201 = TokenAfterBase("E201",
-                              vbaLexer.LPAREN, vbaLexer.WS,
-                              "Whitespace after '('")
-        e202 = TokenBeforeBase("E202",
-                               vbaLexer.WS, vbaLexer.RPAREN,
-                               "Whitespace before ')'")
-        e203 = TokenBeforeBase("E203",
-                               vbaLexer.WS, vbaLexer.T__0,
-                               "Whitespace before ','")
-        e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
-                                vbaLexer.LPAREN, "whitespace before '('")
+        e201 = TokenSequenceBase("E201",
+                                 [vbaLexer.LPAREN, vbaLexer.WS], 1,
+                                 "Whitespace after '('")
+        e202 = TokenSequenceBase("E202",
+                                 [vbaLexer.WS, vbaLexer.RPAREN], 0,
+                                 "Whitespace before ')'")
+        e203 = TokenSequenceBase("E203",
+                                 [vbaLexer.WS, vbaLexer.T__0], 0,
+                                 "Whitespace before ','")
+        sequence = [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN]
+        message = "whitespace before '('"
+        e211 = TokenSequenceBase("E211", sequence, 1, message)
 
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
+        self._rules.update({"E201": e201, "E202": e202, "E203": e203})
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
