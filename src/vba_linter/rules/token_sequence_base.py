@@ -23,7 +23,7 @@ class TokenSequenceBase(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        tokens: List[Token] = []
+        tokens: list = []
         for i in range(len(self._sequence)):
             tokens.append(ts.LA(i + 1))
         if TokenSequenceBase.match(tokens, self._sequence):
