@@ -42,7 +42,7 @@ class RuleDirectory:
         sequence = [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN]
         message = "whitespace before '('"
         e211 = TokenSequenceBase("E211", sequence, 1, message)
-        
+
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
         """
