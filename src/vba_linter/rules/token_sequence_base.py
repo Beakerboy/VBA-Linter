@@ -27,6 +27,9 @@ class TokenSequenceBase(RuleBase):
         for i in range(len(self._sequence)):
             tok = ts.LA(i + 1)
             if tok == Token.EOF:
+                # going past EOF causes problems.
+                # we shpuld be okay is it is the final
+                # token in tokens.
                 return output
             tokens.append(tok)
         if TokenSequenceBase.match(tokens, self._sequence):
