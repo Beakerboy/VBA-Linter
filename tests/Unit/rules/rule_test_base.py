@@ -31,7 +31,7 @@ class RuleTestBase:
             fi.write(code)
         return file_name
 
-    classmethod
+    @classmethod
     def delete_code(cls: Type[T], file_name: str) -> None:
         p = Path(file_name)
         p.unlink()
