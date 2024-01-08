@@ -53,7 +53,10 @@ End Sub
 )
 def test_test(code: str, expected: tuple) -> None:
     rule = ParsingError()
-    assert RuleTestBase.tokenize(rule, code) == expected
+    file_name = RuleTestBase.save_code(code)
+    ts = RuleTestBase.create_tokens(file_name)
+    assert rule.test(ts) == expected
+    RuleTestBase.delete_code(file_name)
 
 
 def test_message() -> None:

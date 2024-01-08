@@ -1,4 +1,4 @@
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import CommonTokenStream
 from vba_linter.rules.token_before_base import TokenBeforeBase
 from typing import List, TypeVar
 
@@ -16,8 +16,8 @@ class TokenAfterBase(TokenBeforeBase):
         self._token_second = second
         self._message = message
 
-    def test(self: T, lexer: vbaLexer) -> list:
-        temp = super().test(lexer)
+    def test(self: T, ts: CommonTokenStream) -> list:
+        temp = super().test(ts)
         output: List[tuple] = []
         for err in temp:
             output.append((err[0], err[1] + 1, err[2]))

@@ -40,6 +40,7 @@ class RuleDirectory:
                                "Whitespace before ','")
         e211 = TokenBetweenBase("E211", vbaLexer.IDENTIFIER, vbaLexer.WS,
                                 vbaLexer.LPAREN, "whitespace before '('")
+
         self._rules.update({"E201": e201, "E202": e202, "E203": e203,
                             "E211": e211})
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),

@@ -1,5 +1,4 @@
 from antlr.thrown_exception import ThrownException
-from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from antlr.throwing_error_listener import ThrowingErrorListener
 from antlr4 import CommonTokenStream
@@ -12,13 +11,9 @@ T = TypeVar('T', bound='ParsingError')
 
 class ParsingError(RuleBase):
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        lexer.removeErrorListeners()
-        lexer.addErrorListener(ThrowingErrorListener())
-
-        stream = CommonTokenStream(lexer)
-        parser = vbaParser(stream)
+        parser = vbaParser(ts)
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
         try:

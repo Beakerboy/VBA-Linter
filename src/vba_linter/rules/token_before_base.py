@@ -1,4 +1,4 @@
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import CommonTokenStream
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
@@ -7,6 +7,8 @@ T = TypeVar('T', bound='TokenBeforeBase')
 
 
 class TokenBeforeBase(RuleBase):
+    """
+    """
     def __init__(self: T, name: str,
                  first: int, second: int,
                  message: str) -> None:
@@ -15,18 +17,13 @@ class TokenBeforeBase(RuleBase):
         self._token_first = first
         self._message = message
 
-    def test(self: T, lexer: vbaLexer) -> list:
-        tokens = lexer.getAllTokens()
+    def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        if len(tokens) < 2:
-            return output
-        prev_tok = tokens[0]
-        for token in tokens[1:]:
-            if (prev_tok.type == self._token_first and
-                    token.type == self._token_second):
-                line = token.line
-                column = token.column
-                name = self._rule_name
-                output.append((line, column, name))
-            prev_tok = token
+        token = ts.LT(1)
+        if (ts.index > 1 and token.type == self._token_second and
+                ts.LT(-1).type == self._token_first):
+            line = token.line
+            column = token.column
+            name = self._rule_name
+            output = [(line, column, name)]
         return output

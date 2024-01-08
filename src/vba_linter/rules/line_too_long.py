@@ -1,3 +1,4 @@
+from antlr4 import CommonTokenStream
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
@@ -13,14 +14,13 @@ class LineTooLong(RuleBase):
         self._message = ("line too long (%s > " +
                          str(self._max_len) + " characters)")
 
-    def test(self: T, lexer: vbaLexer) -> List:
-        tokens = lexer.getAllTokens()
+    def test(self: T, ts: CommonTokenStream) -> List:
         output: List[tuple] = []
-        for token in tokens:
-            if token.type == vbaLexer.NEWLINE:
-                if token.column > self._max_len:
-                    line = token.line
-                    column = token.column
-                    pos = self._max_len + 1
-                    output.append((line, pos, "W501", column))
+        token = ts.LT(1)
+        if token.type == vbaLexer.NEWLINE:
+            if token.column > self._max_len:
+                line = token.line
+                column = token.column
+                pos = self._max_len + 1
+                output.append((line, pos, "W501", column))
         return output
