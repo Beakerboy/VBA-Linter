@@ -41,13 +41,13 @@ class RuleTestBase:
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(cls, file_name)
-        results = cls.run_test(ts)
+        results = cls.run_test(rule, ts)
         p = Path(file_name)
         p.unlink()
         return results
 
     @classmethod
-    def run_test(cls: Type[T], ts: CommonTokenStream) -> list:
+    def run_test(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
         results = []
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))
