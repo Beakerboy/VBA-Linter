@@ -28,7 +28,6 @@ Public Function Supercalifragilisticexpialidocious ( atrocious , precocious, ind
 \tbar  =  (2+1)\r\nEnd Function
 ''',  # noqa
 
-
     @classmethod
     def save_code(cls: Type[T], code: str) -> str:
         file_name = RuleTestBase.create_filename(ext='.bas')
