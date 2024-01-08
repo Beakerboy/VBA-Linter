@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, Token
+from antlr4 import Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from typing import List, TypeVar
