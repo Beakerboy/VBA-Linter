@@ -24,21 +24,37 @@ class RuleTestBase:
     ]
 
     @classmethod
-    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
+    def save_code(cls: Type[T], code: str) -> str:
         file_name = RuleTestBase.create_filename(ext='.bas')
         p = Path(file_name)
         with p.open(mode='a') as fi:
             fi.write(code)
+        return file_name
+
+    @classmethod
+    def create_tokens(cls: Type[T], file_name: str) -> CommonTokenStream:
         linter = Linter()
         results = []
         lexer = linter.get_lexer(file_name)
-        ts = CommonTokenStream(lexer)
+        return CommonTokenStream(lexer)
+        
+    @classmethod
+    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
+        file_name = cls.save_code(code)
+        ts = cls.create_tokens(cls, file_name)
+        results = cls.run_test(ts)
+        p = Path(file_name)
+        p.unlink()
+        return results
+
+    @classmethod
+    def run_test(cls: Type[T], ts: CommonTokenStream) -> list:
+        results = []
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))
             token = ts.LT(1)
             if token.type != Token.EOF:
                 ts.consume()
-        p.unlink()
         return results
 
     @classmethod
