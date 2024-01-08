@@ -29,7 +29,8 @@ class RuleTestBase:
         ' ( atrocious , precocious, indubitably ) \n' +
         '\n' +
         'bar  =  (2+1)\n' +
-        'End Function\n'
+        'End Function\n' +
+        '\r\n'
     )
 
     @classmethod
