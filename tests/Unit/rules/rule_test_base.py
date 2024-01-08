@@ -40,7 +40,7 @@ class RuleTestBase:
     @classmethod
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
-        ts = cls.create_tokens(cls, file_name)
+        ts = cls.create_tokens(file_name)
         results = cls.run_test(rule, ts)
         p = Path(file_name)
         p.unlink()
