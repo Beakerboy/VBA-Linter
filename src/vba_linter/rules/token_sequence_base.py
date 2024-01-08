@@ -27,8 +27,8 @@ class TokenSequenceBase(RuleBase):
         for i in range(len(self._sequence)):
             tokens.append(ts.LA(i + 1))
         pos = TokenSequenceBase.compare(tokens, self._sequence)
-        if pos > 0:
-            token = ts.LT(pos)
+        if pos == 0:
+            token = ts.LT(self._target)
             line = token.line
             column = token.column
             name = self._rule_name
