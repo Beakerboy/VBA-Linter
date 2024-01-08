@@ -30,7 +30,8 @@ class TokenSequenceBase(RuleBase):
                 return output
             tok_type = ts.LA(i + 1)
             if tok_type == Token.EOF:
-                ts.fetchedEOF = False
+                if i > 0:
+                    ts.fetchedEOF = False
                 found_eof = True
             token_types.append(tok_type)
         if TokenSequenceBase.match(token_types, self._sequence):
