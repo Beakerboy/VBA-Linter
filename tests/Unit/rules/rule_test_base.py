@@ -31,6 +31,11 @@ class RuleTestBase:
             fi.write(code)
         return file_name
 
+    classmethod
+    def delete_code(cls: Type[T], file_name: str) -> None:
+        p = Path(file_name)
+        p.unlink()
+
     @classmethod
     def create_tokens(cls: Type[T], file_name: str) -> CommonTokenStream:
         linter = Linter()
@@ -42,8 +47,7 @@ class RuleTestBase:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
         results = cls.run_test(rule, ts)
-        p = Path(file_name)
-        p.unlink()
+        cls.delete_code(file_name)
         return results
 
     @classmethod
