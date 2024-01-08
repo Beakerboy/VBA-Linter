@@ -19,8 +19,6 @@ class TokenBetweenBase(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        if len(tokens) < 3:
-            return output
         tok1 = ts.LT(-1)
         tok2 = ts.LT[1]
         token = ts.LT(2)
