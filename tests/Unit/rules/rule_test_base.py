@@ -36,7 +36,7 @@ class RuleTestBase:
         linter = Linter()
         lexer = linter.get_lexer(file_name)
         return CommonTokenStream(lexer)
-        
+
     @classmethod
     def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
