@@ -26,8 +26,7 @@ class TokenSequenceBase(RuleBase):
         tokens: List[Token] = []
         for i in range(len(self._sequence)):
             tokens.append(ts.LA(i + 1))
-        pos = TokenSequenceBase.compare(tokens, self._sequence)
-        if pos == 0:
+        if TokenSequenceBase.match(tokens, self._sequence):
             token = ts.LT(self._target)
             line = token.line
             column = token.column
@@ -36,7 +35,7 @@ class TokenSequenceBase(RuleBase):
         return output
 
     @classmethod
-    def compare(cls: Type[T], sequence: list, signature: list) -> bool:
+    def match(cls: Type[T], sequence: list, signature: list) -> bool:
         """
         Compare the two lists to see if they match.
         """
