@@ -23,16 +23,16 @@ class TokenSequenceBase(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        tokens: list = []
+        token_types: list = []
+        found_eof = False
         for i in range(len(self._sequence)):
-            tok = ts.LA(i + 1)
-            if tok == Token.EOF:
-                # going past EOF causes problems.
-                # we shpuld be okay is it is the final
-                # token in tokens.
+            if found_eof:
                 return output
-            tokens.append(tok)
-        if TokenSequenceBase.match(tokens, self._sequence):
+            tok_type = ts.LA(i + 1)
+            if tok_type == Token.EOF:
+                found_eof = True
+            token_types.append(tok_type)
+        if TokenSequenceBase.match(token_types, self._sequence):
             token = ts.LT(self._target)
             line = token.line
             column = token.column
