@@ -19,7 +19,7 @@ anti_patterns = [
     (
         RuleTestBase.worst_practice,
         [
-            (1, 91, "W500"),
+            (1, 92, "W500"),
             (2, 0, "W500"),
             (4, -1, "W500"),
             (5, 13, "W500"),
