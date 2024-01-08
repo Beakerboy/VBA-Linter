@@ -30,14 +30,14 @@ class RuleDirectory:
 
     def load_all_rules(self: T) -> None:
         e201 = TokenSequenceBase("E201",
-            [vbaLexer.LPAREN, vbaLexer.WS], 1,
-            "Whitespace after '('")
+                                 [vbaLexer.LPAREN, vbaLexer.WS], 1,
+                                 "Whitespace after '('")
         e202 = TokenSequenceBase("E202",
-            [vbaLexer.WS, vbaLexer.RPAREN], 0,
-            "Whitespace before ')'")
+                                 [vbaLexer.WS, vbaLexer.RPAREN], 0,
+                                 "Whitespace before ')'")
         e203 = TokenSequenceBase("E203",
-            [vbaLexer.WS, vbaLexer.T__0], 0,
-            "Whitespace before ','")
+                                 [vbaLexer.WS, vbaLexer.T__0], 0,
+                                 "Whitespace before ','")
         """
         sequence = [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN]
         message = "whitespace before '('"
