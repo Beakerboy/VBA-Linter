@@ -46,3 +46,6 @@ def test_message(rule: RuleBase) -> None:
     data = (3, 13, "W500")
     expected = ":3:13: W500 incorrect line ending"
     assert rule.create_message(data) == expected
+    data = (3, -1, "W500")
+    expected = ":3:0: E303 Too many blank lines (3)"
+    assert rule.create_message(data) == expected
