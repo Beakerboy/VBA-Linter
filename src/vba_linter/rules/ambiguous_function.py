@@ -12,7 +12,7 @@ class AmbiguousFunction(TokenSequenceBase):
         self._rule_name = "E743"
         self._names = ['l', 'O', 'I']
         self._message = 'ambiguous function name'
-        self._sequence = [vbaLexer.Function, vbaLexer.WS, vbaLexer.IDENTIFIER]
+        self._sequence = [vbaLexer.FUNCTION, vbaLexer.WS, vbaLexer.IDENTIFIER]
         self._target = 3
 
     def _match_action(self: T, token: Token) -> list:
