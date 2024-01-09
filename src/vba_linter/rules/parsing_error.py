@@ -10,7 +10,7 @@ T = TypeVar('T', bound='ParsingError')
 
 
 class ParsingError(RuleBase):
-    def __init__() -> None:
+    def __init__(self: T) -> None:
         self.program = None
         self.parser: vbaParser = None
 
