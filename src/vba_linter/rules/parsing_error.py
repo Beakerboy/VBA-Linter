@@ -1,6 +1,6 @@
-from antlr.thrown_exception import ThrownException
+from vba_linter.antlr.thrown_exception import ThrownException
 from antlr4_vba.vbaParser import vbaParser
-from antlr.throwing_error_listener import ThrowingErrorListener
+from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
 from antlr4 import CommonTokenStream
 from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar

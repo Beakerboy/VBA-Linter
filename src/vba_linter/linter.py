@@ -1,7 +1,7 @@
 import re
 from antlr4 import CommonTokenStream, FileStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
-from antlr.throwing_error_listener import ThrowingErrorListener
+from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
