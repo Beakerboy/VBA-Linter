@@ -26,7 +26,7 @@ class TokenSequenceBase(RuleBase):
         token_types: list = []
         found_eof = False
         sequences: Set[list]
-        if type(self._sequence) is not set:
+        if type(self._sequence) is list:
             sequences = {self._sequence}
         else:
             sequences = self._sequence
