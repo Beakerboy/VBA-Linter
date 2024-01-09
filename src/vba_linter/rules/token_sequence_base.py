@@ -48,7 +48,4 @@ class TokenSequenceBase(RuleBase):
         """
         Compare the two lists to see if they match.
         """
-        for i in range(len(signature)):
-            if sequence[i] != signature[i]:
-                return False
-        return True
+        return sequence == signature
