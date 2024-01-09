@@ -43,10 +43,8 @@ class Linter:
                     output.extend(rule.test(ts))
                 ts.consume()
                 token = ts.LT(1)
-            listener = vbaListener(
-                # SpacesAroundOperators(ts1),
-                # NamingConventions()
-            )
+            listener = vbaListener()
+            listener.set_token_stream(ts1)
             ParseTreeWalker.DEFAULT.walk(listener, program)
 
             output.sort()
