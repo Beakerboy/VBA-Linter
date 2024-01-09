@@ -7,7 +7,7 @@ from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(5, 1, 'E741')]
+        [(8, 17, 'E743')]
     ]
 ]
 
