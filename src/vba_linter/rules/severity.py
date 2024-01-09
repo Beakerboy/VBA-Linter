@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 # class syntax
 class Severity(Enum):
     FAILURE = 1
