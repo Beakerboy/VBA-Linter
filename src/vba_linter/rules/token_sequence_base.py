@@ -24,7 +24,6 @@ class TokenSequenceBase(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token_types: list = []
-        
         sequences: Tuple[List[int]]
         if type(self._sequence) is list:
             sequences = (self._sequence)
