@@ -12,8 +12,8 @@ class TokenSequenceBase(RuleBase):
     of token types.
     """
     def __init__(self: T, name: str,
-                 sequence: Union[List[int], Tuple[List[int], ...]], target: int,
-                 message: str) -> None:
+                 sequence: Union[List[int], Tuple[List[int], ...]],
+                 target: int, message: str) -> None:
         """
         if sequence is passed in as a tuple, and the contained lists have
         different lengths, the shorted list kust be first to prevent
