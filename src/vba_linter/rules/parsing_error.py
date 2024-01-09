@@ -16,8 +16,9 @@ class ParsingError(RuleBase):
         parser = vbaParser(ts)
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
+        self.parser = parser
         try:
-            parser.startRule()
+            self.program = parser.startRule()
         except ThrownException as ex:
             return [(ex.line, ex.column, "E999", ex.msg)]
         return output
