@@ -25,7 +25,7 @@ class TokenSequenceBase(RuleBase):
         output: List[tuple] = []
         token_types: list = []
         found_eof = False
-        sequences: tuple[list]
+        sequences: Tuple[list]
         if type(self._sequence) is list:
             sequences = (self._sequence)
         else:
