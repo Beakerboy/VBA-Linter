@@ -31,7 +31,7 @@ class Linter:
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
         ts1 = CommonTokenStream(lexer)
-        output = e999.test(CommonTokenStream(lexer))
+        output = e999.test(ts1)
         program = e999.program
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
