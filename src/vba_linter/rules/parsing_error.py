@@ -10,6 +10,9 @@ T = TypeVar('T', bound='ParsingError')
 
 
 class ParsingError(RuleBase):
+    def __init__() -> None:
+        self.program = None
+        self.parser = None
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
