@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
+from vba_linter.rules.ambiguous_function import AmbiguousFunction
 
 
 anti_patterns = [
@@ -12,7 +12,7 @@ anti_patterns = [
 ]
 
 
-rule = AmbiguousIdentifier()
+rule = AmbiguousFunction()
 
 
 @pytest.mark.parametrize('rule', [rule])
