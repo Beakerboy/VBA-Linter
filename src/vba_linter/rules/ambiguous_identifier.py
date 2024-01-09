@@ -12,7 +12,10 @@ class AmbiguousIdentifier(TokenSequenceBase):
         self._rule_name = "E741"
         self._names = ['l', 'O', 'I']
         self._message = 'ambiguous variable name'
-        self._sequence = [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.EQ]
+        self._sequence = (
+            [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.AS],
+            [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.EQ]
+        )
         self._target = 1
 
     def _match_action(self: T, token: Token) -> list:
