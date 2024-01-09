@@ -32,6 +32,9 @@ class RuleTestBase:
         '\r\n' +
         'I  =  (2+1)\n' +
         'End Function\n' +
+        '\r\n' +
+        'Public Function O()\r\n'
+        'End Function\r\n
         '\r\n'
     )
 
