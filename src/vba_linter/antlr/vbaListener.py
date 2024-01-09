@@ -1,4 +1,5 @@
 from antlr4 import ParseTreeListener
+from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 
 
