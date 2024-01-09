@@ -1,29 +1,18 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.e101 import E101
+from vba_linter.rules.multiple_spaces_comma import MultipleSpacesComma
 
 
 anti_patterns = [
     [
-        '''\
-Public Function Foo(num)
-    If True Then
-    \tBar = 2
-    End If
-End Function
-''',  # noqa
-        [(3, 1, "E101")]
-    ],
+        RuleTestBase.worst_practice,
+        [(1, 65, 'E241')]
+    ]
 ]
 
 
-message_data = [
-    [(3, 1, "E101"), ":3:1: E101 indentation contains mixed spaces and tabs"],
- ]
-
-
-rule = E101()
+rule = MultipleSpacesComma()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -36,8 +25,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 
 @pytest.mark.parametrize('rule', [rule])
-@pytest.mark.parametrize(
-    "data, expected", message_data
-)
-def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
+def test_message(rule: RuleBase) -> None:
+    data = (1, 65, "E241")
+    expected = ":1:65: E241 Multiple spaces after ','"
     assert rule.create_message(data) == expected

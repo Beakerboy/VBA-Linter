@@ -1,23 +1,18 @@
 import pytest
-from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.w201 import W201
 from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.line_too_long import LineTooLong
 
 
 anti_patterns = [
-    ['''\
-Public Function Foo(num)
-End Function''',  # noqa
-     [(2, 13, 'W201')]]
+    [
+        RuleTestBase.worst_practice,
+        [(1, 80, 'W501', 92)]
+    ]
 ]
 
 
-message_data = [
-    [(2, 1, "W201"), ":2:1: W201 no newline at end of file"],
- ]
-
-
-rule = W201()
+rule = LineTooLong()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -30,8 +25,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 
 @pytest.mark.parametrize('rule', [rule])
-@pytest.mark.parametrize(
-    "data, expected", message_data
-)
-def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
+def test_message(rule: RuleBase) -> None:
+    data = (3, 80, "W501", 86)
+    expected = ":3:80: W501 line too long (86 > 79 characters)"
     assert rule.create_message(data) == expected

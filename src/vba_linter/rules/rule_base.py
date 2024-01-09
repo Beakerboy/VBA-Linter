@@ -1,5 +1,5 @@
 from typing import Type, TypeVar
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import CommonTokenStream
 
 T = TypeVar('T', bound='RuleBase')
 
@@ -12,7 +12,7 @@ class RuleBase:
     def get_rule_name(self: T) -> str:
         return self._rule_name
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, token_stream: CommonTokenStream) -> list:
         return []
 
     def create_message(self: T, data: tuple) -> str:

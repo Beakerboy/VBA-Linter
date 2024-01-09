@@ -13,6 +13,13 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E202 whitespace before ')'
 * E203 whitespace before ‘,’
 * E211 whitespace before (
+* E241 Multiple spaces after ','
+### E3 Blank line errors
+* E303 Too many blank lines (3)
+### E7 Statement
+* E741 ambiguous variable name
+* E741 ambiguous class name
+* E741 ambiguous function name
 ### W1 Indentation warning
 * W191 indentation contains tabs - should be error.
 ### W2 Whitespace warning

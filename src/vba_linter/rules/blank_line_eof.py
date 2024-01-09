@@ -1,12 +1,13 @@
+from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import TypeVar
+from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='W391')
+T = TypeVar('T', bound='BlankLineEof')
 
 
-class W391(RuleBase):
+class BlankLineEof(RuleBase):
     """
     Returns an error if the final line is solely a newline character.
     """
@@ -14,15 +15,13 @@ class W391(RuleBase):
         self._rule_name = "W391"
         self._message = 'blank line at end of file'
 
-    def test(self: T, lexer: vbaLexer) -> list:
-        tokens = lexer.getAllTokens()
-        output: list[tuple] = []
-        if len(tokens) == 0:
-            return output
-        final_token = tokens[-1]
-        if final_token.type == vbaLexer.NEWLINE:
+    def test(self: T, ts: CommonTokenStream) -> list:
+        output: List[tuple] = []
+        if (ts.index > 0 and ts.LA(1) == vbaLexer.NEWLINE and
+                ts.LA(2) == Token.EOF):
+            final_token = ts.LT(1)
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
-                output.append((final_token.line + num_nl - 1, 1, "W391"))
+                output = [(final_token.line + num_nl - 1, 1, "W391")]
         return output

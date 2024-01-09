@@ -1,10 +1,11 @@
 import re
-from antlr4 import FileStream
+from antlr4 import CommonTokenStream, FileStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
+from antlr.throwing_error_listener import ThrowingErrorListener
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.rule_directory import RuleDirectory
-from vba_linter.rules.e999 import E999
+from vba_linter.rules.parsing_error import ParsingError
 
 
 T = TypeVar('T', bound='Linter')
@@ -24,14 +25,22 @@ class Linter:
 
     def lint(self: T, dir: RuleDirectory, code: str) -> list:
         rules = dir.get_loaded_rules()
-        e999 = E999()
-        output = e999.test(self.get_lexer(code))
+        lexer = self.get_lexer(code)
+        lexer.removeErrorListeners()
+        lexer.addErrorListener(ThrowingErrorListener())
+        e999 = ParsingError()
+        output = e999.test(CommonTokenStream(lexer))
+        lexer = self.get_lexer(code)
+        ts = CommonTokenStream(lexer)
+        token = ts.LT(1)
         if output == []:
-            for key in rules:
-                rule = rules[key]
-                lexer = self.get_lexer(code)
-                output.extend(rule.test(lexer))
-        output.sort()
+            while not token.type == Token.EOF:
+                for key in rules:
+                    rule = rules[key]
+                    output.extend(rule.test(ts))
+                ts.consume()
+                token = ts.LT(1)
+            output.sort()
         return output
 
     @classmethod

@@ -25,7 +25,7 @@ class RuleStub(RuleBase):
 
     def test(self: T, lexer: vbaLexer) -> list:
         self.test_count += 1
-        return self._output
+        return self._output if self.test_count == 1 else []
 
     def create_message(self: T, data: tuple) -> str:
         return self._message
