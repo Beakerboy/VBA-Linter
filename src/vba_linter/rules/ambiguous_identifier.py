@@ -13,7 +13,7 @@ class AmbiguousIdentifier(TokenSequenceBase):
         self._names = ['l', 'O', 'I']
         self._message = 'ambiguous variable name'
         self._sequence = [vbaLexer.IDENTIFIER]
-        self._target = 0
+        self._target = 1
 
     def _match_action(self: T, token: Token) -> list:
         if token.text in self._names:
