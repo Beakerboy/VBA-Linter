@@ -1,18 +1,18 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.line_too_long import LineTooLong
+from vba_linter.rules.multiple_spaces_comma import MultipleSpacesComma
 
 
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(1, 80, 'W501', 92)]
+        [(1, 65, 'E241')]
     ]
 ]
 
 
-rule = LineTooLong()
+rule = MultipleSpacesComma()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -26,6 +26,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 80, "W501", 86)
-    expected = ":3:80: W501 line too long (86 > 79 characters)"
+    data = (1, 65, "E241")
+    expected = ":1:65: E241 Multiple spaces after ','"
     assert rule.create_message(data) == expected

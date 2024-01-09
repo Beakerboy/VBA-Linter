@@ -5,7 +5,7 @@ from vba_linter.rules.blank_line_eof import BlankLineEof
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice, [(7, 1, "W391")]],
+    [RuleTestBase.worst_practice, [(10, 1, "W391")]],
     [
         '''\
 Public Function Foo(num)
