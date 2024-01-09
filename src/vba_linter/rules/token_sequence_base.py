@@ -12,7 +12,7 @@ class TokenSequenceBase(RuleBase):
     of token types.
     """
     def __init__(self: T, name: str,
-                 sequence: Union[List[int], Tuple[list]], target: int,
+                 sequence: Union[List[int], Tuple[List[int]]], target: int,
                  message: str) -> None:
         self._rule_name = name
         self._sequence = sequence
