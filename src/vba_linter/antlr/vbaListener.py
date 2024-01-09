@@ -1,4 +1,4 @@
-from antlr4 import ParseTreeListener
+from antlr4 import CommonTokenStream, ParseTreeListener
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 
@@ -11,7 +11,7 @@ class vbaListener(ParseTreeListener):
         self.ts = ts
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
-        tok = self.ts.get(ctx.EQ.index - 1)
+        tok = self.ts.get(ctx.EQ.index() - 1)
         if tok.type == vbaLexer.WS:
             if len(tok.text) > 1:
                 raise Exception('too many leading spaces')
