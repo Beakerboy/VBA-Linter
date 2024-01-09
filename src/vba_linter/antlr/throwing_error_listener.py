@@ -1,5 +1,5 @@
 from antlr4.error.ErrorListener import ErrorListener
-from antlr.thrown_exception import ThrownException
+from vba_linter.antlr.thrown_exception import ThrownException
 
 class ThrowingErrorListener(ErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
