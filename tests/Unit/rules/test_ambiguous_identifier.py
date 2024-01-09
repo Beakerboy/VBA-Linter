@@ -8,6 +8,14 @@ anti_patterns = [
     [
         RuleTestBase.worst_practice,
         [(5, 1, 'E741')]
+    ],
+    [
+        '''\
+Public Function Foo(num)
+    Dim l as Integer
+End Function
+''',  # noqa
+        [(2, 9, "E741")]
     ]
 ]
 
