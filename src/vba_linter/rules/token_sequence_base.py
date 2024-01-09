@@ -1,6 +1,6 @@
 from antlr4 import CommonTokenStream, Token
 from vba_linter.rules.rule_base import RuleBase
-from typing import List, Type, TypeVar
+from typing import Collection, List, Type, TypeVar
 
 
 T = TypeVar('T', bound='TokenSequenceBase')
@@ -12,7 +12,7 @@ class TokenSequenceBase(RuleBase):
     of token types.
     """
     def __init__(self: T, name: str,
-                 sequence: list, target: int,
+                 sequence: Collection, target: int,
                  message: str) -> None:
         self._rule_name = name
         self._sequence = sequence
@@ -25,13 +25,17 @@ class TokenSequenceBase(RuleBase):
         output: List[tuple] = []
         token_types: list = []
         found_eof = False
-        for i in range(len(self._sequence)):
-            if found_eof:
-                return output
-            tok_type = ts.LA(i + 1)
-            if tok_type == Token.EOF:
-                found_eof = True
-            token_types.append(tok_type)
+        if type(self._sequence) is not set:
+            sequences = {self._sequence}
+        else sequences = self._sequence
+        for sequence in sequences:
+            for i in range(len(sequence)):
+                if found_eof:
+                    return output
+                tok_type = ts.LA(i + 1)
+                if tok_type == Token.EOF:
+                    found_eof = True
+                token_types.append(tok_type)
         if TokenSequenceBase.match(token_types, self._sequence):
             token = ts.LT(self._target)
             output = self._match_action(token)
