@@ -24,13 +24,14 @@ class TokenSequenceBase(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token_types: list = []
-        found_eof = False
+        
         sequences: Tuple[List[int]]
         if type(self._sequence) is list:
             sequences = (self._sequence)
         else:
             sequences = self._sequence
         for sequence in sequences:
+            found_eof = False
             for i in range(len(sequence)):
                 if found_eof:
                     return output
