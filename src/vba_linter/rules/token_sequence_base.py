@@ -28,7 +28,6 @@ class TokenSequenceBase(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
-        token_types: list = []
         sequences: Tuple[List[int], ...]
         if isinstance(self._sequence, list):
             sequences = (self._sequence, )
@@ -36,6 +35,7 @@ class TokenSequenceBase(RuleBase):
             sequences = self._sequence
         for sequence in sequences:
             found_eof = False
+            token_types: List[int] = []
             for i in range(len(sequence)):
                 if found_eof:
                     return output
