@@ -12,7 +12,7 @@ class TokenSequenceBase(RuleBase):
     of token types.
     """
     def __init__(self: T, name: str,
-                 sequence: Union[List[int], Tuple[List[int]]], target: int,
+                 sequence: Union[List[int], Tuple[List[int], ...]], target: int,
                  message: str) -> None:
         """
         if sequence is passed in as a tuple, and the contained lists have
@@ -29,7 +29,7 @@ class TokenSequenceBase(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token_types: list = []
-        sequences: Tuple[List[int]]
+        sequences: Tuple[List[int], ...]
         if isinstance(self._sequence, list):
             sequences = (self._sequence, )
         else:
