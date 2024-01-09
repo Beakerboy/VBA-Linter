@@ -29,7 +29,9 @@ class Linter:
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
+        ts1 = CommonTokenStream(lexer)
         output = e999.test(CommonTokenStream(lexer))
+        program = e999.program
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
         token = ts.LT(1)
@@ -40,6 +42,12 @@ class Linter:
                     output.extend(rule.test(ts))
                 ts.consume()
                 token = ts.LT(1)
+            listener = vbaListener(
+                SpacesAroundOperators(ts1),
+                NamingConventions()
+            )
+    ParseTreeWalker.DEFAULT.walk(listener, program)
+
             output.sort()
         return output
 
