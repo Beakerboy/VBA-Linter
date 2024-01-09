@@ -31,7 +31,7 @@ class TokenSequenceBase(RuleBase):
         token_types: list = []
         sequences: Tuple[List[int]]
         if isinstance(self._sequence, list):
-            sequences = (self._sequence)
+            sequences = (self._sequence, )
         else:
             sequences = self._sequence
         for sequence in sequences:
