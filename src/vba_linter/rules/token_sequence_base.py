@@ -27,7 +27,8 @@ class TokenSequenceBase(RuleBase):
         found_eof = False
         if type(self._sequence) is not set:
             sequences = {self._sequence}
-        else sequences = self._sequence
+        else:
+            sequences = self._sequence
         for sequence in sequences:
             for i in range(len(sequence)):
                 if found_eof:
