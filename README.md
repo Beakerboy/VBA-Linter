@@ -16,6 +16,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E241 Multiple spaces after ','
 ### E3 Blank line errors
 * E303 Too many blank lines (3)
+### E7
+* E741 ambiguous variable name
 ### W1 Indentation warning
 * W191 indentation contains tabs - should be error.
 ### W2 Whitespace warning
@@ -35,7 +37,6 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * E222 multiple spaces after operator
 * E712 comparison to True should be ‘If cond Then’
 * E713 comparison to False should be 'If Not cond Then'
-* E741 ambiguous variable name
 * F841 local variable 'foo' is assigned to but never used
 * W101 improper indentation level
 * W301 Too few blank lines before function
