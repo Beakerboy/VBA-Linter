@@ -15,7 +15,7 @@ class TokenSequenceBase(RuleBase):
                  sequence: Union[List[int], Tuple[List[int]]], target: int,
                  message: str) -> None:
         """
-        if sequence is passed in as a tuple, and the contained lists have 
+        if sequence is passed in as a tuple, and the contained lists have
         different lengths, the shorted list kust be first to prevent
         an early return.
         """
@@ -30,7 +30,7 @@ class TokenSequenceBase(RuleBase):
         output: List[tuple] = []
         token_types: list = []
         sequences: Tuple[List[int]]
-        if type(self._sequence) == list:
+        if isinstance(self._sequence, list):
             sequences = (self._sequence)
         else:
             sequences = self._sequence
