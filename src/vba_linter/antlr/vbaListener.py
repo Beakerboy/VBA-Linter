@@ -13,7 +13,7 @@ class vbaListener(ParseTreeListener):
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
         target = ctx.getToken(vbaLexer.EQ, 0)
-        leading_index = target.getTokenIndex() - 1
+        leading_index = target.tokenIndex - 1
         # trailing_index = target.getTokenIndex() - 1
         tok = self.ts.get(leading_index)
         if tok.type == vbaLexer.WS:
