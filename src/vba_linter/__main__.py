@@ -24,6 +24,10 @@ def main() -> None:
         results = linter.lint(dir, file_name)
         if len(results) > 0:
             full_results[file_name] = results
+        pretty_code = linter.get_pretty_code()
+        p = Path(file_name + ".pretty")
+        with p.open(mode='a') as fi:
+            fi.write(pretty_code)
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:
@@ -39,10 +43,6 @@ def main() -> None:
     )
 
     exit_code = 1 if num_errors > 0 else 0
-    pretty_code = linter.get_pretty_code()
-    p = Path("pretty.bas")
-    with p.open(mode='a') as fi:
-        fi.write(pretty_code)
     sys.exit(exit_code)
 
 
