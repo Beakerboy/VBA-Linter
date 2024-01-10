@@ -21,7 +21,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'End Function\n' +
         '\r\n' +
         'Sub O()\r\n' +
-        'End Function\r\n' +
+        'End Sub\r\n' +
         '\r\n'
     )
     pretty = (
@@ -35,7 +35,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'End Function\r\n' +
         '\r\n' +
         'Sub O()\r\n' +
-        'End Function\r\n'
+        'End Sub\r\n'
     )
     file_name = save_code(worst_practice)
     mocker.patch(
