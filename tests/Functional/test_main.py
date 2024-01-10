@@ -2,7 +2,7 @@ import pytest
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
-from Unit.rules.rule_test_base import RuleTestBase
+from tests.Unit.rules.rule_test_base import RuleTestBase
 
 
 def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
