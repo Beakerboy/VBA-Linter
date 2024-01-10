@@ -31,6 +31,8 @@ class RuleTestBase:
         '\r\n' +
         '\r\n' +
         'I  =  (2+1)\n' +
+        '    foo_val=6\n'
+        '    Let BarVal  =  7\n'
         'End Function\n' +
         '\r\n' +
         'Public Function O()\r\n' +
