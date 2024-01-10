@@ -15,7 +15,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         '\n' +
         '\r\n' +
         '\r\n' +
-        'I  =  (2+1)\n' +
+        'I = (2 + 1)\n' +
         '    foo_val=6\r\n'
         '    Let BarVal  =  7\r\n'
         'End Function\n' +
