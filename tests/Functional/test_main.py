@@ -117,7 +117,6 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 1 Error in 1 File
 """  # noqa
     assert captured.err == expected
-    delete_code("pretty.bas")
 
 
 def save_code(code: str) -> str:
