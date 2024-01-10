@@ -23,6 +23,6 @@ class vbaListener(ParseTreeListener):
         tok = self.ts.get(leading_index)
         if tok.type == vbaLexer.WS:
             if len(tok.text) > 1:
-                raise Exception('too many leading spaces')
+                self.output.append((tok.line, tok.column + 2, "W221"))
         else:
-            raise Exception('Missing leading space')
+            self.output.append((target.line, target.column + 1, "R225"))
