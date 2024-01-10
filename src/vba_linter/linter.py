@@ -52,7 +52,6 @@ class Linter:
 
     def get_pretty_code(self: T) -> str:
         code = ""
-        for i in range(self.pretty.size):
-            token = self.pretty.getToken(i)
+        for token in self.pretty.tokens:
             code += token.text
         return code
