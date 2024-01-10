@@ -14,7 +14,7 @@ class vbaListener(ParseTreeListener):
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
         target = None
         for child in ctx.getChildren():
-            if (isinstance(child, TerminalNode):
+            if isinstance(child, TerminalNode):
                 tok = child.getSymbol()
                 if tok.type == vbaLexer.EQ):
                     target = tok
