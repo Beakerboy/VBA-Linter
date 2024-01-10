@@ -47,6 +47,20 @@ class vbaListener(ParseTreeListener):
                     else:
                         self.output.append((target.line, target.column + 1, "R225"))
 
+    def enterFunctionStmt(self, ctx:vbaParser.FunctionStmtContext):
+        for child in ctx.getChildren():
+            terminal_num = 0
+            if isinstance(child, TerminalNodeImpl):
+                tok = child.getSymbol()
+                terminal_num += 1
+                if terminal_num == 1 and not isinstance(child, vbaParser.VisibilityContext):
+                    self.output.append((tok.line, tok.column + 2, "Wxxx", "missing visibility"))
+                if tok.type == vbaLexer.IDENTIFIER:
+                    if not vbaListener.is_pascal_case(tok.text):
+
+    def enterSubStmt(self, ctx:vbaParser.SubStmtContext):
+        pass
+
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
         match = re.match(pattern, name)
@@ -66,4 +80,11 @@ class vbaListener(ParseTreeListener):
         """
         pattern = '(^[a-z]{1}$)|([a-z]{2,}([a-zA-Z]([a-z])+)*$)'
         return cls.text_matches(pattern, name)
-                    
+
+    @classmethod
+    def is_pascal_case(cls: Type[T], name: str) -> bool:
+        """
+        Also known as UpperCamelCase.
+        """
+        pattern = '(^[a-z]{1}$)|(([A-Z]([a-z])+)*$)'
+        return cls.text_matches(pattern, name)
