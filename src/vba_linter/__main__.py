@@ -25,7 +25,7 @@ def main() -> None:
         if len(results) > 0:
             full_results[file_name] = results
         pretty_code = linter.get_pretty_code()
-        p = Path(file_name + ".pretty")
+        p = Path(str(file_name) + ".pretty")
         with p.open(mode='a') as fi:
             fi.write(pretty_code)
     for file_name, file_results in full_results.items():
