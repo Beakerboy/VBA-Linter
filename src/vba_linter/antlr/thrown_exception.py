@@ -7,7 +7,7 @@ T = TypeVar('T', bound='ThrownException')
 
 class ThrownException(ParseCancellationException):
 
-    def __init__(self: T, message: str):
+    def __init__(self: T, message: str) -> None:
         super().__init__(message)
         self.msg = ''
         self.line = 0
