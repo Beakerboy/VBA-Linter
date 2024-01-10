@@ -47,13 +47,13 @@ class VbaListener(ParseTreeListener):
                     else:
                         self.output.append((target.line, target.column + 1, "R225"))
 
-    def enterFunctionStmt(self, ctx:vbaParser.FunctionStmtContext) -> None:
+    def enterFunctionStmt(self: T, ctx:vbaParser.FunctionStmtContext) -> None:
         self.enterFunctionSubStmt(ctx)
 
-    def enterSubStmt(self, ctx:vbaParser.SubStmtContext) -> None:
+    def enterSubStmt(self: T, ctx:vbaParser.SubStmtContext) -> None:
         self.enterFunctionSubStmt(ctx)
 
-    def enterFunctionSubStmt(self, ctx: ParserRuleContext) -> None:
+    def enterFunctionSubStmt(self: T, ctx: ParserRuleContext) -> None:
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
