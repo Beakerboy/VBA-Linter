@@ -12,7 +12,7 @@ class vbaListener(ParseTreeListener):
         self.ts = ts
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
-        tok = self.ts.get(ctx.getToken(vbaLexer.EQ, 1).getTokenIndex() - 1)
+        tok = self.ts.get(ctx.getToken(vbaLexer.EQ, 0).getTokenIndex() - 1)
         if tok.type == vbaLexer.WS:
             if len(tok.text) > 1:
                 raise Exception('too many leading spaces')
