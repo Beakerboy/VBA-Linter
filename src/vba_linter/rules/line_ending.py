@@ -13,6 +13,7 @@ class LineEnding(RuleBase):
         self._line_ending = '\r\n'
         self._allowed_blank_lines = 2
         self._message = 'incorrect line ending'
+        self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
