@@ -46,7 +46,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:92: W500 incorrect line ending
 %s:2:0: W500 incorrect line ending
 %s:4:0: E303 Too many blank lines (3)
-%s:5:12: W500 incorrect line ending
+%s:5:11: W500 incorrect line ending
 %s:12:1: W391 blank line at end of file
 12 Errors in 1 File
 """.replace("%s", full_path)  # noqa
