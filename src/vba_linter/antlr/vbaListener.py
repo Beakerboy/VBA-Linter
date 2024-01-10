@@ -53,7 +53,7 @@ class vbaListener(ParseTreeListener):
     def enterSubStmt(self, ctx:vbaParser.SubStmtContext):
         self.enterFunctionSubStmt(ctx)
 
-    def enterFunctionSubStmt(self, ctx:vbaParser.ParaerRuleContext):
+    def enterFunctionSubStmt(self, ctx:vbaParser.ParserRuleContext):
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
