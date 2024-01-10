@@ -8,6 +8,7 @@ class RuleBase:
     def __init__(self: T) -> None:
         self._rule_name = ""
         self._message = ''
+        self._fixable = False
 
     def get_rule_name(self: T) -> str:
         return self._rule_name
