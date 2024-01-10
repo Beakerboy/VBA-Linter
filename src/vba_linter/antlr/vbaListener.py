@@ -29,10 +29,17 @@ class vbaListener(ParseTreeListener):
                 if tok.type == vbaLexer.EQ:
                     target = tok
                     leading_index = target.tokenIndex - 1
-                    # trailing_index = target.getTokenIndex() - 1
+                    trailing_index = target.tokenIndex + 1
                     tok = self.ts.get(leading_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
                             self.output.append((tok.line, tok.column + 2, "W221"))
                     else:
                         self.output.append((target.line, target.column + 1, "R225"))
+                    tok = self.ts.get(leading_index)
+                    if tok.type == vbaLexer.WS:
+                        if len(tok.text) > 1:
+                            self.output.append((tok.line, tok.column + 2, "W221"))
+                    else:
+                        self.output.append((target.line, target.column + 1, "R225"))
+                    
