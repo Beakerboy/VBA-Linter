@@ -113,7 +113,7 @@ def create_filename(num: int = 16, ext: str = ".txt") -> str:
     chars = ""
     for i in range(num):
         chars += random.choice(string.ascii_lowercase)
-    file_name += ext
+    file_name = chars + ext
     return file_name
 
 
