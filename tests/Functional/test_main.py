@@ -110,9 +110,11 @@ def save_code(code: str) -> str:
 
 
 def create_filename(num: int = 16, ext: str = ".txt") -> str:
-    chars = random.choice(string.ascii_lowercase)
-    file_name = ''.join(chars for i in range(num))
-    return file_name + ext
+    chars = ""
+    for i in range(num)
+        chars += random.choice(string.ascii_lowercase)
+    file_name += ext
+    return file_name
 
 
 def delete_code(file_name: str) -> None:
