@@ -35,8 +35,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     with pytest.raises(SystemExit):
         main()
     captured = capsys.readouterr()
-    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/tests/" +
-                 "Functional/" + file_name)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
 %s:1:51: E211 whitespace before '('
 %s:1:53: E201 Whitespace after '('
