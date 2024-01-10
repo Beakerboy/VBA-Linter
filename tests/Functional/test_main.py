@@ -114,7 +114,7 @@ def create_filename(num: int = 16, ext: str = ".txt") -> str:
     for i in range(num):
         chars += random.choice(string.ascii_lowercase)
     file_name = chars + ext
-    return file_name
+    return "tests/Functional/" + file_name
 
 
 def delete_code(file_name: str) -> None:
