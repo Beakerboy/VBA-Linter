@@ -19,46 +19,49 @@ class VbaListener(ParseTreeListener):
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
+        """
+        We need to build a lost of tokens from start to stop
+        and use that instead of the getChildren() method.
+        Probably better is to research the best way to
+        listen/visit the nodes within the parse tree.
+        """
         string = ""
-        for child in ctx.getChildren():
+        tokens = VbaListener.get_tokens(ctx)
+        for tok in tokens:
             terminal_num = 0
-            while not isinstance(child, TerminalNodeImpl):
-                child = child.getChild(0)
-            if isinstance(child, TerminalNodeImpl):
-                tok = child.getSymbol()
-                string += str(tok.type) + "(" + tok.text + ") "
-                terminal_num += 1
-                if terminal_num == 1 and tok.type != vbaLexer.LET:
-                    output = (tok.line, tok.column + 2, "Wxxx", "missing let")
+            string += str(tok.type) + "(" + tok.text + ") "
+            terminal_num += 1
+            if terminal_num == 1 and tok.type != vbaLexer.LET:
+                output = (tok.line, tok.column + 2, "Wxxx", "missing let")
+                self.output.append(output)
+            if tok.type == vbaLexer.IDENTIFIER:
+                if not VbaListener.is_snake_case(tok.text):
+                    msg = "variable not snake"
+                    output = (tok.line, tok.column + 2, "Wxxx", msg)
                     self.output.append(output)
-                if tok.type == vbaLexer.IDENTIFIER:
-                    if not VbaListener.is_snake_case(tok.text):
-                        msg = "variable not snake"
-                        output = (tok.line, tok.column + 2, "Wxxx", msg)
-                        self.output.append(output)
-                elif tok.type == vbaLexer.LET:
-                    output = (tok.line, tok.column + 2, "Wxxx", "optional let")
-                    self.output.append(output)
-                elif tok.type == vbaLexer.EQ:
-                    target = tok
-                    leading_index = target.tokenIndex - 1
-                    trailing_index = target.tokenIndex + 1
-                    tok = self.ts.get(leading_index)
-                    if tok.type == vbaLexer.WS:
-                        if len(tok.text) > 1:
-                            output1 = (tok.line, tok.column + 2, "W221")
-                            self.output.append(output1)
-                    else:
-                        output1 = (target.line, target.column + 1, "R225")
+            elif tok.type == vbaLexer.LET:
+                output = (tok.line, tok.column + 2, "Wxxx", "optional let")
+                self.output.append(output)
+            elif tok.type == vbaLexer.EQ:
+                target = tok
+                leading_index = target.tokenIndex - 1
+                trailing_index = target.tokenIndex + 1
+                tok = self.ts.get(leading_index)
+                if tok.type == vbaLexer.WS:
+                    if len(tok.text) > 1:
+                        output1 = (tok.line, tok.column + 2, "W221")
                         self.output.append(output1)
-                    tok = self.ts.get(trailing_index)
-                    if tok.type == vbaLexer.WS:
-                        if len(tok.text) > 1:
-                            output1 = (tok.line, tok.column + 2, "W221")
-                            self.output.append(output1)
-                    else:
-                        output1 = (target.line, target.column + 1, "R225")
+                else:
+                    output1 = (target.line, target.column + 1, "R225")
+                    self.output.append(output1)
+                tok = self.ts.get(trailing_index)
+                if tok.type == vbaLexer.WS:
+                    if len(tok.text) > 1:
+                        output1 = (tok.line, tok.column + 2, "W221")
                         self.output.append(output1)
+                else:
+                    output1 = (target.line, target.column + 1, "R225")
+                    self.output.append(output1)
         raise Exception(string)
 
     def enterFunctionStmt(self: T,  # noqa: N802
@@ -111,3 +114,12 @@ class VbaListener(ParseTreeListener):
         """
         pattern = '(^[a-z]{1}$)|(([A-Z]([a-z])+)*$)'
         return cls.text_matches(pattern, name)
+
+    def get_tokens(cls: Type[T], ctx: ParserRuleContext) -> list:
+        tokens = []
+        if isinstance(ctx, TerminalNodeImpl):
+            return [ctx.getSymbol()]
+        else:
+            for child in ctx.getChildren():
+                tokens.extend(cls.get_tokens(child))
+        return tokens
