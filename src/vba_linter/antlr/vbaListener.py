@@ -19,13 +19,6 @@ class VbaListener(ParseTreeListener):
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
-        """
-        We need to build a lost of tokens from start to stop
-        and use that instead of the getChildren() method.
-        Probably better is to research the best way to
-        listen/visit the nodes within the parse tree.
-        """
-        string = ""
         tokens = VbaListener.get_tokens(ctx)
         for tok in tokens:
             terminal_num = 0
@@ -62,7 +55,6 @@ class VbaListener(ParseTreeListener):
                 else:
                     output1 = (target.line, target.column + 1, "R225")
                     self.output.append(output1)
-        raise Exception(string)
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
