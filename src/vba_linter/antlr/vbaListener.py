@@ -29,13 +29,13 @@ class VbaListener(ParseTreeListener):
                         msg = "variable not snake"
                         output = (tok.line, tok.column + 2, "Wxxx", msg)
                         self.output.append(output)
-                if terminal_num == 1 and tok.type != vbaLexer.LET:
+                elif terminal_num == 1 and tok.type != vbaLexer.LET:
                     output = (tok.line, tok.column + 2, "Wxxx", "missing let")
                     self.output.append(output)
-                if tok.type == vbaLexer.LET:
+                elif tok.type == vbaLexer.LET:
                     output = (tok.line, tok.column + 2, "Wxxx", "optional let")
                     self.output.append(output)
-                if tok.type == vbaLexer.EQ:
+                elif tok.type == vbaLexer.EQ:
                     target = tok
                     leading_index = target.tokenIndex - 1
                     trailing_index = target.tokenIndex + 1
