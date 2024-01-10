@@ -8,8 +8,8 @@ T = TypeVar('T', bound='vbaListener')
 
 
 class vbaListener(ParseTreeListener):
-    def __init__(self: T, args: Any) -> None:
-        super().__init__(args)
+    def __init__(self: T) -> None:
+        super().__init__()
         self.output: list
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
