@@ -8,6 +8,8 @@ from vba_linter.rule_directory import RuleDirectory
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("-x", "--fix", action="store_true",
+                        help="Fix whitespace errors.")
     # parser.add_argument("ruleset", nargs='?', default='.',
     #                     help="Configuration file of linting rules.")
     parser.add_argument("directory", default='.',
@@ -24,10 +26,11 @@ def main() -> None:
         results = linter.lint(dir, file_name)
         if len(results) > 0:
             full_results[file_name] = results
-        pretty_code = linter.get_pretty_code()
-        p = Path(str(file_name) + ".pretty")
-        with p.open(mode='a') as fi:
-            fi.write(pretty_code)
+        if args.fix:
+            pretty_code = linter.get_pretty_code()
+            p = Path(str(file_name) + ".pretty")
+            with p.open(mode='a') as fi:
+                fi.write(pretty_code)
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:
