@@ -59,7 +59,7 @@ class vbaListener(ParseTreeListener):
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
                 terminal_num += 1
-                if terminal_num == 1 and not isinstance(child, vbaParser.VisibilityContext):
+                if terminal_num == 1 and not isinstance(child, antlr4.VisibilityContext):
                     self.output.append((tok.line, tok.column + 2, "Wxxx", "missing visibility"))
                 if tok.type == vbaLexer.IDENTIFIER:
                     if not vbaListener.is_pascal_case(tok.text):
