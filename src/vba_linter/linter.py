@@ -15,7 +15,7 @@ class Linter:
     # class default constructor
     def __init__(self: T) -> None:
         # Read config file and set parameters for rules
-        pass
+        self.pretty: CommonTokenStream
 
     def get_lexer(self: T, file: str) -> vbaLexer:
         if Path(file).exists():
@@ -47,4 +47,11 @@ class Linter:
             ParseTreeWalker.DEFAULT.walk(listener, program)
 
             output.sort()
+        self.pretty = ts
         return output
+
+    def get_pretty_code(self: T) -> str:
+        code = ""
+        for token in self.pretty:
+            code += token.text
+        return code
