@@ -17,17 +17,16 @@ class vbaListener(ParseTreeListener):
         self.ts = ts
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
-        target = None
         for child in ctx.getChildren():
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
                 if tok.type == vbaLexer.EQ:
                     target = tok
-        leading_index = target.tokenIndex - 1
-        # trailing_index = target.getTokenIndex() - 1
-        tok = self.ts.get(leading_index)
-        if tok.type == vbaLexer.WS:
-            if len(tok.text) > 1:
-                self.output.append((tok.line, tok.column + 2, "W221"))
-        else:
-            self.output.append((target.line, target.column + 1, "R225"))
+                    leading_index = target.tokenIndex - 1
+                    # trailing_index = target.getTokenIndex() - 1
+                    tok = self.ts.get(leading_index)
+                    if tok.type == vbaLexer.WS:
+                        if len(tok.text) > 1:
+                            self.output.append((tok.line, tok.column + 2, "W221"))
+                    else:
+                        self.output.append((target.line, target.column + 1, "R225"))
