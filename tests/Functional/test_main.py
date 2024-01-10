@@ -35,6 +35,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
 
+
 def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/project"
     mocker.patch(
