@@ -66,7 +66,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
     delete_code(file_name)
-    f = open(file_name + ".pretty", "r")
+    f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
     delete_code(file_name + ".pretty")
