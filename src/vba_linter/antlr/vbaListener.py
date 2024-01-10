@@ -65,8 +65,8 @@ class VbaListener(ParseTreeListener):
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         tokens = VbaListener.get_tokens(ctx)
+        terminal_num = 0
         for tok in tokens:
-            terminal_num = 0
             terminal_num += 1
             visibility = [vbaLexer.PRIVATE, vbaLexer.PUBLIC]
             if terminal_num == 1 and tok.type not in visibility:
