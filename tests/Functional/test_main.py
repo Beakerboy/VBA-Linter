@@ -65,7 +65,11 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
     delete_code(file_name)
+    f = open("pretty.bas", "r")
+    pretty_file = f.read()
+    assert pretty_file == pretty
     delete_code("pretty.bas")
+
 
 def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/project"
