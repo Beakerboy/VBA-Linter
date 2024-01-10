@@ -49,4 +49,5 @@ testpaths = [
 ]
 
 [tool.mypy]
+show_error_codes = true
 mypy_path = "./stubs"
