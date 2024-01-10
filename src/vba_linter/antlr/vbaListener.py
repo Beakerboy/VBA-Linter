@@ -6,10 +6,10 @@ from antlr4_vba.vbaParser import vbaParser
 from typing import Type, TypeVar
 
 
-T = TypeVar('T', bound='vbaListener')
+T = TypeVar('T', bound='VbaListener')
 
 
-class vbaListener(ParseTreeListener):
+class VbaListener(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
