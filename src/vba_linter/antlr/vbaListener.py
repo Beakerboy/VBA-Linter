@@ -1,5 +1,5 @@
 import re
-from antlr4 import CommonTokenStream, ParseTreeListener
+from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
@@ -53,7 +53,7 @@ class vbaListener(ParseTreeListener):
     def enterSubStmt(self, ctx:vbaParser.SubStmtContext):
         self.enterFunctionSubStmt(ctx)
 
-    def enterFunctionSubStmt(self, ctx:antlr4.ParserRuleContext):
+    def enterFunctionSubStmt(self, ctx: ParserRuleContext):
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
