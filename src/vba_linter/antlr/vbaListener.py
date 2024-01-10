@@ -12,7 +12,7 @@ class vbaListener(ParseTreeListener):
         self.ts = ts
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
-        for child in crx.getChildren():
+        for child in ctx.getChildren():
             if child.symbol.type == vbaLexer.EQ:
                 target = child.symbol
             break
