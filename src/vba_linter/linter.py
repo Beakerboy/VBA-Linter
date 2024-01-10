@@ -3,7 +3,7 @@ from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
 from vba_linter.antlr.vbaListener import vbaListener
 from pathlib import Path
-from typing import Type, TypeVar
+from typing import TypeVar
 from vba_linter.rule_directory import RuleDirectory
 from vba_linter.rules.parsing_error import ParsingError
 
