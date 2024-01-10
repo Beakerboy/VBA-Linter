@@ -24,7 +24,7 @@ class VbaListener(ParseTreeListener):
                 tok = child.getSymbol()
                 terminal_num += 1
                 if tok.type == vbaLexer.IDENTIFIER:
-                    if not vbaListener.is_snake_case(tok.text):
+                    if not VbaListener.is_snake_case(tok.text):
                         self.output.append((tok.line, tok.column + 2, "Wxxx", "variable not snake"))
                 if terminal_num == 1 and tok.type != vbaLexer.LET:
                     self.output.append((tok.line, tok.column + 2, "Wxxx", "missing let"))
@@ -64,7 +64,7 @@ class VbaListener(ParseTreeListener):
                     self.output.append((tok.line, tok.column + 2,
                                         "Wxxx", "missing visibility"))
                 if tok.type == vbaLexer.IDENTIFIER:
-                    if not vbaListener.is_pascal_case(tok.text):
+                    if not VbaListener.is_pascal_case(tok.text):
                         self.output.append((tok.line, tok.column + 2,
                                             "Wxxx", "name not Pascal"))
 
