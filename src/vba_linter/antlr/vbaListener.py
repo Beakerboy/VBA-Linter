@@ -17,7 +17,7 @@ class VbaListener(ParseTreeListener):
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
 
-    def enterLetStmt(self: T, ctx: vbaParser.LetStmtContext) -> None:
+    def enterLetStmt(self: T, ctx: vbaParser.LetStmtContext) -> None:  # noqa: N802
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
@@ -55,13 +55,13 @@ class VbaListener(ParseTreeListener):
                         output = (target.line, target.column + 1, "R225")
                         self.output.append(output)
 
-    def enterFunctionStmt(self: T, ctx: vbaParser.FunctionStmtContext) -> None:
+    def enterFunctionStmt(self: T, ctx: vbaParser.FunctionStmtContext) -> None:  # noqa: N802
         self.enterFunctionSubStmt(ctx)
 
-    def enterSubStmt(self: T, ctx: vbaParser.SubStmtContext) -> None:
+    def enterSubStmt(self: T, ctx: vbaParser.SubStmtContext) -> None:  # noqa: N802
         self.enterFunctionSubStmt(ctx)
 
-    def enterFunctionSubStmt(self: T, ctx: ParserRuleContext) -> None:
+    def enterFunctionSubStmt(self: T, ctx: ParserRuleContext) -> None:  # noqa: N802
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
