@@ -15,7 +15,7 @@ class vbaListener(ParseTreeListener):
         target = None
         for child in ctx.getChildren():
             if (isinstance(child, TerminalNode) and
-                    child.getSymbol().type == vbaLexer.EQ):
+                    child.getPayload().type == vbaLexer.EQ):
                 target = child.symbol
         leading_index = target.tokenIndex - 1
         # trailing_index = target.getTokenIndex() - 1
