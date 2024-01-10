@@ -5,7 +5,6 @@ from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
-from tests.Unit.rules.rule_test_base import RuleTestBase
 
 
 def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
