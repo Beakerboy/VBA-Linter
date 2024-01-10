@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, ParseTreeListener, TerminalNode
+from antlr4 import CommonTokenStream, ParseTreeListener, TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
@@ -18,7 +18,7 @@ class vbaListener(ParseTreeListener):
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
         target = None
         for child in ctx.getChildren():
-            if isinstance(child, TerminalNode):
+            if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
                 if tok.type == vbaLexer.EQ:
                     target = tok
