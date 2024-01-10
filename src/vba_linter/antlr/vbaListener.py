@@ -24,7 +24,7 @@ class VbaListener(ParseTreeListener):
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
-                string += str(tok.type) + " "
+                string += str(tok.type) + "(" + tok.text + ") "
                 terminal_num += 1
                 if terminal_num == 1 and tok.type != vbaLexer.LET:
                     output = (tok.line, tok.column + 2, "Wxxx", "missing let")
