@@ -18,8 +18,14 @@ class vbaListener(ParseTreeListener):
 
     def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
         for child in ctx.getChildren():
+            terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
+                terminal_num += 1
+                if terminal_num == 1 and tok.type != vbaLexer.LET:
+                    self.output.append((tok.line, tok.column + 2, "Wxxx", "missing let"))
+                if tok.type == vbaLexer.LET:
+                    self.output.append((tok.line, tok.column + 2, "Wxxx", "optional let"))
                 if tok.type == vbaLexer.EQ:
                     target = tok
                     leading_index = target.tokenIndex - 1
