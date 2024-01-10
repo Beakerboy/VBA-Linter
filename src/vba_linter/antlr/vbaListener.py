@@ -69,7 +69,7 @@ class VbaListener(ParseTreeListener):
             terminal_num = 0
             terminal_num += 1
             visibility = [vbaLexer.PRIVATE, vbaLexer.PUBLIC]
-            if (terminal_num == 1 and tok.type not in visibility:
+            if terminal_num == 1 and tok.type not in visibility:
                 self.output.append((tok.line, tok.column + 2,
                                     "Wxxx", "missing visibility"))
             if tok.type == vbaLexer.IDENTIFIER:
