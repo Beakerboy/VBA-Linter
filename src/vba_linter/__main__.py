@@ -39,6 +39,10 @@ def main() -> None:
     )
 
     exit_code = 1 if num_errors > 0 else 0
+    pretty_code = linter.get_pretty_code()
+    p = Path(pretty.bas)
+    with p.open(mode='a') as fi:
+        fi.write(pretty_code)
     sys.exit(exit_code)
 
 
