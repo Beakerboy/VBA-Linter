@@ -20,9 +20,8 @@ class VbaListener(ParseTreeListener):
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
         tokens = VbaListener.get_tokens(ctx)
+        terminal_num = 0
         for tok in tokens:
-            terminal_num = 0
-            string += str(tok.type) + "(" + tok.text + ") "
             terminal_num += 1
             if terminal_num == 1 and tok.type != vbaLexer.LET:
                 output = (tok.line, tok.column + 2, "Wxxx", "missing let")
