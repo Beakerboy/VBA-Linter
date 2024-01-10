@@ -44,7 +44,7 @@ class VbaListener(ParseTreeListener):
                     else:
                         output = (target.line, target.column + 1, "R225")
                         self.output.append(output)
-                    tok = self.ts.get(leading_index)
+                    tok = self.ts.get(trailing_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
                             output = (tok.line, tok.column + 2, "W221")
