@@ -17,7 +17,7 @@ class vbaListener(ParseTreeListener):
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
 
-    def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext):
+    def enterLetStmt(self: T, ctx:vbaParser.LetStmtContext) -> None:
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
@@ -48,6 +48,12 @@ class vbaListener(ParseTreeListener):
                         self.output.append((target.line, target.column + 1, "R225"))
 
     def enterFunctionStmt(self, ctx:vbaParser.FunctionStmtContext):
+        self.enterFunctionSubStmt(ctx)
+
+    def enterSubStmt(self, ctx:vbaParser.SubStmtContext):
+        self.enterFunctionSubStmt(ctx)
+
+    def enterFunctionSubStmt(self, ctx:vbaParser.ParaerRuleContext):
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
@@ -57,9 +63,7 @@ class vbaListener(ParseTreeListener):
                     self.output.append((tok.line, tok.column + 2, "Wxxx", "missing visibility"))
                 if tok.type == vbaLexer.IDENTIFIER:
                     if not vbaListener.is_pascal_case(tok.text):
-
-    def enterSubStmt(self, ctx:vbaParser.SubStmtContext):
-        pass
+                        self.output.append((tok.line, tok.column + 2, "Wxxx", "name not Pascal"))
 
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
