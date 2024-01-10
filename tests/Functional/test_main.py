@@ -11,7 +11,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     function = 'Supercalifragilisticexpialidocious'
     worst_practice = (
         'Public Function ' + function +
-        ' ( atrocious ,  precocious, indubitably ) \n' +
+        ' ( atrocious ,  precocious, indubitably ) \r\n' +
         '\n' +
         '\r\n' +
         '\r\n' +
