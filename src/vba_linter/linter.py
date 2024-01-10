@@ -1,4 +1,3 @@
-import re
 from antlr4 import CommonTokenStream, FileStream, ParseTreeWalker, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
