@@ -22,6 +22,8 @@ class VbaListener(ParseTreeListener):
         string = ""
         for child in ctx.getChildren():
             terminal_num = 0
+            while not isinstance(child, TerminalNodeImpl):
+                child = child.getChild()
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
                 string += str(tok.type) + "(" + tok.text + ") "
