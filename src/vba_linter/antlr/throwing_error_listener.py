@@ -8,7 +8,7 @@ T = TypeVar('T', bound='ThrowingErrorListener')
 
 class ThrowingErrorListener(ErrorListener):
     def syntaxError(self: T, recognizer, offending_symbol, line: int,
-                    column: int, msg: str, e: Exception) -> None:
+                    column: int, msg: str, e: Exception) -> None:  # noqa: N802
         ex = ThrownException(f'line {line}: {column} {msg}')
         ex.line = line
         ex.column = column
