@@ -29,7 +29,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         "sys.argv",
         [
             "vba_linter.py",
-            file_name
+            "tests/Functional"
         ],
     )
     with pytest.raises(SystemExit):
