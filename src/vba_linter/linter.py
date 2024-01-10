@@ -45,7 +45,7 @@ class Linter:
             listener = VbaListener()
             listener.set_token_stream(ts1)
             ParseTreeWalker.DEFAULT.walk(listener, program)
-
+            output.extend(listener.output)
             output.sort()
         self.pretty = ts
         return output
