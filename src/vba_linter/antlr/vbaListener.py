@@ -19,10 +19,12 @@ class VbaListener(ParseTreeListener):
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
+        string = ""
         for child in ctx.getChildren():
             terminal_num = 0
             if isinstance(child, TerminalNodeImpl):
                 tok = child.getSymbol()
+                string += str(tok.type) + " "
                 terminal_num += 1
                 if terminal_num == 1 and tok.type != vbaLexer.LET:
                     output = (tok.line, tok.column + 2, "Wxxx", "missing let")
@@ -55,6 +57,7 @@ class VbaListener(ParseTreeListener):
                     else:
                         output1 = (target.line, target.column + 1, "R225")
                         self.output.append(output1)
+        raise Exception(string)
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
