@@ -42,6 +42,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         "sys.argv",
         [
             "vba_linter.py",
+            "-x",
             "tests/Functional"
         ],
     )
