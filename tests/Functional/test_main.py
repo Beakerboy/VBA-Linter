@@ -1,4 +1,7 @@
 import pytest
+import random
+import string
+from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
@@ -6,8 +9,23 @@ from tests.Unit.rules.rule_test_base import RuleTestBase
 
 
 def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
-    code = RuleTestBase.worst_practice
-    file_name = RuleTestBase.save_code(code)
+    function = 'Supercalifragilisticexpialidocious'
+    worst_practice = (
+        'Public Function ' + function +
+        ' ( atrocious ,  precocious, indubitably ) \n' +
+        '\n' +
+        '\r\n' +
+        '\r\n' +
+        'I  =  (2+1)\n' +
+        '    foo_val=6\r\n'
+        '    Let BarVal  =  7\r\n'
+        'End Function\n' +
+        '\r\n' +
+        'Public Function O()\r\n' +
+        'End Function\r\n' +
+        '\r\n'
+    )
+    file_name = save_code(worst_practice)
     mocker.patch(
         "sys.argv",
         [
@@ -34,6 +52,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 10 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
+    delete_code(file_name)
 
 
 def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
@@ -81,3 +100,22 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 1 Error in 1 File
 """  # noqa
     assert captured.err == expected
+
+
+def save_code(code: str) -> str:
+    file_name = create_filename(ext='.bas')
+    p = Path(file_name)
+    with p.open(mode='a') as fi:
+        fi.write(code)
+    return file_name
+
+
+def create_filename(num: int = 16, ext: str = ".txt") -> str:
+    chars = random.choice(string.ascii_lowercase)
+    file_name = ''.join(chars for i in range(num))
+    return file_name + ext
+
+
+def delete_code(file_name: str) -> None:
+    p = Path(file_name)
+    p.unlink()
