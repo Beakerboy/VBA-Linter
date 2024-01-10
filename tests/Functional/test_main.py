@@ -53,7 +53,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
     delete_code(file_name)
-
+    delete_code("pretty.bas")
 
 def test_bad_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     dir_path = "tests/Files/project"
@@ -100,6 +100,7 @@ def test_fail_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 1 Error in 1 File
 """  # noqa
     assert captured.err == expected
+    delete_code("pretty.bas")
 
 
 def save_code(code: str) -> str:
