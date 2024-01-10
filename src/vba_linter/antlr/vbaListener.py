@@ -42,19 +42,19 @@ class VbaListener(ParseTreeListener):
                     tok = self.ts.get(leading_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
-                            output = (tok.line, tok.column + 2, "W221")
-                            self.output.append(output)
+                            output1 = (tok.line, tok.column + 2, "W221")
+                            self.output.append(output1)
                     else:
-                        output = (target.line, target.column + 1, "R225")
-                        self.output.append(output)
+                        output1 = (target.line, target.column + 1, "R225")
+                        self.output.append(output1)
                     tok = self.ts.get(trailing_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
-                            output = (tok.line, tok.column + 2, "W221")
-                            self.output.append(output)
+                            output1 = (tok.line, tok.column + 2, "W221")
+                            self.output.append(output1)
                     else:
-                        output = (target.line, target.column + 1, "R225")
-                        self.output.append(output)
+                        output1 = (target.line, target.column + 1, "R225")
+                        self.output.append(output1)
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
