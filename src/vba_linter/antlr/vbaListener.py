@@ -25,11 +25,13 @@ class VbaListener(ParseTreeListener):
                 terminal_num += 1
                 if tok.type == vbaLexer.IDENTIFIER:
                     if not VbaListener.is_snake_case(tok.text):
-                        self.output.append((tok.line, tok.column + 2, "Wxxx", "variable not snake"))
+                        output = (tok.line, tok.column + 2, "Wxxx", "variable not snake")
+                        self.output.append(output)
                 if terminal_num == 1 and tok.type != vbaLexer.LET:
                     self.output.append((tok.line, tok.column + 2, "Wxxx", "missing let"))
                 if tok.type == vbaLexer.LET:
-                    self.output.append((tok.line, tok.column + 2, "Wxxx", "optional let"))
+                    output = (tok.line, tok.column + 2, "Wxxx", "optional let")
+                    self.output.append(output)
                 if tok.type == vbaLexer.EQ:
                     target = tok
                     leading_index = target.tokenIndex - 1
@@ -37,15 +39,19 @@ class VbaListener(ParseTreeListener):
                     tok = self.ts.get(leading_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
-                            self.output.append((tok.line, tok.column + 2, "W221"))
+                            output = (tok.line, tok.column + 2, "W221")
+                            self.output.append(output)
                     else:
-                        self.output.append((target.line, target.column + 1, "R225"))
+                        output = (target.line, target.column + 1, "R225")
+                        self.output.append(output)
                     tok = self.ts.get(leading_index)
                     if tok.type == vbaLexer.WS:
                         if len(tok.text) > 1:
-                            self.output.append((tok.line, tok.column + 2, "W221"))
+                            output = (tok.line, tok.column + 2, "W221")
+                            self.output.append(output)
                     else:
-                        self.output.append((target.line, target.column + 1, "R225"))
+                        output = (target.line, target.column + 1, "R225")
+                        self.output.append(output)
 
     def enterFunctionStmt(self: T, ctx:vbaParser.FunctionStmtContext) -> None:
         self.enterFunctionSubStmt(ctx)
