@@ -27,7 +27,7 @@ class LineEnding(RuleBase):
                     output.append((token.line + i, column, "W500"))
                 if i > self._allowed_blank_lines:
                     output.append((token.line + i, -1, "W500"))
-            num = min([num_nl, self._allowed_blank_lines])
+            num = min([num_nl, self._allowed_blank_lines + 1])
             new_text = self._line_ending * num
             token.text = new_text
         return output
