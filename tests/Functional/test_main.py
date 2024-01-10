@@ -20,7 +20,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         '    Let BarVal  =  7\r\n'
         'End Function\n' +
         '\r\n' +
-        'Public Function O()\r\n' +
+        'Sub O()\r\n' +
         'End Function\r\n' +
         '\r\n'
     )
@@ -34,7 +34,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         '    Let BarVal  =  7\r\n'
         'End Function\r\n' +
         '\r\n' +
-        'Public Function O()\r\n' +
+        'Sub O()\r\n' +
         'End Function\r\n'
     )
     file_name = save_code(worst_practice)
