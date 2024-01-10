@@ -26,12 +26,12 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     )
     pretty = (
         'Public Function ' + function +
-        ' ( atrocious , precocious, indubitably ) \r\n' +
+        ' ( atrocious ,  precocious, indubitably ) \r\n' +
         '\r\n' +
         '\r\n' +
         'I = (2 + 1)\r\n' +
         '    foo_val=6\r\n'
-        '    Let BarVal = 7\r\n'
+        '    Let BarVal  =  7\r\n'
         'End Function\r\n' +
         '\r\n' +
         'Public Function O()\r\n' +
