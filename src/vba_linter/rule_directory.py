@@ -50,6 +50,8 @@ class RuleDirectory:
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
             return ParsingError()
+        if rule_name not in self._rules:
+            return RuleBase()
         return self._rules[rule_name]
 
     def get_loaded_rules(self: T) -> dict:
