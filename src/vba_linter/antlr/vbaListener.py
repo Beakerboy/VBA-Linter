@@ -66,7 +66,7 @@ class VbaListener(ParseTreeListener):
                     line = target.line
                     column = target.column
                     msg = "missing space before '='"
-                    output = (line, column, "R225", msg)
+                    output = (line, column + 1, "R225", msg)
                     self.output.append(output)
                 tok = self.ts.get(trailing_index)
                 if tok.type == vbaLexer.WS:
