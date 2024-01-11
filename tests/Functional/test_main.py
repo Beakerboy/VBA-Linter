@@ -51,6 +51,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
+%s:1:1: 
 %s:1:51: E211 whitespace before '('
 %s:1:53: E201 Whitespace after '('
 %s:1:63: E203 Whitespace before ','
@@ -62,6 +63,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:4:0: E303 Too many blank lines (3)
 %s:5:11: W500 incorrect line ending
 %s:8:12: W500 incorrect line ending
+%s:10:1:
 %s:12:1: W391 blank line at end of file
 12 Errors in 1 File
 """.replace("%s", full_path)  # noqa
