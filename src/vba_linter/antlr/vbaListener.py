@@ -60,8 +60,9 @@ class VbaListener(ParseTreeListener):
                 tok = self.ts.get(leading_index)
                 if tok.type == vbaLexer.WS:
                     if len(tok.text) > 1:
-                        output1 = (tok.line, tok.column + 2, "W221")
-                        self.output.append(output1)
+                        msg = "multiple spaces before operator"
+                        output = (tok.line, tok.column + 2, "W221", msg)
+                        self.output.append(output)
                 else:
                     line = target.line
                     column = target.column
@@ -71,8 +72,11 @@ class VbaListener(ParseTreeListener):
                 tok = self.ts.get(trailing_index)
                 if tok.type == vbaLexer.WS:
                     if len(tok.text) > 1:
-                        output1 = (tok.line, tok.column + 2, "W221")
-                        self.output.append(output1)
+                        msg = "multiple spaces after operator"
+                        line = tok.line
+                        column = tok.column
+                        output1 = (line, column + 2, "W221", msg)
+                        self.output.append(output)
                 else:
                     line = target.line
                     column = target.column + 1
