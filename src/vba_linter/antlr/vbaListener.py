@@ -65,12 +65,12 @@ class VbaListener(ParseTreeListener):
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         tokens = VbaListener.get_tokens(ctx)
-        token = tokens[3]
-        if tokens[3].type == vbaLexer.IDENTIFIER:
-            token = tokens[3]
+        token = tokens[2]
+        if tokens[2].type == vbaLexer.IDENTIFIER:
+            token = tokens[2]
         else:
-            assert tokens[5].type == vbaLexer.IDENTIFIER
-            token = tokens[5]
+            assert tokens[4].type == vbaLexer.IDENTIFIER
+            token = tokens[4]
         if not VbaListener.is_pascal_case(token.text):
             line = token.line
             column = token.column
