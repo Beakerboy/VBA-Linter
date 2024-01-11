@@ -51,7 +51,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
-%s:1:1: 
+%s:1:1: Wxxx optional public
 %s:1:51: E211 whitespace before '('
 %s:1:53: E201 Whitespace after '('
 %s:1:63: E203 Whitespace before ','
