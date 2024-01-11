@@ -24,21 +24,21 @@ class VbaListener(ParseTreeListener):
         Let bar = True
         """
         tokens = VbaListener.get_tokens(ctx)
-        tok = tok[0] if tok[0].type == vbaLexer.IDENTIFIER else tok[2]
+        tok = tokens[0] if tokens[0].type == vbaLexer.IDENTIFIER else tokens[2]
         if not VbaListener.is_snake_case(tok.text):
             msg = "variable not snake"
             output = (tok.line, tok.column + 2, "Wxxx", msg)
             self.output.append(output)
 
     def enterVariableStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.VariableStmtContext) -> None:
+                          ctx: vbaParser.VariableStmtContext) -> None:
         """
         Dim foo as Integer
         Dim a, b, c As Single, x, y As Double, i As Integer
         """
         tokens = VbaListener.get_tokens(ctx)
         for tok in tokens:
-            if (tok.type == vbaLexer.IDENTIFIER and not 
+            if (tok.type == vbaLexer.IDENTIFIER and not
                     VbaListener.is_snake_case(tok.text)):
                 msg = "variable not snake"
                 output = (tok.line, tok.column + 2, "Wxxx", msg)
