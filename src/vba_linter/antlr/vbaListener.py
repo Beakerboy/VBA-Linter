@@ -64,7 +64,7 @@ class VbaListener(ParseTreeListener):
                         self.output.append(output1)
                 else:
                     line = tok.line
-                    column = token.column
+                    column = tok.column
                     msg = "missing space before '='"
                     output1 = (line, column + 1, "R225", msg)
                     self.output.append(output1)
@@ -75,7 +75,7 @@ class VbaListener(ParseTreeListener):
                         self.output.append(output1)
                 else:
                     line = tok.line
-                    column = token.column
+                    column = tok.column
                     msg = "missing space after '='"
                     output1 = (line, column + 1, "R225", msg)
                     self.output.append(output1)
