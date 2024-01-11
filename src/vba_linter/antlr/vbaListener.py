@@ -22,6 +22,24 @@ class VbaListener(ParseTreeListener):
     def add_listener(self: T, listener: ParseTreeListener) -> None:
         self.listeners.append(listener)
 
+    def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:
+        for listener in listeners:
+            listener.enterEveryRule(ctx)
+            ctx.enterRule(listener)
+
+    def exitEveryRule(self: T, ctx: ParserRuleContext) -> None:
+        for listener in listeners:
+            ctx.exitRule(listener)
+            listener.exitEveryRule(ctx)
+
+    def visitErrorNode(self: T, node: ErrorNode) {
+        for listener in listeners:
+            listener.visitErrorNode(node)
+
+    def visitTerminal(self: T, node: TerminalNode) {
+        for listener in listeners:
+            listener.visitTerminal(node)
+
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
         tokens = VbaListener.get_tokens(ctx)
