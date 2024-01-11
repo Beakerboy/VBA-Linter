@@ -1,5 +1,6 @@
 import re
-from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
+from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
+                    ParserRuleContext, TerminalNode)
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
@@ -23,21 +24,21 @@ class VbaListener(ParseTreeListener):
         self.listeners.append(listener)
 
     def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:
-        for listener in listeners:
+        for listener in self.listeners:
             listener.enterEveryRule(ctx)
             ctx.enterRule(listener)
 
     def exitEveryRule(self: T, ctx: ParserRuleContext) -> None:
-        for listener in listeners:
+        for listener in self.listeners:
             ctx.exitRule(listener)
             listener.exitEveryRule(ctx)
 
     def visitErrorNode(self: T, node: ErrorNode) -> None:
-        for listener in listeners:
+        for listener in self.listeners:
             listener.visitErrorNode(node)
 
     def visitTerminal(self: T, node: TerminalNode) -> None:
-        for listener in listeners:
+        for listener in self.listeners:
             listener.visitTerminal(node)
 
     def enterLetStmt(self: T,  # noqa: N802
