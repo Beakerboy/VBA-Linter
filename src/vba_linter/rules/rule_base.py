@@ -17,6 +17,7 @@ class RuleBase:
         return []
 
     def create_message(self: T, data: tuple) -> str:
+        data = data[:3]
         return (":%s:%s: %s " + self._message) % data
 
     @classmethod
