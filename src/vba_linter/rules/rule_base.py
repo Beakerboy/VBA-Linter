@@ -19,7 +19,7 @@ class RuleBase:
     def create_message(self: T, data: tuple) -> str:
         message = self._message
         if message == '' and len(data) == 4:
-                message = "%s"
+            message = "%s"
         return (":%s:%s: %s " + message) % data
 
     @classmethod
