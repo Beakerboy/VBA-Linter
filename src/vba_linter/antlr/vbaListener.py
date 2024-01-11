@@ -75,7 +75,7 @@ class VbaListener(ParseTreeListener):
                         msg = "multiple spaces after operator"
                         line = tok.line
                         column = tok.column
-                        output1 = (line, column + 2, "W221", msg)
+                        output1 = (line, column + 2, "W222", msg)
                         self.output.append(output)
                 else:
                     line = target.line
