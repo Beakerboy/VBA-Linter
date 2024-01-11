@@ -66,8 +66,8 @@ class VbaListener(ParseTreeListener):
                     line = tok.line
                     column = tok.column
                     msg = "missing space before '='"
-                    output1 = (line, column + 1, "R225", msg)
-                    self.output.append(output1)
+                    output = (line, column + 1, "R225", msg)
+                    self.output.append(output)
                 tok = self.ts.get(trailing_index)
                 if tok.type == vbaLexer.WS:
                     if len(tok.text) > 1:
@@ -77,8 +77,8 @@ class VbaListener(ParseTreeListener):
                     line = tok.line
                     column = tok.column
                     msg = "missing space after '='"
-                    output1 = (line, column + 1, "R225", msg)
-                    self.output.append(output1)
+                    output = (line, column + 1, "R225", msg)
+                    self.output.append(output)
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
