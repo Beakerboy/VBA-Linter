@@ -64,10 +64,11 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:5:1 Wxxx missing let
 %s:5:11: W500 incorrect line ending
 %s:6:5 Wxxx missing let
+%s:7:5 Wxxx optional let
 %s:8:12: W500 incorrect line ending
 %s:10:1:
 %s:12:1: W391 blank line at end of file
-16 Errors in 1 File
+17 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
     delete_code(file_name)
