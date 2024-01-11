@@ -17,9 +17,10 @@ class RuleBase:
         return []
 
     def create_message(self: T, data: tuple) -> str:
-        if self._message == '':
-            data = data[:3]
-        return (":%s:%s: %s " + self._message) % data
+        message = self._message
+        if message == '' and len(data) == 4:
+                message = "%s"
+        return (":%s:%s: %s " + message) % data
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
