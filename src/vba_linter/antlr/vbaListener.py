@@ -32,11 +32,11 @@ class VbaListener(ParseTreeListener):
             ctx.exitRule(listener)
             listener.exitEveryRule(ctx)
 
-    def visitErrorNode(self: T, node: ErrorNode) {
+    def visitErrorNode(self: T, node: ErrorNode) -> None:
         for listener in listeners:
             listener.visitErrorNode(node)
 
-    def visitTerminal(self: T, node: TerminalNode) {
+    def visitTerminal(self: T, node: TerminalNode) -> None:
         for listener in listeners:
             listener.visitTerminal(node)
 
