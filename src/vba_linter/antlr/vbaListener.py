@@ -13,9 +13,14 @@ class VbaListener(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self.ts: CommonTokenStream
+        self.listeners: list = []
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
+
+    def add_listener(self: T, listener: ParseTreeListener) -> None:
+        self.listeners.append(listener)
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
