@@ -65,15 +65,17 @@ class VbaListener(ParseTreeListener):
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         tokens = VbaListener.get_tokens(ctx)
-        token = None
-        function_name = ""
+        token = tokens[3]
         if tokens[3].type == vbaLexer.IDENTIFIER:
             token = tokens[3]
         else:
             assert tokens[5].type == vbaLexer.IDENTIFIER
             token = tokens[5]
         if not VbaListener.is_pascal_case(token.text):
-            self.output.append((token.line, token.column + 2, "Wxxx", "name not Pascal"))
+            line = token.line
+            column = token.column
+            msg = "name not Pascal"
+            self.output.append((line, column + 2, "Wxxx", msg))
         child = ctx.getChild(0)
         tokens = VbaListener.get_tokens(child)
         tok = tokens[0]
@@ -84,7 +86,7 @@ class VbaListener(ParseTreeListener):
         else:
             self.output.append((tok.line, tok.column + 2,
                                     "Wxxx", "missing visibility"))
-    
+
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
         match = re.match(pattern, name)
