@@ -63,7 +63,10 @@ class VbaListener(ParseTreeListener):
                         output1 = (tok.line, tok.column + 2, "W221")
                         self.output.append(output1)
                 else:
-                    output1 = (target.line, target.column + 1, "R225")
+                    line = tok.line
+                    column = token.column
+                    msg = "missing space before '='"
+                    output1 = (line, column + 1, "R225", msg)
                     self.output.append(output1)
                 tok = self.ts.get(trailing_index)
                 if tok.type == vbaLexer.WS:
@@ -71,7 +74,10 @@ class VbaListener(ParseTreeListener):
                         output1 = (tok.line, tok.column + 2, "W221")
                         self.output.append(output1)
                 else:
-                    output1 = (target.line, target.column + 1, "R225")
+                    line = tok.line
+                    column = token.column
+                    msg = "missing space after '='"
+                    output1 = (line, column + 1, "R225", msg)
                     self.output.append(output1)
 
     def enterFunctionStmt(self: T,  # noqa: N802
