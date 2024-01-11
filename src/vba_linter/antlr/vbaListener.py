@@ -20,7 +20,7 @@ class VbaListener(ParseTreeListener):
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
 
-    def add_listener(self: T, listener: ParseTreeListener) -> None: 
+    def add_listener(self: T, listener: ParseTreeListener) -> None:
         self.listeners.append(listener)
 
     def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:  # noqa: 
