@@ -20,24 +20,24 @@ class VbaListener(ParseTreeListener):
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
 
-    def add_listener(self: T, listener: ParseTreeListener) -> None:
+    def add_listener(self: T, listener: ParseTreeListener) -> None: 
         self.listeners.append(listener)
 
-    def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:
+    def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:  # noqa: 
         for listener in self.listeners:
             listener.enterEveryRule(ctx)
             ctx.enterRule(listener)
 
-    def exitEveryRule(self: T, ctx: ParserRuleContext) -> None:
+    def exitEveryRule(self: T, ctx: ParserRuleContext) -> None:  # noqa: 
         for listener in self.listeners:
             ctx.exitRule(listener)
             listener.exitEveryRule(ctx)
 
-    def visitErrorNode(self: T, node: ErrorNode) -> None:
+    def visitErrorNode(self: T, node: ErrorNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitErrorNode(node)
 
-    def visitTerminal(self: T, node: TerminalNode) -> None:
+    def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitTerminal(node)
 
