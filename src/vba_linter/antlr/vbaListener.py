@@ -76,7 +76,7 @@ class VbaListener(ParseTreeListener):
             self.output.append((token.line, token.column + 2, "Wxxx", "name not Pascal"))
         child = ctx.getChild(0)
         tokens = VbaListener.get_tokens(child)
-            tok = tokens[0]
+        tok = tokens[0]
         if isinstance(child, vbaLexer.visibilityContext):
             if tok.text == "Public":
                 self.output.append((tok.line, tok.column + 2,
