@@ -46,7 +46,7 @@ class Linter:
             listener.set_token_stream(ts1)
             listener.listeners = dir.get_parser_rules()
             ParseTreeWalker.DEFAULT.walk(listener, program)
-            output.extend(listener.output)
+            output.extend(listener.get_output())
             output.sort()
         self.pretty = ts
         return output
