@@ -93,6 +93,7 @@ class VbaListener(ParseTreeListener):
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
+        child = ctx.getChild(0)
         tok = ctx.start
         if isinstance(child, vbaParser.VisibilityContext):
             if tok.text == "Public":
