@@ -1,5 +1,6 @@
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.config_helper import ConfigHelper
 from typing import TypeVar
 
 
