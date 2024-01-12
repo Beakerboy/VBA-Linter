@@ -1,8 +1,6 @@
 from antlr4 import ParseTreeListener, ParserRuleContext
-from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
-from typing import Type, TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+from typing import TypeVar
 
 
 T = TypeVar('T', bound='OptionalPublic')
