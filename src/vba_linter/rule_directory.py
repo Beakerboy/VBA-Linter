@@ -68,7 +68,7 @@ class RuleDirectory:
         return self._rules[rule_name]
 
     def get_parser_rules(self: T) -> List[ParseTreeListener]:
-        lst = list(self._parser_rules.items())
+        lst = list(self._parser_rules.values())
         return lst
 
     def get_loaded_rules(self: T) -> dict:
