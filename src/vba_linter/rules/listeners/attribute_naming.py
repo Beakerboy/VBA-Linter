@@ -1,22 +1,14 @@
-import re
 from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
-from typing import Type, TypeVar
+from typing import TypeVar
 
 
 T = TypeVar('T', bound='AttributeNaming')
 
 
 class AttributeNaming(ParseTreeListener):
-    def __init__(self: T) -> None:
-        super().__init__()
-        self.output: list = []
-
-    def set_token_stream(self: T, ts: CommonTokenStream) -> None:
-        self.ts = ts
-
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
         """
