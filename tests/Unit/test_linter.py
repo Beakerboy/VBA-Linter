@@ -2,6 +2,7 @@ import pytest
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
 from Unit.rule_stub import RuleStub
+from Unit.rules.rule_test_base import RuleTestBase
 
 
 def test_constructor() -> None:
@@ -13,7 +14,7 @@ def test_sort() -> None:
     """
     Test that the results are sorted by line, then char, type.
     """
-    path = 'tests/Files/project/all_errors.bas'
+    file_name = RuleTestBase.save_code("foo = 6")
     rule1 = RuleStub()
     rule1.set_name("E001")
     rule1.set_output([(1, 1, "E001"), (5, 5, "E001")])
@@ -28,7 +29,8 @@ def test_sort() -> None:
         (1, 4, "E002"), (5, 5, "E001")
     ]
     linter = Linter()
-    assert linter.lint(dir, path) == expected
+    assert linter.lint(dir, file_name) == expected
+    RuleTestBase.delete_code(file_name)
 
 
 def test_not_file() -> None:
