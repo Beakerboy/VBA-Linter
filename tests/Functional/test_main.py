@@ -104,11 +104,10 @@ expected = """\
 %s:12:1: W391 blank line at end of file
 21 Errors in 1 File
 """.replace("%s", full_path)  # noqa
-mocker.patch(
+    mocker.patch(
         "sys.argv",
         [
             "vba_linter.py",
-            "-x",
             "tests/Functional",
         ],
     )
