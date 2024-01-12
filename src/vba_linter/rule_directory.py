@@ -9,7 +9,7 @@ from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
-
+from vba_linter.rules.listeners.optional_public import OptionalPublic
 
 T = TypeVar('T', bound='RuleDirectory')
 
@@ -53,6 +53,11 @@ class RuleDirectory:
         if rule_name not in self._rules:
             return RuleBase()
         return self._rules[rule_name]
+
+    def get_parser_rules(self: T) -> list:
+        rules = []
+        rules.append(OptionalPublic())
+        return rules
 
     def get_loaded_rules(self: T) -> dict:
         return self._rules
