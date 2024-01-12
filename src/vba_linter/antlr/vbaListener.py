@@ -52,9 +52,6 @@ class VbaListener(ParseTreeListener):
         terminal_num = 0
         for tok in tokens:
             terminal_num += 1
-            if terminal_num == 1 and tok.type != vbaLexer.LET:
-                output = (tok.line, tok.column + 1, "Wxxx", "missing let")
-                self.output.append(output)
             if tok.type == vbaLexer.LET:
                 output = (tok.line, tok.column + 1, "Wxxx", "optional let")
                 self.output.append(output)
