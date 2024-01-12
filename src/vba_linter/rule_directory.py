@@ -1,4 +1,4 @@
-from typing import Dict, List, TypeVar
+from typing import Dict, TypeVar
 from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
@@ -24,10 +24,16 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
-        self._parser_rules: List[ParseTreeListener] = []
+        self._parser_rules: Dict[str, ParseTreeListener] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
+
+    def remove_rule(self: T, name: str) -> None:
+        if name in self._rules:
+            del self._rules[name]
+        elif name in self._parser_rules:
+            del self._parser_rules[name]
 
     def load_all_rules(self: T) -> None:
         e201 = TokenSequenceBase("E201",
@@ -49,7 +55,7 @@ class RuleDirectory:
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
-        self._parser_rules.extend([OptionalPublic(), MissingVisibility()])
+        self._parser_rules.update({'N100': OptionalPublic(), 'N101': MissingVisibility()})
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
