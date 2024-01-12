@@ -27,6 +27,7 @@ def main() -> None:
         elif args.ruleset == "default":
             dir.load_all_rules()
             dir.remove_rule("N100")
+            dir.remove_rule("N102")
         else:
             # check that file is yml
             # add rules
