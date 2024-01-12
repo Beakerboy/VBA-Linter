@@ -10,6 +10,7 @@ from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.listeners.optional_public import OptionalPublic
+from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 
 T = TypeVar('T', bound='RuleDirectory')
 
@@ -56,7 +57,7 @@ class RuleDirectory:
 
     def get_parser_rules(self: T) -> list:
         rules = []
-        rules.append(OptionalPublic())
+        rules.append(OptionalPublic(), MissingVisibility())
         return rules
 
     def get_loaded_rules(self: T) -> dict:
