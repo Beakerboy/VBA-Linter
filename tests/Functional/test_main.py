@@ -81,7 +81,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     assert pretty_file == pretty
     delete_code(file_name + ".pretty")
 
-expected = """\
+    expected = """\
 %s:1:51: E211 whitespace before '('
 %s:1:53: E201 Whitespace after '('
 %s:1:63: E203 Whitespace before ','
