@@ -10,10 +10,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-x", "--fix", action="store_true",
                         help="Fix whitespace errors.")
-    # parser.add_argument("ruleset", nargs='?', default='.',
-    #                     help="Configuration file of linting rules.")
     parser.add_argument("directory", default='.',
                         help="The source directory.")
+    parser.add_argument("ruleset", nargs='?', default='vba_lint_rules.yml',
+                        help="Configuration file of linting rules.")
     args = parser.parse_args()
     linter = Linter()
     path = Path(args.directory).resolve()
@@ -22,7 +22,12 @@ def main() -> None:
     num_errors = 0
     for file_name in file_list:
         dir = RuleDirectory()
-        dir.load_all_rules()
+        if args.ruleset == "all":
+            dir.load_all_rules()
+        else:
+            # check that file is yml
+            # add rules
+            ...
         results = linter.lint(dir, file_name)
         if len(results) > 0:
             full_results[file_name] = results
