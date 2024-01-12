@@ -57,7 +57,7 @@ class RuleDirectory:
 
     def get_parser_rules(self: T) -> list:
         rules = []
-        rules.append(OptionalPublic(), MissingVisibility())
+        rules.extend([OptionalPublic(), MissingVisibility()])
         return rules
 
     def get_loaded_rules(self: T) -> dict:
