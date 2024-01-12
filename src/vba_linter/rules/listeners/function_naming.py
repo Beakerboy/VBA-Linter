@@ -6,10 +6,10 @@ from typing import Type, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
-T = TypeVar('T', bound='AttributeNaming')
+T = TypeVar('T', bound='FunctionNaming')
 
 
-class AttributeNaming(ParseTreeListener):
+class FunctionNaming(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
