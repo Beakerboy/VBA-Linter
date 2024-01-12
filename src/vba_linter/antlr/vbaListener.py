@@ -84,27 +84,6 @@ class VbaListener(ParseTreeListener):
                     output = (line, column + 1, "R225", msg)
                     self.output.append(output)
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
-        child = ctx.getChild(0)
-        tok = ctx.start
-        if isinstance(child, vbaParser.VisibilityContext):
-            if tok.text == "Public":
-                self.output.append((tok.line, tok.column + 1,
-                                    "Wxxx", "optional public"))
-        else:
-            line = tok.line
-            column = tok.column
-            msg = "missing visibility"
-            self.output.append((line, column + 1, "Wxxx", msg))
-
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
         match = re.match(pattern, name)
