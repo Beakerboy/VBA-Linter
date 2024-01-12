@@ -1,4 +1,4 @@
-from typing import Dict, TypeVar
+from typing import Dict, List, TypeVar
 from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
@@ -67,7 +67,7 @@ class RuleDirectory:
             return RuleBase()
         return self._rules[rule_name]
 
-    def get_parser_rules(self: T) -> list:
+    def get_parser_rules(self: T) -> List[ParseTreeListener]:
         lst = list(self._parser_rules.items())
         return lst
 
