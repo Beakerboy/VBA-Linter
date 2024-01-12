@@ -24,7 +24,7 @@ def main() -> None:
         dir = RuleDirectory()
         if args.ruleset == "all":
             dir.load_all_rules()
-        elif args.ruleset == default:
+        elif args.ruleset == "default":
             dir.load_all_rules()
             dir.remove_rule("N100")
         else:
