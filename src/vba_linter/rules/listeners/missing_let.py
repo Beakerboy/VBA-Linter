@@ -1,9 +1,9 @@
-from antlr4 import ParseTreeListener, ParserRuleContext
-from antlr4_vba.vbaParser import vbaParser
+from antlr4 import ParseTreeListener
+from antlr4_vba.vbaParser import vbaLexer
 from typing import TypeVar
 
 
-T = TypeVar('T', bound='MissingVisibility')
+T = TypeVar('T', bound='MissingLet')
 
 
 class MissingLet(ParseTreeListener):
@@ -13,10 +13,9 @@ class MissingLet(ParseTreeListener):
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
-        tokens = VbaListener.get_tokens(ctx)
-        terminal_num = 0
-        for tok in tokens:
-            terminal_num += 1
-            if terminal_num == 1 and tok.type != vbaLexer.LET:
-                output = (tok.line, tok.column + 1, "Wxxx", "missing let")
-                self.output.append(output)
+        token = ctx.start
+        if token.type != vbaLexer.LET:
+            line = token.line
+            column = token.column
+            output = (line, column + 1, "Wxxx", "missing let")
+            self.output.append(output)
