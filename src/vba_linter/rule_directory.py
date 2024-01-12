@@ -55,7 +55,10 @@ class RuleDirectory:
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
-        self._parser_rules.update({'N100': OptionalPublic(), 'N101': MissingVisibility()})
+        self._parser_rules.update({
+            'N100': OptionalPublic(),
+            'N101': MissingVisibility()
+        })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
