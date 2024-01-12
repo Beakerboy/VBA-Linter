@@ -1,4 +1,5 @@
-from typing import Dict, TypeVar
+from typing import Dict, List, TypeVar
+from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.mixed_indent import MixedIndent
@@ -23,7 +24,7 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
-        self._parser_rules: List[antlr4.ParseTreeListener] = []
+        self._parser_rules: List[ParseTreeListener] = []
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
