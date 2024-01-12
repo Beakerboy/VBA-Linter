@@ -6,10 +6,10 @@ from antlr4_vba.vbaParser import vbaParser
 from typing import Type, TypeVar
 
 
-T = TypeVar('T', bound='VbaListener')
+T = TypeVar('T', bound='AttributeNaming')
 
 
-class VbaListener(ParseTreeListener):
+class AttributeNaming(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
@@ -65,41 +65,3 @@ class VbaListener(ParseTreeListener):
             column = token.column
             msg = "name not Pascal"
             self.output.append((line, column + 2, "Wxxx", msg))
-
-    @classmethod
-    def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
-        match = re.match(pattern, name)
-        if match:
-            return True
-        return False
-
-    @classmethod
-    def is_snake_case(cls: Type[T], name: str) -> bool:
-        pattern = '(^[a-z]{1}$)|([a-z]+(_[a-z]+)*$)'
-        return cls.text_matches(pattern, name)
-
-    @classmethod
-    def is_camel_case(cls: Type[T], name: str) -> bool:
-        """
-        Also known as lowerCamelCase.
-        """
-        pattern = '(^[a-z]{1}$)|([a-z]{2,}([a-zA-Z]([a-z])+)*$)'
-        return cls.text_matches(pattern, name)
-
-    @classmethod
-    def is_pascal_case(cls: Type[T], name: str) -> bool:
-        """
-        Also known as UpperCamelCase.
-        """
-        pattern = '(^[a-z]{1}$)|(([A-Z]([a-z])+)*$)'
-        return cls.text_matches(pattern, name)
-
-    @classmethod
-    def get_tokens(cls: Type[T], ctx: ParserRuleContext) -> list:
-        tokens = []
-        if isinstance(ctx, TerminalNodeImpl):
-            return [ctx.getSymbol()]
-        else:
-            for child in ctx.getChildren():
-                tokens.extend(cls.get_tokens(child))
-        return tokens
