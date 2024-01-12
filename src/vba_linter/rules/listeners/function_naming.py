@@ -1,8 +1,7 @@
 from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
-from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
-from typing import Type, TypeVar
+from typing import TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
