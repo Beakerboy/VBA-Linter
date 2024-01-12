@@ -9,6 +9,10 @@ T = TypeVar('T', bound='AttributeNaming')
 
 
 class AttributeNaming(ParseTreeListener):
+    def __init__(self: T) -> None:
+        super().__init__()
+        self.output: list = []
+
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
         """
