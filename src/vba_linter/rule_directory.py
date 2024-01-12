@@ -23,6 +23,7 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
+        self._parser_rules: List[antlr4.ParseTreeListener] = []
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
@@ -47,6 +48,7 @@ class RuleDirectory:
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
+        self._parser_rules.extend([OptionalPublic(), MissingVisibility()])
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
@@ -56,9 +58,7 @@ class RuleDirectory:
         return self._rules[rule_name]
 
     def get_parser_rules(self: T) -> list:
-        rules = []
-        rules.extend([OptionalPublic(), MissingVisibility()])
-        return rules
+        return self._parser_rules
 
     def get_loaded_rules(self: T) -> dict:
         return self._rules
