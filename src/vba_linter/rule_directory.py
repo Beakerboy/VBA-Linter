@@ -67,7 +67,7 @@ class RuleDirectory:
             return RuleBase()
         return self._rules[rule_name]
 
-    def get_parser_rules(self: T) -> list:
+    def get_parser_rules(self: T) -> dict:
         return self._parser_rules
 
     def get_loaded_rules(self: T) -> dict:
