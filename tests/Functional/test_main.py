@@ -67,8 +67,8 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:6:12: R225 missing space before '='
 %s:6:13: R225 missing space after '='
 %s:7:5: Wxxx optional let
-%s:7:16: W221
-%s:7:19: W211
+%s:7:16: W221 multiple spaces before operator
+%s:7:19: W222 multiple spaces after operator
 %s:8:12: W500 incorrect line ending
 %s:10:1: Wxxx missing visibility
 %s:12:1: W391 blank line at end of file
