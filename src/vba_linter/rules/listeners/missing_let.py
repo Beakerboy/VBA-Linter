@@ -1,5 +1,6 @@
 from antlr4 import ParseTreeListener
-from antlr4_vba.vbaParser import vbaLexer
+from antlr4_vba.vbaLexer import vbaLexer
+from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 
 
