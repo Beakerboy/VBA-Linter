@@ -109,9 +109,9 @@ class VbaListener(ParseTreeListener):
                                     "Wxxx", "optional public"))
         else:
             line = tok.line
-            column = token.column
+            column = tok.column
             msg = "missing visibility"
-            self.output.append((line, column + 2, "Wxxx", msg))
+            self.output.append((line, column + 1, "Wxxx", msg))
 
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
