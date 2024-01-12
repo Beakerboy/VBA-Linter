@@ -23,9 +23,10 @@ class VbaListener(ParseTreeListener):
     def add_listener(self: T, listener: ParseTreeListener) -> None:
         self.listeners.append(listener)
 
-    def get_output(self: T) -> None:  # noqa: 
+    def get_output(self: T) -> list:
         for listener in self.listeners:
             self.output.extend(listener.output)
+        return self.output
 
     def enterEveryRule(self: T, ctx: ParserRuleContext) -> None:  # noqa: 
         for listener in self.listeners:
