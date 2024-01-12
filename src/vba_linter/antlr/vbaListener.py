@@ -40,6 +40,7 @@ class VbaListener(ParseTreeListener):
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitTerminal(node)
+            self.output.extend(listener.output)
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
