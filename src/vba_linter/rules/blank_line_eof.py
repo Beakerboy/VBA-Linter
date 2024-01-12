@@ -24,4 +24,5 @@ class BlankLineEof(RuleBase):
             num_nl = len(newline_list)
             if num_nl > 1:
                 output = [(final_token.line + num_nl - 1, 1, "W391")]
+                final_token.text = "\r\n"
         return output

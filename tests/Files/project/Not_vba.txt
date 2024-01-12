@@ -1,3 +1,0 @@
-<?php
-this better not be opened
-?>

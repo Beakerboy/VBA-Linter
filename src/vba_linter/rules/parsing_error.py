@@ -10,14 +10,18 @@ T = TypeVar('T', bound='ParsingError')
 
 
 class ParsingError(RuleBase):
+    def __init__(self: T) -> None:
+        self.program = None
+        self.parser: vbaParser
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         parser = vbaParser(ts)
         parser.removeErrorListeners()
         parser.addErrorListener(ThrowingErrorListener())
+        self.parser = parser
         try:
-            parser.startRule()
+            self.program = parser.startRule()
         except ThrownException as ex:
             return [(ex.line, ex.column, "E999", ex.msg)]
         return output

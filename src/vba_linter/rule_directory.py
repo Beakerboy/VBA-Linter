@@ -1,4 +1,5 @@
-from typing import Dict, TypeVar
+from typing import Dict, List, TypeVar
+from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.mixed_indent import MixedIndent
@@ -9,6 +10,9 @@ from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
+from vba_linter.rules.listeners.optional_public import OptionalPublic
+from vba_linter.rules.listeners.missing_visibility import MissingVisibility
+from vba_linter.rules.listeners.missing_let import MissingLet
 
 
 T = TypeVar('T', bound='RuleDirectory')
@@ -22,9 +26,16 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
+        self._parser_rules: Dict[str, ParseTreeListener] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
         self._rules[rule.get_rule_name()] = rule
+
+    def remove_rule(self: T, name: str) -> None:
+        if name in self._rules:
+            del self._rules[name]
+        elif name in self._parser_rules:
+            del self._parser_rules[name]
 
     def load_all_rules(self: T) -> None:
         e201 = TokenSequenceBase("E201",
@@ -46,11 +57,22 @@ class RuleDirectory:
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
+        self._parser_rules.update({
+            'N100': OptionalPublic(),
+            'N101': MissingVisibility(),
+            'N102': MissingLet()
+        })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "E999":
             return ParsingError()
+        if rule_name not in self._rules:
+            return RuleBase()
         return self._rules[rule_name]
+
+    def get_parser_rules(self: T) -> List[ParseTreeListener]:
+        lst = list(self._parser_rules.values())
+        return lst
 
     def get_loaded_rules(self: T) -> dict:
         return self._rules

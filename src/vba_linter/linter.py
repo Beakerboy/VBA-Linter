@@ -1,9 +1,9 @@
-import re
-from antlr4 import CommonTokenStream, FileStream, Token
+from antlr4 import CommonTokenStream, FileStream, ParseTreeWalker, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
+from vba_linter.antlr.vbaListener import VbaListener
 from pathlib import Path
-from typing import Type, TypeVar
+from typing import TypeVar
 from vba_linter.rule_directory import RuleDirectory
 from vba_linter.rules.parsing_error import ParsingError
 
@@ -15,7 +15,7 @@ class Linter:
     # class default constructor
     def __init__(self: T) -> None:
         # Read config file and set parameters for rules
-        pass
+        self.pretty: CommonTokenStream
 
     def get_lexer(self: T, file: str) -> vbaLexer:
         if Path(file).exists():
@@ -29,7 +29,9 @@ class Linter:
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
-        output = e999.test(CommonTokenStream(lexer))
+        ts1 = CommonTokenStream(lexer)
+        output = e999.test(ts1)
+        program = e999.program
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
         token = ts.LT(1)
@@ -40,25 +42,21 @@ class Linter:
                     output.extend(rule.test(ts))
                 ts.consume()
                 token = ts.LT(1)
+            listener = VbaListener()
+            listener.set_token_stream(ts1)
+            listener.listeners = dir.get_parser_rules()
+            ParseTreeWalker.DEFAULT.walk(listener, program)
+            output.extend(listener.get_output())
             output.sort()
+        self.pretty = ts
         return output
 
-    @classmethod
-    def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
-        match = re.match(pattern, name)
-        if match:
-            return True
-        return False
-
-    @classmethod
-    def is_snake_case(cls: Type[T], name: str) -> bool:
-        pattern = '(^[a-z]{1}$)|([a-z]+(_[a-z]+)*$)'
-        return cls.text_matches(pattern, name)
-
-    @classmethod
-    def is_camel_case(cls: Type[T], name: str) -> bool:
-        """
-        Also known as lowerCamelCase.
-        """
-        pattern = '(^[a-z]{1}$)|([a-z]{2,}([a-zA-Z]([a-z])+)*$)'
-        return cls.text_matches(pattern, name)
+    def get_pretty_code(self: T) -> str:
+        code = ""
+        size = len(self.pretty.tokens)
+        i = 0
+        for token in self.pretty.tokens:
+            if i + 1 < size:
+                code += token.text
+            i += 1
+        return code

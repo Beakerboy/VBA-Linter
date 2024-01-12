@@ -8,10 +8,12 @@ from vba_linter.rule_directory import RuleDirectory
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    # parser.add_argument("ruleset", nargs='?', default='.',
-    #                     help="Configuration file of linting rules.")
+    parser.add_argument("-x", "--fix", action="store_true",
+                        help="Fix whitespace errors.")
     parser.add_argument("directory", default='.',
                         help="The source directory.")
+    parser.add_argument("ruleset", nargs='?', default='default',
+                        help="Configuration file of linting rules.")
     args = parser.parse_args()
     linter = Linter()
     path = Path(args.directory).resolve()
@@ -20,10 +22,24 @@ def main() -> None:
     num_errors = 0
     for file_name in file_list:
         dir = RuleDirectory()
-        dir.load_all_rules()
+        if args.ruleset == "all":
+            dir.load_all_rules()
+        elif args.ruleset == "default":
+            dir.load_all_rules()
+            dir.remove_rule("N100")
+            dir.remove_rule("N102")
+        else:
+            # check that file is yml
+            # add rules
+            ...
         results = linter.lint(dir, file_name)
         if len(results) > 0:
             full_results[file_name] = results
+        if args.fix:
+            pretty_code = linter.get_pretty_code()
+            p = Path(str(file_name) + ".pretty")
+            with p.open(mode='a') as fi:
+                fi.write(pretty_code)
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:

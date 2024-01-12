@@ -2,6 +2,7 @@ import pytest
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
 from Unit.rule_stub import RuleStub
+from Unit.rules.rule_test_base import RuleTestBase
 
 
 def test_constructor() -> None:
@@ -13,7 +14,7 @@ def test_sort() -> None:
     """
     Test that the results are sorted by line, then char, type.
     """
-    path = 'tests/Files/project/all_errors.bas'
+    file_name = RuleTestBase.save_code("Sub foo()\r\nEnd Sub\r\n")
     rule1 = RuleStub()
     rule1.set_name("E001")
     rule1.set_output([(1, 1, "E001"), (5, 5, "E001")])
@@ -28,7 +29,8 @@ def test_sort() -> None:
         (1, 4, "E002"), (5, 5, "E001")
     ]
     linter = Linter()
-    assert linter.lint(dir, path) == expected
+    assert linter.lint(dir, file_name) == expected
+    RuleTestBase.delete_code(file_name)
 
 
 def test_not_file() -> None:
@@ -36,23 +38,3 @@ def test_not_file() -> None:
     dir = RuleDirectory()
     with pytest.raises(Exception):
         linter.lint(dir, "foo.txt")
-
-
-name_formats = [
-    ['snake_case', [True, False]],
-    ['camelCase', [False, True]],
-    ['PascalCase', [False, False]],
-    ['hUngarian', [False, False]],
-    ['kebab-case', [False, False]],
-    ['i', [True, True]]
-]
-
-
-@pytest.mark.parametrize("name, expected", name_formats)
-def test_snake_case(name: str, expected: list) -> None:
-    assert Linter.is_snake_case(name) == expected[0]
-
-
-@pytest.mark.parametrize("name, expected", name_formats)
-def test_camel_case(name: str, expected: list) -> None:
-    assert Linter.is_camel_case(name) == expected[1]

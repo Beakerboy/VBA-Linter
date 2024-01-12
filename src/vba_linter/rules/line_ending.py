@@ -13,6 +13,7 @@ class LineEnding(RuleBase):
         self._line_ending = '\r\n'
         self._allowed_blank_lines = 2
         self._message = 'incorrect line ending'
+        self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
@@ -26,6 +27,9 @@ class LineEnding(RuleBase):
                     output.append((token.line + i, column, "W500"))
                 if i > self._allowed_blank_lines:
                     output.append((token.line + i, -1, "W500"))
+            num = min([num_nl, self._allowed_blank_lines + 1])
+            new_text = self._line_ending * num
+            token.text = new_text
         return output
 
     def create_message(self: T, data: tuple) -> str:
