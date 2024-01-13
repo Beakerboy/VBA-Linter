@@ -131,7 +131,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         '    bar_val = 7\r\n'
         'End Function\r\n' +
         '\r\n' +
-        'Sub Open()\r\n' +
+        'Private Sub Open()\r\n' +
         'End Sub\r\n'
     )
     file_name = save_code(best_practice)
