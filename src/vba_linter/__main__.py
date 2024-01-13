@@ -10,8 +10,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-x", "--fix", action="store_true",
                         help="Fix whitespace errors.")
+    parser.add_argument("-q", "--quiet", action="store_true",
+                        help="Do not print failures.")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="Display more information.")
+    msg = "Use the exit status code 0 even if there are errors."
+    parser.add_argument("--exit-zero", action="store_true",
+                        help=msg)
     parser.add_argument("directory", default='.',
                         help="The source directory.")
     parser.add_argument("ruleset", nargs='?', default='default',
@@ -57,7 +62,7 @@ def main() -> None:
             file=sys.stderr
         )
 
-    if num_errors > 0:
+    if num_errors > 0 and not args.exit_zero:
         exit_code = 1
         sys.exit(exit_code)
 
