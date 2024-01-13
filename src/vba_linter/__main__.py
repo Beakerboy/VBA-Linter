@@ -57,8 +57,9 @@ def main() -> None:
             file=sys.stderr
         )
 
-    exit_code = 1 if num_errors > 0 else 0
-    sys.exit(exit_code)
+    if num_errors > 0:
+        exit_code = 1 
+        sys.exit(exit_code)
 
 
 def find_files(path: Path) -> list:
