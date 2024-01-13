@@ -58,7 +58,7 @@ def main() -> None:
         )
 
     if num_errors > 0:
-        exit_code = 1 
+        exit_code = 1
         sys.exit(exit_code)
 
 
