@@ -118,6 +118,39 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     delete_code(file_name)
 
 
+def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    function = 'Supercalifragilisticexpialidocious'
+    best_practice = (
+        'Public Function ' + function +
+        ' ( atrocious ,  precocious, indubitably ) \r\n' +
+        '\r\n' +
+        '\r\n' +
+        'I = (2 + 1)\r\n' +
+        '    foo_val=6\r\n'
+        '    Let BarVal  =  7\r\n'
+        'End Function\r\n' +
+        '\r\n' +
+        'Sub O()\r\n' +
+        'End Sub\r\n'
+    )
+    file_name = save_code(best_practice)
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "-x",
+            "tests/Functional",
+        ],
+    )
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    f = open(file_name + ".pretty", "r", newline='')
+    pretty_file = f.read()
+    assert pretty_file == best_practice
+    delete_code(file_name + ".pretty")
+    delete_code(file_name)
+
+
 def save_code(code: str) -> str:
     file_name = create_filename(ext='.bas')
     p = Path(file_name)
