@@ -20,4 +20,4 @@ class MissingModuleAttributes(ParseTreeListener):
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         if not self._found:
-            self.output = [(1, 1, "Wxxx", "missing module attributes")]
+            self.output = [(1, 1, "N104", "missing module attributes")]
