@@ -57,10 +57,10 @@ pretty = (
     'Sub O()\r\n' +
     'End Sub\r\n'
 )
-file_name = save_code(worst_practice)
 
 
 def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    file_name = save_code(worst_practice)
     mocker.patch(
         "sys.argv",
         [
@@ -138,12 +138,14 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == expected
+    delete_code(file_name)
 
 
 def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     """
     Ensure that -q still fails, but has no output.
     """
+    file_name = save_code(worst_practice)
     mocker.patch(
         "sys.argv",
         [
@@ -157,6 +159,7 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == ""
+    delete_code(file_name)
 
 
 def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
@@ -164,6 +167,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     Ensure that --exit-zero returns the same output, but does not trigger
     an exception
     """
+    file_name = save_code(worst_practice)
     mocker.patch(
         "sys.argv",
         [
