@@ -52,7 +52,7 @@ def main() -> None:
         num_errors += len(file_results)
         for error in file_results:
             msg = dir.get_rule(error[2]).create_message(error)
-            output += str(file_name) + msg
+            output += str(file_name) + msg + "\n"
     num_files = len(file_list)
     plural_e = "" if num_errors < 2 else "s"
     plural_f = "" if num_files < 2 else "s"
