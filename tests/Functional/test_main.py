@@ -124,16 +124,15 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'Attribute VB_Name = "Foo"\r\n' +
         'Option Explicit\r\n' +
         '\r\n' +
-        'Public Function ' + function +
-        ' ( atrocious ,  precocious, indubitably ) \r\n' +
+        'Public Function Foo(val1, val2, val3)\r\n' +
         '\r\n' +
         '\r\n' +
-        'I = (2 + 1)\r\n' +
-        '    foo_val=6\r\n'
-        '    Let BarVal  =  7\r\n'
+        '    i = (2 + 1)\r\n' +
+        '    foo_val = 6\r\n'
+        '    bar_val = 7\r\n'
         'End Function\r\n' +
         '\r\n' +
-        'Sub O()\r\n' +
+        'Sub Open()\r\n' +
         'End Sub\r\n'
     )
     file_name = save_code(best_practice)
