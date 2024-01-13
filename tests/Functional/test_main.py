@@ -74,7 +74,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:8:12: W500 incorrect line ending
 %s:10:1: Wxxx missing visibility
 %s:12:1: W391 blank line at end of file
-21 Errors in 1 File
+22 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
     f = open(file_name + ".pretty", "r", newline='')
@@ -83,6 +83,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     delete_code(file_name + ".pretty")
 
     expected = """\
+%s:1:1: N104 missing module attributes
 %s:1:51: E211 whitespace before '('
 %s:1:53: E201 Whitespace after '('
 %s:1:63: E203 Whitespace before ','
@@ -101,7 +102,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:8:12: W500 incorrect line ending
 %s:10:1: Wxxx missing visibility
 %s:12:1: W391 blank line at end of file
-18 Errors in 1 File
+19 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
