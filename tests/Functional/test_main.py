@@ -7,6 +7,27 @@ from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
 
 
+def save_code(code: str) -> str:
+    file_name = create_filename(ext='.bas')
+    p = Path(file_name)
+    with p.open(mode='a') as fi:
+        fi.write(code)
+    return file_name
+
+
+def create_filename(num: int = 16, ext: str = ".txt") -> str:
+    chars = ""
+    for i in range(num):
+        chars += random.choice(string.ascii_lowercase)
+    file_name = chars + ext
+    return "tests/Functional/" + file_name
+
+
+def delete_code(file_name: str) -> None:
+    p = Path(file_name)
+    p.unlink()
+
+
 function = 'Supercalifragilisticexpialidocious'
 worst_practice = (
     'Public Function ' + function +
@@ -37,6 +58,7 @@ pretty = (
     'End Sub\r\n'
 )
 file_name = save_code(worst_practice)
+
 
 def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     mocker.patch(
@@ -216,24 +238,3 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     assert pretty_file == best_practice
     delete_code(file_name + ".pretty")
     delete_code(file_name)
-
-
-def save_code(code: str) -> str:
-    file_name = create_filename(ext='.bas')
-    p = Path(file_name)
-    with p.open(mode='a') as fi:
-        fi.write(code)
-    return file_name
-
-
-def create_filename(num: int = 16, ext: str = ".txt") -> str:
-    chars = ""
-    for i in range(num):
-        chars += random.choice(string.ascii_lowercase)
-    file_name = chars + ext
-    return "tests/Functional/" + file_name
-
-
-def delete_code(file_name: str) -> None:
-    p = Path(file_name)
-    p.unlink()
