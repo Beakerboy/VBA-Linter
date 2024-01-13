@@ -120,6 +120,9 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 
 def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    """
+    Ensure that -q still fails, but has no output.
+    """
     mocker.patch(
         "sys.argv",
         [
@@ -133,8 +136,13 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == ""
-    
-def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+
+
+def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    """
+    Ensure that --exit-zero returns the same output, but does not trigger
+    an exception
+    """
     mocker.patch(
         "sys.argv",
         [
