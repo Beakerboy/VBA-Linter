@@ -202,6 +202,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 22 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     assert captured.err == expected
+    delete_code(file_name)
 
 
 def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
