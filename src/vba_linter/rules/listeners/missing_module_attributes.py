@@ -1,4 +1,4 @@
-from antlr4 import ParseTreeListener, ParserRuleContext, TerminalNode
+from antlr4 import ParseTreeListener, TerminalNode
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 
@@ -11,8 +11,11 @@ class MissingModuleAttributes(ParseTreeListener):
         super().__init__()
         self.output: list = []
         self._found = False
-    def enterModuleAttributes(self: T,  # noqa: N802
-                            ctx: vbaParser.ModuleAttributesContext) -> None:
+
+    def enterModuleAttributes(  # noqa: N802
+            self: T,
+            ctx: vbaParser.ModuleAttributesContext
+    ) -> None:
         self._found = True
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
