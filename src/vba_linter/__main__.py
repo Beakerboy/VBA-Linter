@@ -10,6 +10,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-x", "--fix", action="store_true",
                         help="Fix whitespace errors.")
+    parser.add_argument("-q", "--quiet", action="store_true",
+                        help="Do not print failures.")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Display more information.")
+    msg = "Use the exit status code 0 even if there are errors."
+    parser.add_argument("--exit-zero", action="store_true",
+                        help=msg)
     parser.add_argument("directory", default='.',
                         help="The source directory.")
     parser.add_argument("ruleset", nargs='?', default='default',
@@ -40,22 +47,24 @@ def main() -> None:
             p = Path(str(file_name) + ".pretty")
             with p.open(mode='a') as fi:
                 fi.write(pretty_code)
+    output = ""
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:
             msg = dir.get_rule(error[2]).create_message(error)
-            print(str(file_name) + msg, file=sys.stderr)
+            output += str(file_name) + msg + "\n"
     num_files = len(file_list)
     plural_e = "" if num_errors < 2 else "s"
     plural_f = "" if num_files < 2 else "s"
     data = (num_errors, plural_e, num_files, plural_f)
-    print(
-        "%s Error%s in %s File%s" % data,
-        file=sys.stderr
-    )
+    if num_errors > 0 or args.verbose:
+        output += "%s Error%s in %s File%s" % data
 
-    exit_code = 1 if num_errors > 0 else 0
-    sys.exit(exit_code)
+    if not args.quiet and output != "":
+        print(output, file=sys.stderr)
+    if num_errors > 0 and not args.exit_zero:
+        exit_code = 1
+        sys.exit(exit_code)
 
 
 def find_files(path: Path) -> list:
