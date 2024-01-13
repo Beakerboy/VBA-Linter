@@ -142,6 +142,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
             "tests/Functional",
         ],
     )
+    main()
     captured = capsys.readouterr()
     assert captured.err == ""
     f = open(file_name + ".pretty", "r", newline='')
