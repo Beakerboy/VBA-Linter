@@ -121,7 +121,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     function = 'Supercalifragilisticexpialidocious'
     best_practice = (
-        'Attribute VB_Name = "Foo\r\n' +
+        'Attribute VB_Name = "Foo"\r\n' +
         'Option Explicit\r\n' +
         '\r\n' +
         'Public Function ' + function +
