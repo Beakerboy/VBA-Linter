@@ -10,6 +10,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-x", "--fix", action="store_true",
                         help="Fix whitespace errors.")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Display more information.")
     parser.add_argument("directory", default='.',
                         help="The source directory.")
     parser.add_argument("ruleset", nargs='?', default='default',
@@ -49,10 +51,11 @@ def main() -> None:
     plural_e = "" if num_errors < 2 else "s"
     plural_f = "" if num_files < 2 else "s"
     data = (num_errors, plural_e, num_files, plural_f)
-    print(
-        "%s Error%s in %s File%s" % data,
-        file=sys.stderr
-    )
+    if num_errors > 0 or args.verbose:
+        print(
+            "%s Error%s in %s File%s" % data,
+            file=sys.stderr
+        )
 
     exit_code = 1 if num_errors > 0 else 0
     sys.exit(exit_code)
