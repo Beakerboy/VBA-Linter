@@ -9,10 +9,12 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 100 Character errors
 * 110 Whitespace characters between keywords (x>1)
 * 111 Tabs between keywords
-* 120 Whitespace characters before '('
-* 121 Tabs before '('
-* 122 Whitespace characters after '('
-* 123 Tabs after '('
+* 120 Missing whitespace before '('
+* 121 Excess whitespace before '('
+* 122 Tabs before '('
+* 123 Missing whitespace after '('
+* 124 Excess whitespace after '('
+* 125 Tabs after '('
 * 130 Whitespace characters before ')'
 * 131 Tabs before ')'
 * 132 Whitespace characters after ')'
