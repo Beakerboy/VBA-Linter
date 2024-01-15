@@ -103,5 +103,11 @@ class RuleDirectory:
             str(i),
             [vbaLexer.WS, symbol], 0,
             "Missing whitespace before " + name)
+        i += 1
+        rules[str(i)] = TokenSequenceBase(
+            str(i),
+            [vbaLexer.WS, symbol], 0,
+            "Excess whitespace before " + name)
+        
         
         
