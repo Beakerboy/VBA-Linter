@@ -54,8 +54,7 @@ class TokenSequenceBase(RuleBase):
         name = self._rule_name
         return [(line, column + 1, name)]
 
-    @classmethod
-    def match(cls: Type[T], sequence: list, signature: list) -> bool:
+    def match(self: T, sequence: list, signature: list) -> bool:
         """
         Compare the two lists to see if they match.
         """
