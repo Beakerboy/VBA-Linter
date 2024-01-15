@@ -96,13 +96,35 @@ class RuleDirectory:
     def get_loaded_rules(self: T) -> dict:
         return self._rules
 
-    def _make_rules(self: T, symbol: list, name: str, index: int) -> dict:
+    def _make_rules(self: T, symbol: list, index: int) -> dict:
         rules = {}
         i = 10 * i + 120
-        rules[str(i)] = TokenSequenceBase(
-            str(i),
-            [vbaLexer.WS, symbol], 0,
-            "Missing whitespace before " + name)
+        tokens = symbol[0]
+        name = symbol[1]
+        number = symbol[2]
+        # Currently only worrying about 0 or 1
+        if number[0] == 0:
+            i += 1
+            rules[str(i)] = TokenSequenceBase(
+                str(i),
+                [vbaLexer.WS, tokens], 0,
+                "Excess whitespace before " + name)
+        elif number[0] == 1:
+            rules[str(i)] = TokenSequenceMismatch(
+                str(i),
+                [vbaLexer.WS, tokens], 0,
+                "Missing whitespace before " + name)
+            i += 1
+            # check that tokens match and text matches
+        i += 1
+        # check if preceeding whitespace contains tabs.
+        i += 1
+        if number[1] == 1:
+            rules[str(i)] = TokenSequenceMismatch(
+                str(i),
+                [tokens, vbaLexer.WS], 1,
+                "Missing whitespace after " + name)
+            
         i += 1
         rules[str(i)] = TokenSequenceBase(
             str(i),
