@@ -40,6 +40,14 @@ class RuleDirectory:
             del self._parser_rules[name]
 
     def load_all_rules(self: T) -> None:
+        symbols = [
+            vbaLexer.LPAREN, vbaLexer.RPAREN,
+            vbaLexer.T__0, vbaLexer.EQ,
+            vbaLexer.ASSIGN,
+            [
+                vbaLexer.PLUS
+            ]
+        ]
         e201 = TokenSequenceBase("E201",
                                  [vbaLexer.LPAREN, vbaLexer.WS], 1,
                                  "Whitespace after '('")
