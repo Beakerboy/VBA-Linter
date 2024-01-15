@@ -41,13 +41,21 @@ class RuleDirectory:
 
     def load_all_rules(self: T) -> None:
         symbols = [
-            vbaLexer.LPAREN, vbaLexer.RPAREN,
-            vbaLexer.T__0, vbaLexer.EQ,
-            vbaLexer.ASSIGN,
-            [
-                vbaLexer.PLUS
-            ]
+            [[vbaLexer.LPAREN], "("],
+            [[vbaLexer.RPAREN], ")"],
+            [[vbaLexer.T__0], ','],
+            [[vbaLexer.EQ], '='],
+            [[vbaLexer.ASSIGN], ':='],
+            [[
+                vbaLexer.PLUS,
+                vbaLexer.MINUS
+            ], 'operator']
         ]
+        i = 1
+        for symbol in symbols:
+            rules.extend(self._make_rules(symbol), i)
+            i += 1
+
         e201 = TokenSequenceBase("E201",
                                  [vbaLexer.LPAREN, vbaLexer.WS], 1,
                                  "Whitespace after '('")
@@ -87,3 +95,13 @@ class RuleDirectory:
 
     def get_loaded_rules(self: T) -> dict:
         return self._rules
+
+    def _make_rules(self: T, symbol: list, name: str, index: int) -> dict:
+        rules = {}
+        i = 10 * i + 120
+        rules[str(i)] = TokenSequenceBase(
+            str(i),
+            [vbaLexer.WS, symbol], 0,
+            "Missing whitespace before " + name)
+        
+        
