@@ -43,6 +43,7 @@ class Linter:
                     output.extend(rule.test(ts))
                 ts.consume()
                 token = ts.LT(1)
+                assert token is not None
             listener = VbaListener()
             listener.set_token_stream(ts1)
             listener.listeners = dir.get_parser_rules()
