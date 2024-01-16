@@ -16,7 +16,7 @@ class TokenSequenceMismatch(RuleBase):
         """
         Compare the two lists to see if they match.
         """
-        return = True
+        result = True
         for i in range(len(sequence)):
             if i != self._target:
                 result = result and sequence[i] == signature[i]
