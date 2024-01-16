@@ -48,7 +48,3 @@ pythonpath = "src:tests"
 testpaths = [
     "tests",
 ]
-
-[tool.mypy]
-show_error_codes = true
-mypy_path = "./stubs"
