@@ -54,7 +54,7 @@ class RuleDirectory:
         ]
         i = 1
         for symbol in symbols:
-            self._rules.extend(self._make_rules(symbol, i)(
+            self._rules.extend(self._make_rules(symbol, i))
             i += 1
 
         e201 = TokenSequenceBase("E201",
