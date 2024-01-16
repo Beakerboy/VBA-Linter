@@ -6,6 +6,7 @@ from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
+from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
