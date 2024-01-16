@@ -1,6 +1,6 @@
 from antlr4 import CommonTokenStream, Token
 from vba_linter.rules.rule_base import RuleBase
-from typing import List, Tuple, Type, TypeVar, Union
+from typing import List, Tuple, TypeVar, Union
 
 
 T = TypeVar('T', bound='TokenSequenceBase')
