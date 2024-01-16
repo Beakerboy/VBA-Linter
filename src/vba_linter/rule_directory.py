@@ -108,12 +108,12 @@ class RuleDirectory:
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
-                [vbaLexer.WS, tokens], 0,
+                ([vbaLexer.WS], tokens), 0,
                 "Excess whitespace before " + name)
         elif number[0] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
-                [vbaLexer.WS, tokens], 0,
+                ([vbaLexer.WS], tokens), 0,
                 "Missing whitespace before " + name)
             i += 1
             # check that tokens match and text matches
@@ -129,5 +129,5 @@ class RuleDirectory:
         i += 1
         rules[str(i)] = TokenSequenceBase(
             str(i),
-            [vbaLexer.WS, symbol], 0,
+            ([vbaLexer.WS], symbol), 0,
             "Excess whitespace before " + name)
