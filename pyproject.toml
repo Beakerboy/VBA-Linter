@@ -25,13 +25,13 @@ dependencies = [
 [project.optional-dependencies]
 tests = [
   'coveralls',
+  'flake8-annotations'
   'mypy',
+  'pep8-naming',
   'pytest',
   'pytest-cov',
   'pytest-mock',
   'types-antlr4-python3-runtime',
-  'pep8-naming',
-  'flake8-annotations'
 ]
 [project.urls]
 "Homepage" = "https://github.com/Beakerboy/VBA-Linter"
