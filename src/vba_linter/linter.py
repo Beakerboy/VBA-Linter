@@ -31,11 +31,12 @@ class Linter:
         e999 = ParsingError()
         ts1 = CommonTokenStream(lexer)
         output = e999.test(ts1)
-        program = e999.program
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
-        token = ts.LT(1)
         if output == []:
+            program = e999.program
+            token = ts.LT(1)
+            assert token is not None
             while not token.type == Token.EOF:
                 for key in rules:
                     rule = rules[key]
