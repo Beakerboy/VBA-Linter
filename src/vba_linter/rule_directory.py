@@ -99,7 +99,7 @@ class RuleDirectory:
 
     def _make_rules(self: T, symbol: list, index: int) -> dict:
         rules = {}
-        i = 10 * i + 120
+        i = 10 * index + 120
         tokens = symbol[0]
         name = symbol[1]
         number = symbol[2]
@@ -125,7 +125,7 @@ class RuleDirectory:
                 str(i),
                 [tokens, vbaLexer.WS], 1,
                 "Missing whitespace after " + name)
-            
+
         i += 1
         rules[str(i)] = TokenSequenceBase(
             str(i),
