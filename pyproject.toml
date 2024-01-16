@@ -24,11 +24,12 @@ dependencies = [
 ]
 [project.optional-dependencies]
 tests = [
+  'coveralls',
   'mypy',
   'pytest',
   'pytest-cov',
   'pytest-mock',
-  'coveralls',
+  'types-antlr4-python3-runtime',
   'pep8-naming',
   'flake8-annotations'
 ]
