@@ -98,7 +98,7 @@ class RuleDirectory:
         return self._rules
 
     def _make_rules(self: T, symbol: list, index: int) -> dict:
-        rules = {}
+        rules Dict[str, RulesBase] = {}
         i = 10 * index + 120
         tokens = symbol[0]
         name = symbol[1]
