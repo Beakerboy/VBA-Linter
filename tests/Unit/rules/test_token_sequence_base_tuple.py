@@ -1,7 +1,7 @@
 import pytest
 from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.token_sequence_base import ToeknSequenceBase
+from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.rule_base import RuleBase
 
 
