@@ -53,9 +53,6 @@ class RuleDirectory:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
 
-        e201 = TokenSequenceBase("E201",
-                                 [vbaLexer.LPAREN, vbaLexer.WS], 1,
-                                 "Whitespace after '('")
         e202 = TokenSequenceBase("E202",
                                  [vbaLexer.WS, vbaLexer.RPAREN], 0,
                                  "Whitespace before ')'")
