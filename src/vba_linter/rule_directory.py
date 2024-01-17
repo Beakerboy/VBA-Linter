@@ -131,3 +131,4 @@ class RuleDirectory:
             str(i),
             ([vbaLexer.WS], symbol), 0,
             "Excess whitespace before " + name)
+        return rules
