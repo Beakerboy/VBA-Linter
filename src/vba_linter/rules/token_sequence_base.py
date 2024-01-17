@@ -43,7 +43,7 @@ class TokenSequenceBase(RuleBase):
                 if tok_type == Token.EOF:
                     found_eof = True
                 token_types.append(tok_type)
-            if TokenSequenceBase.match(token_types, sequence):
+            if self.match(token_types, sequence):
                 token = ts.LT(self._target)
                 assert token is not None
                 output = self._match_action(token)
