@@ -6,9 +6,17 @@ T = TypeVar('T', bound='RuleBase')
 
 class RuleBase:
     def __init__(self: T) -> None:
+        # The name or code of the error
         self._rule_name = ""
+
+        # The error message
         self._message = ''
+
+        # True if the error can be correctex
         self._fixable = False
+
+        # Enum?
+        self._severity = 0
 
     def get_rule_name(self: T) -> str:
         return self._rule_name
