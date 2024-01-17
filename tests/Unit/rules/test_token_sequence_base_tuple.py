@@ -19,8 +19,16 @@ anti_patterns = [
 
 rule = TokenSequenceBase("F00",
                          (
-                             [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN],
-                             [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.RPAREN]
+                             [
+                                 vbaLexer.IDENTIFIER,
+                                 vbaLexer.WS,
+                                 vbaLexer.LPAREN
+                             ],
+                             [
+                                 vbaLexer.IDENTIFIER,
+                                 vbaLexer.WS,
+                                 vbaLexer.RPAREN
+                             ]
                          ), 0,
                          "Whitespace before paren")
 
