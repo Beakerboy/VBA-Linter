@@ -9,9 +9,9 @@ T = TypeVar('T', bound='NewlineEof')
 
 class NewlineEof(RuleBase):
     def __init__(self: T) -> None:
-        self._rule_name = "W201"
+        self._rule_name = "201"
         self._message = "no newline at end of file"
-        self._severity = 'E'
+        self._severity = 'W'
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
