@@ -16,7 +16,7 @@ class TokenSequenceBase(RuleBase):
                  target: int, message: str) -> None:
         """
         if sequence is passed in as a tuple, and the contained lists have
-        different lengths, the shorted list kust be first to prevent
+        different lengths, the shorted list must be first to prevent
         an early return.
         """
         self._rule_name = name
