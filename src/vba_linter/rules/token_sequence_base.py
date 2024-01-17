@@ -25,6 +25,7 @@ class TokenSequenceBase(RuleBase):
         # The element who's position is reported
         self._target = target + 1
         self._message = message
+        self._severity = 'E'
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
