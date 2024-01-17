@@ -16,7 +16,7 @@ class RuleBase:
         self._fixable = False
 
         # Enum?
-        self._severity = 0
+        self._severity = 'E'
 
     def get_rule_name(self: T) -> str:
         return self._rule_name
@@ -28,7 +28,7 @@ class RuleBase:
         message = self._message
         if message == '' and len(data) == 4:
             message = "%s"
-        return (":%s:%s: %s " + message) % data
+        return (":%s:%s: %s " + self._severity + message) % data
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
