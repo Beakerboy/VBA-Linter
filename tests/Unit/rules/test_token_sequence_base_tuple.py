@@ -7,13 +7,19 @@ from vba_linter.rules.rule_base import RuleBase
 
 anti_patterns = [
     [
-        'Public Function Foo (num, bar)\r\nEnd Function\r\n',
-        [(2, 20, "E203")]
-    ]
+        'Public Function Foo(num )\r\nEnd Function\r\n',
+        [(1, 24, "E202")]
+    ],
+    [
+        'Foo = Bar( )\r\n',
+        [(1, 11, "E202")]
+    ],
 ]
 
 
-rule = TokenSequenceBase("F00", ([vbaLexer.WS], [vbaLexer.LPAREN]), 1, )
+rule = TokenSequenceBase("E202",
+                         ([vbaLexer.WS], [vbaLexer.RPAREN]), 0,
+                         "Whitespace before ')'")
 
 
 @pytest.mark.parametrize('rule', [rule])
