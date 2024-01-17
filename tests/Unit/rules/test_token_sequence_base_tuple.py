@@ -22,7 +22,7 @@ rule = TokenSequenceBase(
     (
         [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN],
         [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.RPAREN]
-    ), 0, "Whitespace before paren"
+    ), 1, "Whitespace before paren"
 )
 
 
