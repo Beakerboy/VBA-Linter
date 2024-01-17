@@ -64,10 +64,8 @@ class RuleDirectory:
                                  "Whitespace before ','")
         sequence = [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN]
         message = "whitespace before '('"
-        e211 = TokenSequenceBase("E211", sequence, 1, message)
-
-        self._rules.update({"E201": e201, "E202": e202, "E203": e203,
-                            "E211": e211})
+        # e211 = TokenSequenceBase("E211", sequence, 1, message)
+        self._rules.update({"E201": e201, "E202": e202, "E203": e203})
         self._rules.update({"E201": e201, "E202": e202, "E203": e203})
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
