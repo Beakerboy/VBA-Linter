@@ -28,7 +28,7 @@ class RuleBase:
         message = self._message
         if message == '' and len(data) == 4:
             message = "%s"
-        return (":%s:%s: %s " + self._severity + message) % data
+        return (":%s:%s: " + self._severity + "%s " + message) % data
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:
