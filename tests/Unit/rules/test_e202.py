@@ -1,7 +1,7 @@
 import pytest
-from vba_linter.rule_directory import RuleDirectory
+from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.token_sequence_base import TokenSequenceBase
 
 
 anti_patterns = [
@@ -16,9 +16,9 @@ anti_patterns = [
 ]
 
 
-rd = RuleDirectory()
-rd.load_all_rules()
-rule = rd.get_rule("E202")
+rule = TokenSequenceBase("E202",
+                         [vbaLexer.WS, vbaLexer.RPAREN], 0,
+                         "Whitespace before ')'")
 
 
 @pytest.mark.parametrize('rule', [rule])
