@@ -111,15 +111,15 @@ class RuleDirectory:
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
-        if number[1] == 1:
+        if number[0] == 0:
+            i += 1
+            rules[str(i)] = TokenSequenceBase(
+                str(i),
+                [token, vbaLexer.WS], 1,
+                "Excess whitespace after '" + name + "'")
+        elif number[1] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
                 [token, vbaLexer.WS], 1,
-                "Missing whitespace after " + name)
-
-        i += 1
-        rules[str(i)] = TokenSequenceBase(
-            str(i),
-            [vbaLexer.WS, token], 0,
-            "Excess whitespace before " + name)
+                "Missing whitespace after '" + name + "'")
         return rules
