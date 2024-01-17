@@ -45,6 +45,7 @@ class TokenSequenceBase(RuleBase):
                 token_types.append(tok_type)
             if TokenSequenceBase.match(token_types, sequence):
                 token = ts.LT(self._target)
+                assert token is not None
                 output = self._match_action(token)
         return output
 
