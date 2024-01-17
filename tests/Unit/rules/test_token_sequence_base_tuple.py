@@ -7,8 +7,8 @@ from vba_linter.rules.rule_base import RuleBase
 
 anti_patterns = [
     [
-        'Public Function Foo (num )\r\nEnd Function\r\n',
-        [(1, 20, "F00"), (1, 25, "F00")]
+        'Public Function Foo(num , mum )\r\nEnd Function\r\n',
+        [(1, 24, "F00"), (1, 30, "F00")]
     ],
     [
         'Foo = Bar( )\r\n',
@@ -21,8 +21,8 @@ rule = TokenSequenceBase(
     "F00",
     (
         [vbaLexer.WS, vbaLexer.RPAREN],
-        [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.LPAREN]
-    ), 1, "Whitespace before paren"
+        [vbaLexer.WS, vbaLexer.T__0]
+    ), 0, "Whitespace before symbol"
 )
 
 
