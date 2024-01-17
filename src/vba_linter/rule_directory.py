@@ -100,7 +100,7 @@ class RuleDirectory:
     def _make_rules(self: T, symbol: list, index: int) -> dict:
         rules: Dict[str, RuleBase] = {}
         i = 10 * index + 120
-        tokens = symbol[0]
+        tokens: List[int] = symbol[0]
         name = symbol[1]
         number = symbol[2]
         # Currently only worrying about 0 or 1
