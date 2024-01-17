@@ -123,7 +123,7 @@ class RuleDirectory:
         if number[1] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
-                [tokens, vbaLexer.WS], 1,
+                [tokens, [vbaLexer.WS]], 1,
                 "Missing whitespace after " + name)
 
         i += 1
