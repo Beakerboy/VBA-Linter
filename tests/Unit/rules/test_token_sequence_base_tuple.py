@@ -8,7 +8,7 @@ from vba_linter.rules.rule_base import RuleBase
 anti_patterns = [
     [
         'Public Function Foo (num )\r\nEnd Function\r\n',
-        [(1, 20, "F00"), (1, 24, "F00")]
+        [(1, 20, "F00"), (1, 25, "F00")]
     ],
     [
         'Foo = Bar( )\r\n',
