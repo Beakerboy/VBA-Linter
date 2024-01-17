@@ -50,7 +50,7 @@ class RuleDirectory:
             [[
                 vbaLexer.PLUS,
                 vbaLexer.MINUS
-            ], 'operator']
+            ], 'operator', (1, 1)]
         ]
         i = 1
         for symbol in symbols:
