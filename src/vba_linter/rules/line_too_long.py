@@ -17,6 +17,7 @@ class LineTooLong(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> List:
         output: List[tuple] = []
         token = ts.LT(1)
+        assert token is not None
         if token.type == vbaLexer.NEWLINE:
             if token.column > self._max_len:
                 line = token.line
