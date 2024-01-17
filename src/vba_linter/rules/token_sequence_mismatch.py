@@ -17,8 +17,8 @@ class TokenSequenceMismatch(TokenSequenceBase):
         """
         result = True
         for i in range(len(sequence)):
-            if i == self._target:
+            if i == self._target - 1:
                 result = result and sequence[i] != signature[i]
-            if i != self._target:
+            else:
                 result = result and sequence[i] == signature[i]
         return result
