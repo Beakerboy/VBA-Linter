@@ -18,7 +18,7 @@ anti_patterns = [
 
 
 rule = TokenSequenceBase("E202",
-                         ([vbaLexer.WS], [vbaLexer.RPAREN]), 0,
+                         ([vbaLexer.WS, vbaLexer.RPAREN],), 0,
                          "Whitespace before ')'")
 
 
