@@ -59,8 +59,7 @@ class RuleDirectory:
         e203 = TokenSequenceBase("E203",
                                  [vbaLexer.WS, vbaLexer.T__0], 0,
                                  "Whitespace before ','")
-        self._rules.update({"E201": e201, "E202": e202, "E203": e203})
-        self._rules.update({"E201": e201, "E202": e202, "E203": e203})
+        self._rules.update({"E202": e202, "E203": e203})
         self._rules.update({"W291": TrailingWhitespace(), "W201": NewlineEof(),
                             "W391": BlankLineEof(), "W500": LineEnding(),
                             "W501": LineTooLong(), "E101": MixedIndent()})
