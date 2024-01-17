@@ -7,7 +7,7 @@ T = TypeVar('T', bound='TokenSequenceMismatch')
 
 class TokenSequenceMismatch(TokenSequenceBase):
     """
-    Create an error if the stream mathes a given sequence
+    Create an error if the stream matches a given sequence
     of token types.
     """
 
@@ -17,6 +17,8 @@ class TokenSequenceMismatch(TokenSequenceBase):
         """
         result = True
         for i in range(len(sequence)):
+            if i == self._target:
+                result = result and sequence[i] != signature[i]
             if i != self._target:
                 result = result and sequence[i] == signature[i]
         return result
