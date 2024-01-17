@@ -1,11 +1,11 @@
-from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from typing import TypeVar
 
 
 T = TypeVar('T', bound='TokenSequenceMismatch')
 
 
-class TokenSequenceMismatch(RuleBase):
+class TokenSequenceMismatch(TokenSequenceBase):
     """
     Create an error if the stream mathes a given sequence
     of token types.
