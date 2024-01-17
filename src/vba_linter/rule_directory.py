@@ -42,15 +42,11 @@ class RuleDirectory:
 
     def load_all_rules(self: T) -> None:
         symbols = [
-            [[vbaLexer.LPAREN], "(", (0, 0)],
-            [[vbaLexer.RPAREN], ")", (0, 0)],
-            [[vbaLexer.T__0], ',', (0, 1)],
-            [[vbaLexer.EQ], '=', (1, 1)],
-            [[vbaLexer.ASSIGN], ':=', (1, 1)],
-            [[
-                vbaLexer.PLUS,
-                vbaLexer.MINUS
-            ], 'operator', (1, 1)]
+            [vbaLexer.LPAREN, "(", (0, 0)],
+            [vbaLexer.RPAREN, ")", (0, 0)],
+            [vbaLexer.T__0, ',', (0, 1)],
+            [vbaLexer.EQ, '=', (1, 1)],
+            [vbaLexer.ASSIGN, ':=', (1, 1)],
         ]
         i = 1
         for symbol in symbols:
@@ -100,7 +96,7 @@ class RuleDirectory:
     def _make_rules(self: T, symbol: list, index: int) -> dict:
         rules: Dict[str, RuleBase] = {}
         i = 10 * index + 120
-        tokens: List[int] = symbol[0]
+        token = symbol[0]
         name = symbol[1]
         number = symbol[2]
         # Currently only worrying about 0 or 1
@@ -108,12 +104,12 @@ class RuleDirectory:
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
-                ([vbaLexer.WS], tokens), 0,
+                (vbaLexer.WS, token), 0,
                 "Excess whitespace before " + name)
         elif number[0] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
-                ([vbaLexer.WS], tokens), 0,
+                (vbaLexer.WS, token), 0,
                 "Missing whitespace before " + name)
             i += 1
             # check that tokens match and text matches
@@ -123,7 +119,7 @@ class RuleDirectory:
         if number[1] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
-                (tokens, [vbaLexer.WS]), 1,
+                (token, vbaLexer.WS), 1,
                 "Missing whitespace after " + name)
 
         i += 1
