@@ -6,7 +6,7 @@ from vba_linter.rules.token_sequence_base import ToeknSequenceBase
 
 anti_patterns = [
     [
-        'Public Function Foo (num, bar)\r\nEnd Function\r\n",
+        'Public Function Foo (num, bar)\r\nEnd Function\r\n',
         [(2, 20, "E203")]
     ]
 ]
