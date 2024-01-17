@@ -13,6 +13,7 @@ class ParsingError(RuleBase):
     def __init__(self: T) -> None:
         self.program = None
         self.parser: vbaParser
+        self._severity = 'F'
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
@@ -23,7 +24,7 @@ class ParsingError(RuleBase):
         try:
             self.program = parser.startRule()
         except ThrownException as ex:
-            return [(ex.line, ex.column, "E999", ex.msg)]
+            return [(ex.line, ex.column, "999", ex.msg)]
         return output
 
     def create_message(self: T, data: tuple) -> str:
