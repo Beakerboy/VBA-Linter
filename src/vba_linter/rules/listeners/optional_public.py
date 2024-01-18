@@ -25,4 +25,4 @@ class OptionalPublic(ParseTreeListener):
             line = tok.line
             column = tok.column
             msg = "optional public"
-            self.output.append((line, column + 1, "Wxxx", msg))
+            self.output.append((line, column + 1, "505", msg))
