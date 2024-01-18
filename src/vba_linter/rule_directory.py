@@ -73,7 +73,9 @@ class RuleDirectory:
             rule_name in self._parser_rules and
             isinstance(self._parser_rules[rule_name], RuleBase)
         ):
-            return self._parser_rules[rule_name]
+            rule = self._parser_rules[rule_name]
+            assert isinstance(rule, RuleBase)
+            return rule
         else:
             return RuleBase()
 
