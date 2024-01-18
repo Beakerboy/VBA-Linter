@@ -13,7 +13,8 @@ class IndentContains(RuleBase):
     in the leading whitespace
     """
     def __init__(self: T) -> None:
-        self._rule_name = 'W191'
+        self._severity = 'W'
+        self._rule_name = '191'
         self._message = "indentation contains tabs"
         self._bad_char = '\t'
 
