@@ -7,7 +7,7 @@ from vba_linter.rules.ambiguous_function import AmbiguousFunction
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(10, 17, 'E743')]
+        [(10, 17, '743')]
     ]
 ]
 
@@ -26,6 +26,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (4, 1, "E743")
+    data = (4, 1, "743")
     expected = ":4:1: E743 ambiguous function name"
     assert rule.create_message(data) == expected
