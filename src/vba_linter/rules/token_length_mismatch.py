@@ -9,9 +9,10 @@ T = TypeVar('T', bound='TokenLengthMismatch')
 class TokenLengthMismatch(TokenSequenceBase):
 
     def _match_action(self: T, token: Token) -> list:
-        if len(token.text) > 1:
+        max = 1
+        if len(token.text) > max:
             line = token.line
             column = token.column
             name = self._rule_name
-            return [(line, column + 1, name)]
+            return [(line, column + 1 + max, name)]
         return []
