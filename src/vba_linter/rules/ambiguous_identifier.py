@@ -16,7 +16,7 @@ class AmbiguousIdentifier(TokenSequenceBase):
             [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.AS],
             [vbaLexer.IDENTIFIER, vbaLexer.WS, vbaLexer.EQ]
         )
-        target = 1
+        target = 0
         super().__init__(rule_name, sequence, target, message)
 
     def _match_action(self: T, token: Token) -> list:
