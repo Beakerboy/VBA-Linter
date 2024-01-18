@@ -17,4 +17,4 @@ class TrailingWhitespace(TokenSequenceBase):
             self._message = "Blank line contains whitespace"
         else:
             self._message = "trailing whitespace"
-        super().create_message(data)
+        return super().create_message(data)
