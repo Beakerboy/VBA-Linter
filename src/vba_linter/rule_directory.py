@@ -118,6 +118,6 @@ class RuleDirectory:
             rules[str(i)] = TokenLengthMismatch(
                 str(i),
                 [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'")
+                "Excess whitespace after '" + name + "'"
             )
         return rules
