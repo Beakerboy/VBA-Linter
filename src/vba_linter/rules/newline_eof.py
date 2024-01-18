@@ -21,5 +21,5 @@ class NewlineEof(RuleBase):
                 token.type != vbaLexer.NEWLINE):
             line = token.line
             column = token.column + len(token.text) + 1
-            output = [(line, column, "W201")]
+            output = [(line, column, "201")]
         return output
