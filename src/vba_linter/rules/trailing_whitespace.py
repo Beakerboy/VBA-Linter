@@ -12,7 +12,6 @@ class TrailingWhitespace(TokenSequenceBase):
         super().__init__("305", [vbaLexer.WS, vbaLexer.NEWLINE], 0, message)
 
     def create_message(self: T, data: tuple) -> str:
-        message = self._message
         if data[1] == 1:
             data = (data[0], 1, "310")
             self._message = "Blank line contains whitespace"
