@@ -13,7 +13,8 @@ class MixedIndent(RuleBase):
     in the leading whitespace
     """
     def __init__(self: T) -> None:
-        self._rule_name = 'E101'
+        self._severity = 'E'
+        self._rule_name = '101'
         self._message = "indentation contains mixed spaces and tabs"
 
     def test(self: T, ts: CommonTokenStream) -> list:
