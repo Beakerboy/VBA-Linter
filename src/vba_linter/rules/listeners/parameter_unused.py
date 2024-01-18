@@ -26,7 +26,12 @@ class ParameterUnused(ParseTreeListener):
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
+        children = ctx.getChildren()
         # go to the arglist context to get the parameters
+        for child in children:
+            if isinstance(child, vbaParser.ArgListContext):
+                ...
+        
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
