@@ -28,7 +28,7 @@ class ParameterUnused(ParseTreeListener):
         # go to the arglist context to get the parameters
         for child in children:
             if isinstance(child, vbaParser.ArgListContext):
-                ...
+                args = child.getChildren(lambda x : isinstance(x, vbaParser.ArgContext))
 
         # add new parametrs from let statements
         # add new parameters from variableStmt
