@@ -34,6 +34,17 @@ class ParameterUnused(ParseTreeListener):
                 for arg in args:
                     name = arg.start.text
                     self._parameters[name] = False
+            elif isinstance(child, vbaParser.LetStmtContext):
+                valueStmts = child.getChildren(
+                    lambda x: isinstance(x, vbaParser.ValueStmtContext)
+                )
+                for valueStmt in valueStmts:
+                    if valueStmt.getChildCount() == 1:
+                        # literal or parameter
+                        ...
+                    else:
+                        # complex expression
+                        ...
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
