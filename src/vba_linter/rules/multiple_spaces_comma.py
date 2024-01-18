@@ -10,7 +10,7 @@ T = TypeVar('T', bound='MultipleSpacesComma')
 class MultipleSpacesComma(TokenSequenceBase):
     def __init__(self: T) -> None:
         message = "Multiple spaces after ','"
-        super().__init__("E241", [vbaLexer.T__0, vbaLexer.WS], 1, message)
+        super().__init__("241", [vbaLexer.T__0, vbaLexer.WS], 1, message)
 
     def _match_action(self: T, token: Token) -> list:
         if len(token.text) > 1:
