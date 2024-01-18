@@ -7,7 +7,7 @@ from vba_linter.rules.multiple_spaces_comma import MultipleSpacesComma
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(1, 65, 'E241')]
+        [(1, 65, '241')]
     ]
 ]
 
