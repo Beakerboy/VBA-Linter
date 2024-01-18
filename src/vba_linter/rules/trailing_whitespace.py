@@ -9,11 +9,11 @@ T = TypeVar('T', bound='TrailingWhitespace')
 class TrailingWhitespace(TokenSequenceBase):
     def __init__(self: T) -> None:
         message = "trailing whitespace"
-        super().__init__("W291", [vbaLexer.WS, vbaLexer.NEWLINE], 0, message)
+        super().__init__("305", [vbaLexer.WS, vbaLexer.NEWLINE], 0, message)
 
     def create_message(self: T, data: tuple) -> str:
         message = self._message
         if data[1] == 1:
-            data = (data[0], 1, "W293")
+            data = (data[0], 1, "305")
             message = "blank line contains whitespace"
         return (":%s:%s: %s " + message) % data
