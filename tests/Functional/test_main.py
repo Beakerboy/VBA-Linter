@@ -68,6 +68,7 @@ worst_expected = """\
 %s:1:66: E154 Excess whitespace after ','
 %s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E141 Excess whitespace before ')'
+%s:1:92: E144 Excess whitespace after ')'
 %s:1:92: W291 trailing whitespace
 %s:1:92: W500 incorrect line ending
 %s:2:0: W500 incorrect line ending
