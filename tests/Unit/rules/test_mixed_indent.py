@@ -13,13 +13,13 @@ Public Function Foo(num)
     End If
 End Function
 ''',  # noqa
-        [(3, 1, "E101")]
+        [(3, 1, "101")]
     ],
 ]
 
 
 message_data = [
-    [(3, 1, "E101"), ":3:1: E101 indentation contains mixed spaces and tabs"],
+    [(3, 1, "101"), ":3:1: E101 indentation contains mixed spaces and tabs"],
  ]
 
 
