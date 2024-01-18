@@ -11,6 +11,7 @@ class MissingLet(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._severity = 'W'
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
