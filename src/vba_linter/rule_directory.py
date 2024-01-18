@@ -60,16 +60,21 @@ class RuleDirectory:
         self._parser_rules.update({
             'N100': OptionalPublic(),
             'N101': MissingVisibility(),
-            'N102': MissingLet(),
+            '110': MissingLet(),
             'N103': MissingModuleAttributes()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
         if rule_name == "F999":
             return ParsingError()
-        if rule_name not in self._rules:
-            return RuleBase()
-        return self._rules[rule_name]
+        if rule_name in self._rules:
+            return self._rules[rule_name]
+        elif (rule_name in self._parser_rules and
+              isinstance(self._parser_rules[rule_name], RuleBase):
+            return self._parser_rules[rule_name]
+        else:
+                  return RuleBase()
+        
 
     def get_parser_rules(self: T) -> List[ParseTreeListener]:
         lst = list(self._parser_rules.values())
