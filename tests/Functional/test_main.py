@@ -79,7 +79,7 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:1: Wxxx optional public
 %s:1:51: E131 Excess whitespace before '('
 %s:1:53: E134 Excess whitespace after '('
-%s:1:63: E203 Whitespace before ','
+%s:1:63: E151 Excess whitespace before ','
 %s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E202 Whitespace before ')'
 %s:1:92: W291 trailing whitespace
