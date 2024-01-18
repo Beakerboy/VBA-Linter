@@ -70,7 +70,8 @@ class RuleDirectory:
         if rule_name in self._rules:
             return self._rules[rule_name]
         elif (rule_name in self._parser_rules and
-              isinstance(self._parser_rules[rule_name], RuleBase)):
+              isinstance(self._parser_rules[rule_name], RuleBase)
+             ):
             return self._parser_rules[rule_name]
         else:
                   return RuleBase()
