@@ -14,6 +14,8 @@ class TrailingWhitespace(TokenSequenceBase):
     def create_message(self: T, data: tuple) -> str:
         message = self._message
         if data[1] == 1:
-            data = (data[0], 1, "305")
-            message = "blank line contains whitespace"
-        return (":%s:%s: %s " + message) % data
+            data = (data[0], 1, "310")
+            self._message = "Blank line contains whitespace"
+        else:
+            self._message = "trailing whitespace"
+        super().create_message(data)
