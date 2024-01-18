@@ -61,7 +61,7 @@ class ParameterUnused(ParseTreeListener):
             call = ctx.getChild().getChild()
             if call.getChildCount() == 1:
                 name = call.start.text
-                if name in self._parameters
+                if name in self._parameters:
                     self._parameters[name][0] = True
         else:
             # complex expression
