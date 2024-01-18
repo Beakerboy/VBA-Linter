@@ -68,6 +68,7 @@ class ParameterUnused(ParseTreeListener):
             ...
 
     def exit_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
-        for parameter, data in self._parameters:
+        for parameter, data in self._parameters.items():
             if not data[0]:
                 self.output.append(data[1], data[2], "700", "parameter not used")
+        self._parameters = {}
