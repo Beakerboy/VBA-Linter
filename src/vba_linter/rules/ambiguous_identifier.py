@@ -9,7 +9,8 @@ T = TypeVar('T', bound='AmbiguousIdentifier')
 
 class AmbiguousIdentifier(TokenSequenceBase):
     def __init__(self: T) -> None:
-        self._rule_name = "E741"
+        self._severity = 'E'
+        self._rule_name = "741"
         self._names = ['l', 'O', 'I']
         self._message = 'ambiguous variable name'
         self._sequence = (
