@@ -13,6 +13,7 @@ class MissingLet(ParseTreeListener, RuleBase):
         self.output: list = []
         self._severity = 'W'
         self._rule_name = "110"
+        self._message = "missing let"
 
     def enterLetStmt(self: T,  # noqa: N802
                      ctx: vbaParser.LetStmtContext) -> None:
@@ -21,5 +22,5 @@ class MissingLet(ParseTreeListener, RuleBase):
             line = token.line
             column = token.column
             name = self._rule_name
-            output = (line, column + 1, name, "missing let")
+            output = (line, column + 1, name)
             self.output.append(output)
