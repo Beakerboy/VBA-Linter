@@ -18,5 +18,5 @@ class MissingLet(ParseTreeListener):
         if token.type != vbaLexer.LET:
             line = token.line
             column = token.column
-            output = (line, column + 1, "Wxxx", "missing let")
+            output = (line, column + 1, "110", "missing let")
             self.output.append(output)
