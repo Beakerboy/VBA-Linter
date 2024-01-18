@@ -24,11 +24,11 @@ class ParameterUnused(ParseTreeListener):
         self.enter_function_sub_stmt(ctx)
 
     def exitFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
+                         ctx: vbaParser.FunctionStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
 
     def exitSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
+                    ctx: vbaParser.SubStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
@@ -41,7 +41,7 @@ class ParameterUnused(ParseTreeListener):
                 )
                 for arg in args:
                     name = arg.start.text
-                    line  = arg.start.line
+                    line = arg.start.line
                     column = arg.start.column
                     self._parameters[name] = [False, line, column]
             elif isinstance(child, vbaParser.LetStmtContext):
