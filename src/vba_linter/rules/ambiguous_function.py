@@ -8,7 +8,7 @@ T = TypeVar('T', bound='AmbiguousFunction')
 
 class AmbiguousFunction(AmbiguousIdentifier):
     def __init__(self: T) -> None:
-        self._severity = 'E'
+        super().__init__()
         self._rule_name = "743"
         self._bad_names = ['l', 'O', 'I']
         self._message = 'ambiguous function name'
