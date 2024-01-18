@@ -12,6 +12,7 @@ class ParameterUnused(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._parameter_list: dict = {}
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
@@ -26,6 +27,8 @@ class ParameterUnused(ParseTreeListener):
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         # go to the arglist context to get the parameters
+        # add new parametrs from let statements
+        # add new parameters from variableStmt
         # check off any that are used in procedure calls
         # check off any that are used in a ValueStmt.
               
