@@ -7,8 +7,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ## Formatting Checks
 
 ### 100 Character errors
-* 110 Whitespace characters between keywords (x>1)
-* 111 Tabs between keywords
+* 114 Excess whitespace after keywords
+* 115 Tabs after keywords
 * 120 Missing whitespace before '('
 * 121 Excess whitespace before '('
 * 122 Tabs before '('
