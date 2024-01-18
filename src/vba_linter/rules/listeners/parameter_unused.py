@@ -1,8 +1,6 @@
 from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
-from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
 
 
 T = TypeVar('T', bound='ParameterUnused')
@@ -31,9 +29,8 @@ class ParameterUnused(ParseTreeListener):
         for child in children:
             if isinstance(child, vbaParser.ArgListContext):
                 ...
-        
+
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
         # check off any that are used in a ValueStmt.
-              
