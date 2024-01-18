@@ -28,7 +28,9 @@ class ParameterUnused(ParseTreeListener):
         # go to the arglist context to get the parameters
         for child in children:
             if isinstance(child, vbaParser.ArgListContext):
-                args = child.getChildren(lambda x : isinstance(x, vbaParser.ArgContext))
+                args = child.getChildren(
+                        lambda x: isinstance(x, vbaParser.ArgContext)
+                )
                     for arg in args:
                         name = arg.start.text
                         self._parameters[name] = False
