@@ -19,13 +19,13 @@ class TokenSequenceBase(RuleBase):
         different lengths, the shorted list must be first to prevent
         an early return.
         """
+        super().__init__()
         self._rule_name = name
         self._sequence = sequence
 
         # The element who's position is reported
         self._target = target + 1
         self._message = message
-        self._severity = 'E'
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
