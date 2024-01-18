@@ -43,7 +43,7 @@ class RuleDirectory:
 
     def load_all_rules(self: T) -> None:
         symbols = [
-            [vbaLexer.LPAREN, "(", (0, 0)],
+            [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 0)],
             [vbaLexer.T__0, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
@@ -107,6 +107,12 @@ class RuleDirectory:
                 "Missing whitespace before " + name)
             i += 1
             # todo: create "excess whitespace" rule.
+        elif number[0] == 's':
+            # need to carve out the exception where:
+            # foo = (1 + 1)
+            # and
+            # Pubic Function foo(
+            ...
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
