@@ -101,7 +101,7 @@ class RuleDirectory:
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
-        if number[0] == 0:
+        if number[1] == 0:
             # No "missing" rule.
             i += 1
             rules[str(i)] = TokenSequenceBase(
