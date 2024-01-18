@@ -85,6 +85,7 @@ class RuleDirectory:
         number = symbol[2]
         # Currently only worrying about 0 or 1
         if number[0] == 0:
+            # No "missing" rule.
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
@@ -96,11 +97,12 @@ class RuleDirectory:
                 [vbaLexer.WS, token], 0,
                 "Missing whitespace before " + name)
             i += 1
-            # check that tokens match and text matches
+            # todo: create "excess whitespace" rule.
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
         if number[0] == 0:
+            # No "missing" rule.
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
@@ -111,4 +113,6 @@ class RuleDirectory:
                 str(i),
                 [token, vbaLexer.WS], 1,
                 "Missing whitespace after '" + name + "'")
+            i += 1
+            # todo: create "excess whitespace" rule.
         return rules
