@@ -58,7 +58,7 @@ class ParameterUnused(ParseTreeListener):
     def manage_valuestmt(self: T, ctx: ParserRuleContext) -> None:
         if ctx.getChildCount() == 1:
             # literal or parameter
-            call = ctx.getChild().getChild()
+            call = ctx.getChild(0).getChild(0)
             if call.getChildCount() == 1:
                 name = call.start.text
                 if name in self._parameters:
