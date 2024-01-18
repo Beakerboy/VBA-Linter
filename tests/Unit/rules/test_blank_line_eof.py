@@ -12,7 +12,7 @@ Public Function Foo(num)
 End Function
 
 ''',  # noqa
-        [(3, 1, "W391")]
+        [(3, 1, "391")]
     ],
     [
         '''\
@@ -30,7 +30,7 @@ End Function
 
 
 ''',  # noqa
-        [(4, 1, "W391")]
+        [(4, 1, "391")]
     ]
 ]
 
@@ -49,6 +49,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 13, "W391")
+    data = (3, 13, "391")
     expected = ":3:13: W391 blank line at end of file"
     assert rule.create_message(data) == expected
