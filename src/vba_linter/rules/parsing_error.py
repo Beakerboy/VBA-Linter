@@ -28,4 +28,4 @@ class ParsingError(RuleBase):
         return output
 
     def create_message(self: T, data: tuple) -> str:
-        return (":%s:%s: %s %s") % data
+        return (":%s:%s: F%s %s") % data
