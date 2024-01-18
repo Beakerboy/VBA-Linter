@@ -48,7 +48,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * used before defined (option explicit)
 * missing type
 ### 300 Line errors
-* Line Ending
+* 310 Incorrect line ending
+* 305 Trailing whitespace
 * indent
 * miltiple statementz
 * line continuation
