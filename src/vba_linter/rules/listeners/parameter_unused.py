@@ -45,11 +45,11 @@ class ParameterUnused(ParseTreeListener):
                     column = arg.start.column
                     self._parameters[name] = [False, line, column]
             elif isinstance(child, vbaParser.LetStmtContext):
-                valueStmts = child.getChildren(
+                value_stmts = child.getChildren(
                     lambda x: isinstance(x, vbaParser.ValueStmtContext)
                 )
-                for valueStmt in valueStmts:
-                    self.manage_valuestmt(valueStmt)
+                for value_stmt in value_stmts:
+                    self.manage_valuestmt(value_stmt)
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
@@ -70,5 +70,6 @@ class ParameterUnused(ParseTreeListener):
     def exit_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         for parameter, data in self._parameters.items():
             if not data[0]:
-                self.output.append(data[1], data[2], "700", "parameter not used")
+                msg = "parameter not used"
+                self.output.append(data[1], data[2], "700", msg)
         self._parameters = {}
