@@ -15,11 +15,13 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 123 Missing whitespace after '('
 * 124 Excess whitespace after '('
 * 125 Tabs after '('
-* 130 Whitespace characters before ')'
-* 131 Tabs before ')'
-* 132 Whitespace characters after ')'
-* 133 Tabs after ')'
-* 140 Whitespace characters before ','
+* 130 Missing whitespace before ')'
+* 131 Excess whitespace before ')'
+* 132 Tabs before ')'
+* 133 Missing whitespace after ')'
+* 134 Excess whitespace after ')'
+* 135 Tabs after ')'
+* 140 Missing whitespace before ','
 * 141 Tabs before ','
 * 142 Whitespace characters after ','
 * 143 Tabs after ','
@@ -61,7 +63,7 @@ missing visibility
 * missing module sefinition
 * missing module options
 ### 700 Documentation
-* Missing function socumentation
+* Missing function documentation
 * Missing module documentation
 ### 900 Syntax Errors
 
