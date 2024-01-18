@@ -42,7 +42,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 182 Whitespace characters after comparison operator
 * 183 Tabs after comparison operator
 ### 200 Parameter errors
-* missing Let
+* 110 Missing Let
+* 111 Optional Let
 * naming
 * used before defined (option explicit)
 * missing type
