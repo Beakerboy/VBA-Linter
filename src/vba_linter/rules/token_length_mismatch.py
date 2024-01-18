@@ -10,7 +10,8 @@ class TokenLengthMismatch(TokenSequenceBase):
 
     def _match_action(self: T, token: Token) -> list:
         max = 1
-        if len(token.text) > max:
+        text = token.text.replace("\t", " " * 8)
+        if len(text) > max:
             line = token.line
             column = token.column
             name = self._rule_name
