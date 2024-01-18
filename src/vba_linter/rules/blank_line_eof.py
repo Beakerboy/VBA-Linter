@@ -12,7 +12,8 @@ class BlankLineEof(RuleBase):
     Returns an error if the final line is solely a newline character.
     """
     def __init__(self: T) -> None:
-        self._rule_name = "W391"
+        self._severity = 'W'
+        self._rule_name = "391"
         self._message = 'blank line at end of file'
 
     def test(self: T, ts: CommonTokenStream) -> list:
@@ -24,6 +25,6 @@ class BlankLineEof(RuleBase):
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
-                output = [(final_token.line + num_nl - 1, 1, "W391")]
+                output = [(final_token.line + num_nl - 1, 1, "391")]
                 final_token.text = "\r\n"
         return output
