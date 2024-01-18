@@ -59,22 +59,7 @@ pretty = (
 )
 
 
-def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
-    file_name = save_code(worst_practice)
-    mocker.patch(
-        "sys.argv",
-        [
-            "vba_linter.py",
-            "-x",
-            "tests/Functional",
-            "all"
-        ],
-    )
-    with pytest.raises(SystemExit):
-        main()
-    captured = capsys.readouterr()
-    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
-    expected = """\
+worst_expected = """\
 %s:1:1: E601 missing module attributes
 %s:1:1: Wxxx optional public
 %s:1:51: E131 Excess whitespace before '('
@@ -98,7 +83,25 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:10:1: Wxxx missing visibility
 %s:12:1: W391 blank line at end of file
 22 Errors in 1 File
-""".replace("%s", full_path)  # noqa
+"""
+
+
+def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    file_name = save_code(worst_practice)
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "-x",
+            "tests/Functional",
+            "all"
+        ],
+    )
+    with pytest.raises(SystemExit):
+        main()
+    captured = capsys.readouterr()
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
+    expected = worst_expected.replace("%s", full_path)
     assert captured.err == expected
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
@@ -180,31 +183,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     main()
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
-    expected = """\
-%s:1:1: E601 missing module attributes
-%s:1:1: Wxxx optional public
-%s:1:51: E211 whitespace before '('
-%s:1:53: E201 Whitespace after '('
-%s:1:63: E203 Whitespace before ','
-%s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E202 Whitespace before ')'
-%s:1:92: W291 trailing whitespace
-%s:1:92: W500 incorrect line ending
-%s:2:0: W500 incorrect line ending
-%s:4:0: E303 Too many blank lines (3)
-%s:5:1: Wxxx missing let
-%s:5:11: W500 incorrect line ending
-%s:6:5: Wxxx missing let
-%s:6:12: R225 missing space before '='
-%s:6:13: R225 missing space after '='
-%s:7:5: Wxxx optional let
-%s:7:16: W221 multiple spaces before operator
-%s:7:19: W222 multiple spaces after operator
-%s:8:12: W500 incorrect line ending
-%s:10:1: Wxxx missing visibility
-%s:12:1: W391 blank line at end of file
-22 Errors in 1 File
-""".replace("%s", full_path)  # noqa
+    expected = worst_expected.replace("%s", full_path)
     assert captured.err == expected
     delete_code(file_name)
 
