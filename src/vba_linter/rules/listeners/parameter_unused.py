@@ -71,5 +71,5 @@ class ParameterUnused(ParseTreeListener):
         for parameter, data in self._parameters.items():
             if not data[0]:
                 msg = "parameter not used"
-                self.output.append(data[1], data[2], "700", msg)
+                self.output.append((data[1], data[2], "700", msg))
         self._parameters = {}
