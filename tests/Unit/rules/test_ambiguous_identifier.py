@@ -7,7 +7,7 @@ from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(5, 1, 'E741')]
+        [(5, 1, '741')]
     ],
     [
         '''\
@@ -15,7 +15,7 @@ Public Function Foo(num)
     Dim l as Integer
 End Function
 ''',  # noqa
-        [(2, 9, "E741")]
+        [(2, 9, "741")]
     ]
 ]
 
@@ -34,6 +34,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (4, 1, "E741")
+    data = (4, 1, "741")
     expected = ":4:1: E741 ambiguous variable name"
     assert rule.create_message(data) == expected
