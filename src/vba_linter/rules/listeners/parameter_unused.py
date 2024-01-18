@@ -10,7 +10,7 @@ class ParameterUnused(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
-        self._parameter_list: dict = {}
+        self._parameters: dict = {}
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
@@ -29,7 +29,9 @@ class ParameterUnused(ParseTreeListener):
         for child in children:
             if isinstance(child, vbaParser.ArgListContext):
                 args = child.getChildren(lambda x : isinstance(x, vbaParser.ArgContext))
-
+                    for arg in args:
+                        name = arg.start.text
+                        self._parameters[name] = False
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
