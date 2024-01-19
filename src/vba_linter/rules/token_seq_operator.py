@@ -22,10 +22,9 @@ class TokenSequenceOperator(TokenSequenceBase):
             vbaLexer.LT, vbaLexer.MINUS, vbaLexer.MINUS_EQ,
             vbaLexer.PLUS
         ]
-        result = True
-        for i in range(len(sequence)):
-            if i == self._target - 1:
-                result = result and sequence[i] != signature[i]
-            else:
-                result = result and sequence[i] == signature[i]
-        return result
+        if sequence == signature:
+            # Get token index
+            # if _target == 1 look back one from target
+            # if _target == 2 look forward one
+            if token not in symbols:
+                return True
