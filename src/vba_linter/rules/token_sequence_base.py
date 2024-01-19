@@ -26,8 +26,10 @@ class TokenSequenceBase(RuleBase):
         # The element who's position is reported
         self._target = target + 1
         self._message = message
+        self._ts: CommonTokenStream
 
     def test(self: T, ts: CommonTokenStream) -> list:
+        self._ts = ts
         output: List[tuple] = []
         sequences: Tuple[List[int], ...]
         if isinstance(self._sequence, list):
