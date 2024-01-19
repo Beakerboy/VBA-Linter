@@ -76,8 +76,8 @@ worst_expected = """\
 %s:5:1: W110 missing let
 %s:5:11: W500 incorrect line ending
 %s:6:5: W110 missing let
-%s:6:12: R225 missing space before '='
-%s:6:13: R225 missing space after '='
+%s:6:12: E160 Missing whitespace before '='
+%s:6:13: E163 Missing whitespace after '='
 %s:7:5: W111 optional let
 %s:7:16: W221 multiple spaces before operator
 %s:7:19: W222 multiple spaces after operator
