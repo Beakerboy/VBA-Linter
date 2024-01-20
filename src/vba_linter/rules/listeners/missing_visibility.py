@@ -28,5 +28,6 @@ class MissingVisibility(ParseTreeListener, RuleBase):
         if not isinstance(child, vbaParser.VisibilityContext):
             line = tok.line
             column = tok.column
-            msg = "missing visibility"
-            self.output.append((line, column + 1, "Wxxx", msg))
+            nane = self._rule_name
+            msg = self._message
+            self.output.append((line, column + 1, name, msg))
