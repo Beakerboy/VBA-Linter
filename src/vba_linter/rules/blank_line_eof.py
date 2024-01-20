@@ -25,6 +25,8 @@ class BlankLineEof(RuleBase):
             newline_list = RuleBase.split_nl(final_token.text)
             num_nl = len(newline_list)
             if num_nl > 1:
-                output = [(final_token.line + num_nl - 1, 1, "391")]
+                line = final_token.line + num_nl - 1
+                name = self._rule_name
+                output = [(line, 1, name)]
                 final_token.text = "\r\n"
         return output
