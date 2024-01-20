@@ -107,7 +107,11 @@ class RuleDirectory:
                 [vbaLexer.WS, token], 0,
                 "Missing whitespace before '" + name + "'")
             i += 1
-            # todo: create "excess whitespace" rule.
+            rules[str(i)] = TokenLengthMismatch(
+                str(i),
+                [vbaLexer.WS, token], 0,
+                "Excess whitespace before '" + name + "'"
+            )
         elif number[0] == 's':
             i += 1
             rules[str(i)] = TokenSequenceOperator(
