@@ -9,11 +9,15 @@ T = TypeVar('T', bound='TokenSequenceOperator')
 class TokenSequenceOperator(TokenSequenceBase):
     """
     Create an error if the stream matches a given sequence
-    of token types.
+    of token types. we assume the target token is at index
+    1, and indicaye which is the wildcard.
+    If the sequence has whitespace in the 1st index, and
+    the wildcard is not one of the allowed types, produce
+    an error.
     """
-    def __init__(self: T, name: str, seq: list, target: int, msg: str) -> None:
-        super().__init__(name, seq, 2, msg)
-        self._wildcard = target
+    def __init__(self: T, name: str, seq: list, wildcard: int, msg: str) -> None:
+        super().__init__(name, seq, 1, msg)
+        self._wildcard = wildcard
 
     def match(self: T,
               sequence: Union[List[int], Tuple[List[int], ...]],
