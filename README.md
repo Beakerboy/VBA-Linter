@@ -60,7 +60,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * one line if/then/else
 ### 500 Function Errors
 * 510 Missing visibility
-* 511 Optional visibility
+* 511 Optional 'Public'
 ### 600 Module Errors
 * Blank line begining file
 * blank line end of file
