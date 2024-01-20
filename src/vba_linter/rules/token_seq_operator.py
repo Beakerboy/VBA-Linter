@@ -1,6 +1,6 @@
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from antlr4_vba.vbaLexer import vbaLexer
-from typing import TypeVar
+from typing import List, Tuple, TypeVar, Union
 
 
 T = TypeVar('T', bound='TokenSequenceOperator')
