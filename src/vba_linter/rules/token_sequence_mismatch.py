@@ -10,6 +10,14 @@ class TokenSequenceMismatch(TokenSequenceBase):
     Create an error if the stream matches a given sequence
     of token types.
     """
+    def _match_action(self: T, token: Token) -> list:
+        line = token.line
+        if self._target == 1:
+            column = token.column + len(token.text)
+        elif self._target == 2:
+            column = token.column
+        name = self._rule_name
+        return [(line, column + 1, name)]
 
     def match(self: T, sequence: list, signature: list) -> bool:
         """
