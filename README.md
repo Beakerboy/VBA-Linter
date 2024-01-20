@@ -59,7 +59,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 400 Control Structures
 * one line if/then/else
 ### 500 Function Errors
-missing visibility
+* 510 Missing visibility
+* 511 Optional visibility
 ### 600 Module Errors
 * Blank line begining file
 * blank line end of file
