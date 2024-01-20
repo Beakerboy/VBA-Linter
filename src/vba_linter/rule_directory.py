@@ -57,7 +57,7 @@ class RuleDirectory:
             i += 1
 
         self._rules.update({"305": TrailingWhitespace(), "W201": NewlineEof(),
-                            "W391": BlankLineEof(), "W500": LineEnding(),
+                            "391": BlankLineEof(), "W500": LineEnding(),
                             "501": LineTooLong(), "101": MixedIndent()})
         self._parser_rules.update({
             'N100': OptionalPublic(),
