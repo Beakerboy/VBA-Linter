@@ -11,7 +11,7 @@ class TokenSequenceOperator(TokenSequenceBase):
     Create an error if the stream matches a given sequence
     of token types.
     """
-    def __init__(name, seq, target, msg) -> None:
+    def __init__(name: str, seq: list, target: int, msg: str) -> None:
         super().__init__(name, seq, 2, msg)
         self._wildcard = target
 
