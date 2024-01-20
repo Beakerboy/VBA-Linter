@@ -30,4 +30,4 @@ class MissingVisibility(ParseTreeListener, RuleBase):
             column = tok.column
             nane = self._rule_name
             msg = self._message
-            self.output.append((line, column + 1, name, msg))
+            self.output.append((line, column + 1, name))
