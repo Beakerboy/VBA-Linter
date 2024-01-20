@@ -61,7 +61,7 @@ class RuleDirectory:
                             "501": LineTooLong(), "101": MixedIndent()})
         self._parser_rules.update({
             'N100': OptionalPublic(),
-            'N101': MissingVisibility(),
+            '510': MissingVisibility(),
             '110': MissingLet(),
             '111': OptionalLet(),
             'N103': MissingModuleAttributes()
