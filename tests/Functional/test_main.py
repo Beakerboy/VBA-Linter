@@ -73,7 +73,7 @@ worst_expected = """\
 %s:1:92: W500 incorrect line ending
 %s:2:0: W500 incorrect line ending
 %s:4:0: E303 Too many blank lines (3)
-%s:5:1: W110 missing let
+%s:5:1: W110 Missing let
 %s:5:11: W500 incorrect line ending
 %s:6:5: W110 Missing let
 %s:6:12: E160 Missing whitespace before '='
