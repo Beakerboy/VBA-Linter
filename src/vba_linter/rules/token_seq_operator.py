@@ -33,7 +33,7 @@ class TokenSequenceOperator(TokenSequenceBase):
             vbaLexer.PLUS
         ]
         token = sequence[self._wildcard]
-        if sequence == signature:
+        if sequence[1:] == signature[1:]:
             if token not in symbols:
                 return True
         return False
