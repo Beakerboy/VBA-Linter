@@ -15,7 +15,9 @@ class TokenSequenceOperator(TokenSequenceBase):
         super().__init__(name, seq, 2, msg)
         self._wildcard = target
 
-    def match(self: T, sequence: list, signature: list) -> bool:
+    def match(self: T,
+              sequence: Union[List[int], Tuple[List[int], ...]],
+              signature: list) -> bool:
         """
         Compare the two lists to see if they match.
         Unless the previous token is in the list.
