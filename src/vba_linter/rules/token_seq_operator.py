@@ -11,6 +11,9 @@ class TokenSequenceOperator(TokenSequenceBase):
     Create an error if the stream matches a given sequence
     of token types.
     """
+    def __init__(name, seq, target, msg) -> None:
+        super().__init__(name, seq, 2, msg)
+        self._wildcard = target
 
     def match(self: T, sequence: list, signature: list) -> bool:
         """
@@ -23,9 +26,7 @@ class TokenSequenceOperator(TokenSequenceBase):
             vbaLexer.LT, vbaLexer.MINUS, vbaLexer.MINUS_EQ,
             vbaLexer.PLUS
         ]
+        token = sequence[self._wildcard]
         if sequence == signature:
-            # Get token index
-            # if _target == 1 look back one from target
-            # if _target == 2 look forward one
             if token not in symbols:
                 return True
