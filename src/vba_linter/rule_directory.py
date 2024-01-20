@@ -7,6 +7,7 @@ from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
+from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.line_ending import LineEnding
@@ -108,6 +109,10 @@ class RuleDirectory:
             i += 1
             # todo: create "excess whitespace" rule.
         elif number[0] == 's':
+            rules[str(i)] = TokenSequenceOperator(
+                str(i),
+                [vbaLexer.EQ, vbaLexer.WS, token], 0,
+                "Excess whitespace before '" + name + "'")
             # need to carve out the exception where:
             # foo = (1 + 1)
             # and
