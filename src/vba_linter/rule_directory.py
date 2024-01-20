@@ -113,11 +113,7 @@ class RuleDirectory:
                 str(i),
                 [vbaLexer.EQ, vbaLexer.WS, token], 0,
                 "Excess whitespace before '" + name + "'")
-            # need to carve out the exception where:
-            # foo = (1 + 1)
-            # and
-            # Pubic Function foo(
-            ...
+            i += 1
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
