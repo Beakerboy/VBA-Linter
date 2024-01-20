@@ -114,6 +114,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
 %s:1:1: E601 missing module attributes
 %s:1:51: E131 Excess whitespace before '('
