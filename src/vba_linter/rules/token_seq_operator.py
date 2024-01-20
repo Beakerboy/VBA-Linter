@@ -15,13 +15,13 @@ class TokenSequenceOperator(TokenSequenceBase):
     the wildcard is not one of the allowed types, produce
     an error.
     """
-    def __init__(self: T, name: str, seq: list, wildcard: int, msg: str) -> None:
+    def __init__(self: T, name: str,
+                 seq: Union[List[int], Tuple[List[int], ...]],,
+                 wildcard: int, msg: str) -> None:
         super().__init__(name, seq, 1, msg)
         self._wildcard = wildcard
 
-    def match(self: T,
-              sequence: Union[List[int], Tuple[List[int], ...]],
-              signature: list) -> bool:
+    def match(self: T, sequence: list, signature: list) -> bool:
         """
         Compare the two lists to see if they match.
         Unless the previous token is in the list.
