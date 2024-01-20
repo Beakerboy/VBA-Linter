@@ -112,7 +112,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     delete_code(file_name + ".pretty")
 
 
-def test_worst_file_std() -> None:
+def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixtur) -> None:
     file_name = save_code(worst_practice)
     expected = """\
 %s:1:1: E601 missing module attributes
