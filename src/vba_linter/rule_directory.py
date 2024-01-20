@@ -16,6 +16,7 @@ from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
+from vba_linter.rules.listeners.optional_let import OptionalLet
 from vba_linter.rules.listeners.missing_module_attributes import (
     MissingModuleAttributes)
 
@@ -62,6 +63,7 @@ class RuleDirectory:
             'N100': OptionalPublic(),
             'N101': MissingVisibility(),
             '110': MissingLet(),
+            '111': OptionalLet(),
             'N103': MissingModuleAttributes()
         })
 
