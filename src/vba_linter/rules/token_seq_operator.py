@@ -16,7 +16,7 @@ class TokenSequenceOperator(TokenSequenceBase):
     an error.
     """
     def __init__(self: T, name: str,
-                 seq: Union[List[int], Tuple[List[int], ...]],,
+                 seq: Union[List[int], Tuple[List[int], ...]],
                  wildcard: int, msg: str) -> None:
         super().__init__(name, seq, 1, msg)
         self._wildcard = wildcard
