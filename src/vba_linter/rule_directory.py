@@ -105,7 +105,7 @@ class RuleDirectory:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
                 [vbaLexer.WS, token], 0,
-                "Missing whitespace before " + name)
+                "Missing whitespace before '" + name + "'")
             i += 1
             # todo: create "excess whitespace" rule.
         elif number[0] == 's':
