@@ -109,11 +109,11 @@ class RuleDirectory:
             i += 1
             # todo: create "excess whitespace" rule.
         elif number[0] == 's':
+            i += 1
             rules[str(i)] = TokenSequenceOperator(
                 str(i),
                 [vbaLexer.EQ, vbaLexer.WS, token], 0,
                 "Excess whitespace before '" + name + "'")
-            i += 1
         i += 1
         # check if preceeding whitespace contains tabs.
         i += 1
