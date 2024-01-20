@@ -12,6 +12,7 @@ class MissingVisibility(ParseTreeListener, RuleBase):
         super().__init__()
         self.output: list = []
         self._rule_name = "510"
+        self._severity = 'W'
         self._message = "Missing visibility"
 
     def enterFunctionStmt(self: T,  # noqa: N802
