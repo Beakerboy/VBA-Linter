@@ -6,10 +6,12 @@ from typing import TypeVar
 T = TypeVar('T', bound='MissingVisibility')
 
 
-class MissingVisibility(ParseTreeListener):
+class MissingVisibility(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._rule_name = "510"
+        self._message = "Missing visibility"
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
