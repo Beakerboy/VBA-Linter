@@ -79,8 +79,8 @@ worst_expected = """\
 %s:6:12: E160 Missing whitespace before '='
 %s:6:13: E163 Missing whitespace after '='
 %s:7:5: W111 optional let
-%s:7:16: W221 multiple spaces before operator
-%s:7:19: W222 multiple spaces after operator
+%s:7:16: E161 Excess whitespace before '='
+%s:7:19: E164 Excess whitespace after '='
 %s:8:12: W500 incorrect line ending
 %s:10:1: Wxxx missing visibility
 %s:12:1: W391 blank line at end of file
