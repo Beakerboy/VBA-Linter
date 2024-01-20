@@ -32,3 +32,4 @@ class TokenSequenceOperator(TokenSequenceBase):
         if sequence == signature:
             if token not in symbols:
                 return True
+        return False
