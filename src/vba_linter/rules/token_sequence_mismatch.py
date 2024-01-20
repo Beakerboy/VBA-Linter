@@ -1,3 +1,4 @@
+from antlr4 import Token
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from typing import TypeVar
 
