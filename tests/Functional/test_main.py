@@ -82,7 +82,7 @@ worst_expected = """\
 %s:7:16: E161 Excess whitespace before '='
 %s:7:19: E164 Excess whitespace after '='
 %s:8:12: W500 incorrect line ending
-%s:10:1: Wxxx Missing visibility
+%s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
 22 Errors in 1 File
 """
