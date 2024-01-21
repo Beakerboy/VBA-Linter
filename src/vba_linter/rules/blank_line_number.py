@@ -27,7 +27,7 @@ class BlankLineNumber(RuleBase):
             num_nl = len(newline_list)
             for i in range(num_nl):
                 if i > self._allowed_blank_lines:
-                    output.append((token.line + i, -1, name))
+                    output.append((token.line + i, 0, name))
             num = min([num_nl, self._allowed_blank_lines + 1])
             new_text = self._line_ending * num
             token.text = new_text
