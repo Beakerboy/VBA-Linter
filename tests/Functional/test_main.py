@@ -11,7 +11,7 @@ files = []
 
 
 @pytest.fixture(autouse=True)
-def run_around_tests():
+def run_around_tests() -> None:
     files = []
     # Code that will run before your test, for example:
     # do something to check the existing files
@@ -21,6 +21,7 @@ def run_around_tests():
     for file in files:
         delete_code(file)
     files = []
+
 
 def save_code(code: str) -> str:
     file_name = create_filename(ext='.bas')
