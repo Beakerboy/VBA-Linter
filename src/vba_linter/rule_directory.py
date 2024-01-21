@@ -55,19 +55,26 @@ class RuleDirectory:
         for symbol in symbols:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
+        self._rules.update({
+            "201": NewlineEof(), "500": LineEnding(),
+            "305": TrailingWhitespace()
+        })
+        self._parser_rules.update({
+            '103': MissingModuleAttributes()
+        })
 
     def load_all_rules(self: T) -> None:
         self.load_standard_rules()
 
-        self._rules.update({"305": TrailingWhitespace(), "W201": NewlineEof(),
-                            "391": BlankLineEof(), "W500": LineEnding(),
-                            "501": LineTooLong(), "101": MixedIndent()})
+        self._rules.update({
+            "391": BlankLineEof(),
+            "501": LineTooLong(), "101": MixedIndent()
+        })
         self._parser_rules.update({
             'N100': OptionalPublic(),
             '510': MissingVisibility(),
             '110': MissingLet(),
-            '111': OptionalLet(),
-            'N103': MissingModuleAttributes()
+            '111': OptionalLet()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
