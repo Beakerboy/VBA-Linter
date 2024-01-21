@@ -49,13 +49,13 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * missing type
 ### 300 Line errors
 * 310 Incorrect line ending
+* 303 Too many blank lines (3)
 * 305 Trailing whitespace
 * 310 Blank line contains whitespace
 * indent
 * miltiple statementz
 * line continuation
 * line length
-* E303 Too many blank lines (3)
 ### 400 Control Structures
 * one line if/then/else
 ### 500 Function Errors
