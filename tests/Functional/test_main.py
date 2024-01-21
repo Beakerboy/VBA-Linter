@@ -70,18 +70,18 @@ worst_expected = """\
 %s:1:90: E141 Excess whitespace before ')'
 %s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 trailing whitespace
-%s:1:92: W500 incorrect line ending
-%s:2:0: W500 incorrect line ending
+%s:1:92: E500 incorrect line ending
+%s:2:0: E500 incorrect line ending
 %s:4:0: E303 Too many blank lines (3)
 %s:5:1: W110 Missing let
-%s:5:11: W500 incorrect line ending
+%s:5:11: E500 incorrect line ending
 %s:6:5: W110 Missing let
 %s:6:12: E160 Missing whitespace before '='
 %s:6:13: E163 Missing whitespace after '='
 %s:7:5: W111 Optional let
 %s:7:16: E161 Excess whitespace before '='
 %s:7:19: E164 Excess whitespace after '='
-%s:8:12: W500 incorrect line ending
+%s:8:12: E500 incorrect line ending
 %s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
 24 Errors in 1 File
