@@ -16,6 +16,7 @@ class LineEnding(RuleBase):
         self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
+        name = self._rule_name
         output: List[tuple] = []
         token = ts.LT(1)
         assert token is not None
@@ -25,9 +26,9 @@ class LineEnding(RuleBase):
             for i in range(num_nl):
                 if newline_list[i] != self._line_ending:
                     column = token.column if i == 0 else 0
-                    output.append((token.line + i, column, "W500"))
+                    output.append((token.line + i, column, name))
                 if i > self._allowed_blank_lines:
-                    output.append((token.line + i, -1, "W500"))
+                    output.append((token.line + i, -1, name))
             num = min([num_nl, self._allowed_blank_lines + 1])
             new_text = self._line_ending * num
             token.text = new_text
