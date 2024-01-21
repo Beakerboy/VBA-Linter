@@ -32,9 +32,7 @@ def main() -> None:
         if args.ruleset == "all":
             dir.load_all_rules()
         elif args.ruleset == "default":
-            dir.load_all_rules()
-            dir.remove_rule("N100")
-            dir.remove_rule("N102")
+            dir.load_standard_rules()
         else:
             # check that file is yml
             # add rules
