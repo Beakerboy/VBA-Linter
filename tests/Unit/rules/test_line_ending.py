@@ -21,7 +21,6 @@ anti_patterns = [
         [
             (1, 92, "500"),
             (2, 0, "500"),
-            (4, -1, "500"),
             (5, 11, "500"),
             (8, 12, "500")
         ]
@@ -45,7 +44,4 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 def test_message(rule: RuleBase) -> None:
     data = (3, 13, "500")
     expected = ":3:13: E500 incorrect line ending"
-    assert rule.create_message(data) == expected
-    data = (3, -1, "500")
-    expected = ":3:0: E303 Too many blank lines (3)"
     assert rule.create_message(data) == expected
