@@ -29,6 +29,6 @@ class LineEnding(RuleBase):
                     column = token.column if i == 0 else 0
                     output.append((token.line + i, column, name))
             num = min([num_nl, self._allowed_blank_lines + 1])
-            new_text = self._line_ending * num
+            new_text = self._line_ending * num_nl
             token.text = new_text
         return output
