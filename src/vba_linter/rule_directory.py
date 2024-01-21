@@ -82,7 +82,7 @@ class RuleDirectory:
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
-        if rule_name == "F999":
+        if rule_name == "999":
             return ParsingError()
         if rule_name in self._rules:
             return self._rules[rule_name]
