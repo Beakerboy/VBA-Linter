@@ -10,7 +10,7 @@ anti_patterns = [
 Public Function Foo(num) 
 End Function
 ''',  # noqa
-        [(1, 25, "W291")]
+        [(1, 25, "305")]
     ],
     [
         '''\
@@ -18,7 +18,7 @@ Public Function Foo(num)
 
 End Function 
 ''',  # noqa
-        [(3, 13, "W291")]
+        [(3, 13, "305")]
     ],
     [
         '''\
@@ -26,14 +26,14 @@ Public Function Foo(num)
  
 End Function
 ''',  # noqa
-        [(2, 1, "W291")]
+        [(2, 1, "305")]
     ],
 ]
 
 
 message_data = [
-    [(3, 13, "W291"), ":3:13: W291 trailing whitespace"],
-    [(2, 1, "W291"), ":2:1: W293 blank line contains whitespace"]
+    [(3, 13, "305"), ":3:13: E305 trailing whitespace"],
+    [(2, 1, "305"), ":2:1: E310 Blank line contains whitespace"]
 ]
 
 

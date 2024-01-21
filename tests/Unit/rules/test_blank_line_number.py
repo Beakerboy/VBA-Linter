@@ -1,25 +1,15 @@
 import pytest
-from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rule_directory import RuleDirectory
 from vba_linter.rules.rule_base import RuleBase
+from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.blank_line_number import BlankLineNumber
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice, [(1, 53, 'E201')]],
-    [
-        'Public Function Foo( num)\r\nEnd Function\r\n',
-        [(1, 21, "E201")]
-    ],
-    [
-        'Foo = Bar( )\r\n',
-        [(1, 11, "E201")]
-    ],
+    [RuleTestBase.worst_practice, [(4, 0, "303")]],
 ]
 
 
-rd = RuleDirectory()
-rd.load_all_rules()
-rule = rd.get_rule("E201")
+rule = BlankLineNumber()
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -33,6 +23,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 13, "E201")
-    expected = ":3:13: E201 Whitespace after '('"
+    data = (4, 0, "303")
+    expected = ":4:0: W303 Too many blank lines (3)"
     assert rule.create_message(data) == expected

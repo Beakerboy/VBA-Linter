@@ -6,49 +6,69 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ## Formatting Checks
 
-### E1 Indentation
-* E101 indentation contains mixed spaces and tabs
-### E2 Whitespace errors
-* E201 whitespace after '('
-* E202 whitespace before ')'
-* E203 whitespace before ‘,’
-* E211 whitespace before (
-* E241 Multiple spaces after ','
-### E3 Blank line errors
-* E303 Too many blank lines (3)
-### E7 Statement
-* E741 ambiguous variable name
-* E741 ambiguous class name
-* E741 ambiguous function name
-### W1 Indentation warning
-* W191 indentation contains tabs - should be error.
-### W2 Whitespace warning
-* W201 no newline at end of file
-* W291 trailing whitespace
-* W293 blank line contains whitespace
+### 100 Character errors
+* 114 Excess whitespace after keywords
+* 115 Tabs after keywords
+* 120 Missing whitespace before '('
+* 121 Excess whitespace before '('
+* 122 Tabs before '('
+* 123 Missing whitespace after '('
+* 124 Excess whitespace after '('
+* 125 Tabs after '('
+* 130 Missing whitespace before ')'
+* 131 Excess whitespace before ')'
+* 132 Tabs before ')'
+* 133 Missing whitespace after ')'
+* 134 Excess whitespace after ')'
+* 135 Tabs after ')'
+* 140 Missing whitespace before ','
+* 141 Tabs before ','
+* 142 Whitespace characters after ','
+* 143 Tabs after ','
+* 150 Whitespace characters before '='
+* 151 Tabs before '='
+* 152 Whitespace characters after '='
+* 153 Tabs after ':='
+* 160 Whitespace characters before ':='
+* 161 Tabs before ':='
+* 162 Whitespace characters after ':='
+* 163 Tabs after ':='
+* 170 Whitespace characters before arithmetic operator
+* 171 Tabs before arithmetic operator
+* 172 Whitespace characters after arithmetic operator
+* 173 Tabs after arithmetic operator
+* 180 Whitespace characters before comparison operator
+* 181 Tabs before comparison operatoe
+* 182 Whitespace characters after comparison operator
+* 183 Tabs after comparison operator
+### 200 Parameter errors
+* 110 Missing Let
+* 111 Optional Let
+* naming
+* used before defined (option explicit)
+* missing type
+### 300 Line errors
+* 310 Incorrect line ending
+* 303 Too many blank lines (3)
+* 305 Trailing whitespace
+* 310 Blank line contains whitespace
+* indent
+* miltiple statementz
+* line continuation
+* line length
+### 400 Control Structures
+* one line if/then/else
+### 500 Function Errors
+* 510 Missing visibility
+* 511 Optional 'Public'
+### 600 Module Errors
+* Blank line begining file
+* blank line end of file
+* missing final eol
+* missing module sefinition
+* missing module options
+### 700 Documentation
+* Missing function documentation
+* Missing module documentation
+### 900 Syntax Errors
 
-### W3 Blank line warning
-* W391 blank line at end of file
-
-### W5 Line break warning
-* W500 incorrect line ending
-* W501 line too long
-
-## To Do
-* E221 multiple spaces before operator
-* E222 multiple spaces after operator
-* E712 comparison to True should be ‘If cond Then’
-* E713 comparison to False should be 'If Not cond Then'
-* F841 local variable 'foo' is assigned to but never used
-* W101 improper indentation level
-* W301 Too few blank lines before function
-* W302 Too many blank lines before function
-* N800 Keyword formating
-* N801 Module name format
-* N802 Function name format
-* N803 Variable name format
-* Missing Strict
-* Variable not initialized
-* return type not specified
-* parameter type not specified
-* missing function docbloc

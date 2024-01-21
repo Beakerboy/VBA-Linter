@@ -24,13 +24,14 @@ dependencies = [
 ]
 [project.optional-dependencies]
 tests = [
+  'coveralls',
+  'flake8-annotations',
   'mypy',
+  'pep8-naming',
   'pytest',
   'pytest-cov',
   'pytest-mock',
-  'coveralls',
-  'pep8-naming',
-  'flake8-annotations'
+  'types-antlr4-python3-runtime',
 ]
 [project.urls]
 "Homepage" = "https://github.com/Beakerboy/VBA-Linter"
@@ -47,7 +48,3 @@ pythonpath = "src:tests"
 testpaths = [
     "tests",
 ]
-
-[tool.mypy]
-show_error_codes = true
-mypy_path = "./stubs"

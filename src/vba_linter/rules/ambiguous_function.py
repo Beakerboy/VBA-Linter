@@ -8,8 +8,8 @@ T = TypeVar('T', bound='AmbiguousFunction')
 
 class AmbiguousFunction(AmbiguousIdentifier):
     def __init__(self: T) -> None:
-        self._rule_name = "E743"
-        self._names = ['l', 'O', 'I']
+        super().__init__()
+        self._rule_name = "743"
         self._message = 'ambiguous function name'
         self._sequence = [vbaLexer.FUNCTION, vbaLexer.WS, vbaLexer.IDENTIFIER]
         self._target = 3

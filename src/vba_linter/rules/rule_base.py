@@ -6,9 +6,17 @@ T = TypeVar('T', bound='RuleBase')
 
 class RuleBase:
     def __init__(self: T) -> None:
+        # The name or code of the error
         self._rule_name = ""
+
+        # The error message
         self._message = ''
+
+        # True if the error can be correctex
         self._fixable = False
+
+        # Enum?
+        self._severity = 'E'
 
     def get_rule_name(self: T) -> str:
         return self._rule_name
@@ -20,7 +28,7 @@ class RuleBase:
         message = self._message
         if message == '' and len(data) == 4:
             message = "%s"
-        return (":%s:%s: %s " + message) % data
+        return (":%s:%s: " + self._severity + "%s " + message) % data
 
     @classmethod
     def split_nl(cls: Type[T], nl: str) -> list:

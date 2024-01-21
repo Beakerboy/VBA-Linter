@@ -1,6 +1,6 @@
 from antlr4 import CommonTokenStream, Token
 from vba_linter.rules.rule_base import RuleBase
-from typing import List, Tuple, Type, TypeVar, Union
+from typing import List, Tuple, TypeVar, Union
 
 
 T = TypeVar('T', bound='TokenSequenceBase')
@@ -16,9 +16,10 @@ class TokenSequenceBase(RuleBase):
                  target: int, message: str) -> None:
         """
         if sequence is passed in as a tuple, and the contained lists have
-        different lengths, the shorted list kust be first to prevent
+        different lengths, the shorted list must be first to prevent
         an early return.
         """
+        super().__init__()
         self._rule_name = name
         self._sequence = sequence
 
@@ -43,8 +44,9 @@ class TokenSequenceBase(RuleBase):
                 if tok_type == Token.EOF:
                     found_eof = True
                 token_types.append(tok_type)
-            if TokenSequenceBase.match(token_types, sequence):
+            if self.match(token_types, sequence):
                 token = ts.LT(self._target)
+                assert token is not None
                 output = self._match_action(token)
         return output
 
@@ -54,8 +56,7 @@ class TokenSequenceBase(RuleBase):
         name = self._rule_name
         return [(line, column + 1, name)]
 
-    @classmethod
-    def match(cls: Type[T], sequence: list, signature: list) -> bool:
+    def match(self: T, sequence: list, signature: list) -> bool:
         """
         Compare the two lists to see if they match.
         """

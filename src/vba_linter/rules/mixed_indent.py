@@ -13,12 +13,14 @@ class MixedIndent(RuleBase):
     in the leading whitespace
     """
     def __init__(self: T) -> None:
-        self._rule_name = 'E101'
+        self._severity = 'E'
+        self._rule_name = '101'
         self._message = "indentation contains mixed spaces and tabs"
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token = ts.LT(1)
+        assert token is not None
         if token.type == vbaLexer.WS and token.column == 0:
             # if next token exists and is not NEWLINE
             # should the scope be checked to decide if this

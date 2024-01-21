@@ -7,7 +7,7 @@ from vba_linter.rules.multiple_spaces_comma import MultipleSpacesComma
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(1, 65, 'E241')]
+        [(1, 65, '241')]
     ]
 ]
 
@@ -26,6 +26,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (1, 65, "E241")
+    data = (1, 65, "241")
     expected = ":1:65: E241 Multiple spaces after ','"
     assert rule.create_message(data) == expected

@@ -2,8 +2,6 @@ import re
 from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
                     ParserRuleContext, TerminalNode)
 from antlr4.tree.Tree import TerminalNodeImpl
-from antlr4_vba.vbaLexer import vbaLexer
-from antlr4_vba.vbaParser import vbaParser
 from typing import Type, TypeVar
 
 
@@ -45,46 +43,6 @@ class VbaListener(ParseTreeListener):
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitTerminal(node)
-
-    def enterLetStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.LetStmtContext) -> None:
-        tokens = VbaListener.get_tokens(ctx)
-        terminal_num = 0
-        for tok in tokens:
-            terminal_num += 1
-            if tok.type == vbaLexer.LET:
-                output = (tok.line, tok.column + 1, "Wxxx", "optional let")
-                self.output.append(output)
-            elif tok.type == vbaLexer.EQ:
-                target = tok
-                leading_index = target.tokenIndex - 1
-                trailing_index = target.tokenIndex + 1
-                tok = self.ts.get(leading_index)
-                if tok.type == vbaLexer.WS:
-                    if len(tok.text) > 1:
-                        msg = "multiple spaces before operator"
-                        output = (tok.line, tok.column + 2, "W221", msg)
-                        self.output.append(output)
-                else:
-                    line = target.line
-                    column = target.column
-                    msg = "missing space before '='"
-                    output = (line, column + 1, "R225", msg)
-                    self.output.append(output)
-                tok = self.ts.get(trailing_index)
-                if tok.type == vbaLexer.WS:
-                    if len(tok.text) > 1:
-                        msg = "multiple spaces after operator"
-                        line = tok.line
-                        column = tok.column
-                        output = (line, column + 2, "W222", msg)
-                        self.output.append(output)
-                else:
-                    line = target.line
-                    column = target.column + 1
-                    msg = "missing space after '='"
-                    output = (line, column + 1, "R225", msg)
-                    self.output.append(output)
 
     @classmethod
     def text_matches(cls: Type[T], pattern: str, name: str) -> bool:

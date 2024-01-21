@@ -9,7 +9,7 @@ anti_patterns = [
 Public Function Foo(num)
 End Sub
 ''',  # noqa
-        [(2, 0, "E999",
+        [(2, 0, "999",
           "mismatched input 'End Sub' expecting {'.', '!', 'ACCESS', " +
           "'ADDRESSOF', 'ALIAS', 'AND', 'ATTRIBUTE', 'APPACTIVATE', " +
           "'APPEND', 'AS', 'BEGIN', 'BEEP', 'BINARY', 'BOOLEAN', " +
@@ -42,7 +42,7 @@ End Sub
     ],
     [
         '<?php phpinfo() ?>',
-        [(1, 0, "E999", "mismatched input '<?php' expecting <EOF>")]
+        [(1, 0, "999", "mismatched input '<?php' expecting <EOF>")]
     ],
 ]
 
@@ -61,6 +61,6 @@ def test_test(code: str, expected: tuple) -> None:
 
 def test_message() -> None:
     rule = ParsingError()
-    data = (1, 0, "E999", "mismatched input '<?php' expecting <EOF>")
-    expected = ":1:0: E999 mismatched input '<?php' expecting <EOF>"
+    data = (1, 0, "999", "mismatched input '<?php' expecting <EOF>")
+    expected = ":1:0: F999 mismatched input '<?php' expecting <EOF>"
     assert rule.create_message(data) == expected

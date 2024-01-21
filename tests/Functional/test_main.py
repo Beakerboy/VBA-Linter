@@ -59,7 +59,36 @@ pretty = (
 )
 
 
-def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+worst_expected = """\
+%s:1:1: E505 optional public
+%s:1:1: E601 missing module attributes
+%s:1:51: E131 Excess whitespace before '('
+%s:1:53: E134 Excess whitespace after '('
+%s:1:63: E151 Excess whitespace before ','
+%s:1:66: E154 Excess whitespace after ','
+%s:1:80: W501 line too long (92 > 79 characters)
+%s:1:90: E141 Excess whitespace before ')'
+%s:1:92: E144 Excess whitespace after ')'
+%s:1:92: E305 trailing whitespace
+%s:1:92: E500 incorrect line ending
+%s:2:0: E500 incorrect line ending
+%s:4:0: W303 Too many blank lines (3)
+%s:5:1: W110 Missing let
+%s:5:11: E500 incorrect line ending
+%s:6:5: W110 Missing let
+%s:6:12: E160 Missing whitespace before '='
+%s:6:13: E163 Missing whitespace after '='
+%s:7:5: W111 Optional let
+%s:7:16: E161 Excess whitespace before '='
+%s:7:19: E164 Excess whitespace after '='
+%s:8:12: E500 incorrect line ending
+%s:10:1: W510 Missing visibility
+%s:12:1: W391 blank line at end of file
+24 Errors in 1 File
+"""
+
+
+def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
     mocker.patch(
         "sys.argv",
@@ -74,58 +103,36 @@ def test_worst_file(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
-    expected = """\
-%s:1:1: N104 missing module attributes
-%s:1:1: Wxxx optional public
-%s:1:51: E211 whitespace before '('
-%s:1:53: E201 Whitespace after '('
-%s:1:63: E203 Whitespace before ','
-%s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E202 Whitespace before ')'
-%s:1:92: W291 trailing whitespace
-%s:1:92: W500 incorrect line ending
-%s:2:0: W500 incorrect line ending
-%s:4:0: E303 Too many blank lines (3)
-%s:5:1: Wxxx missing let
-%s:5:11: W500 incorrect line ending
-%s:6:5: Wxxx missing let
-%s:6:12: R225 missing space before '='
-%s:6:13: R225 missing space after '='
-%s:7:5: Wxxx optional let
-%s:7:16: W221 multiple spaces before operator
-%s:7:19: W222 multiple spaces after operator
-%s:8:12: W500 incorrect line ending
-%s:10:1: Wxxx missing visibility
-%s:12:1: W391 blank line at end of file
-22 Errors in 1 File
-""".replace("%s", full_path)  # noqa
+    expected = worst_expected.replace("%s", full_path)
     assert captured.err == expected
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
+    delete_code(file_name)
     delete_code(file_name + ".pretty")
 
+
+def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    file_name = save_code(worst_practice)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
-%s:1:1: N104 missing module attributes
-%s:1:51: E211 whitespace before '('
-%s:1:53: E201 Whitespace after '('
-%s:1:63: E203 Whitespace before ','
-%s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E202 Whitespace before ')'
-%s:1:92: W291 trailing whitespace
-%s:1:92: W500 incorrect line ending
-%s:2:0: W500 incorrect line ending
-%s:4:0: E303 Too many blank lines (3)
-%s:5:11: W500 incorrect line ending
-%s:6:12: R225 missing space before '='
-%s:6:13: R225 missing space after '='
-%s:7:5: Wxxx optional let
-%s:7:16: W221 multiple spaces before operator
-%s:7:19: W222 multiple spaces after operator
-%s:8:12: W500 incorrect line ending
-%s:10:1: Wxxx missing visibility
-%s:12:1: W391 blank line at end of file
-19 Errors in 1 File
+%s:1:1: E601 missing module attributes
+%s:1:51: E131 Excess whitespace before '('
+%s:1:53: E134 Excess whitespace after '('
+%s:1:63: E151 Excess whitespace before ','
+%s:1:66: E154 Excess whitespace after ','
+%s:1:90: E141 Excess whitespace before ')'
+%s:1:92: E144 Excess whitespace after ')'
+%s:1:92: E305 trailing whitespace
+%s:1:92: E500 incorrect line ending
+%s:2:0: E500 incorrect line ending
+%s:5:11: E500 incorrect line ending
+%s:6:12: E160 Missing whitespace before '='
+%s:6:13: E163 Missing whitespace after '='
+%s:7:16: E161 Excess whitespace before '='
+%s:7:19: E164 Excess whitespace after '='
+%s:8:12: E500 incorrect line ending
+16 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
@@ -180,31 +187,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     main()
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
-    expected = """\
-%s:1:1: N104 missing module attributes
-%s:1:1: Wxxx optional public
-%s:1:51: E211 whitespace before '('
-%s:1:53: E201 Whitespace after '('
-%s:1:63: E203 Whitespace before ','
-%s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E202 Whitespace before ')'
-%s:1:92: W291 trailing whitespace
-%s:1:92: W500 incorrect line ending
-%s:2:0: W500 incorrect line ending
-%s:4:0: E303 Too many blank lines (3)
-%s:5:1: Wxxx missing let
-%s:5:11: W500 incorrect line ending
-%s:6:5: Wxxx missing let
-%s:6:12: R225 missing space before '='
-%s:6:13: R225 missing space after '='
-%s:7:5: Wxxx optional let
-%s:7:16: W221 multiple spaces before operator
-%s:7:19: W222 multiple spaces after operator
-%s:8:12: W500 incorrect line ending
-%s:10:1: Wxxx missing visibility
-%s:12:1: W391 blank line at end of file
-22 Errors in 1 File
-""".replace("%s", full_path)  # noqa
+    expected = worst_expected.replace("%s", full_path)
     assert captured.err == expected
     delete_code(file_name)
 

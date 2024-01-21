@@ -1,18 +1,21 @@
 import pytest
+from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.ambiguous_function import AmbiguousFunction
+from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 
 
 anti_patterns = [
     [
-        RuleTestBase.worst_practice,
-        [(10, 17, '743')]
+        'Public Function Foo(num,mum)\r\nEnd Function\r\n',
+        [(1, 25, "B83")]
     ]
 ]
 
 
-rule = AmbiguousFunction()
+rule = TokenSequenceMismatch(
+    "B83", [vbaLexer.T__0, vbaLexer.WS], 1, "Whitespace after ','"
+)
 
 
 @pytest.mark.parametrize('rule', [rule])
@@ -22,10 +25,3 @@ rule = AmbiguousFunction()
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     assert RuleTestBase.tokenize(rule, code) == expected
-
-
-@pytest.mark.parametrize('rule', [rule])
-def test_message(rule: RuleBase) -> None:
-    data = (4, 1, "743")
-    expected = ":4:1: E743 ambiguous function name"
-    assert rule.create_message(data) == expected

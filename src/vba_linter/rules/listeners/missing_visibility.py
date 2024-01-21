@@ -1,15 +1,19 @@
 from antlr4 import ParseTreeListener, ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
+from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='MissingVisibility')
 
 
-class MissingVisibility(ParseTreeListener):
+class MissingVisibility(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._rule_name = "510"
+        self._severity = 'W'
+        self._message = "Missing visibility"
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
@@ -25,5 +29,5 @@ class MissingVisibility(ParseTreeListener):
         if not isinstance(child, vbaParser.VisibilityContext):
             line = tok.line
             column = tok.column
-            msg = "missing visibility"
-            self.output.append((line, column + 1, "Wxxx", msg))
+            name = self._rule_name
+            self.output.append((line, column + 1, name))

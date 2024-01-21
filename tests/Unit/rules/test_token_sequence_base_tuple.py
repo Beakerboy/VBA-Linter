@@ -1,32 +1,29 @@
 import pytest
-from vba_linter.rule_directory import RuleDirectory
+from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
+from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.rule_base import RuleBase
 
 
 anti_patterns = [
     [
-        'Public Function Foo(num , bar)\r\nEnd Function\r\n',
-        [(1, 24, "E203")]
+        'Public Function Foo(num , mum )\r\nEnd Function\r\n',
+        [(1, 24, "F00"), (1, 30, "F00")]
     ],
     [
-        'Foo = Bar num , baz\r\n',
-        [(1, 14, "E203")]
+        'Foo = Bar( )\r\n',
+        [(1, 11, "F00")]
     ],
-    [
-        'Foo = Bar a, b , c\r\n',
-        [(1, 15, "E203")]
-    ],
-    [
-        'Public Function Foo(num ; bar)\r\nEnd Function\r\n',
-        []
-    ]
 ]
 
 
-rd = RuleDirectory()
-rd.load_all_rules()
-rule = rd.get_rule("E203")
+rule = TokenSequenceBase(
+    "F00",
+    (
+        [vbaLexer.WS, vbaLexer.RPAREN],
+        [vbaLexer.WS, vbaLexer.T__0]
+    ), 0, "Whitespace before symbol"
+)
 
 
 @pytest.mark.parametrize('rule', [rule])
