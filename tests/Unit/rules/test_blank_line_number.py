@@ -24,5 +24,5 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
     data = (4, 0, "303")
-    expected = ":4:0: W303 too many blank lines (3)"
+    expected = ":4:0: W303 Too many blank lines (3)"
     assert rule.create_message(data) == expected
