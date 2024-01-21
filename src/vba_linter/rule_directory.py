@@ -69,14 +69,13 @@ class RuleDirectory:
         self.load_standard_rules()
 
         self._rules.update({
-            "391": BlankLineEof(), "303": BlankLineNumber()
+            "391": BlankLineEof(), "303": BlankLineNumber(),
             "501": LineTooLong(), "101": MixedIndent()
         })
         self._parser_rules.update({
             'N100': OptionalPublic(),
             '510': MissingVisibility(),
-            '110': MissingLet(),
-            '111': OptionalLet()
+            '110': MissingLet(), '111': OptionalLet()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
