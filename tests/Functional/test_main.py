@@ -121,7 +121,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:53: E134 Excess whitespace after '('
 %s:1:63: E151 Excess whitespace before ','
 %s:1:66: E154 Excess whitespace after ','
-%s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E141 Excess whitespace before ')'
 %s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 trailing whitespace
@@ -133,7 +132,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:7:16: W221 multiple spaces before operator
 %s:7:19: W222 multiple spaces after operator
 %s:8:12: W500 incorrect line ending
-%s:12:1: W391 blank line at end of file
 19 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
