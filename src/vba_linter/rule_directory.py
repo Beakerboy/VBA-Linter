@@ -43,7 +43,7 @@ class RuleDirectory:
         elif name in self._parser_rules:
             del self._parser_rules[name]
 
-    def load_all_rules(self: T) -> None:
+    def load_standard_rules(self: T) -> None:
         symbols = [
             [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 0)],
@@ -55,6 +55,9 @@ class RuleDirectory:
         for symbol in symbols:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
+
+    def load_all_rules(self: T) -> None:
+        self.load_standard_rules()
 
         self._rules.update({"305": TrailingWhitespace(), "W201": NewlineEof(),
                             "391": BlankLineEof(), "W500": LineEnding(),
