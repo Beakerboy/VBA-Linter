@@ -36,8 +36,9 @@ class LineEnding(RuleBase):
         return output
 
     def create_message(self: T, data: tuple) -> str:
-        message = self._message
         if data[1] == -1:
             data = (data[0], 0, "E303")
-            message = "Too many blank lines (3)"
-        return (":%s:%s: %s " + message) % data
+            self._message = "Too many blank lines (3)"
+        else:
+            self._message = "incorrect line ending"
+        return super().create_message(data)
