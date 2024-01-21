@@ -28,17 +28,7 @@ class LineEnding(RuleBase):
                 if newline_list[i] != self._line_ending:
                     column = token.column if i == 0 else 0
                     output.append((token.line + i, column, name))
-                if i > self._allowed_blank_lines:
-                    output.append((token.line + i, -1, name))
             num = min([num_nl, self._allowed_blank_lines + 1])
             new_text = self._line_ending * num
             token.text = new_text
         return output
-
-    def create_message(self: T, data: tuple) -> str:
-        if data[1] == -1:
-            data = (data[0], 0, "303")
-            self._message = "Too many blank lines (3)"
-        else:
-            self._message = "incorrect line ending"
-        return super().create_message(data)
