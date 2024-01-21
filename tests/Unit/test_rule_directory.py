@@ -11,8 +11,8 @@ def test_add_and_remove() -> None:
     obj = RuleDirectory()
     rule1 = RuleStub()
     rule1.set_name("001")
-    assert len(rule1.get_loaded_rules()) == 0
+    assert len(obj.get_loaded_rules()) == 0
     obj.add_rule(rule1)
-    assert len(rule1.get_loaded_rules()) == 1
+    assert len(obj.get_loaded_rules()) == 1
     obj.remove_rule("001")
-    assert len(rule1.get_loaded_rules()) == 0
+    assert len(obj.get_loaded_rules()) == 0
