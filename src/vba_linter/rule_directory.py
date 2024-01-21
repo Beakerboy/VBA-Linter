@@ -10,6 +10,7 @@ from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 from vba_linter.rules.blank_line_eof import BlankLineEof
+from vba_linter.rules.blank_line_number import BlankLineNumber
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
@@ -56,7 +57,8 @@ class RuleDirectory:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
         self._rules.update({
-            "201": NewlineEof(), "500": LineEnding(),
+            "201": NewlineEof(), "303": BlankLineNumber(),
+            "500": LineEnding(),
             "305": TrailingWhitespace()
         })
         self._parser_rules.update({
