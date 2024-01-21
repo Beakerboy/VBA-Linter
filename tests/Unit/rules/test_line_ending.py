@@ -5,8 +5,8 @@ from vba_linter.rules.line_ending import LineEnding
 
 
 anti_patterns = [
-    ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "W500")]),
-    ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, 0, "W500")]),
+    ('\n\r\nFunction Foo()\r\n\r\nEnd Function\r\n', [(1, 0, "500")]),
+    ('\r\n\nFunction Foo()\r\n\r\nEnd Function\r\n', [(2, 0, "500")]),
     ('\r\n\r\nFoo\n', [(3, 3, "500")]),
     (
         'Public Function Foo(num)\r\nEnd Function\n',
