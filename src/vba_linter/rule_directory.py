@@ -36,7 +36,10 @@ class RuleDirectory:
         self._parser_rules: Dict[str, ParseTreeListener] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        self._rules[rule.get_rule_name()] = rule
+        if isinstance(rule, ParseTreeListener):
+            self._parser_rules[rule.get_rule_name()] = rule
+        else:
+            self._rules[rule.get_rule_name()] = rule
 
     def remove_rule(self: T, name: str) -> None:
         if name in self._rules:
