@@ -7,6 +7,20 @@ from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
 
 
+files = []
+
+
+@pytest.fixture(autouse=True)
+def run_around_tests():
+    # Code that will run before your test, for example:
+    files_before = # ... do something to check the existing files
+    # A test function will be run at this point
+    yield
+    # Code that will run after your test, for example:
+    for file in files:
+        delete_code(file)
+    files = []
+
 def save_code(code: str) -> str:
     file_name = create_filename(ext='.bas')
     p = Path(file_name)
@@ -90,6 +104,7 @@ worst_expected = """\
 
 def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -101,6 +116,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     )
     with pytest.raises(SystemExit):
         main()
+        files.append(file_name + ".pretty")
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = worst_expected.replace("%s", full_path)
@@ -108,8 +124,6 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
-    delete_code(file_name)
-    delete_code(file_name + ".pretty")
 
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
