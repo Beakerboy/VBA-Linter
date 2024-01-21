@@ -111,6 +111,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     delete_code(file_name)
     delete_code(file_name + ".pretty")
 
+
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
