@@ -8,5 +8,6 @@ T = TypeVar('T', bound='ParserRuleStub')
 
 
 class ParserRuleStub(ParseTreeListener, RuleBase):
-    def __init__(self: T) -> None:
+    def __init__(self: T, name: str) -> None:
         super().__init__()
+        self._rule_name = name
