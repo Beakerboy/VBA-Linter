@@ -8,7 +8,7 @@ def test_constructor() -> None:
     assert isinstance(obj, RuleDirectory)
 
 
-def xtest_add() -> None:
+def test_add() -> None:
     path = 'tests/Files/project/all_errors.bas'
     obj = RuleDirectory()
     rule1 = RuleStub()
