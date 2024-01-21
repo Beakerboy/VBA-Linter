@@ -57,7 +57,7 @@ class RuleDirectory:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
         self._rules.update({
-            "201": NewlineEof(), "303": BlankLineNumber(),
+            "201": NewlineEof(),
             "500": LineEnding(),
             "305": TrailingWhitespace()
         })
@@ -69,7 +69,7 @@ class RuleDirectory:
         self.load_standard_rules()
 
         self._rules.update({
-            "391": BlankLineEof(),
+            "391": BlankLineEof(), "303": BlankLineNumber()
             "501": LineTooLong(), "101": MixedIndent()
         })
         self._parser_rules.update({
