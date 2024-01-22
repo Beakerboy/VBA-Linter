@@ -7,7 +7,7 @@ from vba_linter.rules.listeners.missing_let import MissingLet
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(10, 17, '743')]
+        [(5, 1, '110'), (6, 5, '110')]
     ]
 ]
 
