@@ -23,6 +23,4 @@ class MissingModuleAttributes(ParseTreeListener, RuleBase):
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         if not self._found:
-            name = self._rule_name
-            msg = self._message
-            self.output = [(1, 1, name)]
+            self.output = [(1, 1, self._rule_name)]
