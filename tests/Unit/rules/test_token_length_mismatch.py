@@ -7,14 +7,16 @@ from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 
 anti_patterns = [
     [
-        'Public Function Foo(num,mum)\r\nEnd Function\r\n',
-        [(1, 25, "B83")]
+        RuleTestBase.worst_practice,
+        [(7, 16, "E303")]
     ]
 ]
 
 
-rule = TokenLengtgMismatch(
-    "B83", [vbaLexer.T__0, vbaLexer.WS], 1, "Whitespace after ','"
+rule = TokenLengthMismatch(
+    str(i),
+    [vbaLexer.WS, vbaLexer.EQ], 0,
+    "Excess whitespace before '='"
 )
 
 
