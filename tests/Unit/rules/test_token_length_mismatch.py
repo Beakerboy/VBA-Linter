@@ -8,7 +8,8 @@ from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(7, 16, "E303")]
+        [(5,3,"303"),
+         (7, 16, "303")]
     ]
 ]
 
