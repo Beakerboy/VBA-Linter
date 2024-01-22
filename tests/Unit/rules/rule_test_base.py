@@ -63,7 +63,7 @@ class RuleTestBase:
         return CommonTokenStream(lexer)
 
     @classmethod
-    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
+    def run_token_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
         results = cls.run_test(rule, ts)
@@ -72,6 +72,9 @@ class RuleTestBase:
 
     @classmethod
     def run_test(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
+        """
+        Walk the tokenstream, testing each token against the rule.
+        """
         results = []
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))
