@@ -1,7 +1,8 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.listeners.missing_module_attributes import MissingModuleAttributes
+from vba_linter.rules.listeners.missing_module_attributes import (
+    MissingModuleAttributes)
 
 
 anti_patterns = [
