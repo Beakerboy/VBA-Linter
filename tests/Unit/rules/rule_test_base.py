@@ -1,6 +1,6 @@
 import random
 import string
-from antlr4 import CommonTokenStream, Token
+from antlr4 import CommonTokenStream, ParseTreeWalker, Token
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
