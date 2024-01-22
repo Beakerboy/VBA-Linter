@@ -8,17 +8,15 @@ from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(5, 3, "303"),
-         (7, 16, "303")]
+        [(1, 51, "001")]
     ]
 ]
 
 
 rule = TokenSequenceOperator(
-    "303",
-    [vbaLexer.WS, vbaLexer.EQ], 0,
-    "Excess whitespace before '='"
-)
+    "001",
+    [vbaLexer.EQ, vbaLexer.WS, vbaLexer.LPAREN], 0,
+    "Excess whitespace before '('")
 
 
 @pytest.mark.parametrize('rule', [rule])
