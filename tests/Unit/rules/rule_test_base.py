@@ -72,7 +72,7 @@ class RuleTestBase:
             parser = vbaParser(ts)
             program = parser.startRule()
             ParseTreeWalker.DEFAULT.walk(rule, program)
-            results = rule.get_output()
+            results = rule.output
         else:
             results = cls.run_token_rule(rule, ts)
         cls.delete_code(file_name)
