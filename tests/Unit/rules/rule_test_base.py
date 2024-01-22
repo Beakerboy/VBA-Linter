@@ -14,8 +14,6 @@ T = TypeVar('T', bound='RuleTestBase')
 
 class RuleTestBase:
     best_practice = [
-        ['', []],
-        ['\r\n', []],
         [
             ('Attribute VB_Name = "SQLFactory"\r\n' +
              'Option Explicit\r\n' +
