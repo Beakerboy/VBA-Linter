@@ -1,6 +1,6 @@
 import random
 import string
-from antlr4 import CommonTokenStream, ParseTreeWalker, Token
+from antlr4 import CommonTokenStream, ParseTreeListener, ParseTreeWalker, Token
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
@@ -63,20 +63,22 @@ class RuleTestBase:
         return CommonTokenStream(lexer)
 
     @classmethod
-    def run_token_test(cls: Type[T], rule: RuleBase, code: str) -> list:
+    def run_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
-        if isinstance(rule, ):
+        if isinstance(rule, ParseTreeListener):
             parser = vbaParser(ts)
             program = parser.startRule()
-            ParseTreeWalker.DEFAULT.walk(listener, program)
-            
+            ParseTreeWalker.DEFAULT.walk(rule, program)
+
         results = cls.run_token_rule(rule, ts)
         cls.delete_code(file_name)
         return results
 
     @classmethod
-    def run_token_rule(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
+    def run_token_rule(cls: Type[T],
+                       rule: RuleBase,
+                       ts: CommonTokenStream) -> list:
         """
         Walk the tokenstream, testing each token against the rule.
         """
