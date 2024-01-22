@@ -66,12 +66,17 @@ class RuleTestBase:
     def run_token_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
-        results = cls.run_rule(rule, ts)
+        if isinstance(rule, ):
+            parser = vbaParser(ts)
+            program = parser.startRule()
+            ParseTreeWalker.DEFAULT.walk(listener, program)
+            
+        results = cls.run_token_rule(rule, ts)
         cls.delete_code(file_name)
         return results
 
     @classmethod
-    def run_rule(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
+    def run_token_rule(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
         """
         Walk the tokenstream, testing each token against the rule.
         """
