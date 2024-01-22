@@ -15,7 +15,7 @@ anti_patterns = [
 
 
 rule = TokenLengthMismatch(
-    str(i),
+    "303",
     [vbaLexer.WS, vbaLexer.EQ], 0,
     "Excess whitespace before '='"
 )
