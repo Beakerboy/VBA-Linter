@@ -8,6 +8,8 @@ from vba_linter.__main__ import main
 
 
 files = []
+
+
 @pytest.fixture(autouse=True)
 def run_around_tests() -> None:
     files = []
