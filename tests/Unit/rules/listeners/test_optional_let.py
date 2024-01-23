@@ -8,7 +8,7 @@ from vba_linter.rules.listeners.optional_let import (
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(7, 5, '510')]
+        [(7, 5, '111')]
     ]
 ]
 
