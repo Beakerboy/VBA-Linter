@@ -68,8 +68,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * Blank line begining file
 * blank line end of file
 * missing final eol
-* missing module sefinition
-* missing module options
+* 601 missing module attributes
+* 602 Missing module declarations
 ### 700 Documentation
 * Missing function documentation
 * Missing module documentation
