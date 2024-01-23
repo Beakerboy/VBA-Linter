@@ -7,6 +7,19 @@ from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
 
 
+files = []
+@pytest.fixture(autouse=True)
+def run_around_tests():
+    files = []
+    # Code that will run before your test, for example:
+    # A test function will be run at this point
+    yield
+    # Code that will run after your test, for example:
+    for file in files:
+        delete_code(file)
+    files = []
+
+
 def save_code(code: str) -> str:
     file_name = create_filename(ext='.bas')
     p = Path(file_name)
@@ -114,6 +127,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
 %s:1:1: E601 missing module attributes
