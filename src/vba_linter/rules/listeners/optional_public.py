@@ -11,6 +11,8 @@ class OptionalPublic(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._message = "Optional public"
+        self._rule_name = "505"
 
     def enterFunctionStmt(self: T,  # noqa: N802
                           ctx: vbaParser.FunctionStmtContext) -> None:
@@ -25,5 +27,4 @@ class OptionalPublic(VbaListener):
         if tok.text == "Public":
             line = tok.line
             column = tok.column
-            msg = "optional public"
-            self.output.append((line, column + 1, "505", msg))
+            self.output.append((line, column + 1, self._rule_name))
