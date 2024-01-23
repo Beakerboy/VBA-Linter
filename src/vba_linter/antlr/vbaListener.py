@@ -1,4 +1,3 @@
-import re
 from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
                     ParserRuleContext, TerminalNode)
 from antlr4.tree.Tree import TerminalNodeImpl
