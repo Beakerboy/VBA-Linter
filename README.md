@@ -44,9 +44,12 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 200 Parameter errors
 * 110 Missing Let
 * 111 Optional Let
-* naming
-* used before defined (option explicit)
-* missing type
+* parameter naming
+* keyword capitalization
+* function / sub naming
+* property naming
+* parameter not defined (option explicit)
+* missing type designation
 ### 300 Line errors
 * 310 Incorrect line ending
 * 303 Too many blank lines (3)
