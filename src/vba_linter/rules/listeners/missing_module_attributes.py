@@ -32,3 +32,4 @@ class MissingModuleAttributes(VbaListener):
             line = node.getSymbol().line
             column = node.getSymbol().column
             self.output.append((line, column + 1, self._rule_name))
+            self._found = True
