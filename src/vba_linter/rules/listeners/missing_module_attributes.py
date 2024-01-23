@@ -1,12 +1,13 @@
 from antlr4 import ParseTreeListener, TerminalNode
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
+from vba_linter.antlr.vbaListener import VbaListener
 
 
 T = TypeVar('T', bound='MissingModuleAttributes')
 
 
-class MissingModuleAttributes(ParseTreeListener):
+class MissingModuleAttributes(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
         self._rule_name = "601"
