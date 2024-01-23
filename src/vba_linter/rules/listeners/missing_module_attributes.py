@@ -9,7 +9,7 @@ T = TypeVar('T', bound='MissingModuleAttributes')
 class MissingModuleAttributes(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self._rule_name = "602"
+        self._rule_name = "601"
         self._message = "Missing module declarations"
         self.output: list = []
         self._found = False
