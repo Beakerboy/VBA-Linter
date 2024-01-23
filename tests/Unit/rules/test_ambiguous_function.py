@@ -7,7 +7,7 @@ from vba_linter.rules.ambiguous_function import AmbiguousFunction
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(10, 17, '743')]
+        [(10, 10, '743')]
     ]
 ]
 
