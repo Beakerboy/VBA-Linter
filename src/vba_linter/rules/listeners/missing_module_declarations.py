@@ -10,8 +10,8 @@ T = TypeVar('T', bound='MissingModuleAttributes')
 class MissingModuleAttributes(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self._rule_name = "601"
-        self._message = "Missing module attributes"
+        self._rule_name = "602"
+        self._message = "Missing module declarations"
         self.output: list = []
         self._found = False
 
@@ -23,7 +23,7 @@ class MissingModuleAttributes(VbaListener):
 
     def enterModuleAttributes(  # noqa: N802
             self: T,
-            ctx: vbaParser.ModuleAttributesContext
+            ctx: vbaParser.ModuleDeclarationsContext
     ) -> None:
         self._found = True
 
