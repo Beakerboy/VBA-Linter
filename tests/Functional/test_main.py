@@ -98,7 +98,7 @@ worst_expected = """\
 %s:8:12: E500 incorrect line ending
 %s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
-24 Errors in 1 File
+25 Errors in 1 File
 """
 
 
