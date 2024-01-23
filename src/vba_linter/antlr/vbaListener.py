@@ -78,13 +78,3 @@ class VbaListener(ParseTreeListener, RuleBase):
         """
         pattern = '(^[a-z]{1}$)|(([A-Z]([a-z])+)*$)'
         return cls.text_matches(pattern, name)
-
-    @classmethod
-    def get_tokens(cls: Type[T], ctx: ParserRuleContext) -> list:
-        tokens = []
-        if isinstance(ctx, TerminalNodeImpl):
-            return [ctx.getSymbol()]
-        else:
-            for child in ctx.getChildren():
-                tokens.extend(cls.get_tokens(child))
-        return tokens
