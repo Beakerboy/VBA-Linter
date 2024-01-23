@@ -3,12 +3,13 @@ from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
                     ParserRuleContext, TerminalNode)
 from antlr4.tree.Tree import TerminalNodeImpl
 from typing import Type, TypeVar
+from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='VbaListener')
 
 
-class VbaListener(ParseTreeListener):
+class VbaListener(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
@@ -35,6 +36,11 @@ class VbaListener(ParseTreeListener):
         for listener in self.listeners:
             ctx.exitRule(listener)
             listener.exitEveryRule(ctx)
+
+    def enterStartRule(  # noqa: N802
+            self: T,
+            ctx: vbaParser.StartRuleContext) -> None:
+        self.output = []
 
     def visitErrorNode(self: T, node: ErrorNode) -> None:  # noqa: 
         for listener in self.listeners:
