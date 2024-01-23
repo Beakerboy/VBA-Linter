@@ -12,7 +12,7 @@ files = []
 
 @pytest.fixture(autouse=True)
 def run_around_tests() -> None:
-    files = []
+    # files = []
     # Code that will run before your test, for example:
     # A test function will be run at this point
     yield
