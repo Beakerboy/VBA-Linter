@@ -1,7 +1,6 @@
 from antlr4 import ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.rules.rule_base import RuleBase
 from vba_linter.antlr.vbaListener import VbaListener
 
 
