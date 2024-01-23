@@ -123,8 +123,6 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
-    # delete_code(file_name)
-    # delete_code(file_name + ".pretty")
 
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
