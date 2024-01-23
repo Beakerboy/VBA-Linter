@@ -27,7 +27,7 @@ class MissingModuleDeclarations(VbaListener):
     ) -> None:
         self._found = True
 
-    def enterModuleBody(
+    def enterModuleBody(  # noqa: N802
             self: T,
             ctx: vbaParser.ModuleBodyContext) -> None:
         if not self._found:
