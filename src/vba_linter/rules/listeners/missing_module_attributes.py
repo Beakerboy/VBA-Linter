@@ -14,6 +14,7 @@ class MissingModuleAttributes(ParseTreeListener, RuleBase):
         self._message = "missing module attributes"
         self.output: list = []
         self._found = False
+        self.i = 0
 
     def enterModuleAttributes(  # noqa: N802
             self: T,
@@ -22,5 +23,6 @@ class MissingModuleAttributes(ParseTreeListener, RuleBase):
         self._found = True
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
+        self.i += 1
         if not self._found:
-            self.output = [(1, 1, self._rule_name)]
+            self.output = [(1, 1, self._rule_name + str(self.i))]
