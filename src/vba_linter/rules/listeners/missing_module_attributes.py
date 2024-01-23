@@ -29,4 +29,4 @@ class MissingModuleAttributes(VbaListener):
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         if not self._found:
-            self.output = [(1, 1, self._rule_name)]
+            self.output.append((1, 1, self._rule_name))
