@@ -29,6 +29,6 @@ class MissingModuleAttributes(VbaListener):
 
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         if not self._found:
-            line = node.symbol.line
-            column = node.symbol.column
+            line = node.getSymbol().line
+            column = node.getSymbol().column
             self.output.append((line, column + 1, self._rule_name))
