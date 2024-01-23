@@ -1,13 +1,14 @@
-from antlr4 import ParseTreeListener, ParserRuleContext
+from antlr4 import ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.antlr.vba_listener import VbaListener
 
 
 T = TypeVar('T', bound='MissingVisibility')
 
 
-class MissingVisibility(ParseTreeListener, RuleBase):
+class MissingVisibility(vbaListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
