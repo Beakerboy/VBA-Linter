@@ -65,7 +65,7 @@ class RuleDirectory:
             "305": TrailingWhitespace()
         })
         self._parser_rules.update({
-            '103': MissingModuleAttributes()
+            '601': MissingModuleAttributes()
         })
 
     def load_all_rules(self: T) -> None:
