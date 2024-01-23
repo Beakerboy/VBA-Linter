@@ -1,6 +1,7 @@
 import re
 from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
                     ParserRuleContext, TerminalNode)
+from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser
 from typing import Type, TypeVar
 from vba_linter.rules.rule_base import RuleBase
