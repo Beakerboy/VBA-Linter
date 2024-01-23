@@ -8,7 +8,7 @@ from vba_linter.antlr.vbaListener import VbaListener
 T = TypeVar('T', bound='MissingVisibility')
 
 
-class MissingVisibility(vbaListener):
+class MissingVisibility(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
