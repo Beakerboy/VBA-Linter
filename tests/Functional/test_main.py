@@ -105,6 +105,7 @@ worst_expected = """\
 
 def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -116,6 +117,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     )
     with pytest.raises(SystemExit):
         main()
+    files.append(file_name + ".pretty")
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = worst_expected.replace("%s", full_path)
@@ -123,8 +125,8 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
-    delete_code(file_name)
-    delete_code(file_name + ".pretty")
+    # delete_code(file_name)
+    # delete_code(file_name + ".pretty")
 
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
