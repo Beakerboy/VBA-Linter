@@ -10,7 +10,7 @@ class MissingModuleAttributes(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self._rule_name = "601"
-        self._message = "missing module attributes"
+        self._message = "Missing module attributes"
         self.output: list = []
         self._found = False
 
