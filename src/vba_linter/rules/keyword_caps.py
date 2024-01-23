@@ -26,10 +26,10 @@ class KeywordCaps(RuleBase):
         type = token.type
         generics = [vbaLexer.IDENTIFIER]
         if KeywordCaps.text_matches(pattern, text) and type not in generics:
-        pattern = "[A-Z][a-z]*"
-        if not KeywordCaps.text_matches(pattern, text):
-            line = token.line
-            column = token.column
-            rule = self._rule_name
-            output = [(line, column + 1, rule)]
+            pattern = "[A-Z][a-z]*"
+            if not KeywordCaps.text_matches(pattern, text):
+                line = token.line
+                column = token.column
+                rule = self._rule_name
+                output = [(line, column + 1, rule)]
         return output
