@@ -9,7 +9,8 @@ from vba_linter.__main__ import main
 
 @pytest.fixture(autouse=True)
 def run_around_tests() -> None:
-    global files = []
+    global files
+    files = []
     # Code that will run before your test, for example:
     # A test function will be run at this point
     yield
