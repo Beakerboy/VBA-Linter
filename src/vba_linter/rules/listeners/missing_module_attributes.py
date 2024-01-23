@@ -16,9 +16,9 @@ class MissingModuleAttributes(ParseTreeListener, RuleBase):
         self._found = False
         self.i = 0
 
-    def enterStartRule(
+    def enterStartRule(  # noqa: N802
             self: T,
-            ctx:vbaParser.StartRuleContext) -> None:
+            ctx: vbaParser.StartRuleContext) -> None:
         self.__init__()
             
     def enterModuleAttributes(  # noqa: N802
