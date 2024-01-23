@@ -52,13 +52,6 @@ class VbaListener(ParseTreeListener, RuleBase):
             listener.visitTerminal(node)
 
     @classmethod
-    def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
-        match = re.match(pattern, name)
-        if match:
-            return True
-        return False
-
-    @classmethod
     def is_snake_case(cls: Type[T], name: str) -> bool:
         pattern = '(^[a-z]{1}$)|([a-z]+(_[a-z]+)*$)'
         return cls.text_matches(pattern, name)
