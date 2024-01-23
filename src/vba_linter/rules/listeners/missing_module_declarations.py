@@ -3,7 +3,7 @@ from typing import TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
-T = TypeVar('T', bound='MissingModuleAttributes')
+T = TypeVar('T', bound='MissingModuleDeclarations')
 
 
 class MissingModuleDeclarations(VbaListener):
