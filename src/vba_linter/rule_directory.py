@@ -14,6 +14,7 @@ from vba_linter.rules.blank_line_number import BlankLineNumber
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
+from vba_linter.rules.keyword_caps import KeywordCaps
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
@@ -62,6 +63,7 @@ class RuleDirectory:
             i += 1
         self._rules.update({
             "201": NewlineEof(),
+            "220": KeywordCaps(),
             "500": LineEnding(),
             "305": TrailingWhitespace()
         })
