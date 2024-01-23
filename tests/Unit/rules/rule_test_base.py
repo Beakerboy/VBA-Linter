@@ -38,7 +38,7 @@ class RuleTestBase:
         '    Let BarVal  =  7\r\n'
         'End Function\n' +
         '\r\n' +
-        'Public Function O()\r\n' +
+        'Function O()\r\n' +
         'End Function\r\n' +
         '\r\n'
     )
