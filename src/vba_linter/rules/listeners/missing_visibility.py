@@ -2,7 +2,7 @@ from antlr4 import ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.antlr.vba_listener import VbaListener
+from vba_linter.antlr.vbaListener import VbaListener
 
 
 T = TypeVar('T', bound='MissingVisibility')
