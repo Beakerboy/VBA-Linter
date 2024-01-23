@@ -159,7 +159,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == expected
-    delete_code(file_name)
 
 
 def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
