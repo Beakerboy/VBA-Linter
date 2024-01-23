@@ -60,7 +60,7 @@ pretty = (
 
 
 worst_expected = """\
-%s:1:1: E505 optional public
+%s:1:1: E505 Optional public
 %s:1:1: E601 missing module attributes
 %s:1:51: E131 Excess whitespace before '('
 %s:1:53: E134 Excess whitespace after '('
