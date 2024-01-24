@@ -53,7 +53,7 @@ class RuleDirectory:
     def load_standard_rules(self: T) -> None:
         symbols = [
             [vbaLexer.LPAREN, "(", ('s', 0)],
-            [vbaLexer.RPAREN, ")", (0, 0)],
+            [vbaLexer.RPAREN, ")", (0, 1)],
             [vbaLexer.T__0, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
             [vbaLexer.ASSIGN, ':=', (1, 1)],
