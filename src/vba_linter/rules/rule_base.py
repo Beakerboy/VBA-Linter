@@ -19,6 +19,9 @@ class RuleBase:
         # Enum?
         self._severity = 'E'
 
+    def set_rule_name(self: T, value: str) -> None:
+        self._rule_name = value
+
     def get_rule_name(self: T) -> str:
         return self._rule_name
 
