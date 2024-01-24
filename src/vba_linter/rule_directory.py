@@ -63,11 +63,14 @@ class RuleDirectory:
         for symbol in symbols:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
+        rule910 = LineTooLong(1023)
+        rule910.set_rule_name("910")
         self._rules.update({
             "201": NewlineEof(),
             "220": KeywordCaps(),
             "500": LineEnding(),
-            "305": TrailingWhitespace()
+            "305": TrailingWhitespace(),
+            "910": rule910
         })
         self._parser_rules.update({
             '601': MissingModuleAttributes()
