@@ -6,6 +6,7 @@ from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
+from vba_linter.rules.token_seq_mismatch_nl import TokenSeqMismatchNL
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
@@ -53,7 +54,7 @@ class RuleDirectory:
     def load_standard_rules(self: T) -> None:
         symbols = [
             [vbaLexer.LPAREN, "(", ('s', 0)],
-            [vbaLexer.RPAREN, ")", (0, 0)],
+            [vbaLexer.RPAREN, ")", (0, 's')],
             [vbaLexer.T__0, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
             [vbaLexer.ASSIGN, ':=', (1, 1)],
@@ -150,11 +151,21 @@ class RuleDirectory:
                 str(i),
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'")
-        elif number[1] == 1:
-            rules[str(i)] = TokenSequenceMismatch(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Missing whitespace after '" + name + "'")
+        elif number[1] == 1 or number[1] == 's':
+            if number[1] == 1:
+                rules[str(i)] = TokenSequenceMismatch(
+                    str(i),
+                    [token, vbaLexer.WS], 1,
+                    "Missing whitespace after '" + name + "'")
+            else:
+                """
+                We need to carve out an exception for a newline
+                following an rparen
+                """
+                rules[str(i)] = TokenSeqMismatchNL(
+                    str(i),
+                    [token, vbaLexer.WS], 1,
+                    "Missing whitespace after '" + name + "'")
             i += 1
             rules[str(i)] = TokenLengthMismatch(
                 str(i),

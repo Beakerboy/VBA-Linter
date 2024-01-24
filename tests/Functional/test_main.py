@@ -51,7 +51,7 @@ worst_practice = (
     '\r\n' +
     'I = (2 + 1)\n' +
     '    foo_val=6\r\n'
-    '    Let BarVal  =  7\r\n'
+    '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\n' +
     '\r\n' +
     'sub O()\r\n' +
@@ -66,7 +66,7 @@ pretty = (
     '\r\n' +
     'I = (2 + 1)\r\n' +
     '    foo_val=6\r\n'
-    '    Let BarVal  =  7\r\n'
+    '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\r\n' +
     '\r\n' +
     'sub O()\r\n' +
@@ -84,7 +84,6 @@ worst_expected = """\
 %s:1:66: E154 Excess whitespace after ','
 %s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E141 Excess whitespace before ')'
-%s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:2:1: W310 Blank line contains whitespace
@@ -102,7 +101,7 @@ worst_expected = """\
 %s:11:1: E220 Keyword not capitalized
 %s:11:1: W510 Missing visibility
 %s:13:1: W391 blank line at end of file
-27 Errors in 1 File
+26 Errors in 1 File
 """
 
 
@@ -141,7 +140,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:63: E151 Excess whitespace before ','
 %s:1:66: E154 Excess whitespace after ','
 %s:1:90: E141 Excess whitespace before ')'
-%s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:4:0: E500 incorrect line ending
@@ -152,7 +150,7 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:8:19: E164 Excess whitespace after '='
 %s:9:12: E500 incorrect line ending
 %s:11:1: E220 Keyword not capitalized
-17 Errors in 1 File
+16 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
