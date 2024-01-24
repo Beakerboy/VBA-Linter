@@ -45,8 +45,9 @@ function = 'Supercalifragilisticexpialidocious'
 worst_practice = (
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \n' +
-    '\n' +
+    ' \r\n' +
     '\r\n' +
+    '\n' +
     '\r\n' +
     'I = (2 + 1)\n' +
     '    foo_val=6\r\n'
@@ -60,6 +61,7 @@ worst_practice = (
 pretty = (
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
+    ' \r\n' +
     '\r\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
@@ -83,23 +85,24 @@ worst_expected = """\
 %s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E141 Excess whitespace before ')'
 %s:1:92: E144 Excess whitespace after ')'
-%s:1:92: E305 trailing whitespace
+%s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
-%s:2:0: E500 incorrect line ending
-%s:4:0: W303 Too many blank lines (3)
-%s:5:1: W110 Missing let
-%s:5:11: E500 incorrect line ending
-%s:6:5: W110 Missing let
-%s:6:12: E160 Missing whitespace before '='
-%s:6:13: E163 Missing whitespace after '='
-%s:7:5: W111 Optional let
-%s:7:16: E161 Excess whitespace before '='
-%s:7:19: E164 Excess whitespace after '='
-%s:8:12: E500 incorrect line ending
-%s:10:1: E220 Keyword not capitalized
-%s:10:1: W510 Missing visibility
-%s:12:1: W391 blank line at end of file
-26 Errors in 1 File
+%s:2:1: W310 Blank line contains whitespace
+%s:4:0: E500 incorrect line ending
+%s:5:0: W303 Too many blank lines (3)
+%s:6:1: W110 Missing let
+%s:6:11: E500 incorrect line ending
+%s:7:5: W110 Missing let
+%s:7:12: E160 Missing whitespace before '='
+%s:7:13: E163 Missing whitespace after '='
+%s:8:5: W111 Optional let
+%s:8:16: E161 Excess whitespace before '='
+%s:8:19: E164 Excess whitespace after '='
+%s:9:12: E500 incorrect line ending
+%s:11:1: E220 Keyword not capitalized
+%s:11:1: W510 Missing visibility
+%s:13:1: W391 blank line at end of file
+27 Errors in 1 File
 """
 
 
@@ -139,16 +142,16 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:66: E154 Excess whitespace after ','
 %s:1:90: E141 Excess whitespace before ')'
 %s:1:92: E144 Excess whitespace after ')'
-%s:1:92: E305 trailing whitespace
+%s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
-%s:2:0: E500 incorrect line ending
-%s:5:11: E500 incorrect line ending
-%s:6:12: E160 Missing whitespace before '='
-%s:6:13: E163 Missing whitespace after '='
-%s:7:16: E161 Excess whitespace before '='
-%s:7:19: E164 Excess whitespace after '='
-%s:8:12: E500 incorrect line ending
-%s:10:1: E220 Keyword not capitalized
+%s:4:0: E500 incorrect line ending
+%s:6:11: E500 incorrect line ending
+%s:7:12: E160 Missing whitespace before '='
+%s:7:13: E163 Missing whitespace after '='
+%s:8:16: E161 Excess whitespace before '='
+%s:8:19: E164 Excess whitespace after '='
+%s:9:12: E500 incorrect line ending
+%s:11:1: E220 Keyword not capitalized
 17 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(

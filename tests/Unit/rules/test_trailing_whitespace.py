@@ -26,14 +26,13 @@ Public Function Foo(num)
  
 End Function
 ''',  # noqa
-        [(2, 1, "305")]
+        []
     ],
 ]
 
 
 message_data = [
-    [(3, 13, "305"), ":3:13: E305 trailing whitespace"],
-    [(2, 1, "305"), ":2:1: E310 Blank line contains whitespace"]
+    [(3, 13, "305"), ":3:13: E305 Trailing whitespace"],
 ]
 
 

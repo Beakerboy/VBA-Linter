@@ -8,8 +8,8 @@ T = TypeVar('T', bound='TokenSequenceMismatch')
 
 class TokenSequenceMismatch(TokenSequenceBase):
     """
-    Create an error if the stream matches a given sequence
-    of token types.
+    create an error is a seqenece matches all tokens,
+    but mist be not equal at the specified position.
     """
     def _match_action(self: T, token: Token) -> list:
         line = token.line
