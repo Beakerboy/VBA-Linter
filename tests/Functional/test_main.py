@@ -78,12 +78,12 @@ worst_expected = """\
 %s:1:1: E505 Optional public
 %s:1:1: E601 Missing module attributes
 %s:1:1: E602 Missing module declarations
-%s:1:51: E131 Excess whitespace before '('
-%s:1:53: E134 Excess whitespace after '('
-%s:1:63: E151 Excess whitespace before ','
-%s:1:66: E154 Excess whitespace after ','
+%s:1:51: E121 Excess whitespace before '('
+%s:1:53: E124 Excess whitespace after '('
+%s:1:63: E141 Excess whitespace before ','
+%s:1:66: E144 Excess whitespace after ','
 %s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E141 Excess whitespace before ')'
+%s:1:90: E131 Excess whitespace before ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:2:1: W310 Blank line contains whitespace
@@ -92,11 +92,11 @@ worst_expected = """\
 %s:6:1: W110 Missing let
 %s:6:11: E500 incorrect line ending
 %s:7:5: W110 Missing let
-%s:7:12: E160 Missing whitespace before '='
-%s:7:13: E163 Missing whitespace after '='
+%s:7:12: E150 Missing whitespace before '='
+%s:7:13: E153 Missing whitespace after '='
 %s:8:5: W111 Optional let
-%s:8:16: E161 Excess whitespace before '='
-%s:8:19: E164 Excess whitespace after '='
+%s:8:16: E151 Excess whitespace before '='
+%s:8:19: E154 Excess whitespace after '='
 %s:9:12: E500 incorrect line ending
 %s:11:1: E220 Keyword not capitalized
 %s:11:1: W510 Missing visibility
@@ -135,19 +135,19 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
 %s:1:1: E601 Missing module attributes
-%s:1:51: E131 Excess whitespace before '('
-%s:1:53: E134 Excess whitespace after '('
-%s:1:63: E151 Excess whitespace before ','
-%s:1:66: E154 Excess whitespace after ','
-%s:1:90: E141 Excess whitespace before ')'
+%s:1:51: E121 Excess whitespace before '('
+%s:1:53: E124 Excess whitespace after '('
+%s:1:63: E141 Excess whitespace before ','
+%s:1:66: E144 Excess whitespace after ','
+%s:1:90: E131 Excess whitespace before ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:4:0: E500 incorrect line ending
 %s:6:11: E500 incorrect line ending
-%s:7:12: E160 Missing whitespace before '='
-%s:7:13: E163 Missing whitespace after '='
-%s:8:16: E161 Excess whitespace before '='
-%s:8:19: E164 Excess whitespace after '='
+%s:7:12: E150 Missing whitespace before '='
+%s:7:13: E153 Missing whitespace after '='
+%s:8:16: E151 Excess whitespace before '='
+%s:8:19: E154 Excess whitespace after '='
 %s:9:12: E500 incorrect line ending
 %s:11:1: E220 Keyword not capitalized
 16 Errors in 1 File
