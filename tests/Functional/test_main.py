@@ -61,6 +61,7 @@ worst_practice = (
 pretty = (
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
+    ' \r\n' +
     '\r\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
