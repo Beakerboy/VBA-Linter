@@ -1,4 +1,5 @@
 from antlr4 import Token
+from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 from typing import TypeVar
 
