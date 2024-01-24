@@ -14,7 +14,7 @@ class KeywordCaps(RuleBase):
     def __init__(self: T) -> None:
         self._severity = 'E'
         self._rule_name = '220'
-        self._message = "Keyword must be capitalized"
+        self._message = "Keyword not capitalized"
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
