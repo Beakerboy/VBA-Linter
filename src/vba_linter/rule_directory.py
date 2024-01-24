@@ -65,6 +65,7 @@ class RuleDirectory:
             i += 1
         rule910 = LineTooLong(1023)
         rule910.set_rule_name("910")
+        rule910.severity = 'F'
         self._rules.update({
             "201": NewlineEof(),
             "220": KeywordCaps(),
