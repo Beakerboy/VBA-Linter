@@ -14,13 +14,15 @@ from vba_linter.rules.blank_line_number import BlankLineNumber
 from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
+from vba_linter.rules.keyword_caps import KeywordCaps
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
 from vba_linter.rules.listeners.missing_module_attributes import (
     MissingModuleAttributes)
-
+from vba_linter.rules.listeners.missing_module_declarations import (
+    MissingModuleDeclarations)
 
 T = TypeVar('T', bound='RuleDirectory')
 
@@ -36,7 +38,10 @@ class RuleDirectory:
         self._parser_rules: Dict[str, ParseTreeListener] = {}
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        self._rules[rule.get_rule_name()] = rule
+        if isinstance(rule, ParseTreeListener):
+            self._parser_rules[rule.get_rule_name()] = rule
+        else:
+            self._rules[rule.get_rule_name()] = rule
 
     def remove_rule(self: T, name: str) -> None:
         if name in self._rules:
@@ -58,11 +63,12 @@ class RuleDirectory:
             i += 1
         self._rules.update({
             "201": NewlineEof(),
+            "220": KeywordCaps(),
             "500": LineEnding(),
             "305": TrailingWhitespace()
         })
         self._parser_rules.update({
-            '103': MissingModuleAttributes()
+            '601': MissingModuleAttributes()
         })
 
     def load_all_rules(self: T) -> None:
@@ -73,13 +79,14 @@ class RuleDirectory:
             "501": LineTooLong(), "101": MixedIndent()
         })
         self._parser_rules.update({
-            'N100': OptionalPublic(),
+            '505': OptionalPublic(),
             '510': MissingVisibility(),
+            '602': MissingModuleDeclarations(),
             '110': MissingLet(), '111': OptionalLet()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
-        if rule_name == "F999":
+        if rule_name == "999":
             return ParsingError()
         if rule_name in self._rules:
             return self._rules[rule_name]

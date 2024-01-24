@@ -1,6 +1,8 @@
 import random
 import string
-from antlr4 import CommonTokenStream, Token
+from antlr4 import (CommonTokenStream, ParseTreeListener,
+                    ParseTreeWalker, Token)
+from antlr4_vba.vbaParser import vbaParser
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
@@ -12,8 +14,6 @@ T = TypeVar('T', bound='RuleTestBase')
 
 class RuleTestBase:
     best_practice = [
-        ['', []],
-        ['\r\n', []],
         [
             ('Attribute VB_Name = "SQLFactory"\r\n' +
              'Option Explicit\r\n' +
@@ -38,7 +38,7 @@ class RuleTestBase:
         '    Let BarVal  =  7\r\n'
         'End Function\n' +
         '\r\n' +
-        'Public Function O()\r\n' +
+        'Function O()\r\n' +
         'End Function\r\n' +
         '\r\n'
     )
@@ -63,15 +63,26 @@ class RuleTestBase:
         return CommonTokenStream(lexer)
 
     @classmethod
-    def tokenize(cls: Type[T], rule: RuleBase, code: str) -> list:
+    def run_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
-        results = cls.run_test(rule, ts)
+        if isinstance(rule, ParseTreeListener):
+            parser = vbaParser(ts)
+            program = parser.startRule()
+            ParseTreeWalker.DEFAULT.walk(rule, program)
+            results = rule.output
+        else:
+            results = cls.run_token_rule(rule, ts)
         cls.delete_code(file_name)
         return results
 
     @classmethod
-    def run_test(cls: Type[T], rule: RuleBase, ts: CommonTokenStream) -> list:
+    def run_token_rule(cls: Type[T],
+                       rule: RuleBase,
+                       ts: CommonTokenStream) -> list:
+        """
+        Walk the tokenstream, testing each token against the rule.
+        """
         results = []
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))

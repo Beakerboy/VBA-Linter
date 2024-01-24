@@ -44,9 +44,12 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 200 Parameter errors
 * 110 Missing Let
 * 111 Optional Let
-* naming
-* used before defined (option explicit)
-* missing type
+* 220 parameter naming
+* keyword capitalization
+* function / sub naming
+* property naming
+* parameter not defined (option explicit)
+* missing type designation
 ### 300 Line errors
 * 310 Incorrect line ending
 * 303 Too many blank lines (3)
@@ -65,8 +68,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * Blank line begining file
 * blank line end of file
 * missing final eol
-* missing module sefinition
-* missing module options
+* 601 missing module attributes
+* 602 Missing module declarations
 ### 700 Documentation
 * Missing function documentation
 * Missing module documentation

@@ -1,3 +1,4 @@
+import re
 from typing import Type, TypeVar
 from antlr4 import CommonTokenStream
 
@@ -46,3 +47,10 @@ class RuleBase:
                 result.append(nl[i:i+1])
                 i += 1
         return result
+
+    @classmethod
+    def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
+        match = re.match(pattern, name)
+        if match:
+            return True
+        return False

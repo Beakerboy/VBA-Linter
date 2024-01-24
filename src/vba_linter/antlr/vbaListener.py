@@ -1,14 +1,15 @@
-import re
 from antlr4 import (CommonTokenStream, ErrorNode, ParseTreeListener,
                     ParserRuleContext, TerminalNode)
 from antlr4.tree.Tree import TerminalNodeImpl
+from antlr4_vba.vbaParser import vbaParser
 from typing import Type, TypeVar
+from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='VbaListener')
 
 
-class VbaListener(ParseTreeListener):
+class VbaListener(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
@@ -36,6 +37,11 @@ class VbaListener(ParseTreeListener):
             ctx.exitRule(listener)
             listener.exitEveryRule(ctx)
 
+    def enterStartRule(  # noqa: N802
+            self: T,
+            ctx: vbaParser.StartRuleContext) -> None:
+        self.output = []
+
     def visitErrorNode(self: T, node: ErrorNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitErrorNode(node)
@@ -43,13 +49,6 @@ class VbaListener(ParseTreeListener):
     def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: 
         for listener in self.listeners:
             listener.visitTerminal(node)
-
-    @classmethod
-    def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
-        match = re.match(pattern, name)
-        if match:
-            return True
-        return False
 
     @classmethod
     def is_snake_case(cls: Type[T], name: str) -> bool:

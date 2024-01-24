@@ -7,7 +7,7 @@ from vba_linter.rules.ambiguous_function import AmbiguousFunction
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(10, 17, '743')]
+        [(10, 10, '743')]
     ]
 ]
 
@@ -21,7 +21,7 @@ rule = AmbiguousFunction()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    assert RuleTestBase.tokenize(rule, code) == expected
+    assert RuleTestBase.run_test(rule, code) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])

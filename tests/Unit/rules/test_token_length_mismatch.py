@@ -1,28 +1,23 @@
 import pytest
 from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 
 
 anti_patterns = [
     [
-        'Public Function Foo(num , mum )\r\nEnd Function\r\n',
-        [(1, 24, "F00"), (1, 30, "F00")]
-    ],
-    [
-        'Foo = Bar( )\r\n',
-        [(1, 11, "F00")]
-    ],
+        RuleTestBase.worst_practice,
+        [(5, 3, "303"),
+         (7, 16, "303")]
+    ]
 ]
 
 
-rule = TokenSequenceBase(
-    "F00",
-    (
-        [vbaLexer.WS, vbaLexer.RPAREN],
-        [vbaLexer.WS, vbaLexer.T__0]
-    ), 0, "Whitespace before symbol"
+rule = TokenLengthMismatch(
+    "303",
+    [vbaLexer.WS, vbaLexer.EQ], 0,
+    "Excess whitespace before '='"
 )
 
 

@@ -1,6 +1,6 @@
 from vba_linter.rule_directory import RuleDirectory
+from Unit.parser_rule_stub import ParserRuleStub
 from Unit.rule_stub import RuleStub
-from vba_linter.linter import Linter
 
 
 def test_constructor() -> None:
@@ -8,19 +8,18 @@ def test_constructor() -> None:
     assert isinstance(obj, RuleDirectory)
 
 
-def xtest_add() -> None:
-    path = 'tests/Files/project/all_errors.bas'
+def test_add_and_remove() -> None:
     obj = RuleDirectory()
     rule1 = RuleStub()
-    rule1.set_name("E001")
-    linter = Linter()
+    rule2 = ParserRuleStub("002")
+    rule1.set_name("001")
+    assert len(obj.get_loaded_rules()) == 0
     obj.add_rule(rule1)
-    assert rule1.test_count == 0
-    obj.test_all(linter.get_lexer(path))
-    assert rule1.test_count == 1
-    rule2 = RuleStub()
-    rule2.set_name("E002")
+    assert len(obj.get_loaded_rules()) == 1
+    obj.remove_rule("001")
+    assert len(obj.get_loaded_rules()) == 0
     obj.add_rule(rule2)
-    obj.test_all(linter.get_lexer(path))
-    assert rule1.test_count == 2
-    assert rule2.test_count == 1
+    assert len(obj.get_loaded_rules()) == 0
+    assert len(obj.get_parser_rules()) == 1
+    obj.remove_rule("002")
+    assert len(obj.get_parser_rules()) == 0

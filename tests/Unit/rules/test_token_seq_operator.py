@@ -1,29 +1,22 @@
 import pytest
 from antlr4_vba.vbaLexer import vbaLexer
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 
 
 anti_patterns = [
     [
-        'Public Function Foo(num , mum )\r\nEnd Function\r\n',
-        [(1, 24, "F00"), (1, 30, "F00")]
-    ],
-    [
-        'Foo = Bar( )\r\n',
-        [(1, 11, "F00")]
-    ],
+        RuleTestBase.worst_practice,
+        [(1, 51, "001")]
+    ]
 ]
 
 
-rule = TokenSequenceBase(
-    "F00",
-    (
-        [vbaLexer.WS, vbaLexer.RPAREN],
-        [vbaLexer.WS, vbaLexer.T__0]
-    ), 0, "Whitespace before symbol"
-)
+rule = TokenSequenceOperator(
+    "001",
+    [vbaLexer.EQ, vbaLexer.WS, vbaLexer.LPAREN], 0,
+    "Excess whitespace before '('")
 
 
 @pytest.mark.parametrize('rule', [rule])

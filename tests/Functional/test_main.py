@@ -7,6 +7,19 @@ from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
 
 
+@pytest.fixture(autouse=True)
+def run_around_tests() -> None:
+    global files
+    files = []
+    # Code that will run before your test, for example:
+    # A test function will be run at this point
+    yield
+    # Code that will run after your test, for example:
+    for file in files:
+        delete_code(file)
+    files = []
+
+
 def save_code(code: str) -> str:
     file_name = create_filename(ext='.bas')
     p = Path(file_name)
@@ -40,7 +53,7 @@ worst_practice = (
     '    Let BarVal  =  7\r\n'
     'End Function\n' +
     '\r\n' +
-    'Sub O()\r\n' +
+    'sub O()\r\n' +
     'End Sub\r\n' +
     '\r\n'
 )
@@ -54,14 +67,15 @@ pretty = (
     '    Let BarVal  =  7\r\n'
     'End Function\r\n' +
     '\r\n' +
-    'Sub O()\r\n' +
+    'sub O()\r\n' +
     'End Sub\r\n'
 )
 
 
 worst_expected = """\
-%s:1:1: E505 optional public
-%s:1:1: E601 missing module attributes
+%s:1:1: E505 Optional public
+%s:1:1: E601 Missing module attributes
+%s:1:1: E602 Missing module declarations
 %s:1:51: E131 Excess whitespace before '('
 %s:1:53: E134 Excess whitespace after '('
 %s:1:63: E151 Excess whitespace before ','
@@ -82,14 +96,16 @@ worst_expected = """\
 %s:7:16: E161 Excess whitespace before '='
 %s:7:19: E164 Excess whitespace after '='
 %s:8:12: E500 incorrect line ending
+%s:10:1: E220 Keyword not capitalized
 %s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
-24 Errors in 1 File
+26 Errors in 1 File
 """
 
 
 def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -101,6 +117,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     )
     with pytest.raises(SystemExit):
         main()
+    files.append(file_name + ".pretty")
     captured = capsys.readouterr()
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = worst_expected.replace("%s", full_path)
@@ -108,15 +125,14 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == pretty
-    delete_code(file_name)
-    delete_code(file_name + ".pretty")
 
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
-%s:1:1: E601 missing module attributes
+%s:1:1: E601 Missing module attributes
 %s:1:51: E131 Excess whitespace before '('
 %s:1:53: E134 Excess whitespace after '('
 %s:1:63: E151 Excess whitespace before ','
@@ -132,7 +148,8 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:7:16: E161 Excess whitespace before '='
 %s:7:19: E164 Excess whitespace after '='
 %s:8:12: E500 incorrect line ending
-16 Errors in 1 File
+%s:10:1: E220 Keyword not capitalized
+17 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
@@ -145,7 +162,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == expected
-    delete_code(file_name)
 
 
 def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:

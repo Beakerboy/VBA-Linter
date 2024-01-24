@@ -3,14 +3,14 @@ from typing import TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
-T = TypeVar('T', bound='MissingModuleAttributes')
+T = TypeVar('T', bound='MissingModuleDeclarations')
 
 
-class MissingModuleAttributes(VbaListener):
+class MissingModuleDeclarations(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self._rule_name = "601"
-        self._message = "Missing module attributes"
+        self._rule_name = "602"
+        self._message = "Missing module declarations"
         self.output: list = []
         self._found = False
 
@@ -20,9 +20,9 @@ class MissingModuleAttributes(VbaListener):
         self.output = []
         self._found = False
 
-    def enterModuleAttributes(  # noqa: N802
+    def enterModuleDeclarations(  # noqa: N802
             self: T,
-            ctx: vbaParser.ModuleAttributesContext
+            ctx: vbaParser.ModuleDeclarationsContext
     ) -> None:
         self._found = True
 
@@ -30,4 +30,7 @@ class MissingModuleAttributes(VbaListener):
             self: T,
             ctx: vbaParser.ModuleBodyContext) -> None:
         if not self._found:
-            self.output.append((1, 1, self._rule_name))
+            line = ctx.start.line
+            column = ctx.start.column
+            name = self._rule_name
+            self.output.append((line, column + 1, name))

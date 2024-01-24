@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
+from antlr4 import CommonTokenStream, ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
@@ -8,10 +8,11 @@ from vba_linter.antlr.vbaListener import VbaListener
 T = TypeVar('T', bound='FunctionNaming')
 
 
-class FunctionNaming(ParseTreeListener):
+class FunctionNaming(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self._message = "name not Pascal"
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
@@ -35,5 +36,4 @@ class FunctionNaming(ParseTreeListener):
         if not VbaListener.is_pascal_case(token.text):
             line = token.line
             column = token.column
-            msg = "name not Pascal"
-            self.output.append((line, column + 2, "Wxxx", msg))
+            self.output.append((line, column + 2, "Wxxx"))
