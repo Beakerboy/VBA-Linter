@@ -44,19 +44,20 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 200 Parameter errors
 * 110 Missing Let
 * 111 Optional Let
-* 220 parameter naming
-* keyword capitalization
+* 210 parameter naming
+* 220 Keyword not capitalized
 * function / sub naming
 * property naming
 * parameter not defined (option explicit)
-* missing type designation
+* missing parameter type designation
+* missing return type designation
 ### 300 Line errors
 * 310 Incorrect line ending
 * 303 Too many blank lines (3)
 * 305 Trailing whitespace
 * 310 Blank line contains whitespace
 * indent
-* miltiple statementz
+* miltiple statements not allowed
 * line continuation
 * line length
 ### 400 Control Structures
@@ -74,4 +75,3 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * Missing function documentation
 * Missing module documentation
 ### 900 Syntax Errors
-
