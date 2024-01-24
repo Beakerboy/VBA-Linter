@@ -36,12 +36,6 @@ tests = [
 [project.urls]
 "Homepage" = "https://github.com/Beakerboy/VBA-Linter"
 "Bug Tracker" = "https://github.com/Beakerboy/VBA-Linter/issues"
-
-[tool.coverage.run]
-omit = [
-    # omit this directory
-    "src/antlr/*",
-    ]
     
 [tool.pytest.ini_options]
 pythonpath = "src:tests"
