@@ -99,7 +99,7 @@ worst_expected = """\
 %s:10:1: E220 Keyword not capitalized
 %s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
-25 Errors in 1 File
+26 Errors in 1 File
 """
 
 
