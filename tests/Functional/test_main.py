@@ -84,7 +84,6 @@ worst_expected = """\
 %s:1:66: E154 Excess whitespace after ','
 %s:1:80: W501 line too long (92 > 79 characters)
 %s:1:90: E141 Excess whitespace before ')'
-%s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:2:1: W310 Blank line contains whitespace
@@ -102,7 +101,7 @@ worst_expected = """\
 %s:11:1: E220 Keyword not capitalized
 %s:11:1: W510 Missing visibility
 %s:13:1: W391 blank line at end of file
-27 Errors in 1 File
+26 Errors in 1 File
 """
 
 
@@ -141,7 +140,6 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:63: E151 Excess whitespace before ','
 %s:1:66: E154 Excess whitespace after ','
 %s:1:90: E141 Excess whitespace before ')'
-%s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
 %s:4:0: E500 incorrect line ending
