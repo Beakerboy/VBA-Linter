@@ -15,3 +15,15 @@ class TrailingWhitespace(TokenSequenceMismatch):
             1,
             message
         )
+
+    def match(self: T, sequence: list, signature: list) -> bool:
+        """
+        Compare the two lists to see if they match.
+        """
+        result = True
+        for i in range(len(sequence)):
+            if i == self._target - 2:
+                result = result and sequence[i] != signature[i]
+            else:
+                result = result and sequence[i] == signature[i]
+        return result
