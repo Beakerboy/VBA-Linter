@@ -53,7 +53,7 @@ worst_practice = (
     '    Let BarVal  =  7\r\n'
     'End Function\n' +
     '\r\n' +
-    'Sub O()\r\n' +
+    'sub O()\r\n' +
     'End Sub\r\n' +
     '\r\n'
 )
@@ -96,6 +96,7 @@ worst_expected = """\
 %s:7:16: E161 Excess whitespace before '='
 %s:7:19: E164 Excess whitespace after '='
 %s:8:12: E500 incorrect line ending
+%s:10:1: E220 Keyword not capitalized
 %s:10:1: W510 Missing visibility
 %s:12:1: W391 blank line at end of file
 25 Errors in 1 File
