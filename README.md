@@ -44,7 +44,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 200 Parameter errors
 * 110 Missing Let
 * 111 Optional Let
-* parameter naming
+* 220 parameter naming
 * keyword capitalization
 * function / sub naming
 * property naming
