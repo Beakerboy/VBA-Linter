@@ -14,6 +14,5 @@ class BlankLineWhitespace(TokenSequenceBase):
             [vbaLexer.NEWLINE, vbaLexer.WS, vbaLexer.NEWLINE],
             1,
             message
-            
         )
         self._severity = 'W'
