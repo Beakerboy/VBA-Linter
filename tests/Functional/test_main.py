@@ -45,9 +45,9 @@ function = 'Supercalifragilisticexpialidocious'
 worst_practice = (
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \n' +
-    ' \n' +
+    ' \r\n' +
     '\r\n' +
-    '\r\n' +
+    '\n' +
     '\r\n' +
     'I = (2 + 1)\n' +
     '    foo_val=6\r\n'
@@ -86,8 +86,8 @@ worst_expected = """\
 %s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
-%s:2:0: E500 incorrect line ending
 %s:2:1: W310 Blank line contains whitespace
+%s:4:0: E500 incorrect line ending
 %s:5:0: W303 Too many blank lines (3)
 %s:6:1: W110 Missing let
 %s:6:11: E500 incorrect line ending
@@ -143,7 +143,7 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:1:92: E144 Excess whitespace after ')'
 %s:1:92: E305 Trailing whitespace
 %s:1:92: E500 incorrect line ending
-%s:2:0: E500 incorrect line ending
+%s:4:0: E500 incorrect line ending
 %s:6:11: E500 incorrect line ending
 %s:7:12: E160 Missing whitespace before '='
 %s:7:13: E163 Missing whitespace after '='
