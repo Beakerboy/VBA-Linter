@@ -31,7 +31,7 @@ class TokenSeqMismatchNL(TokenSequenceMismatch):
         for i in range(len(sequence)):
             if i == self._target - 1:
                 result = result and (
-                    sequence[i] != signature[i] or 
+                    sequence[i] != signature[i] or
                     sequence[i] == vbaLexer.NEWLINE
                 )
             else:
