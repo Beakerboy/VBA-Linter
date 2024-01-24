@@ -81,3 +81,4 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * Missing function documentation
 * Missing module documentation
 ### 900 Syntax Errors
+* 910 Line longer than 1023
