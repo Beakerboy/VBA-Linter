@@ -149,7 +149,7 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:7:19: E164 Excess whitespace after '='
 %s:8:12: E500 incorrect line ending
 %s:10:1: E220 Keyword not capitalized
-16 Errors in 1 File
+17 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
