@@ -20,7 +20,7 @@ class KeywordCaps(RuleBase):
         output: List[tuple] = []
         token = ts.LT(1)
         assert token is not None
-        pattern = "[A-Za-z]+"
+        pattern = "[A-Za-z][A-Za-z ]+"
         text = token.text
         type = token.type
         generics = [vbaLexer.IDENTIFIER]
