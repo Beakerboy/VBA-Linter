@@ -66,7 +66,7 @@ pretty = (
     '\r\n' +
     'I = (2 + 1)\r\n' +
     '    foo_val=6\r\n'
-    '    Let BarVal  =  7\r\n'
+    '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\r\n' +
     '\r\n' +
     'sub O()\r\n' +
