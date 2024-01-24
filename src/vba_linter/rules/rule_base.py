@@ -30,7 +30,7 @@ class RuleBase:
         self._severity = value
 
     @property
-    def severity() -> str:
+    def severity(self: T) -> str:
         return self._severity
 
     def test(self: T, token_stream: CommonTokenStream) -> list:
