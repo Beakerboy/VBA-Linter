@@ -67,7 +67,7 @@ pretty = (
     '    Let BarVal  =  7\r\n'
     'End Function\r\n' +
     '\r\n' +
-    'Sub O()\r\n' +
+    'sub O()\r\n' +
     'End Sub\r\n'
 )
 
