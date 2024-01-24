@@ -27,10 +27,14 @@ class TokenSequenceOperator(TokenSequenceBase):
         Unless the previous token is in the list.
         """
         symbols = [
+            vbaLexer.AND, vbaLexer.IF,
+            vbaLexer.MOD, vbaLexer.NOT, vbaLexer.OR,
+            vbaLexer.WHILE,
             vbaLexer.ASSIGN, vbaLexer.DIV, vbaLexer.EQ,
             vbaLexer.GEQ, vbaLexer.GT, vbaLexer.LEQ,
             vbaLexer.LT, vbaLexer.MINUS, vbaLexer.MINUS_EQ,
-            vbaLexer.PLUS, vbaLexer.IF, vbaLexer.WHILE
+            vbaLexer.MULT, vbaLexer.NEQ, vbaLexer.PLUS,
+            vbaLexer.PLUS_EQ, vbaLexer.POW
         ]
         token = sequence[self._wildcard]
         if sequence[1:] == signature[1:]:
