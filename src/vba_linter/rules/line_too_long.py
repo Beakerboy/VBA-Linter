@@ -8,10 +8,10 @@ T = TypeVar('T', bound='LineTooLong')
 
 
 class LineTooLong(RuleBase):
-    def __init__(self: T) -> None:
+    def __init__(self: T, length: int = 79) -> None:
         self._severity = 'W'
         self._rule_name = "501"
-        self._max_len = 79
+        self._max_len = length
         self._message = ("line too long (%s > " +
                          str(self._max_len) + " characters)")
 
