@@ -25,13 +25,13 @@ class RuleBase:
     def get_rule_name(self: T) -> str:
         return self._rule_name
 
-    @severity.setter
-    def severity(self: T, value: str) -> None:
-        self._severity = value
-
     @property
     def severity(self: T) -> str:
         return self._severity
+
+    @severity.setter
+    def severity(self: T, value: str) -> None:
+        self._severity = value
 
     def test(self: T, token_stream: CommonTokenStream) -> list:
         return []
