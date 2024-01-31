@@ -9,7 +9,7 @@ anti_patterns = [
 Public Function Foo(num)
 End Sub
 ''',  # noqa
-        [(2, 0, "999",
+        [(2, 4, "999",
           "no viable alternative at input 'End Sub'")]
     ],
     [
