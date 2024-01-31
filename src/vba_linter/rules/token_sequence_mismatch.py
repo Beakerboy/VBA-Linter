@@ -30,8 +30,8 @@ class TokenSequenceMismatch(TokenSequenceBase):
             if i == self._target - 1:
                 if signature[i] == vbaLexer.WS:
                     result = (
-                        result and 
-                        sequence[i] != vbaLexer.WS and 
+                        result and
+                        sequence[i] != vbaLexer.WS and
                         sequence[i] != vbaLexer.LINE_CONTINUATION
                     )
                 else:
