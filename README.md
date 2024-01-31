@@ -52,8 +52,11 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * property naming
 * parameter not defined (option explicit)
 * missing parameter type designation
-* missing return type designation
-### 300 Line errors
+### 300 Expression Errors
+* = True
+* = False
+* Not X = Y
+### 400 Line errors
 * 310 Incorrect line ending
 * 303 Too many blank lines (3)
 * 305 Trailing whitespace
@@ -62,18 +65,21 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * miltiple statements not allowed
 * line continuation
 * line length
-### 400 Control Structures
+### 500 Control Structures
 * one line if/then/else
-### 500 Function Errors
+### 600 Function Errors
 * 510 Missing visibility
 * 511 Optional 'Public'
-### 600 Module Errors
+* missing return type designation
+### 700 Module Errors
 * Blank line begining file
 * blank line end of file
 * missing final eol
 * 601 missing module attributes
 * 602 Missing module declarations
-### 700 Documentation
+### 800 Documentation
 * Missing function documentation
 * Missing module documentation
 ### 900 Syntax Errors
+* 910 Line longer than 1023
+* 999 Syntax Error

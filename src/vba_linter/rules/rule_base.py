@@ -17,10 +17,21 @@ class RuleBase:
         self._fixable = False
 
         # Enum?
-        self._severity = 'E'
+        self.severity = 'E'
+
+    def set_rule_name(self: T, value: str) -> None:
+        self._rule_name = value
 
     def get_rule_name(self: T) -> str:
         return self._rule_name
+
+    @property
+    def severity(self: T) -> str:
+        return self._severity
+
+    @severity.setter
+    def severity(self: T, value: str) -> None:
+        self._severity = value
 
     def test(self: T, token_stream: CommonTokenStream) -> list:
         return []

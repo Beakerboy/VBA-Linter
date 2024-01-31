@@ -63,11 +63,15 @@ class RuleDirectory:
         for symbol in symbols:
             self._rules.update(self._make_rules(symbol, i))
             i += 1
+        rule910 = LineTooLong(1023)
+        rule910.set_rule_name("910")
+        rule910.severity = 'F'
         self._rules.update({
             "201": NewlineEof(),
             "220": KeywordCaps(),
             "500": LineEnding(),
-            "305": TrailingWhitespace()
+            "305": TrailingWhitespace(),
+            "910": rule910
         })
         self._parser_rules.update({
             '601': MissingModuleAttributes()
@@ -112,7 +116,7 @@ class RuleDirectory:
 
     def _make_rules(self: T, symbol: list, index: int) -> dict:
         rules: Dict[str, RuleBase] = {}
-        i = 10 * index + 120
+        i = 10 * index + 110
         token = symbol[0]
         name = symbol[1]
         number = symbol[2]

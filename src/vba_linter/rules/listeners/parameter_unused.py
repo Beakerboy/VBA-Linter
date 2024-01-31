@@ -46,16 +46,16 @@ class ParameterUnused(ParseTreeListener):
                     self._parameters[name] = [False, line, column]
             elif isinstance(child, vbaParser.LetStmtContext):
                 value_stmts = child.getChildren(
-                    lambda x: isinstance(x, vbaParser.ValueStmtContext)
+                    lambda x: isinstance(x, vbaParser.ExpressionContext)
                 )
                 for value_stmt in value_stmts:
-                    self.manage_valuestmt(value_stmt)
+                    self.manage_expression(value_stmt)
         # add new parametrs from let statements
         # add new parameters from variableStmt
         # check off any that are used in procedure calls
         # check off any that are used in a ValueStmt.
 
-    def manage_valuestmt(self: T, ctx: ParserRuleContext) -> None:
+    def manage_expression(self: T, ctx: ParserRuleContext) -> None:
         if ctx.getChildCount() == 1:
             # literal or parameter
             call = ctx.getChild(0).getChild(0)
