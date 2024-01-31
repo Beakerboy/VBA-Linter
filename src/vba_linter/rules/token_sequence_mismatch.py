@@ -9,7 +9,7 @@ T = TypeVar('T', bound='TokenSequenceMismatch')
 
 class TokenSequenceMismatch(TokenSequenceBase):
     """
-    create an error is a seqenece matches all tokens,
+    create an error if a seqenece matches all tokens,
     but must be not equal at the specified position.
     """
     def _match_action(self: T, token: Token) -> list:
