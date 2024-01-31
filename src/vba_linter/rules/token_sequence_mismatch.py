@@ -1,4 +1,5 @@
 from antlr4 import Token
+from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from typing import TypeVar
 
@@ -9,7 +10,7 @@ T = TypeVar('T', bound='TokenSequenceMismatch')
 class TokenSequenceMismatch(TokenSequenceBase):
     """
     create an error is a seqenece matches all tokens,
-    but mist be not equal at the specified position.
+    but must be not equal at the specified position.
     """
     def _match_action(self: T, token: Token) -> list:
         line = token.line
@@ -27,7 +28,7 @@ class TokenSequenceMismatch(TokenSequenceBase):
         result = True
         for i in range(len(sequence)):
             if i == self._target - 1:
-                result = result and sequence[i] != signature[i]
+                result = result and (sequence[i] != signature[i] or (sequence[i] == vbaLexer.WS and signature[i] == vbaLexer.LINE_CONTINUATION))
             else:
                 result = result and sequence[i] == signature[i]
         return result
