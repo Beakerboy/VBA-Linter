@@ -34,7 +34,6 @@ class TokenSequenceMismatch(TokenSequenceBase):
                         sequence[i] != vbaLexer.WS and 
                         sequence[i] != vbaLexer.LINE_CONTINUATION
                     )
-                )
                 else:
                     result = result and signature[i] != sequence[i]
             else:
