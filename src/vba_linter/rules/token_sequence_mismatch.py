@@ -29,7 +29,7 @@ class TokenSequenceMismatch(TokenSequenceBase):
         for i in range(len(sequence)):
             if i == self._target - 1:
                 result = result and (
-                    sequence[i] != signature[i] or(
+                    sequence[i] != signature[i] or (
                         signature[i] == vbaLexer.WS and
                         sequence[i] == vbaLexer.LINE_CONTINUATION
                     )
