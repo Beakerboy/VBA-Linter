@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream, ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
-from typing import Any, TypeVar
+from typing import TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
