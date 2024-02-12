@@ -17,23 +17,20 @@ class FunctionNaming(VbaListener):
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
+    def enterFunctionName(self: T,  # noqa: N802
+                          ctx: vbaParser.FunctionNameContext) -> None:
+        self.enter_function_sub_name(ctx)
+
+    def enterSubroutineName(self: T,  # noqa: N802
+                     ctx: vbaParser.SubroutineNameContext) -> None:
         self.enter_function_sub_stmt(ctx)
 
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
-        tokens = VbaListener.get_tokens(ctx)
-        token = tokens[2]
-        if tokens[2].type == vbaLexer.IDENTIFIER:
-            token = tokens[2]
-        else:
-            assert tokens[4].type == vbaLexer.IDENTIFIER
-            token = tokens[4]
-        if not VbaListener.is_pascal_case(token.text):
+    def enter_function_sub_name(self: T, ctx: ParserRuleContext) -> None:
+        token = ctx.start
+        if (
+                token.type == vbaLexer.IDENTIFIER and
+                not VbaListener.is_pascal_case(token.text)
+        ):
             line = token.line
             column = token.column
             self.output.append((line, column + 2, "Wxxx"))
