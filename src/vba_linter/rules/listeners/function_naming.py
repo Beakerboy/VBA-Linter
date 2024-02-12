@@ -21,8 +21,10 @@ class FunctionNaming(VbaListener):
                           ctx: vbaParser.FunctionNameContext) -> None:
         self.enter_function_sub_name(ctx)
 
-    def enterSubroutineName(self: T,  # noqa: N802
-                     ctx: vbaParser.SubroutineNameContext) -> None:
+    def enterSubroutineName(  # noqa: N802
+            self: T,
+            ctx: vbaParser.SubroutineNameContext
+    ) -> None:
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_name(self: T, ctx: ParserRuleContext) -> None:
