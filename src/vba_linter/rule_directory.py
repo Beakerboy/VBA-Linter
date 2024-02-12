@@ -55,7 +55,7 @@ class RuleDirectory:
         symbols = [
             [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 's')],
-            [vbaLexer.T__0, ',', (0, 1)],
+            [vbaLexer.COMMA, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
             [vbaLexer.ASSIGN, ':=', (1, 1)],
         ]
