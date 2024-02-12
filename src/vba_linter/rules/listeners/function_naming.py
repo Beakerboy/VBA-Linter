@@ -25,7 +25,7 @@ class FunctionNaming(VbaListener):
             self: T,
             ctx: vbaParser.SubroutineNameContext
     ) -> None:
-        self.enter_function_sub_stmt(ctx)
+        self.enter_function_sub_name(ctx)
 
     def enter_function_sub_name(self: T, ctx: ParserRuleContext) -> None:
         token = ctx.start
