@@ -7,7 +7,11 @@ from vba_linter.rules.token_sequence_base import TokenSequenceBase
 
 anti_patterns = [
     [
-        'Attribute VB_Name = "Foo"\r\nPublic Function Foo(num )\r\nEnd Function\r\n',
+        '''/
+Attribute VB_Name = "Foo"
+Public Function Foo(num )
+End Function
+''',  # noqa
         [(2, 24, "E202")]
     ],
     [
