@@ -21,6 +21,18 @@ class MissingVisibility(VbaListener):
     ) -> None:
         self.enter_function_sub_stmt(ctx)
 
+    def enterPropertyGetDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.PropertyGetDeclarationContext
+    ) -> None:
+        self.enter_function_sub_stmt(ctx)
+
+    def enterPropertyLhsDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.PropertyLhsDeclarationContext
+    ) -> None:
+        self.enter_function_sub_stmt(ctx)
+
     def enterSubroutineDeclaration(  # noqa: N802
             self: T,
             ctx: vbaParser.SubroutineDeclarationContext
@@ -30,7 +42,7 @@ class MissingVisibility(VbaListener):
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         child = ctx.getChild(0)
         tok = ctx.start
-        if not isinstance(child, vbaParser.VisibilityContext):
+        if not isinstance(child, vbaParser.ProcedureScope):
             line = tok.line
             column = tok.column
             name = self._rule_name
