@@ -28,12 +28,16 @@ class ParameterUnused(ParseTreeListener):
         if name in self._parameters:
             self._parameters[name][0] = True
 
-    def exitFunctionStmt(self: T,  # noqa: N802
-                         ctx: vbaParser.FunctionStmtContext) -> None:
+    def exitFunctionDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.FunctionDeclarationContext
+    ) -> None:
         self.exit_function_sub_stmt(ctx)
 
-    def exitSubStmt(self: T,  # noqa: N802
-                    ctx: vbaParser.SubStmtContext) -> None:
+    def exitSubDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.SubDeclarationContext
+    ) -> None:
         self.exit_function_sub_stmt(ctx)
 
     def exit_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
