@@ -134,22 +134,22 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
-%s:1:51: E121 Excess whitespace before '('
-%s:1:53: E124 Excess whitespace after '('
-%s:1:63: E141 Excess whitespace before ','
-%s:1:66: E144 Excess whitespace after ','
-%s:1:90: E131 Excess whitespace before ')'
-%s:1:92: E305 Trailing whitespace
-%s:1:92: E500 incorrect line ending
-%s:4:0: E500 incorrect line ending
-%s:6:11: E500 incorrect line ending
-%s:7:12: E150 Missing whitespace before '='
-%s:7:13: E153 Missing whitespace after '='
-%s:8:16: E151 Excess whitespace before '='
-%s:8:19: E154 Excess whitespace after '='
-%s:9:12: E500 incorrect line ending
-%s:11:1: E220 Keyword not capitalized
-16 Errors in 1 File
+%s:2:51: E121 Excess whitespace before '('
+%s:2:53: E124 Excess whitespace after '('
+%s:2:63: E141 Excess whitespace before ','
+%s:2:66: E144 Excess whitespace after ','
+%s:2:90: E131 Excess whitespace before ')'
+%s:2:92: E305 Trailing whitespace
+%s:2:92: E500 incorrect line ending
+%s:5:0: E500 incorrect line ending
+%s:7:11: E500 incorrect line ending
+%s:8:12: E150 Missing whitespace before '='
+%s:8:13: E153 Missing whitespace after '='
+%s:9:16: E151 Excess whitespace before '='
+%s:9:19: E154 Excess whitespace after '='
+%s:10:12: E500 incorrect line ending
+%s:12:1: E220 Keyword not capitalized
+15 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
