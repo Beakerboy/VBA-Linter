@@ -15,12 +15,16 @@ class MissingVisibility(VbaListener):
         self._severity = 'W'
         self._message = "Missing visibility"
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
+    def enterFunctionDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.FunctionDeclarationContext
+    ) -> None:
         self.enter_function_sub_stmt(ctx)
 
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
+    def enterSubroutineDeclaration(  # noqa: N802
+            self: T,
+            ctx: vbaParser.SubroutineDeclarationContext
+    ) -> None:
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
