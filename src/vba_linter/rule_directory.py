@@ -66,7 +66,7 @@ class RuleDirectory:
         self._rules.update({
             "201": NewlineEof(),
             "220": KeywordCaps(),
-            "500": LineEnding(),
+            "310": LineEnding(),
             "305": TrailingWhitespace(),
             "910": rule910
         })
