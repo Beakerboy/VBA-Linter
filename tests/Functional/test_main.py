@@ -60,7 +60,7 @@ worst_practice = (
     '\r\n'
 )
 pretty = (
-    'Attribute VB_Name = "Foo"
+    'Attribute VB_Name = "Foo"\r\n' +
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
