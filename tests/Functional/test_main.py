@@ -43,6 +43,7 @@ def delete_code(file_name: str) -> None:
 
 function = 'Supercalifragilisticexpialidocious'
 worst_practice = (
+    'Attribute VB_Name = "Foo"\r\n' +
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \n' +
     ' \r\n' +
@@ -59,6 +60,7 @@ worst_practice = (
     '\r\n'
 )
 pretty = (
+    'Attribute VB_Name = "Foo"
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
