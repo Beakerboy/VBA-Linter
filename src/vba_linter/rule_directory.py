@@ -23,8 +23,7 @@ from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
 from vba_linter.rules.listeners.missing_module_attributes import (
     MissingModuleAttributes)
-from vba_linter.rules.listeners.missing_module_declarations import (
-    MissingModuleDeclarations)
+
 
 T = TypeVar('T', bound='RuleDirectory')
 
@@ -88,7 +87,6 @@ class RuleDirectory:
         self._parser_rules.update({
             '505': OptionalPublic(),
             '510': MissingVisibility(),
-            '602': MissingModuleDeclarations(),
             '110': MissingLet(), '111': OptionalLet()
         })
 
