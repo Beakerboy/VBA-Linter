@@ -14,7 +14,7 @@ anti_patterns = [
 
 
 rule = TokenSequenceMismatch(
-    "B83", [vbaLexer.T__0, vbaLexer.WS], 1, "Whitespace after ','"
+    "B83", [vbaLexer.COMMA, vbaLexer.WS], 1, "Whitespace after ','"
 )
 
 
