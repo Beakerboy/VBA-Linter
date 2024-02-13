@@ -77,30 +77,30 @@ pretty = (
 
 
 worst_expected = """\
-%s:1:1: E505 Optional public
-%s:1:51: E121 Excess whitespace before '('
-%s:1:53: E124 Excess whitespace after '('
-%s:1:63: E141 Excess whitespace before ','
-%s:1:66: E144 Excess whitespace after ','
-%s:1:80: W501 line too long (92 > 79 characters)
-%s:1:90: E131 Excess whitespace before ')'
-%s:1:92: E305 Trailing whitespace
-%s:1:92: E500 incorrect line ending
-%s:2:1: W310 Blank line contains whitespace
-%s:4:0: E500 incorrect line ending
-%s:5:0: W303 Too many blank lines (3)
-%s:6:1: W110 Missing let
-%s:6:11: E500 incorrect line ending
-%s:7:5: W110 Missing let
-%s:7:12: E150 Missing whitespace before '='
-%s:7:13: E153 Missing whitespace after '='
-%s:8:5: W111 Optional let
-%s:8:16: E151 Excess whitespace before '='
-%s:8:19: E154 Excess whitespace after '='
-%s:9:12: E500 incorrect line ending
-%s:11:1: E220 Keyword not capitalized
-%s:11:1: W510 Missing visibility
-%s:13:1: W391 blank line at end of file
+%s:2:1: E505 Optional public
+%s:2:51: E121 Excess whitespace before '('
+%s:2:53: E124 Excess whitespace after '('
+%s:2:63: E141 Excess whitespace before ','
+%s:2:66: E144 Excess whitespace after ','
+%s:2:80: W501 line too long (92 > 79 characters)
+%s:2:90: E131 Excess whitespace before ')'
+%s:2:92: E305 Trailing whitespace
+%s:2:92: E500 incorrect line ending
+%s:3:1: W310 Blank line contains whitespace
+%s:5:0: E500 incorrect line ending
+%s:6:0: W303 Too many blank lines (3)
+%s:7:1: W110 Missing let
+%s:7:11: E500 incorrect line ending
+%s:8:5: W110 Missing let
+%s:8:12: E150 Missing whitespace before '='
+%s:8:13: E153 Missing whitespace after '='
+%s:9:5: W111 Optional let
+%s:9:16: E151 Excess whitespace before '='
+%s:9:19: E154 Excess whitespace after '='
+%s:10:12: E500 incorrect line ending
+%s:12:1: E220 Keyword not capitalized
+%s:12:1: W510 Missing visibility
+%s:14:1: W391 blank line at end of file
 26 Errors in 1 File
 """
 
