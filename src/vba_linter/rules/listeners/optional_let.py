@@ -14,8 +14,9 @@ class OptionalLet(VbaListener):
         self._rule_name = "111"
         self._message = "Optional let"
 
-    def enterLetStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.LetStmtContext) -> None:
+    def enterLetStatement(  # noqa: N802
+            self: T,
+            ctx: vbaParser.LetStatementContext) -> None:
         token = ctx.start
         if token.type == vbaLexer.LET:
             line = token.line
