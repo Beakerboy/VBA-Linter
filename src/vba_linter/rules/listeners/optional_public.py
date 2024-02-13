@@ -14,15 +14,8 @@ class OptionalPublic(VbaListener):
         self._message = "Optional public"
         self._rule_name = "505"
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
+    def enterProcedureScope(self: T,  # noqa: N802
+                          ctx: vbaParser.ProcedureScopeContext) -> None:
         tok = ctx.start
         if tok.text == "Public":
             line = tok.line
