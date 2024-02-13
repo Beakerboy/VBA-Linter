@@ -12,17 +12,22 @@ class ParameterUnused(ParseTreeListener):
         self.output: list = []
         self._parameters: dict = {}
 
-    def set_token_stream(self: T, ts: CommonTokenStream) -> None:
-        self.ts = ts
+    def enterParamDcl(self: T,  # noqa: N802
+                      ctx: vbaParser.ParamDclContext) -> None:
+        arg = ctx.start
+        name = arg.start.text
+        line = arg.start.line
+        column = arg.start.column
+        self._parameters[name] = [False, line, column]
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
-        self.enter_function_sub_stmt(ctx)
-
+    def enterSimpleNameExpression(  # noqa: N802
+            self: T,
+            ctx: vbaParser.SimpleNameExpressionContext
+    ) -> None:
+        name = call.start.text
+        if name in self._parameters:
+            self._parameters[name][0] = True
+                    
     def exitFunctionStmt(self: T,  # noqa: N802
                          ctx: vbaParser.FunctionStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
@@ -30,42 +35,6 @@ class ParameterUnused(ParseTreeListener):
     def exitSubStmt(self: T,  # noqa: N802
                     ctx: vbaParser.SubStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
-
-    def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
-        children = ctx.getChildren()
-        # go to the arglist context to get the parameters
-        for child in children:
-            if isinstance(child, vbaParser.ArgListContext):
-                args = child.getChildren(
-                    lambda x: isinstance(x, vbaParser.ArgContext)
-                )
-                for arg in args:
-                    name = arg.start.text
-                    line = arg.start.line
-                    column = arg.start.column
-                    self._parameters[name] = [False, line, column]
-            elif isinstance(child, vbaParser.LetStmtContext):
-                value_stmts = child.getChildren(
-                    lambda x: isinstance(x, vbaParser.ExpressionContext)
-                )
-                for value_stmt in value_stmts:
-                    self.manage_expression(value_stmt)
-        # add new parametrs from let statements
-        # add new parameters from variableStmt
-        # check off any that are used in procedure calls
-        # check off any that are used in a ValueStmt.
-
-    def manage_expression(self: T, ctx: ParserRuleContext) -> None:
-        if ctx.getChildCount() == 1:
-            # literal or parameter
-            call = ctx.getChild(0).getChild(0)
-            if call.getChildCount() == 1:
-                name = call.start.text
-                if name in self._parameters:
-                    self._parameters[name][0] = True
-        else:
-            # complex expression
-            ...
 
     def exit_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         for parameter, data in self._parameters.items():
