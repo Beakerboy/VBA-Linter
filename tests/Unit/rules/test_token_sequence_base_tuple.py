@@ -21,7 +21,7 @@ rule = TokenSequenceBase(
     "F00",
     (
         [vbaLexer.WS, vbaLexer.RPAREN],
-        [vbaLexer.WS, vbaLexer.T__0]
+        [vbaLexer.WS, vbaLexer.COMMA]
     ), 0, "Whitespace before symbol"
 )
 
