@@ -5,17 +5,19 @@ from vba_linter.rules.blank_line_eof import BlankLineEof
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice, [(12, 1, "391")]],
+    [RuleTestBase.worst_practice, [(13, 1, "391")]],
     [
         '''\
+Attribute VB_Name = "Foo"
 Public Function Foo(num)
 End Function
 
 ''',  # noqa
-        [(3, 1, "391")]
+        [(4, 1, "391")]
     ],
     [
         '''\
+Attribute VB_Name = "Foo"
 Public Function Foo(num)
 End Function
 
@@ -25,12 +27,13 @@ End Function
     ],
     [
         '''\
+Attribute VB_Name = "Foo"
 Public Function Foo(num)
 End Function
 
 
 ''',  # noqa
-        [(4, 1, "391")]
+        [(5, 1, "391")]
     ]
 ]
 
