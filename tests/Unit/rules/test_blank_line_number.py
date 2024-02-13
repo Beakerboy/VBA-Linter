@@ -5,7 +5,7 @@ from vba_linter.rules.blank_line_number import BlankLineNumber
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice, [(4, 0, "303")]],
+    [RuleTestBase.worst_practice, [(5, 0, "303")]],
 ]
 
 
