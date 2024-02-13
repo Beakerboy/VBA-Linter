@@ -9,12 +9,15 @@ T = TypeVar('T', bound='AttributeNaming')
 
 
 class AttributeNaming(ParseTreeListener):
+    """ 
+    Check that each atteibute is named correctly.
+    """
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
 
-    def enterLetStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.LetStmtContext) -> None:
+    def enterLetStatement(self: T,  # noqa: N802
+                     ctx: vbaParser.LetStatementContext) -> None:
         """
         foo = 7
         Let bar = True
@@ -26,8 +29,8 @@ class AttributeNaming(ParseTreeListener):
             output = (tok.line, tok.column + 2, "Wxxx", msg)
             self.output.append(output)
 
-    def enterVariableStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.VariableStmtContext) -> None:
+    def enterVariableDcl(self: T,  # noqa: N802
+                          ctx: vbaParser.VariableDclContext) -> None:
         """
         Dim foo as Integer
         Dim a, b, c As Single, x, y As Double, i As Integer
@@ -40,12 +43,12 @@ class AttributeNaming(ParseTreeListener):
                 output = (tok.line, tok.column + 2, "Wxxx", msg)
                 self.output.append(output)
 
-    def enterFunctionStmt(self: T,  # noqa: N802
-                          ctx: vbaParser.FunctionStmtContext) -> None:
+    def enterFunctionName(self: T,  # noqa: N802
+                          ctx: vbaParser.FunctionNameContext) -> None:
         self.enter_function_sub_stmt(ctx)
 
-    def enterSubStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.SubStmtContext) -> None:
+    def enterSubroutineName(self: T,  # noqa: N802
+                            ctx: vbaParser.SubroutineNameContext) -> None:
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
