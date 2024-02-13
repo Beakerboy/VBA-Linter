@@ -15,7 +15,7 @@ class OptionalPublic(VbaListener):
         self._rule_name = "505"
 
     def enterProcedureScope(self: T,  # noqa: N802
-                          ctx: vbaParser.ProcedureScopeContext) -> None:
+                            ctx: vbaParser.ProcedureScopeContext) -> None:
         tok = ctx.start
         if tok.text == "Public":
             line = tok.line
