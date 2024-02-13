@@ -27,7 +27,7 @@ class ParameterUnused(ParseTreeListener):
         name = ctx.start.text
         if name in self._parameters:
             self._parameters[name][0] = True
-    
+
     def exitFunctionStmt(self: T,  # noqa: N802
                          ctx: vbaParser.FunctionStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
