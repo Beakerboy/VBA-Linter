@@ -14,7 +14,8 @@ def test_sort() -> None:
     """
     Test that the results are sorted by line, then char, type.
     """
-    file_name = RuleTestBase.save_code("Sub foo()\r\nEnd Sub\r\n")
+    code = "Attribute VB_Name = "Foo"\r\nSub foo()\r\nEnd Sub\r\n"
+    file_name = RuleTestBase.save_code(code)
     rule1 = RuleStub()
     rule1.set_name("E001")
     rule1.set_output([(1, 1, "E001"), (5, 5, "E001")])
