@@ -8,6 +8,7 @@ txt = ("extraneous input '<?php' expecting " +
 anti_patterns = [
     [
         '''\
+Attribute VB_Name = "Foo"
 Public Function Foo(num)
 End Sub
 ''',  # noqa
