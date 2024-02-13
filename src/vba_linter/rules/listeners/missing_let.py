@@ -14,8 +14,8 @@ class MissingLet(VbaListener):
         self._rule_name = "110"
         self._message = "Missing let"
 
-    def enterLetStmt(self: T,  # noqa: N802
-                     ctx: vbaParser.LetStmtContext) -> None:
+    def enterLetStatement(self: T,  # noqa: N802
+                          ctx: vbaParser.LetStatementContext) -> None:
         token = ctx.start
         if token.type != vbaLexer.LET:
             line = token.line
