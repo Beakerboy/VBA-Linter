@@ -42,7 +42,7 @@ class MissingVisibility(VbaListener):
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
         child = ctx.getChild(0)
         tok = ctx.start
-        if not isinstance(child, vbaParser.ProcedureScope):
+        if not isinstance(child, vbaParser.ProcedureScopeContext):
             line = tok.line
             column = tok.column
             name = self._rule_name
