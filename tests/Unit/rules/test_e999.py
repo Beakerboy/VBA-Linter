@@ -12,7 +12,7 @@ Attribute VB_Name = "Foo"
 Public Function Foo(num)
 End Sub
 ''',  # noqa
-        [(2, 4, "999",
+        [(3, 4, "999",
           "mismatched input 'Sub' expecting 'FUNCTION'")]
     ],
     [
