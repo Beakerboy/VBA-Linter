@@ -29,6 +29,7 @@ class RuleTestBase:
 
     function = 'Supercalifragilisticexpialidocious'
     worst_practice = (
+        'Attribute VB_Name = "Foo"\r\n' +
         'Public Function ' + function +
         ' ( atrocious ,  precocious, indubitably ) \n' +
         '\n' +
