@@ -8,10 +8,10 @@ anti_patterns = [
     (
         RuleTestBase.worst_practice,
         [
-            (2, 92, "500"),
-            (3, 0, "500"),
-            (6, 11, "500"),
-            (9, 12, "500")
+            (2, 92, "400"),
+            (3, 0, "400"),
+            (6, 11, "400"),
+            (9, 12, "400")
         ]
     )
 ]
@@ -31,6 +31,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 13, "500")
-    expected = ":3:13: E500 incorrect line ending"
+    data = (3, 13, "310")
+    expected = ":3:13: E310 incorrect line ending"
     assert rule.create_message(data) == expected

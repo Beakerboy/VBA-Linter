@@ -14,6 +14,7 @@ def main() -> None:
                         help="Do not print failures.")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="Display more information.")
+    parser.add_argument("-i", "--ignore", help="ignore a set of rules.")
     msg = "Use the exit status code 0 even if there are errors."
     parser.add_argument("--exit-zero", action="store_true",
                         help=msg)
@@ -37,6 +38,8 @@ def main() -> None:
             # check that file is yml
             # add rules
             ...
+        if args.ignore != "":
+            dir.remove_rule(args.ignore)
         results = linter.lint(dir, file_name)
         if len(results) > 0:
             full_results[file_name] = results

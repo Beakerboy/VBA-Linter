@@ -10,7 +10,7 @@ T = TypeVar('T', bound='LineEnding')
 class LineEnding(RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
-        self._rule_name = "500"
+        self._rule_name = "400"
         self._line_ending = '\r\n'
         self._allowed_blank_lines = 2
         self._message = 'incorrect line ending'

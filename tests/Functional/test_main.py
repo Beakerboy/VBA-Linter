@@ -85,19 +85,19 @@ worst_expected = """\
 %s:2:80: W501 line too long (92 > 79 characters)
 %s:2:90: E131 Excess whitespace before ')'
 %s:2:92: E305 Trailing whitespace
-%s:2:92: E500 incorrect line ending
+%s:2:92: E400 incorrect line ending
 %s:3:1: W310 Blank line contains whitespace
-%s:5:0: E500 incorrect line ending
+%s:5:0: E400 incorrect line ending
 %s:6:0: W303 Too many blank lines (3)
 %s:7:1: W110 Missing let
-%s:7:11: E500 incorrect line ending
+%s:7:11: E400 incorrect line ending
 %s:8:5: W110 Missing let
 %s:8:12: E150 Missing whitespace before '='
 %s:8:13: E153 Missing whitespace after '='
 %s:9:5: W111 Optional let
 %s:9:16: E151 Excess whitespace before '='
 %s:9:19: E154 Excess whitespace after '='
-%s:10:12: E500 incorrect line ending
+%s:10:12: E400 incorrect line ending
 %s:12:1: E220 Keyword not capitalized
 %s:12:1: W510 Missing visibility
 %s:14:1: W391 blank line at end of file
@@ -140,14 +140,14 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:2:66: E144 Excess whitespace after ','
 %s:2:90: E131 Excess whitespace before ')'
 %s:2:92: E305 Trailing whitespace
-%s:2:92: E500 incorrect line ending
-%s:5:0: E500 incorrect line ending
-%s:7:11: E500 incorrect line ending
+%s:2:92: E400 incorrect line ending
+%s:5:0: E400 incorrect line ending
+%s:7:11: E400 incorrect line ending
 %s:8:12: E150 Missing whitespace before '='
 %s:8:13: E153 Missing whitespace after '='
 %s:9:16: E151 Excess whitespace before '='
 %s:9:19: E154 Excess whitespace after '='
-%s:10:12: E500 incorrect line ending
+%s:10:12: E400 incorrect line ending
 %s:12:1: E220 Keyword not capitalized
 15 Errors in 1 File
 """.replace("%s", full_path)  # noqa

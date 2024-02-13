@@ -57,7 +57,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * = False
 * Not X = Y
 ### 400 Line errors
-* 310 Incorrect line ending
+* 400 Incorrect line ending
 * 303 Too many blank lines (3)
 * 305 Trailing whitespace
 * 310 Blank line contains whitespace
