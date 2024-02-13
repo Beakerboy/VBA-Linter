@@ -21,8 +21,6 @@ from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
-from vba_linter.rules.listeners.missing_module_attributes import (
-    MissingModuleAttributes)
 
 
 T = TypeVar('T', bound='RuleDirectory')
@@ -72,10 +70,7 @@ class RuleDirectory:
             "305": TrailingWhitespace(),
             "910": rule910
         })
-        self._parser_rules.update({
-            '601': MissingModuleAttributes()
-        })
-
+        
     def load_all_rules(self: T) -> None:
         self.load_standard_rules()
 
