@@ -7,7 +7,7 @@ from vba_linter.rules.token_sequence_base import TokenSequenceBase
 
 anti_patterns = [
     [
-        '''/
+        '''\
 Attribute VB_Name = "Foo"
 Public Function Foo(num )
 End Function
