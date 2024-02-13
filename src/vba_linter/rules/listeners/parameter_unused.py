@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, ParseTreeListener, ParserRuleContext
+from antlr4 import ParseTreeListener, ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 
@@ -24,10 +24,10 @@ class ParameterUnused(ParseTreeListener):
             self: T,
             ctx: vbaParser.SimpleNameExpressionContext
     ) -> None:
-        name = call.start.text
+        name = ctx.start.text
         if name in self._parameters:
             self._parameters[name][0] = True
-                    
+    
     def exitFunctionStmt(self: T,  # noqa: N802
                          ctx: vbaParser.FunctionStmtContext) -> None:
         self.exit_function_sub_stmt(ctx)
