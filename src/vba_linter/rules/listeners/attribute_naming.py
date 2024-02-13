@@ -9,7 +9,7 @@ T = TypeVar('T', bound='AttributeNaming')
 
 
 class AttributeNaming(ParseTreeListener):
-    """ 
+    """
     Check that each atteibute is named correctly.
     """
     def __init__(self: T) -> None:
@@ -17,7 +17,7 @@ class AttributeNaming(ParseTreeListener):
         self.output: list = []
 
     def enterLetStatement(self: T,  # noqa: N802
-                     ctx: vbaParser.LetStatementContext) -> None:
+                          ctx: vbaParser.LetStatementContext) -> None:
         """
         foo = 7
         Let bar = True
@@ -30,7 +30,7 @@ class AttributeNaming(ParseTreeListener):
             self.output.append(output)
 
     def enterVariableDcl(self: T,  # noqa: N802
-                          ctx: vbaParser.VariableDclContext) -> None:
+                         ctx: vbaParser.VariableDclContext) -> None:
         """
         Dim foo as Integer
         Dim a, b, c As Single, x, y As Double, i As Integer
