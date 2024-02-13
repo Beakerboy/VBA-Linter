@@ -7,15 +7,16 @@ from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(5, 1, '741')]
+        [(6, 1, '741')]
     ],
     [
         '''\
+Attribute VB_Name = "Foo"
 Public Function Foo(num)
     Dim l as Integer
 End Function
 ''',  # noqa
-        [(2, 9, "741")]
+        [(3, 9, "741")]
     ]
 ]
 
