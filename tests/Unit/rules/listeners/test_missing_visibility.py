@@ -8,7 +8,7 @@ from vba_linter.rules.listeners.missing_visibility import (
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(10, 1, '510')]
+        [(11, 1, '510')]
     ]
 ]
 
