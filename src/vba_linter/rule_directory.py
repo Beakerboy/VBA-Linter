@@ -70,7 +70,7 @@ class RuleDirectory:
             "305": TrailingWhitespace(),
             "910": rule910
         })
-        
+
     def load_all_rules(self: T) -> None:
         self.load_standard_rules()
 
