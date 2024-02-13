@@ -34,9 +34,9 @@ class ParameterUnused(ParseTreeListener):
     ) -> None:
         self.exit_function_sub_stmt(ctx)
 
-    def exitSubDeclaration(  # noqa: N802
+    def exitSubroutineDeclaration(  # noqa: N802
             self: T,
-            ctx: vbaParser.SubDeclarationContext
+            ctx: vbaParser.SubroutineDeclarationContext
     ) -> None:
         self.exit_function_sub_stmt(ctx)
 
