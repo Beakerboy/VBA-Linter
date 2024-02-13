@@ -8,7 +8,7 @@ from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(1, 51, "001")]
+        [(2, 51, "001")]
     ]
 ]
 
