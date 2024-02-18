@@ -48,22 +48,20 @@ def main() -> None:
             p = Path(str(file_name) + ".pretty")
             with p.open(mode='a') as fi:
                 fi.write(pretty_code)
+    output = ""
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:
             msg = dir.get_rule(error[2]).create_message(error)
-            output = str(file_name) + msg + "\n"
-            if not args.quiet:
-                print(output, file=sys.stderr)
-            output = ""
+            output += str(file_name) + msg + "\n"
     num_files = len(file_list)
     plural_e = "" if num_errors < 2 else "s"
     plural_f = "" if num_files < 2 else "s"
     data = (num_errors, plural_e, num_files, plural_f)
     if num_errors > 0 or args.verbose:
-        output = "%s Error%s in %s File%s" % data
-        if not args.quiet:
-            print(output, file=sys.stderr)
+        output += "%s Error%s in %s File%s" % data
+    if not args.quiet and output != "":
+         print(output, file=sys.stderr)
     if num_errors > 0 and not args.exit_zero:
         exit_code = 1
         sys.exit(exit_code)
