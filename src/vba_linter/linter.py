@@ -56,7 +56,8 @@ class Linter:
             output.extend(listener.get_output())
             # Get the ignore list and remove violations
             # that should be removed.
-            ignored = dir.get_rule('000').ignored
+            rule_disabler = dir.get_rule_disabler()
+            ignored = rule_disabler.ignored
             if len(ignored) > 0:
                 for violation in output:
                     violated_rule = violation[2]
