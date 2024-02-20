@@ -23,7 +23,7 @@ class OptionalLet(VbaListener):
         tok = ctx.start
         if tok.text[:9] == "' #noqa: ":
             rule = ctx.start.text[10:13]
-            if tok.column == 1
+            if tok.column == 1:
                 # ignore multiple lines
                 self.open_blocks[rule] = tok.line
             else:
