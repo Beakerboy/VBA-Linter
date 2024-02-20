@@ -1,5 +1,5 @@
-from antlr4_vba.vbaLexer import vbaLexer
-from antlr4_vba.vbaParser import Parser
+from antlr4 import TerminalNode
+from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
@@ -15,7 +15,6 @@ class OptionalLet(VbaListener):
     def enterClassBeginBlock(  # noqa: N802
             self: T,
             ctx: vbaParser.ClassBeginBlockContext) -> None:
-        token = ctx.start
         ('151', ctx.start.line, ctx.stop.line)
         
     def enterCommentBody(self: T,  # noqa: N802
