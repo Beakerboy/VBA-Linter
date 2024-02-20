@@ -62,7 +62,7 @@ class Linter:
                     violated_rule = violation[2]
                     if violated_rule in ignores:
                         violation_line = violation[0]
-                        if violation_line in ignores[violated_rule]
+                        if violation_line in ignores[violated_rule]:
                             output.remove(violation)
                 
             output.sort()
