@@ -12,7 +12,7 @@ class RuleDisabler(VbaListener):
         super().__init__()
         self.rule_name = "000"
         self.open_blocks: Dict[str, int] = {}
-        self.ignored: List[tuple] = []
+        self.ignored: Dict[str, list] = {}
 
     def enterClassBeginBlock(  # noqa: N802
             self: T,
