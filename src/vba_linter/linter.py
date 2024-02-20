@@ -58,7 +58,12 @@ class Linter:
             # that should be removed.
             ignores = rules.get_rule('000')
             if len(ignores) > 0:
-                pass
+                for violation in output:
+                    violated_rule = violation[2]
+                    if violated_rule in ignores:
+                        violation_line = violation[0]
+                        if violation_line in ignores[violated_rule]
+                            output.remove(violation)
                 
             output.sort()
         self.pretty = ts
