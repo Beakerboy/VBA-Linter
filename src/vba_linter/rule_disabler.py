@@ -9,7 +9,7 @@ T = TypeVar('T', bound='OptionalLet')
 class OptionalLet(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self.open_bocks = []
+        self.open_blocks = []
         self.ignored = []
 
     def enterClassBeginBlock(  # noqa: N802
@@ -28,10 +28,15 @@ class OptionalLet(VbaListener):
                 self.open_blocks[rule] = tok.line
             else:
                 # ignore one line
-                self.ignored = (rule, tok.line, tok.line)
+                self.ignored.append((rule, tok.line, tok.line))
         elif tok.text[:9] = "' #qa: ":
             rule = tok.text[8:11]
             if rule in self.open_blocks:
                 start_line = self.open_blocks[rule]
-                self.ignored = (rule, start_line, tok.line)
-                             
+                self.ignored.append((rule, start_line, tok.line))
+
+    def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: N802
+        end_line = node.line
+        for rule in self.open_blocks:
+            start_line = self.open_blocks[rule]
+            self.ignored.append((rule, start_line, end_line))
