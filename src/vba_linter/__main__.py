@@ -61,7 +61,7 @@ def main() -> None:
     if num_errors > 0 or args.verbose:
         output += "%s Error%s in %s File%s" % data
     if not args.quiet and output != "":
-         print(output, file=sys.stderr)
+        print(output, file=sys.stderr)
     if num_errors > 0 and not args.exit_zero:
         exit_code = 1
         sys.exit(exit_code)
