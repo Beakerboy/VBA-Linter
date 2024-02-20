@@ -25,7 +25,7 @@ class RuleDisabler(VbaListener):
     def enterClassBeginBlock(  # noqa: N802
             self: T,
             ctx: Parser.ClassBeginBlockContext) -> None:
-        self.add_ignored_lines('151': ctx.start.line, ctx.stop.line)
+        self.add_ignored_lines('151', ctx.start.line, ctx.stop.line)
 
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
