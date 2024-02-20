@@ -57,6 +57,9 @@ class Linter:
             # Get the ignore list and remove violations
             # that should be removed.
             ignores = rules.get_rule('000')
+            if len(ignores) > 0:
+                pass
+                
             output.sort()
         self.pretty = ts
         return output
