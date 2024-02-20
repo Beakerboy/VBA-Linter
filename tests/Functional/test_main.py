@@ -242,6 +242,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     delete_code(file_name + ".pretty")
     delete_code(file_name)
 
+
 worst_practice1 = (
     'Attribute VB_Name = "Foo"\r\n' +
     '\' noqa: 400' +
@@ -289,5 +290,4 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     with pytest.raises(SystemExit):
         main()
     captured = capsys.readouterr()
-    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     assert captured.err == expected
