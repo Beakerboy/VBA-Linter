@@ -59,6 +59,7 @@ class Linter:
             rule_disabler = dir.get_rule_disabler()
             ignored = rule_disabler.ignored
             if len(ignored) > 0:
+                raise Exception(str(ignored))
                 for violation in output:
                     violated_rule = violation[2]
                     if violated_rule in ignored:
