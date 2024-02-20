@@ -3,7 +3,7 @@ from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.parsing_error import ParsingError
 
 
-txt = ("extraneous input '<?php' expecting " +
+txt = ("mismatched input '<' expecting " +
        "{'ATTRIBUTE', 'VERSION', NEWLINE, REMCOMMENT, COMMENT, WS}")
 anti_patterns = [
     [
