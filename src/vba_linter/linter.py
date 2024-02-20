@@ -28,7 +28,7 @@ class Linter:
         try:
             lexer = self.get_lexer(code)
         except Exception as e:
-            return [['999', 0, 0, str(e)]]
+            return [(0, 0, '999', str(e))]
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
