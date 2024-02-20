@@ -29,7 +29,7 @@ class OptionalLet(VbaListener):
             else:
                 # ignore one line
                 self.ignored.append((rule, tok.line, tok.line))
-        elif tok.text[:9] = "' #qa: ":
+        elif tok.text[:9] == "' #qa: ":
             rule = tok.text[8:11]
             if rule in self.open_blocks:
                 start_line = self.open_blocks[rule]
