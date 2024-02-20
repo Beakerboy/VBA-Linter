@@ -30,7 +30,7 @@ class RuleDisabler(VbaListener):
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
         tok = ctx.start
-        if tok.text[:8] == "' #noqa: ":
+        if tok.text[:8] == "' noqa: ":
             rule = ctx.start.text[8:]
             if tok.column == 1:
                 # ignore multiple lines
@@ -38,7 +38,7 @@ class RuleDisabler(VbaListener):
             else:
                 # ignore one line
                 self.add_ignored_line(rule, tok.line)
-        elif tok.text[:7] == "' #qa: ":
+        elif tok.text[:7] == "' qa: ":
             rule = tok.text[7:]
             if rule in self.open_blocks:
                 start_line = self.open_blocks[rule]
