@@ -1,6 +1,6 @@
 from antlr4.tree.Tree import TerminalNode, TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
-from typing import Dict, List, TypeVar
+from typing import Dict, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
@@ -56,7 +56,9 @@ class RuleDisabler(VbaListener):
         new = {rule: lines}
         self.ignored.update(new)
 
-    def add_ignored_lines(self: T, rule: str, start_line: int, end_line: int) -> None:
+    def add_ignored_lines(
+            self: T, rule: str, start_line: int, end_line: int
+    ) -> None:
         if rule in self.ignored:
             lines = self.ignored[rule]
         else:
