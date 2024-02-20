@@ -1,6 +1,6 @@
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
-from typing import Dict, TypeVar
+from typing import Dict, List, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
