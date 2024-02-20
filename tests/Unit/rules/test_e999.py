@@ -13,7 +13,7 @@ Public Function Foo(num)
 End Sub
 ''',  # noqa
         [(3, 4, "999",
-          "mismatched input 'Sub' expecting 'FUNCTION'")]
+          "no viable alternative at input '\\nEnd Sub'")]
     ],
     [
         '<?php phpinfo() ?>',
