@@ -21,7 +21,7 @@ class Linter:
         if Path(file).exists():
             try:
                 input_stream = FileStream(file, 'utf-8')
-            except Exception as e:
+            except Exception:
                 raise Exception("Problem opening " + file)
             return vbaLexer(input_stream)
         raise Exception('file does not exist')
