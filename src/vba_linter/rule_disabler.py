@@ -15,7 +15,7 @@ class RuleDisabler(VbaListener):
 
         # Key: rule name
         # value: list of line numbers in which the rule is ignored.
-        self.ignored: Dict[str, list] = {}
+        self.ignored: Dict[str, set] = {}
 
     def enterClassBeginBlock(  # noqa: N802
             self: T,
@@ -36,8 +36,8 @@ class RuleDisabler(VbaListener):
         elif tok.text[:9] == "' #qa: ":
             rule = tok.text[8:11]
             if rule in self.open_blocks:
-                line = self.open_blocks[rule]
-                self.add_ignored_line(rule, line)
+                start_line = self.open_blocks[rule]
+                self.add_ignored_lines(rule, start_line, tok.line)
 
     def visitTerminal(self: T,  # noqa: N802
                       node: TerminalNode) -> None:
@@ -51,7 +51,16 @@ class RuleDisabler(VbaListener):
         if rule in self.ignored:
             lines = self.ignored[rule]
         else:
-            lines = []
-        lines.append(line)
+            lines = {}
+        lines.add(line)
+        new = {rule: lines}
+        self.ignored.update(new)
+
+    def add_ignored_lines(self: T, rule: str, start_line: int, end_line: int) -> None:
+        if rule in self.ignored:
+            lines = self.ignored[rule]
+        else:
+            lines = {}
+        lines.update(range(start_line, end_line))
         new = {rule: lines}
         self.ignored.update(new)
