@@ -22,7 +22,7 @@ class Linter:
             try:
                 input_stream = FileStream(file, 'utf-8')
             except Exception:
-                raise Exception("Problem opening " + file)
+                raise Exception("Problem opening " + str(file))
             return vbaLexer(input_stream)
         raise Exception('file does not exist')
 
