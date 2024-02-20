@@ -1,6 +1,6 @@
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
-from typing import TypeVar
+from typing import Dict, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
 
 
@@ -10,8 +10,8 @@ T = TypeVar('T', bound='RuleDisabler')
 class RuleDisabler(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self.open_blocks = []
-        self.ignored = []
+        self.open_blocks: Dict[str, int] = {}
+        self.ignored: List[tuple] = []
 
     def enterClassBeginBlock(  # noqa: N802
             self: T,
