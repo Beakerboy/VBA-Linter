@@ -15,9 +15,9 @@ class RuleDisabler(VbaListener):
 
     def enterClassBeginBlock(  # noqa: N802
             self: T,
-            ctx: vbaParser.ClassBeginBlockContext) -> None:
+            ctx: Parser.ClassBeginBlockContext) -> None:
         ('151', ctx.start.line, ctx.stop.line)
-        
+
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
         tok = ctx.start
