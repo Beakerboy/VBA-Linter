@@ -17,6 +17,11 @@ class RuleDisabler(VbaListener):
         # value: list of line numbers in which the rule is ignored.
         self.ignored: Dict[str, set] = {}
 
+    def enterStartRule(  # noqa: N802
+            self: T,
+            ctx: vbaParser.StartRuleContext) -> None:
+        self.ignored = {}
+
     def enterClassBeginBlock(  # noqa: N802
             self: T,
             ctx: Parser.ClassBeginBlockContext) -> None:
