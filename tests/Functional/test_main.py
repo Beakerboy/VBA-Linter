@@ -266,6 +266,7 @@ worst_practice1 = (
 def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice1)
     files.append(file_name)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
 %s:3:51: E121 Excess whitespace before '('
 %s:3:53: E124 Excess whitespace after '('
