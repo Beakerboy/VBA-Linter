@@ -45,7 +45,7 @@ class RuleDisabler(VbaListener):
         end_line = node.symbol.line
         for rule in self.open_blocks:
             start_line = self.open_blocks[rule]
-            self.ignored_lines(rule, start_line, end_line)
+            self.add_ignored_lines(rule, start_line, end_line)
 
     def add_ignored_line(self: T, rule: str, line: int) -> None:
         if rule in self.ignored:
