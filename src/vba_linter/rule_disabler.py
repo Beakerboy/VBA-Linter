@@ -51,7 +51,7 @@ class RuleDisabler(VbaListener):
         if rule in self.ignored:
             lines = self.ignored[rule]
         else:
-            lines = {}
+            lines = set()
         lines.add(line)
         new = {rule: lines}
         self.ignored.update(new)
