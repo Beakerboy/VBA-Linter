@@ -36,6 +36,7 @@ class RuleDirectory:
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
         self._parser_rules: Dict[str, ParseTreeListener] = {}
+        self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
         if isinstance(rule, ParseTreeListener):
@@ -76,7 +77,6 @@ class RuleDirectory:
             "305": TrailingWhitespace(),
             "910": rule910
         })
-        self.add_rule(RuleDisabler())
 
     def load_all_rules(self: T) -> None:
         self.load_standard_rules()
