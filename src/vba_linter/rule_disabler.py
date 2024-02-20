@@ -21,7 +21,7 @@ class OptionalLet(VbaListener):
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
         tok = ctx.start
-        if tok.text[:9] = "' #noqa: ":
+        if tok.text[:9] == "' #noqa: ":
             rule = ctx.start.text[10:13]
             if tok.column == 1
                 # ignore multiple lines
