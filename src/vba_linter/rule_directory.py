@@ -43,6 +43,11 @@ class RuleDirectory:
         else:
             self._rules[rule.get_rule_name()] = rule
 
+    def get_rule_disabler(self: T) -> RuleDisabler:
+        rule self.get_rule("000")
+        assert isinstance(rule, RuleDisabler)
+        return rule
+
     def remove_rule(self: T, name: str) -> None:
         if name in self._rules:
             del self._rules[name]
