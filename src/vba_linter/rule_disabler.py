@@ -10,7 +10,7 @@ T = TypeVar('T', bound='RuleDisabler')
 class RuleDisabler(VbaListener):
     def __init__(self: T) -> None:
         super().__init__()
-        self.rule_name = "000"
+        self._rule_name = "000"
         self.open_blocks: Dict[str, int] = {}
 
         # Key: rule name
