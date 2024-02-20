@@ -244,7 +244,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 worst_practice1 = (
     'Attribute VB_Name = "Foo"\r\n' +
-    ' noqa: 400
+    '\' noqa: 400' +
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \n' +
     ' \r\n' +
