@@ -32,7 +32,7 @@ class RuleDisabler(VbaListener):
         tok = ctx.start
         if tok.text[:8] == "' noqa: ":
             rule = ctx.start.text[8:]
-            if tok.column == 1:
+            if tok.column == 0:
                 # ignore multiple lines
                 self.open_blocks[rule] = tok.line
             else:
