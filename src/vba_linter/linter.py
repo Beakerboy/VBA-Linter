@@ -64,7 +64,6 @@ class Linter:
                         violation_line = violation[0]
                         if violation_line in ignores[violated_rule]:
                             output.remove(violation)
-                
             output.sort()
         self.pretty = ts
         return output
