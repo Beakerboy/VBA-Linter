@@ -44,7 +44,7 @@ class RuleDirectory:
             self._rules[rule.get_rule_name()] = rule
 
     def get_rule_disabler(self: T) -> RuleDisabler:
-        rule self.get_rule("000")
+        rule = self.get_rule("000")
         assert isinstance(rule, RuleDisabler)
         return rule
 
