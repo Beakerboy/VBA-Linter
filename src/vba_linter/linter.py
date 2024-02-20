@@ -56,13 +56,13 @@ class Linter:
             output.extend(listener.get_output())
             # Get the ignore list and remove violations
             # that should be removed.
-            ignores = dir.get_rule('000')
-            if len(ignores) > 0:
+            ignored = dir.get_rule('000').ignored
+            if len(ignored) > 0:
                 for violation in output:
                     violated_rule = violation[2]
-                    if violated_rule in ignores:
+                    if violated_rule in ignored:
                         violation_line = violation[0]
-                        if violation_line in ignores[violated_rule]:
+                        if violation_line in ignored[violated_rule]:
                             output.remove(violation)
             output.sort()
         self.pretty = ts
