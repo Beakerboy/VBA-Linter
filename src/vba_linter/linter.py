@@ -19,17 +19,16 @@ class Linter:
 
     def get_lexer(self: T, file: str) -> vbaLexer:
         if Path(file).exists():
-            try:
-                input_stream = FileStream(file, 'utf-8')
-            except Exception as e:
-                raise Exception("Problem opening " +
-                                str(file) + ': ' + str(e))
+            input_stream = FileStream(file, 'utf-8')
             return vbaLexer(input_stream)
         raise Exception('file does not exist')
 
     def lint(self: T, dir: RuleDirectory, code: str) -> list:
         rules = dir.get_loaded_rules()
-        lexer = self.get_lexer(code)
+        try:
+            lexer = self.get_lexer(code)
+        except Exception as e:
+            return [['999', 0, 0, str(e)]]
         lexer.removeErrorListeners()
         lexer.addErrorListener(ThrowingErrorListener())
         e999 = ParsingError()
