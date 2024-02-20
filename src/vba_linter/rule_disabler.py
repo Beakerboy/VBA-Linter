@@ -19,7 +19,7 @@ class RuleDisabler(VbaListener):
 
     def enterStartRule(  # noqa: N802
             self: T,
-            ctx: vbaParser.StartRuleContext) -> None:
+            ctx: Parser.StartRuleContext) -> None:
         self.ignored = {}
 
     def enterClassBeginBlock(  # noqa: N802
