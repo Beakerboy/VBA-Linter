@@ -1,4 +1,4 @@
-from antlr4.tree.Tree import TerminalNodeImpl
+from antlr4.tree.Tree import TerminalNode, TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
@@ -35,7 +35,9 @@ class RuleDisabler(VbaListener):
                 start_line = self.open_blocks[rule]
                 self.ignored.append((rule, start_line, tok.line))
 
-    def visitTerminal(self: T, node: TerminalNode) -> None:  # noqa: N802
+    def visitTerminal(self: T,  # noqa: N802
+                      node: TerminalNode) -> None:
+        assert isinstance(node, TerminalNodeImpl)
         end_line = node.symbol.line
         for rule in self.open_blocks:
             start_line = self.open_blocks[rule]
