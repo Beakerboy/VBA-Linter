@@ -32,7 +32,7 @@ class RuleDisabler(VbaListener):
                 self.open_blocks[rule] = tok.line
             else:
                 # ignore one line
-                self.ignored.append((rule, tok.line, tok.line))
+                self.add_ignored_line.(rule, tok.line)
         elif tok.text[:9] == "' #qa: ":
             rule = tok.text[8:11]
             if rule in self.open_blocks:
@@ -45,7 +45,7 @@ class RuleDisabler(VbaListener):
         end_line = node.symbol.line
         for rule in self.open_blocks:
             start_line = self.open_blocks[rule]
-            self.ignored.append((rule, start_line, end_line))
+            self.ignored_lines(rule, start_line, end_line)
 
     def add_ignored_line(self: T, rule: str, line: int) -> None:
         if rule in self.ignored:
