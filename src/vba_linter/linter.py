@@ -41,6 +41,8 @@ class Linter:
             token = ts.LT(1)
             assert token is not None
             while not token.type == Token.EOF:
+                # Walk the stream and test the token against
+                # each rule.
                 for key in rules:
                     rule = rules[key]
                     output.extend(rule.test(ts))
@@ -52,6 +54,8 @@ class Linter:
             listener.listeners = dir.get_parser_rules()
             ParseTreeWalker.DEFAULT.walk(listener, program)
             output.extend(listener.get_output())
+            # Get the ignore list and remove violations
+            # that should be removed.
             output.sort()
         self.pretty = ts
         return output
