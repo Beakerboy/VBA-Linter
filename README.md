@@ -44,8 +44,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 182 Whitespace characters after comparison operator
 * 183 Tabs after comparison operator
 ### 200 Parameter errors
-* 110 Missing Let
-* 111 Optional Let
+* 201 Missing Let
+* 202 Optional Let
 * 210 parameter naming
 * 220 Keyword not capitalized
 * function / sub naming
