@@ -89,12 +89,12 @@ worst_expected = """\
 %s:3:1: W310 Blank line contains whitespace
 %s:5:0: E400 incorrect line ending
 %s:6:0: W303 Too many blank lines (3)
-%s:7:1: W110 Missing let
+%s:7:1: W201 Missing let
 %s:7:11: E400 incorrect line ending
-%s:8:5: W110 Missing let
+%s:8:5: W201 Missing let
 %s:8:12: E150 Missing whitespace before '='
 %s:8:13: E153 Missing whitespace after '='
-%s:9:5: W111 Optional let
+%s:9:5: W202 Optional let
 %s:9:16: E151 Excess whitespace before '='
 %s:9:19: E154 Excess whitespace after '='
 %s:10:12: E400 incorrect line ending
