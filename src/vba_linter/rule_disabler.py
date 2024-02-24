@@ -28,8 +28,8 @@ class RuleDisabler(VbaListener):
         start = ctx.start.line
         stop = ctx.stop.line
         # ignore excess whitespace after and before equals sign.
-        self.add_ignored_lines('151', start, stop)
-        self.add_ignored_lines('154', start, stop)
+        self.add_ignored_lines('141', start, stop)
+        self.add_ignored_lines('142', start, stop)
 
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
