@@ -89,7 +89,7 @@ class RuleDirectory:
         self._parser_rules.update({
             '505': OptionalPublic(),
             '510': MissingVisibility(),
-            '110': MissingLet(), '111': OptionalLet()
+            '201': MissingLet(), '202': OptionalLet()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:
