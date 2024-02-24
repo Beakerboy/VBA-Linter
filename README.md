@@ -74,7 +74,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 700 Module Errors
 * Blank line begining file
 * blank line end of file
-* missing final eol
+* 701 missing final eol
 * 601 missing module attributes
 * 602 Missing module declarations
 ### 800 Documentation
