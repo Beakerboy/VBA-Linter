@@ -25,7 +25,11 @@ class RuleDisabler(VbaListener):
     def enterClassBeginBlock(  # noqa: N802
             self: T,
             ctx: Parser.ClassBeginBlockContext) -> None:
-        self.add_ignored_lines('151', ctx.start.line, ctx.stop.line)
+        start = ctx.start.line
+        stop = ctx.stop.line
+        # ignore excess whitespace after and before equals sign.
+        self.add_ignored_lines('151', start, stop)
+        self.add_ignored_lines('154', start, stop)
 
     def enterCommentBody(self: T,  # noqa: N802
                          ctx: Parser.CommentBodyContext) -> None:
