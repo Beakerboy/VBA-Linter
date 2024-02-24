@@ -7,7 +7,7 @@ def test_form(mocker: MockerFixture) -> None:
     dir = RuleDirectory()
     linter = Linter()
     file_name = "tests/files/login.frm"
-    dir.load_all_rules()
+    dir.load_standard_rules()
     dir.remove_rule("400")
     results = linter.lint(dir, file_name)
     assert len(results) == 13
