@@ -6,7 +6,7 @@ from vba_linter.rule_directory import RuleDirectory
 def test_form(mocker: MockerFixture) -> None:
     dir = RuleDirectory()
     linter = Linter()
-    file_name = "tests/files/form.frm"
+    file_name = "tests/files/login.frm"
     dir.load_standard_rules()
     dir.remove_rule("400")
     results = linter.lint(dir, file_name)
