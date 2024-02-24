@@ -8,12 +8,12 @@ anti_patterns = [
     ['''\
 Public Function Foo(num)
 End Function''',  # noqa
-     [(2, 13, '201')]]
+     [(2, 13, '701')]]
 ]
 
 
 message_data = [
-    [(2, 1, "201"), ":2:1: W201 no newline at end of file"],
+    [(2, 1, "701"), ":2:1: W701 no newline at end of file"],
  ]
 
 
