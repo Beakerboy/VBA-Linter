@@ -65,9 +65,15 @@ class Linter:
                 for violation in output:
                     violated_rule = violation[2]
                     if violated_rule in ignored:
+                        self.debug += "Violated Rule: " + violated_rule + " is in ignored\n"
                         violation_line = violation[0]
                         if violation_line in ignored[violated_rule]:
+                            self.debug += "and Violated line: " + str(violation_line) + " is ignored\n"
                             output.remove(violation)
+                        else:
+                            self.debug += "but Violated line: " + str(violation_line) + " is ignored\n"
+                    else:
+                        self.debug += "Violated Rule: " + violated_rule + " is not in ignored\n"
             output.sort()
         self.pretty = ts
         return output
