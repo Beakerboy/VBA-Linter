@@ -51,7 +51,7 @@ worst_practice1 = (
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
     '\r\n' +
-    '\' noqa: 400\n' +
+    ' \' noqa: 400\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
     '    foo_val=6\r\n'
@@ -89,9 +89,9 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:9:13: E153 Missing whitespace after '='
 %s:10:16: E151 Excess whitespace before '='
 %s:10:19: E154 Excess whitespace after '='
-%s:11:12: E400 Incorrect Line Ending
+%s:11:12: E400 incorrect line ending
 %s:13:1: E220 Keyword not capitalized
-11 Errors in 1 File
+12 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
