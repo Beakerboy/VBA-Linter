@@ -70,7 +70,6 @@ class Linter:
                         violation_line = violation[0]
                         if violation_line in ignored[violated_rule]:
                             self.debug += "and Violated line: " + str(violation_line) + " is ignored\n"
-                            output.remove(violation)
                         else:
                             filtered_output.append(violation)
                             self.debug += "but Violated line: " + str(violation_line) + " is not ignored\n"
