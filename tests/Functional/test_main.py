@@ -9,7 +9,6 @@ from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
 
 
-
 @pytest.fixture(autouse=True)
 def run_around_tests() -> None:
     global files
