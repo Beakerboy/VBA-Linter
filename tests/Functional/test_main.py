@@ -274,7 +274,8 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
             "tests/Functional",
         ],
     )
-    main()
+    with pytest.raises(SystemExit):
+        main()
     captured = capsys.readouterr()
     expected = """\
 %s:3:51: E121 Excess whitespace before '('
