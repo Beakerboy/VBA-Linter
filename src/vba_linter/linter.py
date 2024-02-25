@@ -60,7 +60,6 @@ class Linter:
             ignored = rule_disabler.ignored
             filtered_output = []
             if len(ignored) > 0:
-                self.debug += "num violations = " + str(len(output)) + "\n"
                 for violation in output:
                     violated_rule = violation[2]
                     if violated_rule in ignored:
