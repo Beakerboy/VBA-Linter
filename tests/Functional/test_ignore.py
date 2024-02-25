@@ -41,6 +41,9 @@ def delete_code(file_name: str) -> None:
     p.unlink()
 
 
+function = 'Supercalifragilisticexpialidocious'
+
+
 worst_practice1 = (
     'Attribute VB_Name = "Foo"\r\n' +
     '\r\n'
