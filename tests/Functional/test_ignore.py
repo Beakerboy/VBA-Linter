@@ -59,7 +59,7 @@ worst_practice1 = (
     'End Function \' noqa: 400\n' +
     '\r\n' +
     'sub O()\r\n' +
-    'End Sub\r\n' +
+    'End Sub \' noqa: 400\n' +
     '\r\n'
 )
 
