@@ -71,7 +71,7 @@ class Linter:
                             self.debug += "and Violated line: " + str(violation_line) + " is ignored\n"
                             output.remove(violation)
                         else:
-                            self.debug += "but Violated line: " + str(violation_line) + " is ignored\n"
+                            self.debug += "but Violated line: " + str(violation_line) + " is not ignored\n"
                     else:
                         self.debug += "Violated Rule: " + violated_rule + " is not in ignored\n"
             output.sort()
