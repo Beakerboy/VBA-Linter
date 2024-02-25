@@ -51,12 +51,12 @@ worst_practice1 = (
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
     '\r\n' +
-    ' \' noqa: 400\n' +
+    '\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
     '    foo_val=6\r\n'
     '    Let BarVal  =  (7 + 2) / 3\r\n'
-    'End Function\n' +
+    'End Function \' noqa: 400\n' +
     '\r\n' +
     'sub O()\r\n' +
     'End Sub\r\n' +
@@ -85,11 +85,11 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:3:66: E144 Excess whitespace after ','
 %s:3:90: E131 Excess whitespace before ')'
 %s:3:92: E305 Trailing whitespace
+%s:6:0: E400 incorrect line ending
 %s:9:12: E150 Missing whitespace before '='
 %s:9:13: E153 Missing whitespace after '='
 %s:10:16: E151 Excess whitespace before '='
 %s:10:19: E154 Excess whitespace after '='
-%s:11:12: E400 incorrect line ending
 %s:13:1: E220 Keyword not capitalized
 12 Errors in 1 File
 """.replace("%s", full_path)  # noqa
