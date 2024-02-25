@@ -58,24 +58,17 @@ class Linter:
             # that should be removed.
             rule_disabler = dir.get_rule_disabler()
             ignored = rule_disabler.ignored
-            self.debug = ""
-            self.debug += "Ignored Len = " + str(len(ignored)) + "\n"
             filtered_output = []
             if len(ignored) > 0:
                 self.debug += "num violations = " + str(len(output)) + "\n"
                 for violation in output:
                     violated_rule = violation[2]
                     if violated_rule in ignored:
-                        self.debug += "Violated Rule: " + violated_rule + " is in ignored\n"
                         violation_line = violation[0]
-                        if violation_line in ignored[violated_rule]:
-                            self.debug += "and Violated line: " + str(violation_line) + " is ignored\n"
-                        else:
+                        if violation_line not in ignored[violated_rule]:
                             filtered_output.append(violation)
-                            self.debug += "but Violated line: " + str(violation_line) + " is not ignored\n"
                     else:
                         filtered_output.append(violation)
-                        self.debug += "Violated Rule: " + violated_rule + " is not in ignored\n"
             else:
                 filtered_output = output
             filtered_output.sort()
