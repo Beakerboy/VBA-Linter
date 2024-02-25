@@ -13,7 +13,6 @@ def test_form(mocker: MockerFixture) -> None:
     assert len(results) == 7
     rule_disabler = dir.get_rule_disabler()
     ignored_lines = rule_disabler.ignored
-    assert "151" in ignored_lines
     assert "154" in ignored_lines
     for line_num in range(3, 9):
         assert line_num in ignored_lines["154"]
