@@ -5,6 +5,9 @@ from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
+from vba_linter.linter import Linter
+from vba_linter.rule_directory import RuleDirectory
+
 
 
 @pytest.fixture(autouse=True)
