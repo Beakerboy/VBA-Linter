@@ -249,7 +249,7 @@ worst_practice1 = (
     'Attribute VB_Name = "Foo"\r\n' +
     '\' noqa: 400\r\n' +
     'Public Function ' + function +
-    ' ( atrocious ,  precocious, indubitably ) \n' +
+    ' ( atrocious ,  precocious, indubitably )\n' +
     ' \r\n' +
     '\r\n' +
     '\n' +
