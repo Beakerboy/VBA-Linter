@@ -60,6 +60,7 @@ class Linter:
             ignored = rule_disabler.ignored
             self.debug = ""
             self.debug += "Ignored Len = " + str(len(ignored)) + "\n"
+            filtered_output = []
             if len(ignored) > 0:
                 self.debug += "num violations = " + str(len(output)) + "\n"
                 for violation in output:
@@ -71,12 +72,16 @@ class Linter:
                             self.debug += "and Violated line: " + str(violation_line) + " is ignored\n"
                             output.remove(violation)
                         else:
+                            filtered_output.append(violation)
                             self.debug += "but Violated line: " + str(violation_line) + " is not ignored\n"
                     else:
+                        filtered_output.append(violation)
                         self.debug += "Violated Rule: " + violated_rule + " is not in ignored\n"
-            output.sort()
+            else:
+                filtered_output = output
+            filtered_output.sort()
         self.pretty = ts
-        return output
+        return filtered_output
 
     def get_pretty_code(self: T) -> str:
         code = ""
