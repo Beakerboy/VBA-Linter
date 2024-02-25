@@ -5,8 +5,6 @@ from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
 from vba_linter.__main__ import main
-from vba_linter.linter import Linter
-from vba_linter.rule_directory import RuleDirectory
 
 
 @pytest.fixture(autouse=True)
@@ -269,15 +267,15 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice1)
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
-    dir = RuleDirectory()
-    linter = Linter()
-    dir.load_standard_rules()
-    results = linter.lint(dir, full_path)
-    # assert len(results) == 15
-    assert linter.debug == ""
-    rule_disabler = dir.get_rule_disabler()
-    ignored_lines = rule_disabler.ignored
-    assert "154" in ignored_lines
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "tests/Functional",
+        ],
+    )
+    main()
+    captured = capsys.readouterr()
     expected = """\
 %s:3:51: E121 Excess whitespace before '('
 %s:3:53: E124 Excess whitespace after '('
