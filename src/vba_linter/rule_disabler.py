@@ -27,7 +27,7 @@ class RuleDisabler(VbaListener):
             ctx: Parser.ClassBeginBlockContext) -> None:
         start = ctx.start.line
         stop = ctx.stop.line
-        self.add_ignored_line('305', start)
+        self.add_ignored_lines('305', start, stop)
         # ignore excess whitespace after and before equals sign.
         self.add_ignored_lines('151', start, stop)
         self.add_ignored_lines('154', start, stop)
