@@ -36,10 +36,10 @@ class RuleDirectory:
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
         self._parser_rules: Dict[str, ParseTreeListener] = {}
-        # some simple tokens have slight amendments to 
+        # some simple tokens have slight amendments to
         # the whitespace rules.
         self._special_rules: Dict[str, RuleBase] = {}
-        self.build_special_rules()
+        self._build_special_rules()
         self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
@@ -188,7 +188,7 @@ class RuleDirectory:
         name = ')'
         # there are times when a rparen does not need ws after.
         self._special_rules["133"] = TokenSeqMismatchNL(
-            str(i),
+            '133',
             [token, vbaLexer.WS], 1,
             "Missing whitespace after '" + name + "'")
         # There are times when rparen can have excess WS after.
@@ -197,6 +197,6 @@ class RuleDirectory:
         name = '('
         # There are times when lparen can have excess WS before.
         self._special_rules["121"] = TokenSequenceOperator(
-            str(i),
+            '121',
             [vbaLexer.EQ, vbaLexer.WS, token], 0,
             "Excess whitespace before '" + name + "'")
