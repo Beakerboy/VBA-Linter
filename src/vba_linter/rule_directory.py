@@ -36,6 +36,10 @@ class RuleDirectory:
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
         self._parser_rules: Dict[str, ParseTreeListener] = {}
+        # some simple tokens have slight amendments to 
+        # the whitespace rules.
+        self._special_rules: Dict[str, RuleBase] = {}
+        self.build_special_rules()
         self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
@@ -62,6 +66,7 @@ class RuleDirectory:
             [vbaLexer.COMMA, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
             [vbaLexer.ASSIGN, ':=', (0, 0)],
+            # [vbaLexer.COLON, ':', (0, 1)],
         ]
         i = 1
         for symbol in symbols:
@@ -177,3 +182,21 @@ class RuleDirectory:
                 "Excess whitespace after '" + name + "'"
             )
         return rules
+
+    def _build_special_rules(self: T) -> None:
+        token = vbaLexer.RPAREN
+        name = ')'
+        # there are times when a rparen does not need ws after.
+        self._special_rules["133"] = TokenSeqMismatchNL(
+            str(i),
+            [token, vbaLexer.WS], 1,
+            "Missing whitespace after '" + name + "'")
+        # There are times when rparen can have excess WS after.
+        # self._special_rules["134"] = 
+        token = vbaLexer.LPAREN
+        name = '('
+        # There are times when lparen can have excess WS before.
+        self._special_rules["121"] = TokenSequenceOperator(
+            str(i),
+            [vbaLexer.EQ, vbaLexer.WS, token], 0,
+            "Excess whitespace before '" + name + "'")
