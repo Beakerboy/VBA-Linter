@@ -20,6 +20,5 @@ class TokenSeqMismatchNL(TokenSequenceMismatch):
         """
         result = super().match(sequence, signature)
         exceptions = [vbaLexer.RPAREN, vbaLexer.LPAREN, vbaLexer.NEWLINE,
-                      vbaLexer.COMMA, vbaLexer.PERIOD, vbaLexer.COLON,
-                      vbaLexer.AS]
+                      vbaLexer.COMMA, vbaLexer.PERIOD, vbaLexer.COLON]
         return result and sequence[1] not in exceptions
