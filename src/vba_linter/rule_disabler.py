@@ -47,6 +47,7 @@ class RuleDisabler(VbaListener):
             if rule in self.open_blocks:
                 start_line = self.open_blocks[rule]
                 self.add_ignored_lines(rule, start_line, tok.line)
+                del self.open_blocks[rule]
 
     def visitTerminal(self: T,  # noqa: N802
                       node: TerminalNode) -> None:
