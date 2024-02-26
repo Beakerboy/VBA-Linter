@@ -36,6 +36,7 @@ class Linter:
         output = e999.test(ts1)
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
+        filtered_output = []
         if output == []:
             program = e999.program
             token = ts.LT(1)
@@ -58,7 +59,6 @@ class Linter:
             # that should be removed.
             rule_disabler = dir.get_rule_disabler()
             ignored = rule_disabler.ignored
-            filtered_output = []
             if len(ignored) > 0:
                 for violation in output:
                     violated_rule = violation[2]
