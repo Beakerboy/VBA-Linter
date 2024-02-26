@@ -105,6 +105,7 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     captured = capsys.readouterr()
     assert captured.err == expected
 
+
 worst_practice2 = (
     'Attribute VB_Name = "Foo"\r\n' +
     '\r\n'
