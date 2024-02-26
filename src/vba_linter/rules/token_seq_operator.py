@@ -29,7 +29,7 @@ class TokenSequenceOperator(TokenSequenceBase):
         symbols = [
             vbaLexer.AND, vbaLexer.IF,
             vbaLexer.MOD, vbaLexer.NOT, vbaLexer.OR,
-            vbaLexer.WHILE,
+            vbaLexer.WHILE, vbaLexer.COMMA,
             vbaLexer.ASSIGN, vbaLexer.DIV, vbaLexer.EQ,
             vbaLexer.GEQ, vbaLexer.GT, vbaLexer.LEQ,
             vbaLexer.LT, vbaLexer.MINUS, vbaLexer.MINUS_EQ,
