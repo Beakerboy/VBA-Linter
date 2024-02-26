@@ -192,7 +192,7 @@ class RuleDirectory:
             [token, vbaLexer.WS], 1,
             "Missing whitespace after '" + name + "'")
         # There are times when rparen can have excess WS after.
-        # self._special_rules["134"] = 
+        # self._special_rules["134"] =
         token = vbaLexer.LPAREN
         name = '('
         # There are times when lparen can have excess WS before.
