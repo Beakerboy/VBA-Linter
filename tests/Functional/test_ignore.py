@@ -50,7 +50,7 @@ worst_practice1 = (
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
-    '\' qa: 400' +
+    '\' qa: 400\r\n' +
     '\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
