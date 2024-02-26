@@ -10,7 +10,7 @@ def test_form(mocker: MockerFixture) -> None:
     dir.load_standard_rules()
     dir.remove_rule("400")
     results = linter.lint(dir, file_name)
-    # assert len(results) == 0
+    assert len(results) == 0
     rule_disabler = dir.get_rule_disabler()
     ignored_lines = rule_disabler.ignored
     assert "154" in ignored_lines
