@@ -89,12 +89,12 @@ worst_expected = """\
 %s:3:1: W310 Blank line contains whitespace
 %s:5:0: E400 incorrect line ending
 %s:6:0: W303 Too many blank lines (3)
-%s:7:1: W110 Missing let
+%s:7:1: W201 Missing let
 %s:7:11: E400 incorrect line ending
-%s:8:5: W110 Missing let
+%s:8:5: W201 Missing let
 %s:8:12: E150 Missing whitespace before '='
 %s:8:13: E153 Missing whitespace after '='
-%s:9:5: W111 Optional let
+%s:9:5: W202 Optional let
 %s:9:16: E151 Excess whitespace before '='
 %s:9:19: E154 Excess whitespace after '='
 %s:10:12: E400 incorrect line ending
@@ -241,3 +241,64 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     assert pretty_file == best_practice
     delete_code(file_name + ".pretty")
     delete_code(file_name)
+
+
+worst_practice1 = (
+    'Attribute VB_Name = "Foo"\r\n' +
+    '\' noqa: 400\r\n' +
+    'Public Function ' + function +
+    ' ( atrocious ,  precocious, indubitably ) \n' +
+    ' \r\n' +
+    '\r\n' +
+    '\n' +
+    '\r\n' +
+    'I = (2 + 1)\n' +
+    '    foo_val=6\r\n'
+    '    Let BarVal  =  (7 + 2) / 3\r\n'
+    'End Function\n' +
+    '\r\n' +
+    'sub O()\r\n' +
+    'End Sub\r\n' +
+    '\r\n'
+)
+
+
+def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    file_name = save_code(worst_practice1)
+    files.append(file_name)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "tests/Functional",
+        ],
+    )
+    with pytest.raises(SystemExit):
+        main()
+    captured = capsys.readouterr()
+    expected = """\
+%s:3:51: E121 Excess whitespace before '('
+%s:3:53: E124 Excess whitespace after '('
+%s:3:63: E141 Excess whitespace before ','
+%s:3:66: E144 Excess whitespace after ','
+%s:3:90: E131 Excess whitespace before ')'
+%s:3:92: E305 Trailing whitespace
+%s:9:12: E150 Missing whitespace before '='
+%s:9:13: E153 Missing whitespace after '='
+%s:10:16: E151 Excess whitespace before '='
+%s:10:19: E154 Excess whitespace after '='
+%s:13:1: E220 Keyword not capitalized
+11 Errors in 1 File
+""".replace("%s", full_path)  # noqa
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "tests/Functional",
+        ],
+    )
+    with pytest.raises(SystemExit):
+        main()
+    captured = capsys.readouterr()
+    assert captured.err == expected

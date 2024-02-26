@@ -44,8 +44,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 182 Whitespace characters after comparison operator
 * 183 Tabs after comparison operator
 ### 200 Parameter errors
-* 110 Missing Let
-* 111 Optional Let
+* 201 Missing Let
+* 202 Optional Let
 * 210 parameter naming
 * 220 Keyword not capitalized
 * function / sub naming
@@ -74,7 +74,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ### 700 Module Errors
 * Blank line begining file
 * blank line end of file
-* missing final eol
+* 701 missing final eol
 * 601 missing module attributes
 * 602 Missing module declarations
 ### 800 Documentation

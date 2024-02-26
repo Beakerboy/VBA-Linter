@@ -11,7 +11,7 @@ class MissingLet(VbaListener):
         super().__init__()
         self.output: list = []
         self._severity = 'W'
-        self._rule_name = "110"
+        self._rule_name = "201"
         self._message = "Missing let"
 
     def enterLetStatement(self: T,  # noqa: N802

@@ -11,7 +11,7 @@ class OptionalLet(VbaListener):
         super().__init__()
         self.output: list = []
         self._severity = 'W'
-        self._rule_name = "111"
+        self._rule_name = "202"
         self._message = "Optional let"
 
     def enterLetStatement(  # noqa: N802

@@ -1,4 +1,3 @@
-import pytest
 from vba_linter.linter import Linter
 from vba_linter.rule_directory import RuleDirectory
 from Unit.rule_stub import RuleStub
@@ -37,5 +36,5 @@ def test_sort() -> None:
 def test_not_file() -> None:
     linter = Linter()
     dir = RuleDirectory()
-    with pytest.raises(Exception):
-        linter.lint(dir, "foo.txt")
+    result = linter.lint(dir, "foo.txt")
+    assert len(result) == 1

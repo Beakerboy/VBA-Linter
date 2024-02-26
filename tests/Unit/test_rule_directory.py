@@ -20,6 +20,6 @@ def test_add_and_remove() -> None:
     assert len(obj.get_loaded_rules()) == 0
     obj.add_rule(rule2)
     assert len(obj.get_loaded_rules()) == 0
-    assert len(obj.get_parser_rules()) == 1
+    assert len(obj.get_parser_rules()) == 2
     obj.remove_rule("002")
-    assert len(obj.get_parser_rules()) == 0
+    assert len(obj.get_parser_rules()) == 1

@@ -21,6 +21,7 @@ from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
+from vba_linter.rule_disabler import RuleDisabler
 
 
 T = TypeVar('T', bound='RuleDirectory')
@@ -35,12 +36,18 @@ class RuleDirectory:
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
         self._parser_rules: Dict[str, ParseTreeListener] = {}
+        self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
         if isinstance(rule, ParseTreeListener):
             self._parser_rules[rule.get_rule_name()] = rule
         else:
             self._rules[rule.get_rule_name()] = rule
+
+    def get_rule_disabler(self: T) -> RuleDisabler:
+        rule = self.get_rule("000")
+        assert isinstance(rule, RuleDisabler)
+        return rule
 
     def remove_rule(self: T, name: str) -> None:
         if name in self._rules:
@@ -64,7 +71,7 @@ class RuleDirectory:
         rule910.set_rule_name("910")
         rule910.severity = 'F'
         self._rules.update({
-            "201": NewlineEof(),
+            "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
             "305": TrailingWhitespace(),
@@ -82,7 +89,7 @@ class RuleDirectory:
         self._parser_rules.update({
             '505': OptionalPublic(),
             '510': MissingVisibility(),
-            '110': MissingLet(), '111': OptionalLet()
+            '201': MissingLet(), '202': OptionalLet()
         })
 
     def get_rule(self: T, rule_name: str) -> RuleBase:

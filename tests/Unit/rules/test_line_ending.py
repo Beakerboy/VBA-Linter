@@ -31,6 +31,6 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 @pytest.mark.parametrize('rule', [rule])
 def test_message(rule: RuleBase) -> None:
-    data = (3, 13, "310")
-    expected = ":3:13: E310 incorrect line ending"
+    data = (3, 13, "400")
+    expected = ":3:13: E400 incorrect line ending"
     assert rule.create_message(data) == expected
