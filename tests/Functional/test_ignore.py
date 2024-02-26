@@ -46,11 +46,11 @@ function = 'Supercalifragilisticexpialidocious'
 
 worst_practice1 = (
     'Attribute VB_Name = "Foo"\r\n' +
-    '\r\n'
+    '\' noqa: 400\n'
     'Public Function ' + function +
     ' ( atrocious ,  precocious, indubitably ) \r\n' +
     ' \r\n' +
-    '\r\n' +
+    '\' qa: 400' +
     '\n' +
     '\r\n' +
     'I = (2 + 1)\r\n' +
