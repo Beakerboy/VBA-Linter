@@ -104,3 +104,63 @@ def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == expected
+
+worst_practice2 = (
+    'Attribute VB_Name = "Foo"\r\n' +
+    '\r\n'
+    'Public Function ' + function +
+    ' ( atrocious ,  precocious, indubitably ) \' noqa: 121\r\n' +
+    ' \r\n' +
+    '\' qa: 400\r\n' +
+    '\n' +
+    '\r\n' +
+    'I = (2 + 1)\r\n' +
+    '    foo_val=6\r\n'
+    '    Let BarVal  =  (7 + 2) / 3\r\n'
+    'End Function \' noqa: 400\n' +
+    '\r\n' +
+    'sub O()\r\n' +
+    'End Sub \' noqa: 400\n' +
+    '\r\n'
+)
+
+
+def test_ignore_single(mocker: MockerFixture, capsys: CaptureFixture) -> None:
+    file_name = save_code(worst_practice2)
+    files.append(file_name)
+    full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "tests/Functional",
+        ],
+    )
+    with pytest.raises(SystemExit):
+        main()
+    captured = capsys.readouterr()
+    expected = """\
+%s:3:53: E124 Excess whitespace after '('
+%s:3:63: E141 Excess whitespace before ','
+%s:3:66: E144 Excess whitespace after ','
+%s:3:90: E131 Excess whitespace before ')'
+%s:3:92: E305 Trailing whitespace
+%s:6:0: E400 incorrect line ending
+%s:9:12: E150 Missing whitespace before '='
+%s:9:13: E153 Missing whitespace after '='
+%s:10:16: E151 Excess whitespace before '='
+%s:10:19: E154 Excess whitespace after '='
+%s:13:1: E220 Keyword not capitalized
+11 Errors in 1 File
+""".replace("%s", full_path)  # noqa
+    mocker.patch(
+        "sys.argv",
+        [
+            "vba_linter.py",
+            "tests/Functional",
+        ],
+    )
+    with pytest.raises(SystemExit):
+        main()
+    captured = capsys.readouterr()
+    assert captured.err == expected
