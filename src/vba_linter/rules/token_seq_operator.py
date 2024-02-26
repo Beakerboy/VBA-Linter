@@ -34,7 +34,8 @@ class TokenSequenceOperator(TokenSequenceBase):
             vbaLexer.GEQ, vbaLexer.GT, vbaLexer.LEQ,
             vbaLexer.LT, vbaLexer.MINUS, vbaLexer.MINUS_EQ,
             vbaLexer.MULT, vbaLexer.NEQ, vbaLexer.PLUS,
-            vbaLexer.PLUS_EQ, vbaLexer.POW
+            vbaLexer.PLUS_EQ, vbaLexer.POW,
+            vbaLexer.STRINGLITERAL
         ]
         token = sequence[self._wildcard]
         if sequence[1:] == signature[1:]:
