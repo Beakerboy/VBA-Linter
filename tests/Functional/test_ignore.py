@@ -151,7 +151,7 @@ def test_ignore_single(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:10:16: E151 Excess whitespace before '='
 %s:10:19: E154 Excess whitespace after '='
 %s:13:1: E220 Keyword not capitalized
-11 Errors in 1 File
+10 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
