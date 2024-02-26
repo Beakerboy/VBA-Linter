@@ -42,7 +42,7 @@ class RuleDisabler(VbaListener):
             else:
                 # ignore one line
                 self.add_ignored_line(rule, tok.line)
-        elif tok.text[:7] == "' qa: ":
+        elif tok.text[:6] == "' qa: ":
             rule = tok.text[7:]
             if rule in self.open_blocks:
                 start_line = self.open_blocks[rule]
