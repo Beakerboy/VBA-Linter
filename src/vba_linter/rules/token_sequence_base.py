@@ -26,8 +26,12 @@ class TokenSequenceBase(RuleBase):
         # The element who's position is reported
         self._target = target + 1
         self._message = message
+        self.exception: int
 
     def test(self: T, ts: CommonTokenStream) -> list:
+        """
+        extract the sequence of tokens at the current position
+        """
         output: List[tuple] = []
         sequences: Tuple[List[int], ...]
         if isinstance(self._sequence, list):
@@ -37,14 +41,19 @@ class TokenSequenceBase(RuleBase):
         for sequence in sequences:
             found_eof = False
             token_types: List[int] = []
-            for i in range(len(sequence)):
+            seq_len = len(sequence)
+            for i in range(seq_len):
                 if found_eof:
                     return output
                 tok_type = ts.LA(i + 1)
                 if tok_type == Token.EOF:
                     found_eof = True
                 token_types.append(tok_type)
-            if self.match(token_types, sequence):
+            if (
+                    self.match(token_types, sequence) and
+                    self.exception != None and
+                    ts.LA(seq_len + 1) != self.exception
+            )
                 token = ts.LT(self._target)
                 assert token is not None
                 output = self._match_action(token)
