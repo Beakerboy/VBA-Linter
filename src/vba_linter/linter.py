@@ -19,7 +19,7 @@ class Linter:
 
     def get_lexer(self: T, file: str) -> vbaLexer:
         if Path(file).exists():
-            input_stream = FileStream(file, 'utf-16')
+            input_stream = FileStream(file, 'utf-8')
             return vbaLexer(input_stream)
         raise Exception('file does not exist')
 
