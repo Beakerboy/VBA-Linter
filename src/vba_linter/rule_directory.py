@@ -188,7 +188,7 @@ class RuleDirectory:
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'"
             )
-            rule.exception = [token, vbaLexer.WS, vbaLexer.AS]
+            rule.exception = vbaLexer.AS
             rules[str(i)] = rule
         return rules
 
