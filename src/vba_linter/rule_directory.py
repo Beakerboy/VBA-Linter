@@ -183,11 +183,13 @@ class RuleDirectory:
                 rules[str(i)] = self._special_rules[str(i)]
             i += 1
             # Need to allow multiple WS before AS
-            rules[str(i)] = TokenLengthMismatch(
+            rule = TokenLengthMismatch(
                 str(i),
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'"
             )
+            rule.exception = [token, vbaLexer.WS, vbaLexer.AS]
+            rules[str(i)] = rule
         return rules
 
     def _build_special_rules(self: T) -> None:
