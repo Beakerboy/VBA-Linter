@@ -53,7 +53,7 @@ class TokenSequenceBase(RuleBase):
                     self.match(token_types, sequence) and
                     self.exception != None and
                     ts.LA(seq_len + 1) != self.exception
-            )
+            ):
                 token = ts.LT(self._target)
                 assert token is not None
                 output = self._match_action(token)
