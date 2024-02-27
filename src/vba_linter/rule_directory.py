@@ -162,7 +162,7 @@ class RuleDirectory:
                 str(i),
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'")
-        elif number[1] == 1 or number[1] == 's':
+        elif number[1] == 1:
             if number[1] == 1:
                 rules[str(i)] = TokenSequenceMismatch(
                     str(i),
@@ -174,17 +174,15 @@ class RuleDirectory:
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'"
             )
-        else: # number[1] == 's':
+        else:  # number[1] == 's':
             """
             We need to carve out an exception for a newline
             following an rparen
             """
-            rules[str(i)] = TokenSeqMismatchNL(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Missing whitespace after '" + name + "'")
+            if str(i) in self._special_rules:
+                rules[str(i)] = self._special_rules[str(i)]
             i += 1
-            # 
+            # Need to allow multiple WS before AS
             rules[str(i)] = TokenLengthMismatch(
                 str(i),
                 [token, vbaLexer.WS], 1,
