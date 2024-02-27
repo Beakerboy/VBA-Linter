@@ -120,6 +120,10 @@ class RuleDirectory:
         return self._rules
 
     def _make_rules(self: T, symbol: list, index: int) -> dict:
+        """
+        Many whitespace rules are  similar enough that we can make them
+        programmatically.
+        """
         rules: Dict[str, RuleBase] = {}
         i = 10 * index + 110
         token = symbol[0]
@@ -149,10 +153,10 @@ class RuleDirectory:
             if str(i) in self._special_rules:
                 rules[str(i)] = self._special_rules[str(i)]
         i += 1
-        # check if preceeding whitespace contains tabs.
+        # Need to check if preceeding whitespace contains tabs.
         i += 1
         if number[1] == 0:
-            # No "missing" rule.
+            # We can skip the "missing whitespace" rule.
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
@@ -164,16 +168,23 @@ class RuleDirectory:
                     str(i),
                     [token, vbaLexer.WS], 1,
                     "Missing whitespace after '" + name + "'")
-            else:
-                """
-                We need to carve out an exception for a newline
-                following an rparen
-                """
-                rules[str(i)] = TokenSeqMismatchNL(
-                    str(i),
-                    [token, vbaLexer.WS], 1,
-                    "Missing whitespace after '" + name + "'")
             i += 1
+            rules[str(i)] = TokenLengthMismatch(
+                str(i),
+                [token, vbaLexer.WS], 1,
+                "Excess whitespace after '" + name + "'"
+            )
+        else: # number[1] == 's':
+            """
+            We need to carve out an exception for a newline
+            following an rparen
+            """
+            rules[str(i)] = TokenSeqMismatchNL(
+                str(i),
+                [token, vbaLexer.WS], 1,
+                "Missing whitespace after '" + name + "'")
+            i += 1
+            # 
             rules[str(i)] = TokenLengthMismatch(
                 str(i),
                 [token, vbaLexer.WS], 1,
