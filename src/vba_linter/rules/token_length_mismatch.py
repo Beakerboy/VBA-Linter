@@ -7,7 +7,10 @@ T = TypeVar('T', bound='TokenLengthMismatch')
 
 
 class TokenLengthMismatch(TokenSequenceBase):
-
+    """
+    if a sequence of tokens matches the target, check that the
+    matching token has the idicated length.
+    """
     def _match_action(self: T, token: Token) -> list:
         max = 1
         text = token.text.replace("\t", " " * 8)
