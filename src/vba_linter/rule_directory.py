@@ -36,6 +36,10 @@ class RuleDirectory:
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
         self._parser_rules: Dict[str, ParseTreeListener] = {}
+        # some simple tokens have slight amendments to
+        # the whitespace rules.
+        self._special_rules: Dict[str, RuleBase] = {}
+        self._build_special_rules()
         self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
@@ -62,6 +66,7 @@ class RuleDirectory:
             [vbaLexer.COMMA, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)],
             [vbaLexer.ASSIGN, ':=', (0, 0)],
+            # [vbaLexer.COLON, ':', (0, 1)],
         ]
         i = 1
         for symbol in symbols:
@@ -115,6 +120,10 @@ class RuleDirectory:
         return self._rules
 
     def _make_rules(self: T, symbol: list, index: int) -> dict:
+        """
+        Many whitespace rules are  similar enough that we can make them
+        programmatically.
+        """
         rules: Dict[str, RuleBase] = {}
         i = 10 * index + 110
         token = symbol[0]
@@ -141,32 +150,21 @@ class RuleDirectory:
             )
         elif number[0] == 's':
             i += 1
-            rules[str(i)] = TokenSequenceOperator(
-                str(i),
-                [vbaLexer.EQ, vbaLexer.WS, token], 0,
-                "Excess whitespace before '" + name + "'")
+            if str(i) in self._special_rules:
+                rules[str(i)] = self._special_rules[str(i)]
         i += 1
-        # check if preceeding whitespace contains tabs.
+        # Need to check if preceeding whitespace contains tabs.
         i += 1
         if number[1] == 0:
-            # No "missing" rule.
+            # We can skip the "missing whitespace" rule.
             i += 1
             rules[str(i)] = TokenSequenceBase(
                 str(i),
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'")
-        elif number[1] == 1 or number[1] == 's':
+        elif number[1] == 1:
             if number[1] == 1:
                 rules[str(i)] = TokenSequenceMismatch(
-                    str(i),
-                    [token, vbaLexer.WS], 1,
-                    "Missing whitespace after '" + name + "'")
-            else:
-                """
-                We need to carve out an exception for a newline
-                following an rparen
-                """
-                rules[str(i)] = TokenSeqMismatchNL(
                     str(i),
                     [token, vbaLexer.WS], 1,
                     "Missing whitespace after '" + name + "'")
@@ -176,4 +174,38 @@ class RuleDirectory:
                 [token, vbaLexer.WS], 1,
                 "Excess whitespace after '" + name + "'"
             )
+        else:  # number[1] == 's':
+            """
+            We need to carve out an exception for a newline
+            following an rparen
+            """
+            if str(i) in self._special_rules:
+                rules[str(i)] = self._special_rules[str(i)]
+            i += 1
+            # Need to allow multiple WS before AS
+            rule = TokenLengthMismatch(
+                str(i),
+                [token, vbaLexer.WS], 1,
+                "Excess whitespace after '" + name + "'"
+            )
+            rule.exception = vbaLexer.AS
+            rules[str(i)] = rule
         return rules
+
+    def _build_special_rules(self: T) -> None:
+        token = vbaLexer.RPAREN
+        name = ')'
+        # there are times when a rparen does not need ws after.
+        self._special_rules["133"] = TokenSeqMismatchNL(
+            '133',
+            [token, vbaLexer.WS], 1,
+            "Missing whitespace after '" + name + "'")
+        # There are times when rparen can have excess WS after.
+        # self._special_rules["134"] =
+        token = vbaLexer.LPAREN
+        name = '('
+        # There are times when lparen can have excess WS before.
+        self._special_rules["121"] = TokenSequenceOperator(
+            '121',
+            [vbaLexer.EQ, vbaLexer.WS, token], 0,
+            "Excess whitespace before '" + name + "'")
