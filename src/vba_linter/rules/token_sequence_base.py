@@ -51,8 +51,11 @@ class TokenSequenceBase(RuleBase):
                 token_types.append(tok_type)
             if (
                     self.match(token_types, sequence) and
-                    self.exception is not None and
-                    ts.LA(seq_len + 1) != self.exception
+                    (
+                        self.exception is None or
+                        self.exception is not None and
+                        ts.LA(seq_len + 1) != self.exception
+                    )
             ):
                 token = ts.LT(self._target)
                 assert token is not None
