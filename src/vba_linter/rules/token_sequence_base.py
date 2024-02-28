@@ -26,7 +26,8 @@ class TokenSequenceBase(RuleBase):
         # The element who's position is reported
         self._target = target + 1
         self._message = message
-        self.exception: int
+        # what is a good initial value...what value is unused in the Lexer?
+        self.exception: int = -1
 
     def test(self: T, ts: CommonTokenStream) -> list:
         """
@@ -52,8 +53,8 @@ class TokenSequenceBase(RuleBase):
             if (
                     self.match(token_types, sequence) and
                     (
-                        self.exception is None or
-                        self.exception is not None and
+                        self.exception == -1 or
+                        self.exception != -1 and
                         ts.LA(seq_len + 1) != self.exception
                     )
             ):
