@@ -1,6 +1,7 @@
 from typing import Dict, List, TypeVar
 from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
+from vba_linter.rules.excess_whitespace import ExcessWhitespace
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
@@ -76,6 +77,7 @@ class RuleDirectory:
         rule910.set_rule_name("910")
         rule910.severity = 'F'
         self._rules.update({
+            "001": ExcessWhitespace(),
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
@@ -143,11 +145,6 @@ class RuleDirectory:
                 [vbaLexer.WS, token], 0,
                 "Missing whitespace before '" + name + "'")
             i += 1
-            rules[str(i)] = TokenLengthMismatch(
-                str(i),
-                [vbaLexer.WS, token], 0,
-                "Excess whitespace before '" + name + "'"
-            )
         elif number[0] == 's':
             i += 1
             if str(i) in self._special_rules:
@@ -169,11 +166,6 @@ class RuleDirectory:
                     [token, vbaLexer.WS], 1,
                     "Missing whitespace after '" + name + "'")
             i += 1
-            rules[str(i)] = TokenLengthMismatch(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'"
-            )
         else:  # number[1] == 's':
             """
             We need to carve out an exception for a newline
@@ -182,14 +174,6 @@ class RuleDirectory:
             if str(i) in self._special_rules:
                 rules[str(i)] = self._special_rules[str(i)]
             i += 1
-            # Need to allow multiple WS before AS
-            rule = TokenLengthMismatch(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'"
-            )
-            rule.exception = vbaLexer.AS
-            rules[str(i)] = rule
         return rules
 
     def _build_special_rules(self: T) -> None:
