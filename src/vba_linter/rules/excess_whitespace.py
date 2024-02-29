@@ -14,6 +14,7 @@ class ExcessWhitespace(RuleBase):
         seq = self._build_list(ts, 3)
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
+            assert isinstance(token, Token)
             text = token.text.replace("\t", " " * 8)
             pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION,
                               vbaLexer.COLON]
