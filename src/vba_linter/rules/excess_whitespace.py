@@ -10,7 +10,7 @@ class ExcessWhitespace(RuleBase):
         output: List[tuple] = []
         seq = self._build_list(ts, 3)
         if seq[1] == vbaLexer.WS:
-            token = ts.LT(i + 1)
+            token = ts.LT(2)
             text = token.text.replace("\t", " " * 8)
             pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION, vbaLexer.COLON]
             post_exceptions = [vbaLexer.AS, vbaLexer.COMMENT]
@@ -23,9 +23,8 @@ class ExcessWhitespace(RuleBase):
                     seq[0] not in pre_exceptions and
                     seq[3] not in post_exceptions
             ):
-                tok = ts.LT(1)
-                line = tok.line
-                column = tok.column
+                line = token.line
+                column = token.column
                 rule = "001"
                 output.append((line, column, rule))
         return output
