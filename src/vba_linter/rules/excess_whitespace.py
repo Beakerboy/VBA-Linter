@@ -27,9 +27,8 @@ class ExcessWhitespace(RuleBase):
                     len(text) > 1 and
                     seq[0] not in pre_exceptions and
                     (
-                        len(seq) > 2 and
-                        seq[2] not in post_exceptions or
-                        len(seq) < 3
+                        len(seq) < 3 or
+                        seq[2] not in post_exceptions
                     )
             ):
                 line = token.line
