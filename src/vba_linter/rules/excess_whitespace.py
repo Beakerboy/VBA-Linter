@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream
+from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from typing import List, TypeVar
 from vba_linter.rules.rule_base import RuleBase
@@ -8,6 +8,7 @@ T = TypeVar('T', bound='ExcessWhitespace')
 
 
 class ExcessWhitespace(RuleBase):
+
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         seq = self._build_list(ts, 3)
