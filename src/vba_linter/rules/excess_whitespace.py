@@ -28,7 +28,7 @@ class ExcessWhitespace(RuleBase):
                     seq[0] not in pre_exceptions and
                     (
                         len(seq) > 2 and
-                        seq[3] not in post_exceptions or
+                        seq[2] not in post_exceptions or
                         len(seq) < 3
                     )
             ):
