@@ -4,17 +4,18 @@ class ExcessWhitespace(RuleBase):
         if seq[1] == vbaLexer.WS:
             token = ts.LT(i + 1)
             text = token.text.replace("\t", " " * 8)
+            pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION, vbaLexer.COLON]
+            post_exceptions = [vbaLexer.AS, vbaLexer.COMMENT]
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
             # an As statement. The 'As' exception is only valid in
             # a Dim or const statement.
             if (
                     len(text) > 1 and
-                    seq[0] != vbaLexer.NEWLINE and
-                    seq[0] != vbaLexer.LINE_CONTINUATION and
-                    seq[3] != vbaLexer.AS and
-                    seq[3] != vbaLexer.COMMENT
-            )
+                    seq[0] not in pre_exceptions and
+                    seq[3] not in post_exceptions
+            ):
+                pass
             
     def _build_list(self: T, ts:CommonTokenStream, num: int) -> list:
         """
