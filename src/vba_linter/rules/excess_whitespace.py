@@ -1,5 +1,11 @@
+from typing import TypeVar
+from vba_linter.rules.rule_base import RuleBase
+
+
+T = TypeVar('T', bound='ExcessWhitespace')
 class ExcessWhitespace(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
+        output: List[tuple] = []
         seq = self._build_list(ts, 3)
         if seq[1] == vbaLexer.WS:
             token = ts.LT(i + 1)
@@ -15,7 +21,12 @@ class ExcessWhitespace(RuleBase):
                     seq[0] not in pre_exceptions and
                     seq[3] not in post_exceptions
             ):
-                pass
+                tok = ts.LT(1)
+                line = tok.line
+                column = tok.column
+                rule = "001"
+                output.append((line, column, rule))
+        return output
             
     def _build_list(self: T, ts:CommonTokenStream, num: int) -> list:
         """
