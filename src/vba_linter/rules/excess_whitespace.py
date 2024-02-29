@@ -33,7 +33,7 @@ class ExcessWhitespace(RuleBase):
                 output.append((line, column, rule))
         return output
 
-    def _build_list(self: T, ts:CommonTokenStream, num: int) -> list:
+    def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
         extract the next specified number of tokens from the stream.
         """
