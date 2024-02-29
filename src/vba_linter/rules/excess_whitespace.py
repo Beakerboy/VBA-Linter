@@ -12,7 +12,16 @@ class ExcessWhitespace(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         seq = self._build_list(ts, 3)
+        # Tokens which must have no whiteapace after.
+        pre_single_ws = [vbaLexer.ASSIGN]
+        # Tokens which must have no whitespace before.
+        post_single_ws = [vbaLexer.COLON, vbaLexer.ASSIGN, vbaLexer.COMMA]
         if seq[1] == vbaLexer.WS:
+            if (
+                    seq[0] in pre_single_ws or
+                    len(seq) > 2 and seq[2] in post_single_ws
+               ):
+                   output.append((1,1,"1"))
             token = ts.LT(2)
             assert isinstance(token, Token)
             text = token.text.replace("\t", " " * 8)
