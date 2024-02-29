@@ -5,6 +5,8 @@ from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='ExcessWhitespace')
+
+
 class ExcessWhitespace(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
@@ -12,7 +14,8 @@ class ExcessWhitespace(RuleBase):
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
             text = token.text.replace("\t", " " * 8)
-            pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION, vbaLexer.COLON]
+            pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION,
+                              vbaLexer.COLON]
             post_exceptions = [vbaLexer.AS, vbaLexer.COMMENT]
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
