@@ -49,8 +49,10 @@ class ExcessWhitespace(RuleBase):
                 line = token.line
                 column = token.column + 2
                 rule = "001"
-                if ts.LT(1).text in symbols:
-                    symbol = ts.LT(1).text
+                pre_token = ts.LT(1)
+                assert isinstance(pre_token, Token)
+                if pre_token.text in symbols:
+                    symbol = pre_token.text
                 output.append((line, column, rule, symbol))
         return output
 
