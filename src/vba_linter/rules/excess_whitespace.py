@@ -59,7 +59,7 @@ class ExcessWhitespace(RuleBase):
                     assert isinstance(post_token, Token)
                     if post_token.text in symbols:
                         symbol = post_token.text
-                if symbol == ""
+                if symbol == "":
                     symbol = "identifier"
                 output.append((line, column, rule, symbol))
         return output
