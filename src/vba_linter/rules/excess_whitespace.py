@@ -20,16 +20,17 @@ class ExcessWhitespace(RuleBase):
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
             assert isinstance(token, Token)
+            line = token.line
+            column = token.column + 1
             # check the cases where even the existence of whitespace is an
             # error.
-            if (
-                    seq[0] in pre_single_ws or
+            if seq[0] in pre_single_ws:
+                output.append((line, column, "001", "after", seq[0]))
+            elif (
                     len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
-               ):
-                line = token.line
-                column = token.column + 1
-                output.append((line, column, "001"))
+                 ):
+                output.append((line, column, "001", "before", seq[2]))
             text = token.text.replace("\t", " " * 8)
             pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION,
                               vbaLexer.COLON]
@@ -61,18 +62,16 @@ class ExcessWhitespace(RuleBase):
                         symbol = post_token.text
                 if symbol == "":
                     symbol = "identifier"
-                output.append((line, column, rule, symbol))
+                output.append((line, column, rule, "after", symbol))
         return output
 
     def create_message(self: T, data: tuple) -> str:
         data_list = list(data)
-        message = self._message
+        message = "Excess whitespace %s '%s'"
         rules: Dict[str, int] = {',': 140, '=': 150}
         if data[3] in rules:
             message = "Missing whitespace before '" + data[3] + "'"
             data_list[2] = str(rules[str(data[3])] + 1)
-        if message == '' and len(data) == 4:
-            message = "%s"
         return (":%s:%s: " + self._severity + "%s " + message) % data_list
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
