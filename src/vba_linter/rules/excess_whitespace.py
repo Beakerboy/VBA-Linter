@@ -20,10 +20,11 @@ class ExcessWhitespace(RuleBase):
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
             assert isinstance(token, Token)
-            # check the cases where even the existance of whitespace is an error.
+            # check the cases where even the existence of whitespace is an
+            # error.
             if (
                     seq[0] in pre_single_ws or
-                    len(seq) > 2 and seq[2] in post_single_ws and 
+                    len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
                ):
                 line = token.line
