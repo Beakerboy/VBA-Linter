@@ -21,7 +21,7 @@ class ExcessWhitespace(RuleBase):
                     seq[0] in pre_single_ws or
                     len(seq) > 2 and seq[2] in post_single_ws
                ):
-                   output.append((1,1,"1"))
+                output.append((1, 1, "1"))
             token = ts.LT(2)
             assert isinstance(token, Token)
             text = token.text.replace("\t", " " * 8)
