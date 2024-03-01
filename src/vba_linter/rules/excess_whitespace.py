@@ -10,6 +10,7 @@ T = TypeVar('T', bound='ExcessWhitespace')
 class ExcessWhitespace(RuleBase):
 
     def test(self: T, ts: CommonTokenStream) -> list:
+        symbols = ['=', ':=', ':', ',']
         output: List[tuple] = []
         seq = self._build_list(ts, 3)
         # Tokens which must have no whiteapace after.
@@ -17,13 +18,17 @@ class ExcessWhitespace(RuleBase):
         # Tokens which must have no whitespace before.
         post_single_ws = [vbaLexer.COLON, vbaLexer.ASSIGN, vbaLexer.COMMA]
         if seq[1] == vbaLexer.WS:
-            if (
-                    seq[0] in pre_single_ws or
-                    len(seq) > 2 and seq[2] in post_single_ws
-               ):
-                output.append((1, 1, "1"))
             token = ts.LT(2)
             assert isinstance(token, Token)
+            # check the cases where even the existance of whitespace is an error.
+            if (
+                    seq[0] in pre_single_ws or
+                    len(seq) > 2 and seq[2] in post_single_ws and 
+                    (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
+               ):
+                line = token.line
+                column = token.column + 1
+                output.append((line, column, "001"))
             text = token.text.replace("\t", " " * 8)
             pre_exceptions = [vbaLexer.NEWLINE, vbaLexer.LINE_CONTINUATION,
                               vbaLexer.COLON]
@@ -41,10 +46,18 @@ class ExcessWhitespace(RuleBase):
                     )
             ):
                 line = token.line
-                column = token.column
+                column = token.column + 2
                 rule = "001"
-                output.append((line, column, rule))
+                if ts.LT(1).text in symbols:
+                    symbol = ts.LT(1).text
+                output.append((line, column, rule, symbol))
         return output
+
+    def create_message(self: T, data: tuple) -> str:
+        message = self._message
+        if message == '' and len(data) == 4:
+            message = "%s"
+        return (":%s:%s: " + self._severity + "%s " + message) % data
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
