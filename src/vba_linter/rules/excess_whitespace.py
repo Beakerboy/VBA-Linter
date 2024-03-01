@@ -65,14 +65,16 @@ class ExcessWhitespace(RuleBase):
         return output
 
     def create_message(self: T, data: tuple) -> str:
+        data_list = list(data)
         message = self._message
         rules: Dict[str, int] = {',': 140, '=': 150}
+        rule = data[2]
         if data[3] in rules:
             message = "Missing whitespace before '" + data[3] + "'"
-            data[2] = str(rules[str(data[3])] + 1)
+            data_list[2] = str(rules[str(data[3])] + 1)
         if message == '' and len(data) == 4:
             message = "%s"
-        return (":%s:%s: " + self._severity + "%s " + message) % data
+        return (":%s:%s: " + self._severity + "%s " + message) % data_list
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
