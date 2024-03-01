@@ -53,6 +53,13 @@ class ExcessWhitespace(RuleBase):
                 assert isinstance(pre_token, Token)
                 if pre_token.text in symbols:
                     symbol = pre_token.text
+                elif len(seq) > 2:
+                    post_token = ts.LT(3)
+                    assert isinstance(post_token, Token)
+                    post_token.text in symbols:
+                    symbol = post_token.text
+                else:
+                    symbol = "identifier"
                 output.append((line, column, rule, symbol))
         return output
 
