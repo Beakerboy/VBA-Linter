@@ -69,7 +69,7 @@ class ExcessWhitespace(RuleBase):
         rules = {',': 140, '=': 150}
         if data[3] in rules:
             message = "Missing whitespace before '" + data[3] + "'"
-            data[2] = str(rules[data[3]] + 1)
+            data[2] = str(rules[str(data[3])] + 1)
         if message == '' and len(data) == 4:
             message = "%s"
         return (":%s:%s: " + self._severity + "%s " + message) % data
