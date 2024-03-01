@@ -68,7 +68,6 @@ class ExcessWhitespace(RuleBase):
         data_list = list(data)
         message = self._message
         rules: Dict[str, int] = {',': 140, '=': 150}
-        rule = data[2]
         if data[3] in rules:
             message = "Missing whitespace before '" + data[3] + "'"
             data_list[2] = str(rules[str(data[3])] + 1)
