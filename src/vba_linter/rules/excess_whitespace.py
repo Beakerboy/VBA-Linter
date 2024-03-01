@@ -1,6 +1,6 @@
 from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
-from typing import List, TypeVar
+from typing import Dict, List, TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -66,7 +66,7 @@ class ExcessWhitespace(RuleBase):
 
     def create_message(self: T, data: tuple) -> str:
         message = self._message
-        rules = {',': 140, '=': 150}
+        rules: Dict[str, int] = {',': 140, '=': 150}
         if data[3] in rules:
             message = "Missing whitespace before '" + data[3] + "'"
             data[2] = str(rules[str(data[3])] + 1)
