@@ -169,6 +169,7 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     Ensure that -q still fails, but has no output.
     """
     file_name = save_code(worst_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -182,7 +183,6 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         main()
     captured = capsys.readouterr()
     assert captured.err == ""
-    delete_code(file_name)
 
 
 def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
@@ -191,6 +191,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     an exception
     """
     file_name = save_code(worst_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -205,7 +206,6 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = worst_expected.replace("%s", full_path)
     assert captured.err == expected
-    delete_code(file_name)
 
 
 def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
@@ -225,6 +225,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'End Sub\r\n'
     )
     file_name = save_code(best_practice)
+    files.append(file_name)
     mocker.patch(
         "sys.argv",
         [
@@ -234,13 +235,12 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         ],
     )
     main()
+    files.append(file_name + ".pretty")
     captured = capsys.readouterr()
     assert captured.err == ""
     f = open(file_name + ".pretty", "r", newline='')
     pretty_file = f.read()
     assert pretty_file == best_practice
-    delete_code(file_name + ".pretty")
-    delete_code(file_name)
 
 
 worst_practice1 = (
