@@ -71,7 +71,7 @@ class ExcessWhitespace(RuleBase):
         data_list = list(data)
         message = "Excess whitespace {3} '{4}'"
         rules: Dict[str, int] = {',': 140, '=': 150}
-        if data[3] in rules:
+        if data[4] in rules:
             data_list[2] = str(rules[data[4]] + 1)
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
