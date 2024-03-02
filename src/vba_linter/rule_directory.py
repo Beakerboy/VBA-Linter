@@ -134,10 +134,7 @@ class RuleDirectory:
         if number[0] == 0:
             # No "missing" rule.
             i += 1
-            rules[str(i)] = TokenSequenceBase(
-                str(i),
-                [vbaLexer.WS, token], 0,
-                "Excess whitespace before '" + name + "'")
+            
         elif number[0] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
@@ -154,10 +151,7 @@ class RuleDirectory:
         if number[1] == 0:
             # We can skip the "missing whitespace" rule.
             i += 1
-            rules[str(i)] = TokenSequenceBase(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'")
+            
         elif number[1] == 1:
             if number[1] == 1:
                 rules[str(i)] = TokenSequenceMismatch(
