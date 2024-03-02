@@ -30,7 +30,7 @@ class ExcessWhitespace(RuleBase):
                     len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
                  ):
-                post_token token = ts.LT(3)
+                post_token = ts.LT(3)
                 assert isinstance(post_token, Token)
                 output.append((line, column, "001", "before", post_token.text))
             text = token.text.replace("\t", " " * 8)
