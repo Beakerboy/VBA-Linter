@@ -29,7 +29,9 @@ class ExcessWhitespace(RuleBase):
             # check the cases where even the existence of whitespace is an
             # error.
             if seq[0] in pre_single_ws:
-                output.append((line, column, "001", "after", seq[0].text))
+                pre_token = ts.LT(1)
+                assert isinstance(pre_token, Token)
+                output.append((line, column, "001", "after", pre_token.text))
             elif (
                     len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
