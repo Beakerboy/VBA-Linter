@@ -67,11 +67,12 @@ class ExcessWhitespace(RuleBase):
 
     def create_message(self: T, data: tuple) -> str:
         data_list = list(data)
-        message = "Excess whitespace %s '%s'"
+        message = "Excess whitespace {3} '{4}'"
         rules: Dict[str, int] = {',': 140, '=': 150}
         if data[3] in rules:
             data_list[2] = str(rules[data[4]] + 1)
-        return (":%s:%s: " + self._severity + "%s " + message) % data_list
+        msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
+        return msg_str.format(*data_list)
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
