@@ -72,7 +72,7 @@ class ExcessWhitespace(RuleBase):
         message = "Excess whitespace {3} '{4}'"
         rules: Dict[str, int] = {',': 141, '=': 151}
         if data[4] in rules:
-            extra = 0 if data[3] == 'before' else 'after'
+            extra = 0 if data[3] == 'before' else 3
             data_list[2] = str(rules[data[4]] + extra)
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
