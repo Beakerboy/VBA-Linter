@@ -133,7 +133,7 @@ class RuleDirectory:
         if number[0] == 0:
             # No "missing" rule.
             i += 1
-            
+
         elif number[0] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
@@ -150,7 +150,7 @@ class RuleDirectory:
         if number[1] == 0:
             # We can skip the "missing whitespace" rule.
             i += 1
-            
+
         elif number[1] == 1:
             if number[1] == 1:
                 rules[str(i)] = TokenSequenceMismatch(
