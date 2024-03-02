@@ -13,8 +13,8 @@ class ExcessWhitespace(RuleBase):
         symbols = ['=', ':=', ':', ',']
         output: List[tuple] = []
         seq = self._build_list(ts, 3)
-        # Tokens which must have no whiteapace after.
-        pre_single_ws = [vbaLexer.ASSIGN]
+        # Tokens which must have no whitespace after.
+        pre_single_ws = [vbaLexer.ASSIGN, vbaLexer.LPAREN]
         # Tokens which must have no whitespace before.
         post_single_ws = [vbaLexer.COLON, vbaLexer.ASSIGN, vbaLexer.COMMA]
         if seq[1] == vbaLexer.WS:
