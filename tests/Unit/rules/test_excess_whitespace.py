@@ -30,7 +30,7 @@ End Function
 message_data = [
     [
         (3, 1, "151:124", 'before', ')'),
-        ":3:1: E124 Excess Whitespace before ')'"
+        ":3:1: E124 Excess whitespace before ')'"
     ],
  ]
 
