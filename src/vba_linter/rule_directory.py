@@ -73,7 +73,7 @@ class RuleDirectory:
         rule910.set_rule_name("910")
         rule910.severity = 'F'
         self._rules.update({
-            "121": ExcessWhitespace(),
+            "151": ExcessWhitespace(),
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
