@@ -9,6 +9,13 @@ T = TypeVar('T', bound='ExcessWhitespace')
 
 class ExcessWhitespace(RuleBase):
 
+        def __init__(self: T) -> None:
+        super().__init__()
+        self._rule_name = "121"
+        self._message = message = "Excess whitespace {3} '{4}'"
+        self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141, '=': 151}
+        self._fixable = True
+
     def test(self: T, ts: CommonTokenStream) -> list:
         symbols = ['=', ':=', ':', ',']
         output: List[tuple] = []
@@ -32,14 +39,18 @@ class ExcessWhitespace(RuleBase):
             if seq[0] in pre_single_ws:
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
-                output.append((line, column, "001", "after", pre_token.text))
+                text = pre_token.text
+                rule = self._rule_name + ':' + str(self.rules[text] + 3)
+                output.append((line, column, rule, "after", text))
             elif (
                     len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
                  ):
                 post_token = ts.LT(3)
                 assert isinstance(post_token, Token)
-                output.append((line, column, "001", "before", post_token.text))
+                text = post_token.text
+                rule = self._rule_name + ':' + str(self.rules[text])
+                output.append((line, column, rule, "before", text))
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
             # an As statement. The 'As' exception is only valid in
