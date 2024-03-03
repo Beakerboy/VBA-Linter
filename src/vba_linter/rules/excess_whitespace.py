@@ -9,7 +9,7 @@ T = TypeVar('T', bound='ExcessWhitespace')
 
 class ExcessWhitespace(RuleBase):
 
-        def __init__(self: T) -> None:
+    def __init__(self: T) -> None:
         super().__init__()
         self._rule_name = "121"
         self._message = message = "Excess whitespace {3} '{4}'"
