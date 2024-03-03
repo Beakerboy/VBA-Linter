@@ -8,6 +8,12 @@ T = TypeVar('T', bound='RuleDisabler')
 
 
 class RuleDisabler(VbaListener):
+    """
+    This class inspects VBA comment blocks for rule-skipping directives.
+    If a skipping directive is the only comment on a line, it indicates
+    that a multiline skip is to begin. A skip directive at the end of a
+    line indicates that the rule is only to be ignored on that one line.
+    """
     def __init__(self: T) -> None:
         super().__init__()
         self._rule_name = "000"

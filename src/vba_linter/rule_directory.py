@@ -1,15 +1,14 @@
 from typing import Dict, List, TypeVar
 from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
+from vba_linter.rules.excess_whitespace import ExcessWhitespace
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
-from vba_linter.rules.token_sequence_base import TokenSequenceBase
 from vba_linter.rules.token_seq_mismatch_nl import TokenSeqMismatchNL
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 from vba_linter.rules.token_seq_operator import TokenSequenceOperator
-from vba_linter.rules.token_length_mismatch import TokenLengthMismatch
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.blank_line_ws import BlankLineWhitespace
 from vba_linter.rules.blank_line_number import BlankLineNumber
@@ -64,9 +63,7 @@ class RuleDirectory:
             [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 's')],
             [vbaLexer.COMMA, ',', (0, 1)],
-            [vbaLexer.EQ, '=', (1, 1)],
-            [vbaLexer.ASSIGN, ':=', (0, 0)],
-            # [vbaLexer.COLON, ':', (0, 1)],
+            [vbaLexer.EQ, '=', (1, 1)]
         ]
         i = 1
         for symbol in symbols:
@@ -76,6 +73,7 @@ class RuleDirectory:
         rule910.set_rule_name("910")
         rule910.severity = 'F'
         self._rules.update({
+            "151": ExcessWhitespace(),
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
@@ -133,21 +131,13 @@ class RuleDirectory:
         if number[0] == 0:
             # No "missing" rule.
             i += 1
-            rules[str(i)] = TokenSequenceBase(
-                str(i),
-                [vbaLexer.WS, token], 0,
-                "Excess whitespace before '" + name + "'")
+
         elif number[0] == 1:
             rules[str(i)] = TokenSequenceMismatch(
                 str(i),
                 [vbaLexer.WS, token], 0,
                 "Missing whitespace before '" + name + "'")
             i += 1
-            rules[str(i)] = TokenLengthMismatch(
-                str(i),
-                [vbaLexer.WS, token], 0,
-                "Excess whitespace before '" + name + "'"
-            )
         elif number[0] == 's':
             i += 1
             if str(i) in self._special_rules:
@@ -158,10 +148,7 @@ class RuleDirectory:
         if number[1] == 0:
             # We can skip the "missing whitespace" rule.
             i += 1
-            rules[str(i)] = TokenSequenceBase(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'")
+
         elif number[1] == 1:
             if number[1] == 1:
                 rules[str(i)] = TokenSequenceMismatch(
@@ -169,11 +156,6 @@ class RuleDirectory:
                     [token, vbaLexer.WS], 1,
                     "Missing whitespace after '" + name + "'")
             i += 1
-            rules[str(i)] = TokenLengthMismatch(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'"
-            )
         else:  # number[1] == 's':
             """
             We need to carve out an exception for a newline
@@ -182,14 +164,6 @@ class RuleDirectory:
             if str(i) in self._special_rules:
                 rules[str(i)] = self._special_rules[str(i)]
             i += 1
-            # Need to allow multiple WS before AS
-            rule = TokenLengthMismatch(
-                str(i),
-                [token, vbaLexer.WS], 1,
-                "Excess whitespace after '" + name + "'"
-            )
-            rule.exception = vbaLexer.AS
-            rules[str(i)] = rule
         return rules
 
     def _build_special_rules(self: T) -> None:
