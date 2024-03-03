@@ -48,8 +48,8 @@ class ExcessWhitespace(RuleBase):
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
                  ):
                 if (
-                    seq[3] not in post_single_ws_exception or
-                    seq[0] not in post_single_ws_exception[seq[3]]
+                    seq[2] not in post_single_ws_exception or
+                    seq[0] not in post_single_ws_exception[seq[2]]
                 ):
                     post_token = ts.LT(3)
                     assert isinstance(post_token, Token)
