@@ -50,7 +50,7 @@ class ExcessWhitespace(RuleBase):
                 if (
                     seq[3] not in post_single_ws_exception or
                     seq[0] not in post_single_ws_exception[seq[3]]
-                )
+                ):
                     post_token = ts.LT(3)
                     assert isinstance(post_token, Token)
                     text = post_token.text
