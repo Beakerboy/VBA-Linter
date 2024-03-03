@@ -21,14 +21,14 @@ End Function
             (3, 30, "151:141"),
             (4, 7, "151:141"),
             (4, 12, "151:151"),
-            (4, 15, "151:154"),
+            (4, 15, "151:154")
         ]
-    ],
+    ]
 ]
 
 
 message_data = [
-    [(3, 1, "101"), ":3:1: E101 indentation contains mixed spaces and tabs"],
+    [(3, 1, "151:124",'before', ')'), ":3:1: E124 Excess Whitespace before ')'"],
  ]
 
 
