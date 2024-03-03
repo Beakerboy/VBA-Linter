@@ -61,7 +61,7 @@ class Linter:
             ignored = rule_disabler.ignored
             if len(ignored) > 0:
                 for violation in output:
-                    violated_rule = violation[2]
+                    violated_rule = violation[2][-3:]
                     if violated_rule in ignored:
                         violation_line = violation[0]
                         if violation_line not in ignored[violated_rule]:
