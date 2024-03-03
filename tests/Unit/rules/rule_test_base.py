@@ -23,6 +23,8 @@ class RuleTestBase:
              '    bar = data(1)\r\n' +
              '    baz = (2 + 1)\r\n' +
              '    Dim Foo()    As String\r\n' +
+             '    Call Bar 2, , baz:=5
+             '    x = 3:    y = 4
              'End Function\r\n'),
             []
         ]
