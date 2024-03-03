@@ -63,9 +63,7 @@ class RuleDirectory:
             [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 's')],
             [vbaLexer.COMMA, ',', (0, 1)],
-            [vbaLexer.EQ, '=', (1, 1)],
-            [vbaLexer.ASSIGN, ':=', (0, 0)],
-            # [vbaLexer.COLON, ':', (0, 1)],
+            [vbaLexer.EQ, '=', (1, 1)]
         ]
         i = 1
         for symbol in symbols:
@@ -75,7 +73,7 @@ class RuleDirectory:
         rule910.set_rule_name("910")
         rule910.severity = 'F'
         self._rules.update({
-            "001": ExcessWhitespace(),
+            "121": ExcessWhitespace(),
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
