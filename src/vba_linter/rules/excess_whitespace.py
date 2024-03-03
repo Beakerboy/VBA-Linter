@@ -58,16 +58,19 @@ class ExcessWhitespace(RuleBase):
                 symbol = ""
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
+                where = ""
                 if pre_token.text in symbols:
                     symbol = pre_token.text
+                    where = 'after'
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
                     assert isinstance(post_token, Token)
                     if post_token.text in symbols:
                         symbol = post_token.text
+                        where = 'before'
                 if symbol == "":
                     symbol = "identifier"
-                output.append((line, column, rule, "after", symbol))
+                output.append((line, column, rule, where, symbol))
         return output
 
     def create_message(self: T, data: tuple) -> str:
