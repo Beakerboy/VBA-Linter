@@ -14,7 +14,7 @@ class ExcessWhitespace(RuleBase):
         self._rule_name = "151"
         self._message = "Excess whitespace {3} '{4}'"
         self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141,
-                                      '=': 151, ':=': 161}
+                                      '=': 151, ':=': 161, ':', 191}
         self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
