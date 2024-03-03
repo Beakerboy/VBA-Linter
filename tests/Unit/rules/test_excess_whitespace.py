@@ -48,3 +48,5 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 @pytest.mark.parametrize(
     "data, expected", message_data
 )
+def test_message(rule: RuleBase, data: tuple, expected: str) -> None:
+    assert rule.create_message(data) == expected
