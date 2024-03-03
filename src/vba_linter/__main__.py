@@ -52,7 +52,8 @@ def main() -> None:
     for file_name, file_results in full_results.items():
         num_errors += len(file_results)
         for error in file_results:
-            msg = dir.get_rule(error[2]).create_message(error)
+            class_id = error[2][:3]
+            msg = dir.get_rule(class_id).create_message(error)
             output += str(file_name) + msg + "\n"
     num_files = len(file_list)
     plural_e = "" if num_errors < 2 else "s"
