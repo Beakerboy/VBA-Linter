@@ -65,19 +65,20 @@ class ExcessWhitespace(RuleBase):
             ):
                 line = token.line
                 column = token.column + 2
-                rule = "001"
                 symbol = ""
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
                 where = ""
                 if pre_token.text in symbols:
                     symbol = pre_token.text
+                    rule = self._rule_name + ':' + str(self.rules[symbol] + 3)
                     where = 'after'
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
                     assert isinstance(post_token, Token)
                     if post_token.text in symbols:
                         symbol = post_token.text
+                        rule = self._rule_name + ':' + str(self.rules[symbol])
                         where = 'before'
                 if symbol == "":
                     symbol = "identifier"
@@ -90,7 +91,7 @@ class ExcessWhitespace(RuleBase):
         rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141, '=': 151}
         if data[4] in rules:
             extra = 0 if data[3] == 'before' else 3
-            data_list[2] = str(rules[data[4]] + extra)
+            data_list[2] = data_list[2][-3:]
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
 
