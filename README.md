@@ -7,42 +7,33 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 ## Formatting Checks
 
 ### 100 Character errors
-* 114 Excess whitespace after keywords
-* 115 Tabs after keywords
+* 110 Whitespace contains tabs
+* 114 Excess whitespace between keywords
 * 120 Missing whitespace before '('
 * 121 Excess whitespace before '('
-* 122 Tabs before '('
-* 123 Missing whitespace after '('
 * 124 Excess whitespace after '('
-* 125 Tabs after '('
-* 130 Missing whitespace before ')'
 * 131 Excess whitespace before ')'
-* 132 Tabs before ')'
 * 133 Missing whitespace after ')'
 * 134 Excess whitespace after ')'
-* 135 Tabs after ')'
-* 140 Missing whitespace before ','
 * 141 Excess whitespace before ','
-* 142 Tabs before ','
 * 143 Missing whitespace after ','
 * 144 Excess whitespace after ','
-* 145 Tabs after ','
-* 150 Whitespace characters before '='
-* 151 Tabs before '='
-* 152 Whitespace characters after '='
-* 153 Tabs after ':='
-* 160 Whitespace characters before ':='
-* 161 Tabs before ':='
-* 162 Whitespace characters after ':='
-* 163 Tabs after ':='
-* 170 Whitespace characters before arithmetic operator
-* 171 Tabs before arithmetic operator
-* 172 Whitespace characters after arithmetic operator
-* 173 Tabs after arithmetic operator
-* 180 Whitespace characters before comparison operator
-* 181 Tabs before comparison operatoe
-* 182 Whitespace characters after comparison operator
-* 183 Tabs after comparison operator
+* 150 Missing whitespace before '='
+* 151 Excess whitespace before '='
+* 153 Missing whitespace after '='
+* 154 Excess whitespace after '='
+* 161 Excess whitespace before ':='
+* 164 Excess whitespace after ':='
+* 170 Missing whitespace before arithmetic operator
+* 171 Excess whitespace before arithmetic operator
+* 173 Missing whitespace after arithmetic operator
+* 174 Excess whitespace after arithmetic operator
+* 180 Missing whitespace before comparison operator
+* 181 Excess whitespace before comparison operator
+* 183 Missing whitespace after comparison operator
+* 184 Excess whitespace after comparison operator
+* 191 Excess whitespace before ':'
+* 193 Missing whitespace after ':'
 ### 200 Parameter errors
 * 201 Missing Let
 * 202 Optional Let
