@@ -13,7 +13,8 @@ class ExcessWhitespace(RuleBase):
         super().__init__()
         self._rule_name = "151"
         self._message = "Excess whitespace {3} '{4}'"
-        self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141, '=': 151}
+        self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141,
+                                      '=': 151, ':=': 161, ':': 191}
         self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
@@ -25,6 +26,7 @@ class ExcessWhitespace(RuleBase):
         # Tokens which must have no whitespace before.
         post_single_ws = [vbaLexer.COLON, vbaLexer.ASSIGN,
                           vbaLexer.COMMA, vbaLexer.RPAREN]
+        post_single_ws_exception = {vbaLexer.COMMA: [vbaLexer.COMMA]}
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
             assert isinstance(token, Token)
@@ -46,11 +48,15 @@ class ExcessWhitespace(RuleBase):
                     len(seq) > 2 and seq[2] in post_single_ws and
                     (seq[2] != vbaLexer.COLON or seq[0] != vbaLexer.COLON)
                  ):
-                post_token = ts.LT(3)
-                assert isinstance(post_token, Token)
-                text = post_token.text
-                rule = self._rule_name + ':' + str(self.rules[text])
-                output.append((line, column, rule, "before", text))
+                if (
+                    seq[2] not in post_single_ws_exception or
+                    seq[0] not in post_single_ws_exception[seq[2]]
+                ):
+                    post_token = ts.LT(3)
+                    assert isinstance(post_token, Token)
+                    text = post_token.text
+                    rule = self._rule_name + ':' + str(self.rules[text])
+                    output.append((line, column, rule, "before", text))
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
             # an As statement. The 'As' exception is only valid in
