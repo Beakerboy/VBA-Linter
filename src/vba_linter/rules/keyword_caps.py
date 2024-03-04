@@ -20,12 +20,13 @@ class KeywordCaps(RuleBase):
         output: List[tuple] = []
         token = ts.LT(1)
         assert token is not None
-        pattern = "[A-Za-z][A-Za-z ]+"
+        # todo: add check for 'VB_Name' type keywords.
+        pattern = "[A-Za-z][A-Za-z]+"
         text = token.text
         type = token.type
         generics = [vbaLexer.IDENTIFIER, vbaLexer.BASE]
-        if KeywordCaps.text_matches(pattern, text) and type not in generics:
-            pattern = "[A-Z][a-z]+(_[A-Z][a-z]+)?"
+        if type not in generics and KeywordCaps.text_matches(pattern, text):
+            pattern = "[A-Z][a-z]+"
             if not KeywordCaps.text_matches(pattern, text):
                 line = token.line
                 column = token.column
