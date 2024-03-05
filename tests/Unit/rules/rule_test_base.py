@@ -21,9 +21,9 @@ class RuleTestBase:
              'Public Function Foo(num, _\r\n' +
              'bar)\r\n' +
              '    bar = data(1)\r\n' +
-             '    baz = (2 + 1)\r\n' +
+             '    base = (2 + 1)\r\n' +
              '    Dim Foo()    As String\r\n' +
-             '    Set Qux = Foo.Bar(2, , baz)\r\n' +
+             '    Set Qux = Foo.Bar(2, , base)\r\n' +
              '    x = 3:    y = 4\r\n' +
              'End Function\r\n'),
             []
