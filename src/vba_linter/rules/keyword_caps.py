@@ -26,7 +26,7 @@ class KeywordCaps(RuleBase):
         type = token.type
         generics = [
             Lexer.IDENTIFIER, Lexer.ACCESS, Lexer.ALIAS, Lexer.APPACTIVATE,
-            Lexer.APPEND, Lexer.BASE,Lexer.BEEP, Lexer.BEGIN, Lexer.BINARY,
+            Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN, Lexer.BINARY,
             Lexer.CLASS, Lexer.CHDIR, Lexer.CHDRIVE, Lexer.CLASS_INITIALIZE,
             Lexer.CLASS_TERMINATE, Lexer.COLLECTION, Lexer.COMPARE,
             Lexer.DATABASE, Lexer.DELETESETTING, Lexer.ERROR, Lexer.FILECOPY,
