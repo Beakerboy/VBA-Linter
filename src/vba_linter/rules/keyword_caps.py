@@ -39,7 +39,7 @@ class KeywordCaps(RuleBase):
             Lexer.TIME, Lexer.UNLOAD, Lexer.VERSION, Lexer.WIDTH
         ]
         if type not in generics and KeywordCaps.text_matches(pattern, text):
-            pattern = "^[A-Z][a-z]+$|ByRef|ByVal|ParamArray|ElseIf|TypeOf|LBound|UBound|ReDim|GoTo|GoSub|WithEvents|CBool|CByte|CDec"
+            pattern = "^[A-Z][a-z]+$|AddressOf|ByRef|ByVal|ParamArray|ElseIf|TypeOf|LBound|UBound|ReDim|GoTo|GoSub|WithEvents|CBool|CByte|CDec"
             if not KeywordCaps.text_matches(pattern, text):
                 line = token.line
                 column = token.column
