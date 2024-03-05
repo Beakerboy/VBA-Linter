@@ -46,8 +46,9 @@ class KeywordCaps(RuleBase):
             Lexer.CSNG: "CSng", Lexer.CSTR: "CStr", Lexer.ELSEIF: "ElseIf",
             Lexer.GOTO: "GoTo", Lexer.GOSUB: "GoSub", Lexer.LENB: "LenB",
             Lexer.LBOUND: "LBound", Lexer.PARAMARRAY: "ParamArray",
-            Lexer.REDIM: "ReDim", Lexer.TYPEOF: "TypeOf",
-            Lexer.UBOUND: "UBound", Lexer.WITHEVENTS: "WithEvents"
+            Lexer.RAISEEVENT: "RaiseEvent", Lexer.REDIM: "ReDim",
+            Lexer.TYPEOF: "TypeOf", Lexer.UBOUND: "UBound",
+            Lexer.WITHEVENTS: "WithEvents"
         }
         if type not in generics and KeywordCaps.text_matches(pattern, text):
             pattern = "^[A-Z][a-z]+$"
