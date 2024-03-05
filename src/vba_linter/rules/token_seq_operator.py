@@ -27,7 +27,7 @@ class TokenSequenceOperator(TokenSequenceBase):
         Unless the previous token is in the list.
         """
         symbols = [
-            vbaLexer.AND, vbaLexer.IF, vbaLexer.TO
+            vbaLexer.AND, vbaLexer.IF, vbaLexer.TO,
             vbaLexer.MOD, vbaLexer.NOT, vbaLexer.OR,
             vbaLexer.WHILE, vbaLexer.COMMA,
             vbaLexer.ASSIGN, vbaLexer.DIV, vbaLexer.EQ,
