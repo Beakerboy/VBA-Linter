@@ -41,7 +41,7 @@ class KeywordCaps(RuleBase):
         if type not in generics and KeywordCaps.text_matches(pattern, text):
             pattern = ("^[A-Z][a-z]+$|AddressOf|ByRef|ByVal|ParamArray|" +
                        "ElseIf|TypeOf|LBound|UBound|ReDim|GoTo|GoSub|" +
-                       "WithEvents|CBool|CByte|CDec")
+                       "WithEvents|CBool|CByte|CDec|CStr")
             if not KeywordCaps.text_matches(pattern, text):
                 line = token.line
                 column = token.column
