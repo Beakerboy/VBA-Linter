@@ -40,7 +40,7 @@ class KeywordCaps(RuleBase):
         ]
         multi_cap = {
             Lexer.ADDRESSOF: "AddressOf", Lexer.BYREF: "ByRef",
-            Lexer.BYREF: "ByVal", Lexer.CBOOL: "CBool", Lexer.CBYTE: "CByte",
+            Lexer.BYVAL: "ByVal", Lexer.CBOOL: "CBool", Lexer.CBYTE: "CByte",
             Lexer.CCUR: "CCur", Lexer.CDATE: "CDate", Lexer.CDBL: "CDbl",
             Lexer.CDEC: "CDec", Lexer.CINT: "CInt", Lexer.CLNG: "CLng",
             Lexer.CSNG: "CSng", Lexer.CSTR: "CStr", Lexer.ELSEIF: "ElseIf",
