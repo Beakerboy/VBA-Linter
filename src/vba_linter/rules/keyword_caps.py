@@ -38,11 +38,24 @@ class KeywordCaps(RuleBase):
             Lexer.SENDKEYS, Lexer.SETATTR, Lexer.STEP, Lexer.TEXT,
             Lexer.TIME, Lexer.UNLOAD, Lexer.VERSION, Lexer.WIDTH
         ]
+        multi_cap = {
+            Lexer.ADDRESSOF: "AddressOf", Lexer.BYREF: "ByRef",
+            Lexer.BYREF: "ByVal", Lexer.CBOOL: "CBool", Lexer.CBYTE: "CByte"
+            Lexer.CCUR: "CCur", Lexer.CDATE: "CDate", Lexer.CDBL: "CDbl",
+            Lexer.CDEC: "CDec", Lexer.CINT: "CInt", Lexer.CLNG: "CLng",
+            Lexer.CSNG: "CSng", Lexer.CSTR: "CStr", Lexer.ELSEIF: "ElseIf",
+            Lexer.GOTO: "GoTo", Lexer.GOSUB: "GoSub", Lexer.LENB: "LenB",
+            Lexer.LBOUND: "LBound", Lexer.PARAMARRAY: "ParamArray",
+            Lexer.REDIM: "ReDim", Lexer.TYPEOF: "TypeOf",
+            Lexer.UBOUND: "UBound", Lexer.WITHEVENTS: "WithEvents"
+        }
         if type not in generics and KeywordCaps.text_matches(pattern, text):
-            pattern = ("^[A-Z][a-z]+$|AddressOf|ByRef|ByVal|ParamArray|" +
-                       "ElseIf|TypeOf|LBound|UBound|ReDim|GoTo|GoSub|" +
-                       "WithEvents|CBool|CByte|CCur|CDate|CDbl|CDec|CInt|CLng|CSng|CStr")
-            if not KeywordCaps.text_matches(pattern, text):
+            pattern = "^[A-Z][a-z]+$"
+            if (
+                    type not in multi_cap and
+                    not KeywordCaps.text_matches(pattern, text) or
+                    type in multi_cap and text != multi_cap[type]
+            ):
                 line = token.line
                 column = token.column
                 rule = self._rule_name
