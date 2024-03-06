@@ -34,7 +34,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 184 Excess whitespace after comparison operator
 * 191 Excess whitespace before ':'
 * 193 Missing whitespace after ':'
-### 200 Parameter errors
+### 200 Parameter / Keyword errors
 * 201 Missing Let
 * 202 Optional Let
 * 210 parameter naming
