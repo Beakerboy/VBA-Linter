@@ -23,7 +23,7 @@ class RuleTestBase:
              '    bar = data(1)\r\n' +
              '    base = (2 + 1)\r\n' +
              '    Dim Foo()    As String\r\n' +
-             '    Set Qux = Foo.Bar (2, , base)\r\n' +
+             '    Set Qux = Foo.Bar(2, , base)\r\n' +
              '    x = 3:    y = 4\r\n' +
              'End Function\r\n'),
             []
@@ -40,7 +40,7 @@ class RuleTestBase:
         '\r\n' +
         'I  =  (2+1)\n' +
         '    foo_val=6\r\n'
-        '    Let BarVal  =  7\r\n'
+        '    Let BarVal  =  Foo (2, 4)\r\n'
         'End Function\n' +
         '\r\n' +
         'Function O()\r\n' +
