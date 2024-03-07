@@ -20,7 +20,7 @@ class ArglistWs(ParseTreeListener):
     def enterArgumemtList(self: T,  # noqa: N802
                           ctx: vbaParser.ArgumentListContext) -> None:
         """
-        Best Practice: 
+        Best Practice:
         foo = bar(1, 2, 3)
         Call bar(1, 2, 3)
         """
