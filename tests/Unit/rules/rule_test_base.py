@@ -40,7 +40,7 @@ class RuleTestBase:
         '\r\n' +
         'I  =  (2+1)\n' +
         '    foo_val=6\r\n'
-        '    Let BarVal  =  Foo (2, 4)\r\n'
+        '    Let BarVal  =  7\r\n'
         'End Function\n' +
         '\r\n' +
         'Function O()\r\n' +
