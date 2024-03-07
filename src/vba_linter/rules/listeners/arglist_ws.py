@@ -16,7 +16,7 @@ class ArglistWs(ParseTreeListener):
     between the following cases:
     MiscSub (1 + 2)  ' Fine: parenthesised expression as arg
     Call MiscSub (1 + 2)  'Bad: space between name and arglist
-    MiscFunc (1 + 2)  ' Bad: space between name and arglist
+    Foo = MiscFunc (1 + 2)  ' Bad: space between name and arglist
     """
     def __init__(self: T) -> None:
         super().__init__()
@@ -28,10 +28,9 @@ class ArglistWs(ParseTreeListener):
         An argumentList may or may not have a parenthesis depending on
         if it is a sub or if it is a 'Call'ed sub, or a Let statement.
         """
-        token = ctx.start
         parent = ctx.getParent()
         parens = parent.getTokens(vbaLexer.LPAREN)
-        if len(paren_index) > 0:
+        if len(parens) > 0:
             paren_index = parens[0].tokenIndex
             spaces = parent.getTokens(vbaLexer.WS)
             for ws in spaces:
