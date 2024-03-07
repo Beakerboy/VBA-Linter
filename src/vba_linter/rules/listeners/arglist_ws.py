@@ -1,4 +1,4 @@
-from antlr4 import ParseTreeListener
+from antlr4 import ParserRuleContext, ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
@@ -12,50 +12,55 @@ class ArglistWs(ParseTreeListener):
     Inspect the whitespace before an argument list to
     ensure there is no whitespace between the function
     name and the left parenthesis.
+    We need to use a listener in order to differentiate
+    between the following cases:
+    MiscSub (1 + 2)  ' Fine: parenthesised expression as arg
+    Call MiscSub (1 + 2)  'Bad: space between name and arglist
+    MiscFunc (1 + 2)  ' Bad: space between name and arglist
     """
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
 
-    def enterArgumemtList(self: T,  # noqa: N802
+    def enterArgumentList(self: T,  # noqa: N802
                           ctx: vbaParser.ArgumentListContext) -> None:
         """
-        Best Practice:
-        foo = bar(1, 2, 3)
-        Call bar(1, 2, 3)
+        An argumentList may or may not have a parenthesis depending on
+        if it is a sub or if it is a 'Call'ed sub, or a Let statement.
         """
         token = ctx.start
-        if token.LT(-1).type == vbaLexer.LPAREN:
-            ws = token.LT(-2)
-            if ws.type == vbaLexer.WS:
-                self.output.append((ws.line, ws.column, "221"))
-        elif token.LT(-2).type == vbaLexer.LPAREN:
-            ws = token.LT(-3)
-            if ws.type == vbaLexer.WS:
-                self.output.append((ws.line, ws.column, "221"))
+        parent = ctx.getParent()
+        parens = parent.getTokens(vbaLexer.LPAREN)
+        if len(paren_index) > 0:
+            paren_index = parens[0].tokenIndex
+            spaces = parent.getTokens(vbaLexer.WS)
+            for ws in spaces:
+                if ws.tokenIndex == paren_index - 1:
+                    self.output.append((ws.line, ws.column, "221"))
 
     def enterProcedureParameters(self: T,  # noqa: N802
                                  ctx: vbaParser.ProcedureParametersContext
                                  ) -> None:
-        """
-        Best Practice:
-        foo = bar(1, 2, 3)
-        Call bar(1, 2, 3)
-        """
-        token = ctx.start
-        if token.LT(-1).type == vbaLexer.WS:
-            ws = token.LT(-1)
-            self.output.append((ws.line, ws.column, "221"))
+        self.check_parameters(ctx)
 
     def enterPropertyParameters(self: T,  # noqa: N802
                                 ctx: vbaParser.PropertyParametersContext
                                 ) -> None:
+        self.check_parameters(ctx)
+
+    def check_parameters(self: T, ctx: ParserRuleContext) -> None:
         """
+        Check the parameter list for functions, subs, and properties.
         Best Practice:
-        foo = bar(1, 2, 3)
-        Call bar(1, 2, 3)
+        Function Foo(Bar)
+        Anti-Pattern:
+        Function Foo (Bar)
         """
         token = ctx.start
-        if token.LT(-1).type == vbaLexer.WS:
-            ws = token.LT(-1)
-            self.output.append((ws.line, ws.column, "221"))
+        parent = ctx.getParent()
+        paren_index = token.tokenIndex
+        spaces = parent.getTokens(vbaLexer.WS)
+        for ws in spaces:
+            if ws.tokenIndex == paren_index - 1:
+                self.output.append((ws.line, ws.column, "221"))
+                break
