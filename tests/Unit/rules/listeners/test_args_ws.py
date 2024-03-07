@@ -1,18 +1,18 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.listeners.args_ws import ArgsWs
+from vba_linter.rules.listeners.arglist_ws import ArglistWs
 
 
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        [(6, 1, '201'), (7, 5, '201')]
+        [(2, 20, '221'), (7, 5, '201')]
     ]
 ]
 
 
-rule = ArgsWs()
+rule = ArglistWs()
 
 
 @pytest.mark.parametrize('rule', [rule])
