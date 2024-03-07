@@ -35,7 +35,8 @@ class ArglistWs(ParseTreeListener):
                 self.output.append((ws.line, ws.column, "221"))
 
     def enterProcedureParameters(self: T,  # noqa: N802
-                                 ctx: vbaParser.ProcedureParametersContext) -> None:
+                                 ctx: vbaParser.ProcedureParametersContext
+                                ) -> None:
         """
         Best Practice:
         foo = bar(1, 2, 3)
@@ -47,7 +48,8 @@ class ArglistWs(ParseTreeListener):
             self.output.append((ws.line, ws.column, "221"))
 
     def enterPropertyParameters(self: T,  # noqa: N802
-                                ctx: vbaParser.PropertyParametersContext) -> None:
+                                ctx: vbaParser.PropertyParametersContext
+                               ) -> None:
         """
         Best Practice:
         foo = bar(1, 2, 3)
