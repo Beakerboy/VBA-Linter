@@ -36,7 +36,7 @@ class ArglistWs(ParseTreeListener):
 
     def enterProcedureParameters(self: T,  # noqa: N802
                                  ctx: vbaParser.ProcedureParametersContext
-                                ) -> None:
+                                 ) -> None:
         """
         Best Practice:
         foo = bar(1, 2, 3)
@@ -49,7 +49,7 @@ class ArglistWs(ParseTreeListener):
 
     def enterPropertyParameters(self: T,  # noqa: N802
                                 ctx: vbaParser.PropertyParametersContext
-                               ) -> None:
+                                ) -> None:
         """
         Best Practice:
         foo = bar(1, 2, 3)
