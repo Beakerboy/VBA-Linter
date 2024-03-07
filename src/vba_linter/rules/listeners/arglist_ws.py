@@ -27,12 +27,13 @@ class ArglistWs(ParseTreeListener):
         self.test_expression(ctx)
 
     def enterIndexExpression(self: T,  # noqa: N802
-                          ctx: vbaParser.IndexExpressionContext) -> None:
+                             ctx: vbaParser.IndexExpressionContext) -> None:
         """
         An argumentList may or may not have a parenthesis depending on
         if it is a sub or if it is a 'Call'ed sub, or a Let statement.
         """
         self.test_expression(ctx)
+
     def test_expression(self: T, ctx: ParserRuleContext) -> None:
         parens = ctx.getTokens(vbaLexer.LPAREN)
         if len(parens) > 0:
