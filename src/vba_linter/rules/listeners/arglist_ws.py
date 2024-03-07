@@ -20,15 +20,16 @@ class ArglistWs(ParseTreeListener):
     def enterArgumemtList(self: T,  # noqa: N802
                           ctx: vbaParser.ArgumentListContext) -> None:
         """
+        Best Practice: 
         foo = bar(1, 2, 3)
         Call bar(1, 2, 3)
         """
         token = ctx.start
-        if token.LT(-1).symbol == vbaLexer.LPAREN:
+        if token.LT(-1).type == vbaLexer.LPAREN:
             ws = token.LT(-2)
-            if ws.symbol == vbaLexer.WS:
+            if ws.type == vbaLexer.WS:
                 self.output.append((ws.line, ws.column, "221"))
-        elif token.LT(-2).symbol == vbaLexer.LPAREN:
+        elif token.LT(-2).type == vbaLexer.LPAREN:
             ws = token.LT(-3)
-            if ws.symbol == vbaLexer.WS:
+            if ws.type == vbaLexer.WS:
                 self.output.append((ws.line, ws.column, "221"))
