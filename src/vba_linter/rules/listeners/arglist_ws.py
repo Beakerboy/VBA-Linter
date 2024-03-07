@@ -28,7 +28,7 @@ class ArglistWs(ParseTreeListener):
         An argumentList may or may not have a parenthesis depending on
         if it is a sub or if it is a 'Call'ed sub, or a Let statement.
         """
-        parent = ctx.getParent()
+        parent = ctx.parentCtx
         parens = parent.getTokens(vbaLexer.LPAREN)
         if len(parens) > 0:
             paren_index = parens[0].tokenIndex
@@ -56,7 +56,7 @@ class ArglistWs(ParseTreeListener):
         Function Foo (Bar)
         """
         token = ctx.start
-        parent = ctx.getParent()
+        parent = ctx.parentCtx
         paren_index = token.tokenIndex
         spaces = parent.getTokens(vbaLexer.WS)
         for ws in spaces:
