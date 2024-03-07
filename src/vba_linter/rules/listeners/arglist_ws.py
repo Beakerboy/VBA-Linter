@@ -13,6 +13,9 @@ class ArglistWs(ParseTreeListener):
     ensure there is no whitespace between the function
     name and the left parenthesis.
     """
+    def __init__(self: T) -> None:
+        super().__init__()
+        self.output: list = []
 
     def enterArgumentList(self: T,  # noqa: N802
                           ctx: vbaParser.ArgumentListContext) -> None:
