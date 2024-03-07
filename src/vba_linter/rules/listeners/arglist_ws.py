@@ -22,17 +22,22 @@ class ArglistWs(ParseTreeListener):
         super().__init__()
         self.output: list = []
 
-    def enterArgumentList(self: T,  # noqa: N802
-                          ctx: vbaParser.ArgumentListContext) -> None:
+    def enterLExpression(self: T,  # noqa: N802
+                         ctx: vbaParser.LExpressionContext) -> None:
+        self.test_expression(ctx)
+
+    def enterIndexExpression(self: T,  # noqa: N802
+                          ctx: vbaParser.IndexExpressionContext) -> None:
         """
         An argumentList may or may not have a parenthesis depending on
         if it is a sub or if it is a 'Call'ed sub, or a Let statement.
         """
-        parent = ctx.parentCtx
-        parens = parent.getTokens(vbaLexer.LPAREN)
+        self.test_expression(ctx)
+    def test_expression(self: T, ctx: ParserRuleContext) -> None:
+        parens = ctx.getTokens(vbaLexer.LPAREN)
         if len(parens) > 0:
             paren_index = parens[0].tokenIndex
-            spaces = parent.getTokens(vbaLexer.WS)
+            spaces = ctx.getTokens(vbaLexer.WS)
             for ws in spaces:
                 if ws.tokenIndex == paren_index - 1:
                     self.output.append((ws.line, ws.column, "221"))
