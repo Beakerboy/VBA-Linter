@@ -33,3 +33,27 @@ class ArglistWs(ParseTreeListener):
             ws = token.LT(-3)
             if ws.type == vbaLexer.WS:
                 self.output.append((ws.line, ws.column, "221"))
+
+    def enterProcedureParameters(self: T,  # noqa: N802
+                                 ctx: vbaParser.ProcedureParametersContext) -> None:
+        """
+        Best Practice:
+        foo = bar(1, 2, 3)
+        Call bar(1, 2, 3)
+        """
+        token = ctx.start
+        if token.LT(-1).type == vbaLexer.WS:
+            ws = token.LT(-1)
+            self.output.append((ws.line, ws.column, "221"))
+
+    def enterPropertyParameters(self: T,  # noqa: N802
+                                ctx: vbaParser.PropertyParametersContext) -> None:
+        """
+        Best Practice:
+        foo = bar(1, 2, 3)
+        Call bar(1, 2, 3)
+        """
+        token = ctx.start
+        if token.LT(-1).type == vbaLexer.WS:
+            ws = token.LT(-1)
+            self.output.append((ws.line, ws.column, "221"))
