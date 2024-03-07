@@ -17,8 +17,8 @@ class ArglistWs(ParseTreeListener):
         super().__init__()
         self.output: list = []
 
-    def enterArgList(self: T,  # noqa: N802
-                          ctx: vbaParser.ArgListContext) -> None:
+    def enterArgumemtList(self: T,  # noqa: N802
+                          ctx: vbaParser.ArgumentListContext) -> None:
         """
         foo = bar(1, 2, 3)
         Call bar(1, 2, 3)
