@@ -44,7 +44,7 @@ class ArglistWs(ParseTreeListener):
 
             spaces = ctx.getChildren(predicate)
             for ws in spaces:
-                if ws.getChild().symbol.tokenIndex == paren_index - 1:
+                if ws.getChild(0).symbol.tokenIndex == paren_index - 1:
                     self.output.append((ws.line, ws.column, "221"))
 
     def enterProcedureParameters(self: T,  # noqa: N802
@@ -74,6 +74,6 @@ class ArglistWs(ParseTreeListener):
 
         spaces = parent.getChildren(predicate)
         for ws in spaces:
-            if ws.getChild().symbol.tokenIndex == paren_index - 1:
+            if ws.getChild(0).symbol.tokenIndex == paren_index - 1:
                 self.output.append((ws.line, ws.column, "221"))
                 break
