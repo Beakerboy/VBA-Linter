@@ -60,7 +60,6 @@ class RuleDirectory:
 
     def load_standard_rules(self: T) -> None:
         symbols = [
-            [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 's')],
             [vbaLexer.COMMA, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)]
@@ -176,10 +175,3 @@ class RuleDirectory:
             "Missing whitespace after '" + name + "'")
         # There are times when rparen can have excess WS after.
         # self._special_rules["134"] =
-        token = vbaLexer.LPAREN
-        name = '('
-        # There are times when lparen can have excess WS before.
-        self._special_rules["121"] = TokenSequenceOperator(
-            '121',
-            [vbaLexer.EQ, vbaLexer.WS, token], 0,
-            "Excess whitespace before '" + name + "'")
