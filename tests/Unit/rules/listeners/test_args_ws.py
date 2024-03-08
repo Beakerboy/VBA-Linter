@@ -7,7 +7,7 @@ from vba_linter.rules.listeners.arglist_ws import ArglistWs
 anti_patterns = [
     [
         RuleTestBase.worst_practice,
-        []
+        [(2, 51, '221')]
     ]
 ]
 
