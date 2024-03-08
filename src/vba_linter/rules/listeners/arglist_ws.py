@@ -39,7 +39,7 @@ class ArglistWs(ParseTreeListener):
     def test_expression(self: T, ctx: ParserRuleContext) -> None:
         parens = ctx.getTokens(vbaLexer.LPAREN)
         if len(parens) > 0:
-            paren_index = parens[0].tokenIndex
+            paren_index = parens[0].symbol.tokenIndex
 
             def predicate(x: object) -> bool:
                 return isinstance(x, vbaParser.WscContext)
