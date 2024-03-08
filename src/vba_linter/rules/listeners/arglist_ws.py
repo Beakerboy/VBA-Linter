@@ -64,8 +64,12 @@ class ArglistWs(ParseTreeListener):
         token = ctx.start
         parent = ctx.parentCtx
         paren_index = token.tokenIndex
-        spaces = parent.getTokens(vbaLexer.WS)
+
+        def predicate(x):
+            return isInstance(x, vbaPaser.WscContext)
+
+        spaces = parent.getChildren(predicate)
         for ws in spaces:
-            if ws.tokenIndex == paren_index - 1:
+            if ws.symbol.tokenIndex == paren_index - 1:
                 self.output.append((ws.line, ws.column, "221"))
                 break
