@@ -21,6 +21,7 @@ class ArglistWs(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
+        self.msg = "Excess whitespace before '('"
 
     def enterLExpression(self: T,  # noqa: N802
                          ctx: vbaParser.LExpressionContext) -> None:
@@ -46,7 +47,10 @@ class ArglistWs(ParseTreeListener):
             for wsc in spaces:
                 if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
                     ws = wsc.getChild(0).symbol
-                    self.output.append((ws.line, ws.column + 1, "121"))
+                    msg = self.msg
+                    line = ws.line
+                    column = ws.column + 1
+                    self.output.append((line, column, "121", msg))
 
     def enterProcedureParameters(self: T,  # noqa: N802
                                  ctx: vbaParser.ProcedureParametersContext
@@ -77,5 +81,8 @@ class ArglistWs(ParseTreeListener):
         for wsc in spaces:
             if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
                 ws = wsc.getChild(0).symbol
-                self.output.append((ws.line, ws.column + 1, "121"))
+                msg = self.msg
+                line = ws.line
+                column = ws.column + 1
+                self.output.append((line, column, "121", msg))
                 break
