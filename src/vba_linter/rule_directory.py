@@ -80,7 +80,7 @@ class RuleDirectory:
             "910": rule910
         })
         self._parser_rules.update({
-            "221": ArglistWs()
+            "121": ArglistWs()
         })
 
     def load_all_rules(self: T) -> None:
