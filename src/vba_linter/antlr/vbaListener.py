@@ -79,7 +79,7 @@ class VbaListener(ParseTreeListener, RuleBase):
         """
         tokens = []
         if isinstance(ctx, TerminalNodeImpl):
-            return [ctx.getSymbol()]
+            return [ctx.symbol]
         else:
             for child in ctx.getChildren():
                 tokens.extend(cls.get_tokens(child))
