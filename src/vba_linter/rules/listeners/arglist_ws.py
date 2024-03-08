@@ -66,7 +66,7 @@ class ArglistWs(ParseTreeListener):
         paren_index = token.tokenIndex
 
         def predicate(x: object) -> bool:
-            return isInstance(x, vbaPaser.WscContext)
+            return isinstance(x, vbaPaser.WscContext)
 
         spaces = parent.getChildren(predicate)
         for ws in spaces:
