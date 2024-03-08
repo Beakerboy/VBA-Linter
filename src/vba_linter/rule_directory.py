@@ -8,7 +8,6 @@ from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_seq_mismatch_nl import TokenSeqMismatchNL
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
-from vba_linter.rules.token_seq_operator import TokenSequenceOperator
 from vba_linter.rules.blank_line_eof import BlankLineEof
 from vba_linter.rules.blank_line_ws import BlankLineWhitespace
 from vba_linter.rules.blank_line_number import BlankLineNumber
@@ -16,6 +15,7 @@ from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.keyword_caps import KeywordCaps
+from vba_linter.rules.listeners.arglist_ws import ArglistWs
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
@@ -60,7 +60,6 @@ class RuleDirectory:
 
     def load_standard_rules(self: T) -> None:
         symbols = [
-            [vbaLexer.LPAREN, "(", ('s', 0)],
             [vbaLexer.RPAREN, ")", (0, 's')],
             [vbaLexer.COMMA, ',', (0, 1)],
             [vbaLexer.EQ, '=', (1, 1)]
@@ -79,6 +78,9 @@ class RuleDirectory:
             "400": LineEnding(),
             "305": TrailingWhitespace(),
             "910": rule910
+        })
+        self._parser_rules.update({
+            "121": ArglistWs()
         })
 
     def load_all_rules(self: T) -> None:
@@ -123,7 +125,7 @@ class RuleDirectory:
         programmatically.
         """
         rules: Dict[str, RuleBase] = {}
-        i = 10 * index + 110
+        i = 10 * index + 120
         token = symbol[0]
         name = symbol[1]
         number = symbol[2]
@@ -176,10 +178,3 @@ class RuleDirectory:
             "Missing whitespace after '" + name + "'")
         # There are times when rparen can have excess WS after.
         # self._special_rules["134"] =
-        token = vbaLexer.LPAREN
-        name = '('
-        # There are times when lparen can have excess WS before.
-        self._special_rules["121"] = TokenSequenceOperator(
-            '121',
-            [vbaLexer.EQ, vbaLexer.WS, token], 0,
-            "Excess whitespace before '" + name + "'")

@@ -73,9 +73,13 @@ class VbaListener(ParseTreeListener, RuleBase):
 
     @classmethod
     def get_tokens(cls: Type[T], ctx: ParserRuleContext) -> list:
+        """
+        Follow the parse tree down to capture all the tokens within
+        this context, essentially building a truncated tokenstream.
+        """
         tokens = []
         if isinstance(ctx, TerminalNodeImpl):
-            return [ctx.getSymbol()]
+            return [ctx.symbol]
         else:
             for child in ctx.getChildren():
                 tokens.extend(cls.get_tokens(child))
