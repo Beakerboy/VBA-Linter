@@ -15,6 +15,7 @@ from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.keyword_caps import KeywordCaps
+from vba_linter.rules.listeners.arglist_ws import ArglistWs
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
@@ -77,6 +78,9 @@ class RuleDirectory:
             "400": LineEnding(),
             "305": TrailingWhitespace(),
             "910": rule910
+        })
+        self._parser_rules.update({
+            "221": ArglistWs()
         })
 
     def load_all_rules(self: T) -> None:
