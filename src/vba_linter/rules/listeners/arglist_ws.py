@@ -43,8 +43,9 @@ class ArglistWs(ParseTreeListener):
                 return isinstance(x, vbaParser.WscContext)
 
             spaces = ctx.getChildren(predicate)
-            for ws in spaces:
-                if ws.getChild(0).symbol.tokenIndex == paren_index - 1:
+            for wsc in spaces:
+                if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
+                    ws = wsc.getChild(0).symbol
                     self.output.append((ws.line, ws.column, "221"))
 
     def enterProcedureParameters(self: T,  # noqa: N802
@@ -73,7 +74,8 @@ class ArglistWs(ParseTreeListener):
             return isinstance(x, vbaParser.WscContext)
 
         spaces = parent.getChildren(predicate)
-        for ws in spaces:
-            if ws.getChild(0).symbol.tokenIndex == paren_index - 1:
+        for wsc in spaces:
+            if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
+                ws = wsc.getChild(0).symbol
                 self.output.append((ws.line, ws.column, "221"))
                 break
