@@ -104,16 +104,18 @@ class ExcessWhitespace(RuleBase):
                           ctx: Parser.ArgumentListContext) -> None:
         """
         There is a rare case of omitting the first argument in a subroutine call:
-        MiscSub , Arg
+        MiscSub , Arg  ' This is fine
+        Call MiscSub( , Arg)  ' This is Not
+        Call MiscSub(, Arg)  ' This is Fine
         The whitespace after the subroutine name is manditory, so there must be
         whitespace before a comma.
         """
         tokens = vbaListener.get_tokens(ctx)
-        if (
-                tokens[0].type == vbaLexer.WS or
-                tokens[0].type == vbaLexer.LINE_CONTINUATION
-        )
-            pass
+        if tokens[0].type == vbaLexer.COMMA:
+            comma_index = tokens[0].tokenIndex
+            parent = ctx.getParent()
+            if isinstance(vbaParser.CallStatementContext, parent)
+                pass
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
