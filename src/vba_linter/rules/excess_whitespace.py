@@ -2,6 +2,7 @@ from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
+from vba_linter.antlr.vbaListener import vbaListener
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -104,7 +105,8 @@ class ExcessWhitespace(RuleBase):
     def enterArgumentList(self: T,  # noqa: N802
                           ctx: Parser.ArgumentListContext) -> None:
         """
-        There is a rare case of omitting the first argument in a subroutine call:
+        There is a rare case of omitting the first argument in a subroutine
+        call:
         MiscSub , Arg  ' This is fine
         Call MiscSub( , Arg)  ' This is Not
         Call MiscSub(, Arg)  ' This is Fine
