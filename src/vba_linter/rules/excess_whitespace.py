@@ -2,7 +2,7 @@ from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
-from vba_linter.antlr.vbaListener import vbaListener
+from vba_linter.antlr.vbaListener import VbaListener
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -117,7 +117,7 @@ class ExcessWhitespace(RuleBase):
         The whitespace after the subroutine name is manditory, so there must be
         whitespace before a comma.
         """
-        tokens = vbaListener.get_tokens(ctx)
+        tokens = VbaListener.get_tokens(ctx)
         if tokens[0].type == vbaLexer.COMMA:
             parent = ctx.getParent()
             if isinstance(Parser.CallStatementContext, parent):
