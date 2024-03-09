@@ -115,10 +115,11 @@ class ExcessWhitespace(RuleBase):
         """
         tokens = vbaListener.get_tokens(ctx)
         if tokens[0].type == vbaLexer.COMMA:
-            comma_index = tokens[0].tokenIndex
             parent = ctx.getParent()
             if isinstance(Parser.CallStatementContext, parent):
-                pass
+                ws = parent.getChild(Parser.WscContext, 0)
+                wsc = ws.symbol
+                self.override = (wsc.line, wsc.column + 1, "151:141")
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
