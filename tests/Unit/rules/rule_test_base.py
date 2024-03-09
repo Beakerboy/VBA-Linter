@@ -25,6 +25,7 @@ class RuleTestBase:
              '    Dim Foo()    As String\r\n' +
              '    Set Qux = Foo.Bar(2, , base)\r\n' +
              '    x = 3:    y = 4\r\n' +
+             '    List.Reverse , 1\r\n' +
              'End Function\r\n'),
             []
         ]
