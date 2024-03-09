@@ -1,5 +1,6 @@
 from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
+from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
