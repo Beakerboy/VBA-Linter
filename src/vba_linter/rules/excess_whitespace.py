@@ -58,7 +58,10 @@ class ExcessWhitespace(RuleBase):
                     assert isinstance(post_token, Token)
                     text = post_token.text
                     rule = self._rule_name + ':' + str(self.rules[text])
-                    output.append((line, column, rule, "before", text))
+                    otp = (line, column, rule, "before", text)
+                    if rule == "151:141":
+                        self.output.append(otp)
+                    else output.append(otp)
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
             # an As statement. The 'As' exception is only valid in
