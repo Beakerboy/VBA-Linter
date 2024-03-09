@@ -15,6 +15,7 @@ class VbaListener(ParseTreeListener, RuleBase):
         self.output: list = []
         self.ts: CommonTokenStream
         self.listeners: list = []
+        self.output: list = []
 
     def set_token_stream(self: T, ts: CommonTokenStream) -> None:
         self.ts = ts
