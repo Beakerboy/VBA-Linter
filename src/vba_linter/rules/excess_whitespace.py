@@ -100,6 +100,21 @@ class ExcessWhitespace(RuleBase):
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
 
+    def enterArgumentList(self: T,  # noqa: N802
+                          ctx: Parser.ArgumentListContext) -> None:
+        """
+        There is a rare case of omitting the first argument in a subroutine call:
+        MiscSub , Arg
+        The whitespace after the subroutine name is manditory, so there must be
+        whitespace before a comma.
+        """
+        tokens = vbaListener.get_tokens(ctx)
+        if (
+                tokens[0].type == vbaLexer.WS or
+                tokens[0].type == vbaLexer.LINE_CONTINUATION
+        )
+            pass
+
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
         extract the next specified number of tokens from the stream.
