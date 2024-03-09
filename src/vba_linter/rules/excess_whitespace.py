@@ -114,7 +114,7 @@ class ExcessWhitespace(RuleBase):
         if tokens[0].type == vbaLexer.COMMA:
             comma_index = tokens[0].tokenIndex
             parent = ctx.getParent()
-            if isinstance(vbaParser.CallStatementContext, parent)
+            if isinstance(vbaParser.CallStatementContext, parent):
                 pass
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
