@@ -13,6 +13,7 @@ class ExcessWhitespace(RuleBase):
 
     def __init__(self: T) -> None:
         super().__init__()
+        self.output: list = []
         self._rule_name = "151"
         self._message = "Excess whitespace {3} '{4}'"
         self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141,
