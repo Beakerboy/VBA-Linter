@@ -93,12 +93,10 @@ class RuleTestBase:
         results = []
         rule.output = []
         results.extend(cls.run_token_rule(rule, ts))
-        
         parser = vbaParser(ts)
         program = parser.startRule()
         ParseTreeWalker.DEFAULT.walk(rule, program)
         results.extend(rule.output)
-            
         cls.delete_code(file_name)
         results.sort()
         return results
