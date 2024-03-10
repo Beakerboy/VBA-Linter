@@ -72,14 +72,15 @@ class RuleTestBase:
     def run_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
+        results = []
+        if not isinstance(rule, ParseTreeListener):
+            results.extend(cls.run_token_rule(rule, ts))
         if isinstance(rule, ParseTreeListener):
             rule.output = []
             parser = vbaParser(ts)
             program = parser.startRule()
             ParseTreeWalker.DEFAULT.walk(rule, program)
-            results = rule.output
-        else:
-            results = cls.run_token_rule(rule, ts)
+            results.extend(rule.output)
         cls.delete_code(file_name)
         return results
 
