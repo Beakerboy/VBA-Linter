@@ -80,7 +80,8 @@ class RuleDirectory:
             "910": rule910
         })
         self._parser_rules.update({
-            "121": ArglistWs()
+            "121": ArglistWs(),
+            "151": ExcessWhitespace()
         })
 
     def load_all_rules(self: T) -> None:
