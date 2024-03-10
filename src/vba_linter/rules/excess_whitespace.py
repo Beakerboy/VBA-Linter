@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, ParseTreeListenee, Token
+from antlr4 import CommonTokenStream, ParseTreeListener, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
