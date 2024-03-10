@@ -123,7 +123,7 @@ class ExcessWhitespace(RuleBase, ParseTreeListener):
             parent = ctx.parentCtx
             if isinstance(parent, Parser.CallStatementContext):
                 ws = parent.getChild(0, Parser.WscContext)
-                wsc = ws.symbol
+                wsc = ws.getChild(0).symbol
                 for item in self.output:
                     if item == (wsc.line, wsc.column + 1,
                                 "151:141", 'before', ','):
