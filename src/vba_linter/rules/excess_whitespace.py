@@ -120,6 +120,7 @@ class ExcessWhitespace(RuleBase, ParseTreeListener):
         """
         tokens = VbaListener.get_tokens(ctx)
         if tokens[0].type == vbaLexer.COMMA:
+            raise Exception(str(tokens[0]))
             parent = ctx.parentCtx
             if isinstance(parent, Parser.CallStatementContext):
                 ws = parent.getChild(0, Parser.WscContext)
