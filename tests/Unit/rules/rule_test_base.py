@@ -91,7 +91,7 @@ class RuleTestBase:
         ts = cls.create_tokens(file_name)
         results = []
         rule.output = []
-            
+
         if isinstance(rule, ParseTreeListener):
             parser = vbaParser(ts)
             program = parser.startRule()
@@ -102,7 +102,7 @@ class RuleTestBase:
         cls.delete_code(file_name)
         results.sort()
         return results
-  
+
     @classmethod
     def run_token_rule(cls: Type[T],
                        rule: RuleBase,
