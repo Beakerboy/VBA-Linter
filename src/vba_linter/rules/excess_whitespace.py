@@ -119,6 +119,7 @@ class ExcessWhitespace(RuleBase, ParseTreeListener):
         whitespace before a comma.
         """
         tokens = VbaListener.get_tokens(ctx)
+        raise Exception(str(tokens[0]))
         if (
                 tokens[0].type == vbaLexer.WS and
                 tokens[1].type == vbaLexer.COMMA
