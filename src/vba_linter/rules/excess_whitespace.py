@@ -122,7 +122,7 @@ class ExcessWhitespace(RuleBase, ParseTreeListener):
         if tokens[0].type == vbaLexer.COMMA:
             parent = ctx.parentCtx
             if isinstance(parent, Parser.CallStatementContext):
-                ws = parent.getChild(Parser.WscContext, 0)
+                ws = parent.getChild(0, Parser.WscContext)
                 wsc = ws.symbol
                 for item in self.output:
                     if item == (wsc.line, wsc.column + 1,
