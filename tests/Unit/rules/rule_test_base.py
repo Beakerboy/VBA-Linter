@@ -82,7 +82,7 @@ class RuleTestBase:
             ParseTreeWalker.DEFAULT.walk(rule, program)
             results.extend(rule.output)
         cls.delete_code(file_name)
-        return results
+        return results.sort()
 
     @classmethod
     def run_token_rule(cls: Type[T],
