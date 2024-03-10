@@ -9,7 +9,7 @@ from vba_linter.rules.rule_base import RuleBase
 T = TypeVar('T', bound='ExcessWhitespace')
 
 
-class ExcessWhitespace(RuleBase, ParseTreeListener):
+class ExcessWhitespace(RuleBase, VbaListener):
 
     def __init__(self: T) -> None:
         super().__init__()
