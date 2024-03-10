@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream, Token
+from antlr4 import CommonTokenStream, ParseTreeListenee, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
@@ -9,7 +9,7 @@ from vba_linter.rules.rule_base import RuleBase
 T = TypeVar('T', bound='ExcessWhitespace')
 
 
-class ExcessWhitespace(RuleBase):
+class ExcessWhitespace(RuleBase, ParseTreeListener):
 
     def __init__(self: T) -> None:
         super().__init__()
