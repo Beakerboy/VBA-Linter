@@ -44,7 +44,7 @@ rule = ExcessWhitespace()
     anti_patterns + RuleTestBase.best_practice
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
-    assert RuleTestBase.run_test(rule, code) == expected
+    assert RuleTestBase.run_combo_test(rule, code) == expected
 
 
 @pytest.mark.parametrize('rule', [rule])
