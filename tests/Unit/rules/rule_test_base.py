@@ -75,6 +75,23 @@ class RuleTestBase:
         results = []
         rule.output = []
             
+        results.extend(cls.run_token_rule(rule, ts))
+        parser = vbaParser(ts)
+        program = parser.startRule()
+        ParseTreeWalker.DEFAULT.walk(rule, program)
+        results.extend(rule.output)
+            
+        cls.delete_code(file_name)
+        results.sort()
+        return results
+
+    @classmethod
+    def run_combo_test(cls: Type[T], rule: RuleBase, code: str) -> list:
+        file_name = cls.save_code(code)
+        ts = cls.create_tokens(file_name)
+        results = []
+        rule.output = []
+            
         if isinstance(rule, ParseTreeListener):
             parser = vbaParser(ts)
             program = parser.startRule()
@@ -85,7 +102,7 @@ class RuleTestBase:
         cls.delete_code(file_name)
         results.sort()
         return results
-
+  
     @classmethod
     def run_token_rule(cls: Type[T],
                        rule: RuleBase,
