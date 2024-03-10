@@ -124,7 +124,10 @@ class ExcessWhitespace(RuleBase):
             if isinstance(Parser.CallStatementContext, parent):
                 ws = parent.getChild(Parser.WscContext, 0)
                 wsc = ws.symbol
-                self.override = (wsc.line, wsc.column + 1, "151:141")
+                for item in self.output:
+                    if item == (wsc.line, wsc.column + 1,
+                                "151:141", 'before', ','):
+                        del(item)
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
