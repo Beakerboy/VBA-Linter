@@ -1,3 +1,4 @@
+from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
@@ -6,7 +7,7 @@ from vba_linter.antlr.vbaListener import VbaListener
 T = TypeVar('T', bound='MissingLet')
 
 
-class MissingLet(VbaListener):
+class MissingLet(ParseTreeListener):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
