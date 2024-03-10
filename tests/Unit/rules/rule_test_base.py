@@ -74,7 +74,7 @@ class RuleTestBase:
         ts = cls.create_tokens(file_name)
         results = []
         rule.output = []
-        if not isinstance(rule, ParseTreeListener):
+        if isinstance(rule, RuleBase):
             results.extend(cls.run_token_rule(rule, ts))
         if isinstance(rule, ParseTreeListener):
             parser = vbaParser(ts)
