@@ -3,13 +3,12 @@ from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
 from vba_linter.antlr.vbaListener import VbaListener
-from vba_linter.rules.rule_base import RuleBase
 
 
 T = TypeVar('T', bound='ExcessWhitespace')
 
 
-class ExcessWhitespace(RuleBase, VbaListener):
+class ExcessWhitespace(VbaListener):
 
     def __init__(self: T) -> None:
         super().__init__()
