@@ -71,8 +71,9 @@ class RuleDirectory:
         rule910 = LineTooLong(1023)
         rule910.set_rule_name("910")
         rule910.severity = 'F'
+        ws = ExcessWhitespace()
         self._rules.update({
-            "151": ExcessWhitespace(),
+            "151": ws,
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
@@ -81,7 +82,7 @@ class RuleDirectory:
         })
         self._parser_rules.update({
             "121": ArglistWs(),
-            "151": ExcessWhitespace()
+            "151": ws
         })
 
     def load_all_rules(self: T) -> None:
