@@ -127,7 +127,7 @@ class ExcessWhitespace(RuleBase):
                 for item in self.output:
                     if item == (wsc.line, wsc.column + 1,
                                 "151:141", 'before', ','):
-                        del(item)
+                        del item
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """
