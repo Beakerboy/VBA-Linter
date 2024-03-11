@@ -111,6 +111,7 @@ worst_expected = """\
 
 def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
