@@ -8,6 +8,8 @@ from typing import Generator
 from vba_linter.__main__ import main
 
 
+files: list
+
 @pytest.fixture(autouse=True)
 def run_around_tests() -> Generator:
     global files
@@ -67,6 +69,7 @@ worst_practice1 = (
 
 def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice1)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     mocker.patch(
@@ -129,6 +132,7 @@ worst_practice2 = (
 
 def test_ignore_single(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice2)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     mocker.patch(
