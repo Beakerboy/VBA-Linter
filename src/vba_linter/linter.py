@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream, FileStream, ParseTreeWalker, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
-from vba_linter.rules.vbaListener import VbaListenerTestRunner
+from vba_linter.rules.vbalistener_test_runner import VbaListenerTestRunner
 from pathlib import Path
 from typing import TypeVar
 from vba_linter.rule_directory import RuleDirectory
