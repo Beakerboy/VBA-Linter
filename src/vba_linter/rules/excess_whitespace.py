@@ -2,7 +2,7 @@ from antlr4 import CommonTokenStream, ParseTreeListener, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.vbalistener_test_runner import VbaListenerTestRunner
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -119,7 +119,7 @@ class ExcessWhitespace(ParseTreeListener, RuleBase):
         whitespace before a comma.
         """
         exit()
-        tokens = VbaListener.get_tokens(ctx)
+        tokens = VbaListenerTestRunner.get_tokens(ctx)
         raise Exception(str(tokens[0]))
         if tokens[1].type == vbaLexer.COMMA:
             raise Exception(str(tokens[0]))
