@@ -29,6 +29,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 
 def test_context() -> None:
+    rule.output = []
     ts = TokenStreamStub()
     parser = vbaParser(ts)
     ctx = vbaParser.LetStatementContext(parser)
