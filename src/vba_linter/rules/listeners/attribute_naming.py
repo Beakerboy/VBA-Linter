@@ -11,7 +11,7 @@ T = TypeVar('T', bound='AttributeNaming')
 
 class AttributeNaming(ListenerRuleBase):
     """
-    Check that each atteibute is named correctly.
+    Check that each attribute is named correctly.
     """
     def __init__(self: T) -> None:
         super().__init__()
