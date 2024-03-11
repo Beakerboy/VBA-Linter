@@ -35,7 +35,7 @@ def test_context() -> None:
     ident.column = 0
     ident_node = TerminalNodeImpl(ident)
     ambig = vbaParser.AmbiguousIdentifierContext(uname)
-    ambig.addChild(ident)
+    ambig.addChild(ident_node)
     ident.parentCtx = ambig
     le = vbaParser.LExpressionContext(ctx)
     sn = vbaParser.SimpleNameExpressionContext(le)
