@@ -1,4 +1,5 @@
 import pytest
+from antlr4 import Token
 from antlr4_vba.vbaLexer import vbaLexer
 from Unit.token_stream_stub import TokenStreamStub
 from Unit.rules.rule_test_base import RuleTestBase
@@ -39,7 +40,8 @@ def test_message(rule: RuleBase) -> None:
 
 
 def test_custom_streams() -> None:
-    tok = vbaLexer.NEWLINE
+    tok = Token()
+    tok.type = vbaLexer.NEWLINE
     tok.line = 1
     tok.column = 0
     tok.text = "\n"
