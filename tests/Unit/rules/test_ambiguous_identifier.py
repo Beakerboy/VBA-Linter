@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
+from vba_linter.rules.token.ambiguous_identifier import AmbiguousIdentifier
 
 
 anti_patterns = [
