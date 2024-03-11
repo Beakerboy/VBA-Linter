@@ -2,13 +2,13 @@ from antlr4 import CommonTokenStream, ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='FunctionNaming')
 
 
-class FunctionNaming(VbaListener):
+class FunctionNaming(ListenerRuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
