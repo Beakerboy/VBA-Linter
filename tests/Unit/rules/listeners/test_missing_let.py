@@ -31,7 +31,7 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 def test_context() -> None:
     ts = TokenStreamStub()
     parser = vbaParser(ts)
-    ctx = vbaParser.LetStatementContext()
+    ctx = vbaParser.LetStatementContext(parser)
     ident = Token()
     ident.type = vbaLexer.IDENTIFIER
     ident.text = 'I'
