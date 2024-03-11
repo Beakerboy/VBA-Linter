@@ -36,6 +36,7 @@ def test_message(rule: RuleBase) -> None:
     expected = ":3:13: E400 incorrect line ending"
     assert rule.create_message(data) == expected
 
+
 def test_custom_streams() -> None:
     tok = vbaLexer.NEWLINE
     tok.line = 1
