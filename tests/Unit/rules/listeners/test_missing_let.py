@@ -39,7 +39,7 @@ def test_context() -> None:
     ident.parentCtx = ambig
     le = vbaParser.LExpressionContext(ctx)
     sn = vbaParser.SimpleNameExpressionContext(le)
-    name = vbaParser.NameContext(se)
+    name = vbaParser.NameContext(sn)
     uname = vbaParser.UntypedNameContext(name)
     ambig = vbaParser.AmbiguousIdentifierContext(uname)
     eq = Token()
