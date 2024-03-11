@@ -1,13 +1,13 @@
 from antlr4.tree.Tree import TerminalNode, TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.vbalistener_test_runner import VbaListenerTestRunner
 
 
 T = TypeVar('T', bound='RuleDisabler')
 
 
-class RuleDisabler(VbaListener):
+class RuleDisabler(VbaListenerTestRunner):
     """
     This class inspects VBA comment blocks for rule-skipping directives.
     If a skipping directive is the only comment on a line, it indicates
