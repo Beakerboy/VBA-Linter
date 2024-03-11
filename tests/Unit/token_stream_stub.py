@@ -1,5 +1,5 @@
 from antlr4 import CommonTokenStream
-from typing import List, TypeVar
+from typing import TypeVar
 
 
 T = TypeVar('T', bound='CommonTokenStream')
