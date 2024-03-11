@@ -9,3 +9,4 @@ class TokenStreamStub(CommonTokenStream):
 
     def __init__(self: T, tokens: list = []) -> None:
         self.tokens = tokens
+        self.index = 0
