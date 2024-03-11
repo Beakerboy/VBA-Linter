@@ -1,12 +1,12 @@
 import re
 
 
-def is_snake_case(cls: Type[T], name: str) -> bool:
+def is_snake_case(name: str) -> bool:
     pattern = '(^[a-z]{1}$)|([a-z]+(_[a-z]+)*$)'
     return cls.text_matches(pattern, name)
 
 
-def is_camel_case(cls: Type[T], name: str) -> bool:
+def is_camel_case(name: str) -> bool:
     """
     Also known as lowerCamelCase.
     """
@@ -14,7 +14,7 @@ def is_camel_case(cls: Type[T], name: str) -> bool:
     return cls.text_matches(pattern, name)
 
 
-def is_pascal_case(cls: Type[T], name: str) -> bool:
+def is_pascal_case(name: str) -> bool:
     """
     Also known as UpperCamelCase.
     """
@@ -22,7 +22,7 @@ def is_pascal_case(cls: Type[T], name: str) -> bool:
     return cls.text_matches(pattern, name)
 
 
-def text_matches(cls: Type[T], pattern: str, name: str) -> bool:
+def text_matches(pattern: str, name: str) -> bool:
     match = re.match(pattern, name)
     if match:
         return True
