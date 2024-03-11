@@ -34,7 +34,6 @@ def test_context() -> None:
     parser = vbaParser(ts)
     ctx = vbaParser.LetStatementContext(parser)
     ident = token_fact(vbaLexer.IDENTIFIER, 'I', 6, 0)
-    ident_node = TerminalNodeImpl(ident)
     le = vbaParser.LExpressionContext(parser, ctx)
     sn = vbaParser.SimpleNameExpressionContext(parser, le)
     le.addChild(sn)
@@ -44,20 +43,18 @@ def test_context() -> None:
     name.addChild(uname)
     ambig = vbaParser.AmbiguousIdentifierContext(parser, uname)
     uname.addChild(ambig)
-    ambig.addChild(ident_node)
-    ident_node.parentCtx = ambig
+    ambig.addChild(ident[1])
+    ident[1].parentCtx = ambig
     eq = token_fact(vbaLexer.EQ, '=', 6, 1)
-    eq_node = TerminalNodeImpl(eq)
-    eq_node.parentCtx = ctx
+    eq[1].parentCtx = ctx
     val = token_fact(vbaLexer.INTEGERLITERAL, '4', 6, 2)
-    val_node = TerminalNodeImpl(val)
     ex = vbaParser.ExpressionContext(parser, ctx)
     li = vbaParser.LiteralExpressionContext(parser, ex)
-    li.addChild(val_node)
-    val_node.parentCtx = li
-    ctx.children = [le, eq_node, ex]
-    ctx.start = ident
-    ctx.stop = val
+    li.addChild(val[1])
+    val[1].parentCtx = li
+    ctx.children = [le, eq[1], ex]
+    ctx.start = ident[0]
+    ctx.stop = val[0]
     rule.enterLetStatement(ctx)
     assert rule.output == [(6, 1, '201')]
 
@@ -68,4 +65,4 @@ def test_context() -> None:
         tok.text = text
         tok.line = line
         tok.column = column
-        return tok
+        return (tok, TerminalNodeImpl(ident))
