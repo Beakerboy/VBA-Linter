@@ -1,5 +1,6 @@
 import pytest
 from antlr4_vba.vbaLexer import vbaLexer
+from Unit.token_stream_stub import TokenStreamStub
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.line_ending import LineEnding
