@@ -13,7 +13,7 @@ anti_patterns = [
         '''\
 Attribute VB_Name = "Foo"
 Public Function Foo( num )
-    Call Bar 2, 3 , 4, baz := 5
+    Bar 2, 3 , 4, baz := 5
 label1 : x  =  2
 End Function
 ''',  # noqa
