@@ -59,7 +59,7 @@ def test_context() -> None:
     assert rule.output == [(6, 1, '201')]
 
     
-    def token_fact(type, text, lime, column) -> Token:
+    def token_fact(type, text, lime, column) -> tuple:
         tok = Token()
         tok.type = type
         tok.text = text
