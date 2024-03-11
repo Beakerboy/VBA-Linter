@@ -55,7 +55,7 @@ def test_context() -> None:
     val.line = 6
     val.column = 2
     val_node = TerminalNodeImpl(val)
-    ex = vbaParser.ExpressionContext(ls)
+    ex = vbaParser.ExpressionContext(ctx)
     li = vbaParser.LiteralExpressionContext(ex)
     li.addChild(val_node)
     val_node.parentCtx = li
