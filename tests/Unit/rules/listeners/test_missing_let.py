@@ -45,7 +45,7 @@ def test_context() -> None:
     ambig = vbaParser.AmbiguousIdentifierContext(uname)
     uname.addChild(ambig)
     ambig.addChild(ident_node)
-    ident.parentCtx = ambig
+    ident_node.parentCtx = ambig
     eq = Token()
     eq.type = vbaLexer.EQ
     eq.text = '='
