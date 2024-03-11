@@ -1,4 +1,6 @@
 import pytest
+from antlr4 import TerminalNodeImpl, Token
+from antlr4_vba.vbaParser import vbaParser
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.listeners.missing_let import MissingLet
@@ -37,7 +39,7 @@ def test_context() -> None:
     le = vbaParser.LExpressionContext(ctx)
     sn = vbaParser.SimpleNameExpressionContext(le)
     name = vbaParser.NameContext(se)
-    uname = UntypedNameContext(name)
+    uname = vbaParser.UntypedNameContext(name)
     ambig = vbaParser.AmbiguousIdentifierContext(uname)
     eq = Token()
     eq.type = vbaLexer.EQ
