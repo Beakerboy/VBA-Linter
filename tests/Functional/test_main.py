@@ -232,6 +232,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'Private Sub Opens()\r\n' +
         'End Sub\r\n'
     )
+    global files
     file_name = save_code(best_practice)
     files.append(file_name)
     mocker.patch(
@@ -273,6 +274,7 @@ worst_practice1 = (
 
 def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice1)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     mocker.patch(
