@@ -25,7 +25,7 @@ class AttributeNaming(ListenerRuleBase):
         """
         tokens = VbaListener.get_tokens(ctx)
         tok = tokens[0] if tokens[0].type == vbaLexer.IDENTIFIER else tokens[2]
-        if not string_format.is_snake_case(tok.text):
+        if not is_snake_case(tok.text):
             msg = "variable not snake"
             output = (tok.line, tok.column + 2, "Wxxx", msg)
             self.output.append(output)
@@ -39,7 +39,7 @@ class AttributeNaming(ListenerRuleBase):
         tokens = VbaListener.get_tokens(ctx)
         for tok in tokens:
             if (tok.type == vbaLexer.IDENTIFIER and not
-                    string_format.is_snake_case(tok.text)):
+                    is_snake_case(tok.text)):
                 msg = "variable not snake"
                 output = (tok.line, tok.column + 2, "Wxxx", msg)
                 self.output.append(output)
@@ -60,7 +60,7 @@ class AttributeNaming(ListenerRuleBase):
         else:
             assert tokens[4].type == vbaLexer.IDENTIFIER
             token = tokens[4]
-        if not string_format.is_pascal_case(token.text):
+        if not is_pascal_case(token.text):
             line = token.line
             column = token.column
             msg = "name not Pascal"
