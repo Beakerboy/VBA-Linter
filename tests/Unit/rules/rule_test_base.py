@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='RuleTestBase')
@@ -73,7 +74,7 @@ class RuleTestBase:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
         results = []
-        if isinstance(rule, ParseTreeListener):
+        if isinstance(rule, ListenerRuleBase):
             rule.output = []
             parser = vbaParser(ts)
             program = parser.startRule()
