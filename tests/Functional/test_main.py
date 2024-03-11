@@ -8,7 +8,7 @@ from typing import Generator
 from vba_linter.__main__ import main
 
 
-files:list
+files: list
 
 
 @pytest.fixture(autouse=True)
