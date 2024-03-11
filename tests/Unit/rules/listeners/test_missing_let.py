@@ -3,6 +3,7 @@ from antlr4 import Token
 from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
+from Unit.rules.token_stream_stub import TokenStreamStub
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.listeners.missing_let import MissingLet
@@ -28,6 +29,8 @@ def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
 
 
 def test_context() -> None:
+    ts = TokenStreamStub()
+    parser = vbaParser(ts)
     ctx = vbaParser.LetStatementContext()
     ident = Token()
     ident.type = vbaLexer.IDENTIFIER
@@ -35,14 +38,14 @@ def test_context() -> None:
     ident.line = 6
     ident.column = 0
     ident_node = TerminalNodeImpl(ident)
-    le = vbaParser.LExpressionContext(ctx)
-    sn = vbaParser.SimpleNameExpressionContext(le)
+    le = vbaParser.LExpressionContext(parser, ctx)
+    sn = vbaParser.SimpleNameExpressionContext(parser, le)
     le.addChild(sn)
-    name = vbaParser.NameContext(sn)
+    name = vbaParser.NameContext(parser, sn)
     sn.addChild(name)
-    uname = vbaParser.UntypedNameContext(name)
+    uname = vbaParser.UntypedNameContext(parser, name)
     name.addChild(uname)
-    ambig = vbaParser.AmbiguousIdentifierContext(uname)
+    ambig = vbaParser.AmbiguousIdentifierContext(parser, uname)
     uname.addChild(ambig)
     ambig.addChild(ident_node)
     ident_node.parentCtx = ambig
@@ -59,8 +62,8 @@ def test_context() -> None:
     val.line = 6
     val.column = 2
     val_node = TerminalNodeImpl(val)
-    ex = vbaParser.ExpressionContext(ctx)
-    li = vbaParser.LiteralExpressionContext(ex)
+    ex = vbaParser.ExpressionContext(parser, ctx)
+    li = vbaParser.LiteralExpressionContext(parser, ex)
     li.addChild(val_node)
     val_node.parentCtx = li
     ctx.children = [le, eq_node, ex]
