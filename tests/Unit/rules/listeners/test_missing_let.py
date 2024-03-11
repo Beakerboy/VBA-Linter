@@ -1,6 +1,6 @@
 import pytest
 from antlr4 import Token
-from antlr4.tree import TerminalNodeImpl
+from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from Unit.rules.rule_test_base import RuleTestBase
