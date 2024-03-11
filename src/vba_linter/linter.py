@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream, FileStream, ParseTreeWalker, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.vbaListener import VbaListenerTestRunner
 from pathlib import Path
 from typing import TypeVar
 from vba_linter.rule_directory import RuleDirectory
@@ -50,7 +50,7 @@ class Linter:
                 ts.consume()
                 token = ts.LT(1)
                 assert token is not None
-            listener = VbaListener()
+            listener = VbaListenerTestRunner()
             listener.set_token_stream(ts1)
             listener.listeners = dir.get_parser_rules()
             ParseTreeWalker.DEFAULT.walk(listener, program)
