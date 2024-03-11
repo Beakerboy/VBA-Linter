@@ -118,6 +118,7 @@ class ExcessWhitespace(ParseTreeListener, RuleBase):
         The whitespace after the subroutine name is manditory, so there must be
         whitespace before a comma.
         """
+        exit()
         tokens = VbaListener.get_tokens(ctx)
         raise Exception(str(tokens[0]))
         if (
