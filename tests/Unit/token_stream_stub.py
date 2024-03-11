@@ -7,5 +7,5 @@ T = TypeVar('T', bound='CommonTokenStream')
 
 class TokenStreamStub(CommonTokenStream):
     
-    def __init__(self: T) -> None
+    def __init__(self: T) -> None:
         ...
