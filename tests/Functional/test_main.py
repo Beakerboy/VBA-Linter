@@ -136,6 +136,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
@@ -174,6 +175,7 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     Ensure that -q still fails, but has no output.
     """
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
@@ -196,6 +198,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     an exception
     """
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
