@@ -9,7 +9,7 @@ from vba_linter.rules.rule_base import RuleBase
 T = TypeVar('T', bound='VbaListener')
 
 
-class VbaListener(ParseTreeListener, RuleBase):
+class VbaListenerTestRunner(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
