@@ -3,10 +3,10 @@ from typing import TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
 
-T = TypeVar('T', bound='VbaListenerRuleBase')
+T = TypeVar('T', bound='ListenerRuleBase')
 
 
-class VbaListenRuleBase(ParseTreeListener, RuleBase):
+class ListenerRuleBase(ParseTreeListener, RuleBase):
     """
     A common interface for ListenerRules.
     """
