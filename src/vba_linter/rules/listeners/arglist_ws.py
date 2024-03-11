@@ -2,13 +2,13 @@ from antlr4 import ParserRuleContext, ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.listeners.vba_listener_rule_base import VbaListenerRuleBase
 
 
 T = TypeVar('T', bound='ArglistWs')
 
 
-class ArglistWs(ParseTreeListener, RuleBase):
+class ArglistWs(VbaListenerRuleBase):
     """
     Inspect the whitespace before an argument list to
     ensure there is no whitespace between the function
