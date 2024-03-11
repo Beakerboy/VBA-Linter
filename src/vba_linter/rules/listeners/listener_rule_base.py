@@ -7,7 +7,7 @@ from vba_linter.rules.rule_base import RuleBase
 T = TypeVar('T', bound='ListenerRuleBase')
 
 
-class ListenerRuleBase(ParseTreeListener, RuleBase):
+class ListenerRuleBase(RuleBase, ParseTreeListener):
     """
     A common interface for ListenerRules.
     """
