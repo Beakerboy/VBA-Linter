@@ -33,11 +33,7 @@ def test_context() -> None:
     ts = TokenStreamStub()
     parser = vbaParser(ts)
     ctx = vbaParser.LetStatementContext(parser)
-    ident = Token()
-    ident.type = vbaLexer.IDENTIFIER
-    ident.text = 'I'
-    ident.line = 6
-    ident.column = 0
+    ident = token_fact(vbaLexer.IDENTIFIER, 'I', 6, 0)
     ident_node = TerminalNodeImpl(ident)
     le = vbaParser.LExpressionContext(parser, ctx)
     sn = vbaParser.SimpleNameExpressionContext(parser, le)
@@ -50,18 +46,10 @@ def test_context() -> None:
     uname.addChild(ambig)
     ambig.addChild(ident_node)
     ident_node.parentCtx = ambig
-    eq = Token()
-    eq.type = vbaLexer.EQ
-    eq.text = '='
-    eq.line = 6
-    eq.column = 1
+    eq = token_fact(vbaLexer.EQ, '=', 6, 1)
     eq_node = TerminalNodeImpl(eq)
     eq_node.parentCtx = ctx
-    val = Token()
-    val.type = vbaLexer.INTEGERLITERAL
-    val.text = '4'
-    val.line = 6
-    val.column = 2
+    val = token_fact(vbaLexer.INTEGERLITERAL, '4', 6, 2)
     val_node = TerminalNodeImpl(val)
     ex = vbaParser.ExpressionContext(parser, ctx)
     li = vbaParser.LiteralExpressionContext(parser, ex)
@@ -72,3 +60,12 @@ def test_context() -> None:
     ctx.stop = val
     rule.enterLetStatement(ctx)
     assert rule.output == [(6, 1, '201')]
+
+    
+    def token_fact(type, text, lime, column) -> Token:
+        tok = Token()
+        tok.type = type
+        tok.text = text
+        tok.line = line
+        tok.column = column
+        return tok
