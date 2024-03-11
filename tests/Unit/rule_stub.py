@@ -1,3 +1,4 @@
+from antlr4 import CommonTokenStream
 from typing import List, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
@@ -23,7 +24,7 @@ class RuleStub(RuleBase):
     def set_output(self: T, output: list) -> None:
         self._output = output
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, lexer: CommonTokenStream) -> list:
         self.test_count += 1
         return self._output if self.test_count == 1 else []
 
