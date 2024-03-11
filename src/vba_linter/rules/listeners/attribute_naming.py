@@ -2,13 +2,14 @@ from antlr4 import ParseTreeListener, ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+import vba_linter.helpers.string_format
+from vba_linter.rules.listeners.vba_listener_rule_base import VbaListenerRuleBase
 
 
 T = TypeVar('T', bound='AttributeNaming')
 
 
-class AttributeNaming(ParseTreeListener):
+class AttributeNaming(VbaListenerRuleBase):
     """
     Check that each atteibute is named correctly.
     """
@@ -38,7 +39,7 @@ class AttributeNaming(ParseTreeListener):
         tokens = VbaListener.get_tokens(ctx)
         for tok in tokens:
             if (tok.type == vbaLexer.IDENTIFIER and not
-                    VbaListener.is_snake_case(tok.text)):
+                    string_format.is_snake_case(tok.text)):
                 msg = "variable not snake"
                 output = (tok.line, tok.column + 2, "Wxxx", msg)
                 self.output.append(output)
@@ -59,7 +60,7 @@ class AttributeNaming(ParseTreeListener):
         else:
             assert tokens[4].type == vbaLexer.IDENTIFIER
             token = tokens[4]
-        if not VbaListener.is_pascal_case(token.text):
+        if not string_format.is_pascal_case(token.text):
             line = token.line
             column = token.column
             msg = "name not Pascal"
