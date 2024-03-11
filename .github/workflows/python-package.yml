@@ -63,3 +63,4 @@ jobs:
     - name: Static Test with Mypy
       run: |
         mypy src/
+        mypy tests/
