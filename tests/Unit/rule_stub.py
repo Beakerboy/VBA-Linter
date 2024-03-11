@@ -1,6 +1,5 @@
 from antlr4 import CommonTokenStream
 from typing import List, TypeVar
-from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 
 
