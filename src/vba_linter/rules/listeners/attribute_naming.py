@@ -2,7 +2,7 @@ from antlr4 import ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-import vba_linter.helpers.string_format
+from vba_linter.helpers.string_format import is_snake_case, is_pascal_case
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
@@ -25,7 +25,7 @@ class AttributeNaming(ListenerRuleBase):
         """
         tokens = VbaListener.get_tokens(ctx)
         tok = tokens[0] if tokens[0].type == vbaLexer.IDENTIFIER else tokens[2]
-        if not VbaListener.is_snake_case(tok.text):
+        if not string_format.is_snake_case(tok.text):
             msg = "variable not snake"
             output = (tok.line, tok.column + 2, "Wxxx", msg)
             self.output.append(output)
