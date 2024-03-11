@@ -6,7 +6,7 @@ from typing import Type, TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
 
-T = TypeVar('T', bound='VbaListener')
+T = TypeVar('T', bound='VbaListenerTestRunner')
 
 
 class VbaListenerTestRunner(ParseTreeListener, RuleBase):
