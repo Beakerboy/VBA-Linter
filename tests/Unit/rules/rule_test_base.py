@@ -112,6 +112,7 @@ class RuleTestBase:
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))
             token = ts.LT(1)
+            assert isinstance(token, Token)
             if token.type != Token.EOF:
                 ts.consume()
         return results
