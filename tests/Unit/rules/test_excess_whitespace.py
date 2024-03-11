@@ -1,6 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 
 
@@ -43,7 +43,7 @@ rule = ExcessWhitespace()
     "code, expected",
     anti_patterns + RuleTestBase.best_practice
 )
-def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
+def test_test(rule: ListenerRuleBase, code: str, expected: tuple) -> None:
     assert RuleTestBase.run_combo_test(rule, code) == expected
 
 
