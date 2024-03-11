@@ -1,4 +1,4 @@
-from typing import TypeVar
+from typing import List, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.rule_base import RuleBase
 
@@ -10,7 +10,7 @@ class RuleStub(RuleBase):
 
     def __init__(self: T) -> None:
         self._rule_name = ""
-        self._output: list[tuple] = []
+        self._output: List[tuple] = []
         self._message = ''
         self.test_count = 0
 
