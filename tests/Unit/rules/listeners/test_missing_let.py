@@ -34,14 +34,17 @@ def test_context() -> None:
     ident.line = 6
     ident.column = 0
     ident_node = TerminalNodeImpl(ident)
-    ambig = vbaParser.AmbiguousIdentifierContext(uname)
-    ambig.addChild(ident_node)
-    ident.parentCtx = ambig
     le = vbaParser.LExpressionContext(ctx)
     sn = vbaParser.SimpleNameExpressionContext(le)
+    le.addChild(sn)
     name = vbaParser.NameContext(sn)
+    sn.addChild(name)
     uname = vbaParser.UntypedNameContext(name)
+    name.addChild(uname)
     ambig = vbaParser.AmbiguousIdentifierContext(uname)
+    uname.addChild(ambig)
+    ambig.addChild(ident_node)
+    ident.parentCtx = ambig
     eq = Token()
     eq.type = vbaLexer.EQ
     eq.text = '='
