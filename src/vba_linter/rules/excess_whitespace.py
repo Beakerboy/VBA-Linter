@@ -5,7 +5,6 @@ from typing import Dict, List, TypeVar
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
-
 T = TypeVar('T', bound='ExcessWhitespace')
 
 
