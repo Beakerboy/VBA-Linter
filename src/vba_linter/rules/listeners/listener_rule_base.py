@@ -1,4 +1,4 @@
-from antlr4 import ParseTreeListener
+from antlr4 import ParserRuleContext, ParseTreeListener
 from antlr4.tree.Tree import TerminalNodeImpl
 from typing import TypeVar
 from vba_linter.rules.rule_base import RuleBase
