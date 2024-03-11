@@ -1,15 +1,15 @@
-from antlr4 import ParseTreeListener, ParserRuleContext
+from antlr4 import ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
 import vba_linter.helpers.string_format
-from vba_linter.rules.listeners.vba_listener_rule_base import VbaListenerRuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='AttributeNaming')
 
 
-class AttributeNaming(VbaListenerRuleBase):
+class AttributeNaming(ListenerRuleBase):
     """
     Check that each atteibute is named correctly.
     """
