@@ -65,4 +65,4 @@ def token_fact(type: int, text: str, line: int, column: int) -> tuple:
     tok.text = text
     tok.line = line
     tok.column = column
-    return (tok, TerminalNodeImpl(ident))
+    return (tok, TerminalNodeImpl(tok))
