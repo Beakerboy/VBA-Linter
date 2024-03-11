@@ -23,7 +23,7 @@ class AttributeNaming(ListenerRuleBase):
         foo = 7
         Let bar = True
         """
-        tokens = VbaListener.get_tokens(ctx)
+        tokens = ListenerRuleBase.get_tokens(ctx)
         tok = tokens[0] if tokens[0].type == vbaLexer.IDENTIFIER else tokens[2]
         if not is_snake_case(tok.text):
             msg = "variable not snake"
@@ -36,7 +36,7 @@ class AttributeNaming(ListenerRuleBase):
         Dim foo as Integer
         Dim a, b, c As Single, x, y As Double, i As Integer
         """
-        tokens = VbaListener.get_tokens(ctx)
+        tokens = ListenerRuleBase.get_tokens(ctx)
         for tok in tokens:
             if (tok.type == vbaLexer.IDENTIFIER and not
                     is_snake_case(tok.text)):
@@ -53,7 +53,7 @@ class AttributeNaming(ListenerRuleBase):
         self.enter_function_sub_stmt(ctx)
 
     def enter_function_sub_stmt(self: T, ctx: ParserRuleContext) -> None:
-        tokens = VbaListener.get_tokens(ctx)
+        tokens = ListenerRuleBase.get_tokens(ctx)
         token = tokens[2]
         if tokens[2].type == vbaLexer.IDENTIFIER:
             token = tokens[2]
