@@ -86,7 +86,8 @@ class RuleTestBase:
         return results
 
     @classmethod
-    def run_combo_test(cls: Type[T], rule: RuleBase, code: str) -> list:
+    def run_combo_test(cls: Type[T], rule: ListenerRuleBase,
+                       code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
         results = []
