@@ -21,3 +21,43 @@ rule = MissingLet()
 )
 def test_test(rule: RuleBase, code: str, expected: tuple) -> None:
     assert RuleTestBase.run_test(rule, code) == expected
+
+
+def test_context() -> None:
+    ctx = vbaParser.LetStatementContext()
+    ident = Token()
+    ident.type = vbaLexer.IDENTIFIER
+    ident.text = 'I'
+    ident.line = 6
+    ident.column = 0
+    ident_node = TerminalNodeImpl(ident)
+    ambig = vbaParser.AmbiguousIdentifierContext(uname)
+    ambig.addChild(ident)
+    ident.parentCtx = ambig
+    le = vbaParser.LExpressionContext(ctx)
+    sn = vbaParser.SimpleNameExpressionContext(le)
+    name = vbaParser.NameContext(se)
+    uname = UntypedNameContext(name)
+    ambig = vbaParser.AmbiguousIdentifierContext(uname)
+    eq = Token()
+    eq.type = vbaLexer.EQ
+    eq.text = '='
+    eq.line = 6
+    eq.column = 1
+    eq_node = TerminalNodeImpl(eq)
+    eq_node.parentCtx = ctx
+    val = Token()
+    val.type = vbaLexer.INTEGERLITERAL
+    val.text = '4'
+    val.line = 6
+    val.column = 2
+    val_node = TerminalNodeImpl(val)
+    ex = vbaParser.ExpressionContext(ls)
+    li = vbaParser.LiteralExpressionContext(ex)
+    li.addChild(val_node)
+    val_node.parentCtx = li
+    ctx.children = [le, eq_node, ex]
+    ctx.start = ident
+    ctx.stop = val
+    rule.enterLetStatement(ctx)
+    assert rule.output == [(6, 1, '201')]
