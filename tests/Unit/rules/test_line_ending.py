@@ -46,4 +46,4 @@ def test_custom_streams() -> None:
     tok.column = 0
     tok.text = "\n"
     ts = TokenStreamStub([tok])
-    assert rule.test(ts) == (1, 0, '400')
+    assert rule.test(ts) == [(1, 0, '400')]
