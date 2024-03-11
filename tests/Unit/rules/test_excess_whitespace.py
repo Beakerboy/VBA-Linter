@@ -1,5 +1,6 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
+from Unit.token_stream_stub import TokenStreamStub
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 
@@ -53,3 +54,21 @@ def test_test(rule: ListenerRuleBase, code: str, expected: tuple) -> None:
 )
 def test_message(rule: ListenerRuleBase, data: tuple, expected: str) -> None:
     assert rule.create_message(data) == expected
+
+def test_context() -> None:
+    rule.output = []
+    ts = TokenStreamStub()
+    parser = vbaParser(ts)
+    ctx = vbaParser.ArgumentListContext(parser)
+    rule.enterArgumentList(ctx)
+    assert rule.output == [(6, 1, '201')]
+
+
+def token_fact(ty: int, te: str, li: int, co: int, ti: int) -> tuple:
+    tok = Token()
+    tok.tokenIndex = ti
+    tok.type = ty
+    tok.text = te
+    tok.line = li
+    tok.column = co
+    return (tok, TerminalNodeImpl(tok))
