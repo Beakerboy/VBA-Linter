@@ -4,11 +4,12 @@ import string
 from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
+from testing import Generator
 from vba_linter.__main__ import main
 
 
 @pytest.fixture(autouse=True)
-def run_around_tests() -> None:
+def run_around_tests() -> Generator:
     global files
     files = []
     # Code that will run before your test, for example:
