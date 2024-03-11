@@ -1,4 +1,5 @@
 import pytest
+from antlr4_vba.vbaParser import vbaParser
 from Unit.rules.rule_test_base import RuleTestBase
 from Unit.token_stream_stub import TokenStreamStub
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
@@ -54,6 +55,7 @@ def test_test(rule: ListenerRuleBase, code: str, expected: tuple) -> None:
 )
 def test_message(rule: ListenerRuleBase, data: tuple, expected: str) -> None:
     assert rule.create_message(data) == expected
+
 
 def test_context() -> None:
     rule.output = []
