@@ -10,6 +10,7 @@ from vba_linter.__main__ import main
 
 files: list
 
+
 @pytest.fixture(autouse=True)
 def run_around_tests() -> Generator:
     global files
