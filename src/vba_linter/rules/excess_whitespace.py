@@ -117,7 +117,6 @@ class ExcessWhitespace(ListenerRuleBase):
         The whitespace after the subroutine name is manditory, so there must be
         whitespace before a comma.
         """
-        exit()
         tokens = ListenerRuleBase.get_tokens(ctx)
         raise Exception(str(tokens[0]))
         if tokens[1].type == vbaLexer.COMMA:
