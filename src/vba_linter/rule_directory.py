@@ -17,6 +17,7 @@ from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.keyword_caps import KeywordCaps
 from vba_linter.rules.listeners.arglist_ws import ArglistWs
 from vba_linter.rules.listeners.optional_public import OptionalPublic
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
@@ -34,7 +35,7 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
-        self._parser_rules: Dict[str, ParseTreeListener] = {}
+        self._parser_rules: Dict[str, ListenerRuleBase] = {}
         # some simple tokens have slight amendments to
         # the whitespace rules.
         self._special_rules: Dict[str, RuleBase] = {}
