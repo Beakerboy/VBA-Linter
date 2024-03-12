@@ -90,7 +90,3 @@ class ArglistWs(ListenerRuleBase):
                 rule = self.rule_name
                 self.output.append((line, column, rule, msg))
                 break
-
-    def enterArgumentList(self: T,  # noqa: N802
-                          ctx: vbaParser.ArgumentListContext) -> None:
-        raise Exception("foo")
