@@ -28,4 +28,5 @@ class OptionalLet(ListenerRuleBase):
 
     def enterArgumentList(self: T,  # noqa: N802
                           ctx: vbaParser.ArgumentListContext) -> None:
+        pass
         # exit()
