@@ -1,9 +1,6 @@
 import pytest
-from antlr4 import Token
-from antlr4.tree.Tree import TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser
 from Unit.rules.rule_test_base import RuleTestBase
-from Unit.token_stream_stub import TokenStreamStub
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 
