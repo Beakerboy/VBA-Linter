@@ -1,5 +1,5 @@
 from antlr4_vba.vbaLexer import vbaLexer
-from vba_linter.rules.ambiguous_identifier import AmbiguousIdentifier
+from vba_linter.rules.stream.ambiguous_identifier import AmbiguousIdentifier
 from typing import TypeVar
 
 

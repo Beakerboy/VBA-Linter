@@ -5,7 +5,7 @@ from vba_linter.rules.rule_base import RuleBase
 from vba_linter.rules.token_sequence_mismatch import TokenSequenceMismatch
 
 
-anti_patterns = [
+anti_patterns: list = [
     [
         'Public Function Foo(num,mum)\r\nEnd Function\r\n',
         [(1, 25, "B83")]

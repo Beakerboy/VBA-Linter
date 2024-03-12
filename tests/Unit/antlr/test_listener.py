@@ -1,5 +1,5 @@
 import pytest
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.vbalistener_test_runner import VbaListenerTestRunner
 
 
 name_formats = [
@@ -14,9 +14,9 @@ name_formats = [
 
 @pytest.mark.parametrize("name, expected", name_formats)
 def test_snake_case(name: str, expected: list) -> None:
-    assert VbaListener.is_snake_case(name) == expected[0]
+    assert VbaListenerTestRunner.is_snake_case(name) == expected[0]
 
 
 @pytest.mark.parametrize("name, expected", name_formats)
 def test_camel_case(name: str, expected: list) -> None:
-    assert VbaListener.is_camel_case(name) == expected[1]
+    assert VbaListenerTestRunner.is_camel_case(name) == expected[1]

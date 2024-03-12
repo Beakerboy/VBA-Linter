@@ -1,12 +1,13 @@
-from antlr4 import ParseTreeListener, ParserRuleContext
+from antlr4 import ParserRuleContext
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='ParameterUnused')
 
 
-class ParameterUnused(ParseTreeListener):
+class ParameterUnused(ListenerRuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []

@@ -2,13 +2,14 @@ from antlr4 import CommonTokenStream, ParserRuleContext
 from antlr4_vba.vbaLexer import vbaLexer
 from antlr4_vba.vbaParser import vbaParser
 from typing import TypeVar
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.helpers.string_format import is_pascal_case
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='FunctionNaming')
 
 
-class FunctionNaming(VbaListener):
+class FunctionNaming(ListenerRuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []
@@ -31,7 +32,7 @@ class FunctionNaming(VbaListener):
         token = ctx.start
         if (
                 token.type == vbaLexer.IDENTIFIER and
-                not VbaListener.is_pascal_case(token.text)
+                not is_pascal_case(token.text)
         ):
             line = token.line
             column = token.column

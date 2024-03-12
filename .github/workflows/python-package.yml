@@ -62,4 +62,4 @@ jobs:
         flake8 . --count --show-source --statistics
     - name: Static Test with Mypy
       run: |
-        mypy src/
+        mypy ./

@@ -1,19 +1,19 @@
 import random
 import string
-from antlr4 import (CommonTokenStream, ParseTreeListener,
-                    ParseTreeWalker, Token)
+from antlr4 import CommonTokenStream, ParseTreeWalker, Token
 from antlr4_vba.vbaParser import vbaParser
 from pathlib import Path
 from typing import Type, TypeVar
 from vba_linter.linter import Linter
 from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='RuleTestBase')
 
 
 class RuleTestBase:
-    best_practice = [
+    best_practice: list = [
         [
             ('Attribute VB_Name = "SQLFactory"\r\n' +
              'Option Explicit\r\n' +
@@ -25,6 +25,7 @@ class RuleTestBase:
              '    Dim Foo()    As String\r\n' +
              '    Set Qux = Foo.Bar(2, , base)\r\n' +
              '    x = 3:    y = 4\r\n' +
+             '    List.Reverse , 1\r\n' +
              'End Function\r\n'),
             []
         ]
@@ -71,15 +72,34 @@ class RuleTestBase:
     def run_test(cls: Type[T], rule: RuleBase, code: str) -> list:
         file_name = cls.save_code(code)
         ts = cls.create_tokens(file_name)
-        if isinstance(rule, ParseTreeListener):
+        results = []
+        if isinstance(rule, ListenerRuleBase):
             rule.output = []
             parser = vbaParser(ts)
             program = parser.startRule()
             ParseTreeWalker.DEFAULT.walk(rule, program)
-            results = rule.output
+            results.extend(rule.output)
         else:
-            results = cls.run_token_rule(rule, ts)
+            results.extend(cls.run_token_rule(rule, ts))
         cls.delete_code(file_name)
+        results.sort()
+        return results
+
+    @classmethod
+    def run_combo_test(cls: Type[T], rule: ListenerRuleBase,
+                       code: str) -> list:
+        file_name = cls.save_code(code)
+        ts = cls.create_tokens(file_name)
+        results = []
+        rule.output = []
+        results.extend(cls.run_token_rule(rule, ts))
+        ts.reset()
+        parser = vbaParser(ts)
+        program = parser.startRule()
+        ParseTreeWalker.DEFAULT.walk(rule, program)
+        results.extend(rule.output)
+        cls.delete_code(file_name)
+        results.sort()
         return results
 
     @classmethod
@@ -93,6 +113,7 @@ class RuleTestBase:
         while not ts.fetchedEOF:
             results.extend(rule.test(ts))
             token = ts.LT(1)
+            assert isinstance(token, Token)
             if token.type != Token.EOF:
                 ts.consume()
         return results

@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream, FileStream, ParseTreeWalker, Token
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.antlr.throwing_error_listener import ThrowingErrorListener
-from vba_linter.antlr.vbaListener import VbaListener
+from vba_linter.rules.vbalistener_test_runner import VbaListenerTestRunner
 from pathlib import Path
 from typing import TypeVar
 from vba_linter.rule_directory import RuleDirectory
@@ -36,7 +36,7 @@ class Linter:
         output = e999.test(ts1)
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
-        filtered_output = []
+
         if output == []:
             program = e999.program
             token = ts.LT(1)
@@ -50,29 +50,20 @@ class Linter:
                 ts.consume()
                 token = ts.LT(1)
                 assert token is not None
-            listener = VbaListener()
+            listener = VbaListenerTestRunner()
             listener.set_token_stream(ts1)
             listener.listeners = dir.get_parser_rules()
             ParseTreeWalker.DEFAULT.walk(listener, program)
             output.extend(listener.get_output())
             # Get the ignore list and remove violations
             # that should be removed.
-            rule_disabler = dir.get_rule_disabler()
-            ignored = rule_disabler.ignored
-            if len(ignored) > 0:
-                for violation in output:
-                    violated_rule = violation[2][-3:]
-                    if violated_rule in ignored:
-                        violation_line = violation[0]
-                        if violation_line not in ignored[violated_rule]:
-                            filtered_output.append(violation)
-                    else:
-                        filtered_output.append(violation)
-            else:
-                filtered_output = output
-            filtered_output.sort()
+            output = self._filter_output(
+                output,
+                dir.get_rule_disabler().ignored
+            )
+            output.sort()
         self.pretty = ts
-        return filtered_output
+        return output
 
     def get_pretty_code(self: T) -> str:
         code = ""
@@ -83,3 +74,18 @@ class Linter:
                 code += token.text
             i += 1
         return code
+
+    def _filter_output(self: T, output: list, ignored: dict) -> list:
+        filtered_output = []
+        if len(ignored) > 0:
+            for violation in output:
+                violated_rule = violation[2][-3:]
+                if violated_rule in ignored:
+                    violation_line = violation[0]
+                    if violation_line not in ignored[violated_rule]:
+                        filtered_output.append(violation)
+                else:
+                    filtered_output.append(violation)
+        else:
+            filtered_output = output
+        return filtered_output

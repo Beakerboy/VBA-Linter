@@ -1,16 +1,18 @@
 from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer
+from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, List, TypeVar
-from vba_linter.rules.rule_base import RuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='ExcessWhitespace')
 
 
-class ExcessWhitespace(RuleBase):
+class ExcessWhitespace(ListenerRuleBase):
 
     def __init__(self: T) -> None:
         super().__init__()
+        self.output: list = []
         self._rule_name = "151"
         self._message = "Excess whitespace {3} '{4}'"
         self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141,
@@ -56,7 +58,11 @@ class ExcessWhitespace(RuleBase):
                     assert isinstance(post_token, Token)
                     text = post_token.text
                     rule = self._rule_name + ':' + str(self.rules[text])
-                    output.append((line, column, rule, "before", text))
+                    otp = (line, column, rule, "before", text)
+                    if rule == "151:141":
+                        self.output.append(otp)
+                    else:
+                        output.append(otp)
             # Arbitrary whitespace is allowed at the beginning
             # of lines, after a colon, before comments, and before
             # an As statement. The 'As' exception is only valid in
@@ -99,6 +105,28 @@ class ExcessWhitespace(RuleBase):
             data_list[2] = data_list[2][-3:]
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
+
+    def enterArgumentList(self: T,  # noqa: N802
+                          ctx: Parser.ArgumentListContext) -> None:
+        """
+        There is a rare case of omitting the first argument in a subroutine
+        call:
+        MiscSub , Arg  ' This is fine
+        Call MiscSub( , Arg)  ' This is Not
+        Call MiscSub(, Arg)  ' This is Fine
+        The whitespace after the subroutine name is manditory, so there must be
+        whitespace before a comma.
+        """
+        tokens = ListenerRuleBase.get_tokens(ctx)
+        if len(tokens) > 1 and tokens[0].type == vbaLexer.COMMA:
+            parent = ctx.parentCtx
+            if isinstance(parent, Parser.CallStatementContext):
+                ws = parent.getChild(0, Parser.WscContext)
+                wsc = ws.getChild(0).symbol
+                for item in self.output:
+                    if item == (wsc.line, wsc.column + 1,
+                                "151:141", 'before', ','):
+                        self.output.remove(item)
 
     def _build_list(self: T, ts: CommonTokenStream, num: int) -> list:
         """

@@ -4,11 +4,15 @@ import string
 from pathlib import Path
 from pytest_mock import MockerFixture
 from _pytest.capture import CaptureFixture
+from typing import Generator
 from vba_linter.__main__ import main
 
 
+files: list
+
+
 @pytest.fixture(autouse=True)
-def run_around_tests() -> None:
+def run_around_tests() -> Generator:
     global files
     files = []
     # Code that will run before your test, for example:
@@ -107,6 +111,7 @@ worst_expected = """\
 
 def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
@@ -131,6 +136,7 @@ def test_worst_file_all(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 
 def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     expected = """\
@@ -169,6 +175,7 @@ def test_worst_silent(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     Ensure that -q still fails, but has no output.
     """
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
@@ -191,6 +198,7 @@ def test_worst_zero(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     an exception
     """
     file_name = save_code(worst_practice)
+    global files
     files.append(file_name)
     mocker.patch(
         "sys.argv",
@@ -224,6 +232,7 @@ def test_best_practice(mocker: MockerFixture, capsys: CaptureFixture) -> None:
         'Private Sub Opens()\r\n' +
         'End Sub\r\n'
     )
+    global files
     file_name = save_code(best_practice)
     files.append(file_name)
     mocker.patch(
@@ -265,6 +274,7 @@ worst_practice1 = (
 
 def test_ignore(mocker: MockerFixture, capsys: CaptureFixture) -> None:
     file_name = save_code(worst_practice1)
+    global files
     files.append(file_name)
     full_path = ("/home/runner/work/VBA-Linter/VBA-Linter/" + file_name)
     mocker.patch(

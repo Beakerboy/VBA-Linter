@@ -1,5 +1,4 @@
 from typing import Dict, List, TypeVar
-from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 from vba_linter.rules.rule_base import RuleBase
@@ -17,6 +16,7 @@ from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.keyword_caps import KeywordCaps
 from vba_linter.rules.listeners.arglist_ws import ArglistWs
 from vba_linter.rules.listeners.optional_public import OptionalPublic
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 from vba_linter.rules.listeners.missing_visibility import MissingVisibility
 from vba_linter.rules.listeners.missing_let import MissingLet
 from vba_linter.rules.listeners.optional_let import OptionalLet
@@ -34,7 +34,7 @@ class RuleDirectory:
         # create list of name to path
         # load config file.
         self._rules: Dict[str, RuleBase] = {}
-        self._parser_rules: Dict[str, ParseTreeListener] = {}
+        self._parser_rules: Dict[str, ListenerRuleBase] = {}
         # some simple tokens have slight amendments to
         # the whitespace rules.
         self._special_rules: Dict[str, RuleBase] = {}
@@ -42,7 +42,7 @@ class RuleDirectory:
         self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        if isinstance(rule, ParseTreeListener):
+        if isinstance(rule, ListenerRuleBase):
             self._parser_rules[rule.get_rule_name()] = rule
         else:
             self._rules[rule.get_rule_name()] = rule
@@ -71,8 +71,9 @@ class RuleDirectory:
         rule910 = LineTooLong(1023)
         rule910.set_rule_name("910")
         rule910.severity = 'F'
+        ws = ExcessWhitespace()
         self._rules.update({
-            "151": ExcessWhitespace(),
+            "151": ws,
             "701": NewlineEof(),
             "220": KeywordCaps(),
             "400": LineEnding(),
@@ -80,7 +81,8 @@ class RuleDirectory:
             "910": rule910
         })
         self._parser_rules.update({
-            "121": ArglistWs()
+            "121": ArglistWs(),
+            "151": ws
         })
 
     def load_all_rules(self: T) -> None:
@@ -112,7 +114,7 @@ class RuleDirectory:
         else:
             return RuleBase()
 
-    def get_parser_rules(self: T) -> List[ParseTreeListener]:
+    def get_parser_rules(self: T) -> List[ListenerRuleBase]:
         lst = list(self._parser_rules.values())
         return lst
 

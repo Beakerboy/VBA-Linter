@@ -6,10 +6,10 @@ from typing import Type, TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
 
-T = TypeVar('T', bound='VbaListener')
+T = TypeVar('T', bound='VbaListenerTestRunner')
 
 
-class VbaListener(ParseTreeListener, RuleBase):
+class VbaListenerTestRunner(ParseTreeListener, RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.output: list = []

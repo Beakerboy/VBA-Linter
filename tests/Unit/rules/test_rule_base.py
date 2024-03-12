@@ -1,3 +1,4 @@
+from Unit.token_stream_stub import TokenStreamStub
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -8,4 +9,5 @@ def test_constructor() -> None:
 
 def test_test() -> None:
     base = RuleBase()
-    assert base.test([]) == []
+    ts = TokenStreamStub()
+    assert base.test(ts) == []
