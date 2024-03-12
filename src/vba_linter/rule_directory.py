@@ -115,7 +115,7 @@ class RuleDirectory:
         else:
             return RuleBase()
 
-    def get_parser_rules(self: T) -> List[ParseTreeListener]:
+    def get_parser_rules(self: T) -> List[ListenerRuleBase]:
         lst = list(self._parser_rules.values())
         return lst
 
