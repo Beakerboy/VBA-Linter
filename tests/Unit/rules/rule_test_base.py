@@ -17,6 +17,7 @@ class RuleTestBase:
         [
             ('Attribute VB_Name = "SQLFactory"\r\n' +
              'Option Explicit\r\n' +
+             'Private Declare PtrSafe Function Foo Lib "bar" (ByVal baz as LongPtr) as LongPtr\r\n' +
              '\r\n' +
              'Public Function Foo(ByRef num As String, _\r\n' +
              'bar)\r\n' +
