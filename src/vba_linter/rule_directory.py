@@ -1,5 +1,4 @@
 from typing import Dict, List, TypeVar
-from antlr4 import ParseTreeListener
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 from vba_linter.rules.rule_base import RuleBase
