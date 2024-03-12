@@ -77,7 +77,9 @@ class ArglistWs(ListenerRuleBase):
         """
         token = ctx.start
         parent = ctx.parentCtx
-        if not isinstance(parent, vbaParser.ExternalFunctionContext):
+        allow = (vbaParser.ExternalFunctionContext,
+                 vbaParser.ExternalSubContext)
+        if not isinstance(parent, allow):
             paren_index = token.tokenIndex
 
             def predicate(x: object) -> bool:
