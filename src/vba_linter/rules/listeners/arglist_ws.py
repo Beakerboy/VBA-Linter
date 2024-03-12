@@ -92,5 +92,5 @@ class ArglistWs(ListenerRuleBase):
                 break
 
     def enterArgumentList(self: T,  # noqa: N802
-                          ctx: Parser.ArgumentListContext) -> None:
+                          ctx: vbaParser.ArgumentListContext) -> None:
         raise Exception("foo")
