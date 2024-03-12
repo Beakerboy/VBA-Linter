@@ -93,6 +93,7 @@ class RuleTestBase:
         results = []
         rule.output = []
         results.extend(cls.run_token_rule(rule, ts))
+        ts.reset()
         parser = vbaParser(ts)
         program = parser.startRule()
         ParseTreeWalker.DEFAULT.walk(rule, program)
