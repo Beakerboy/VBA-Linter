@@ -42,3 +42,6 @@ pythonpath = "src:tests"
 testpaths = [
     "tests",
 ]
+
+[tool.setuptools.package-data]
+"vba_linter" = ["py.typed"]
