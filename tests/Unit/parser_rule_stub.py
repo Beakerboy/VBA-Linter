@@ -1,5 +1,5 @@
 from typing import TypeVar
-from vba_linter.rules.listener.listener_rule_base import ListenerRuleBase
+from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
 
 
 T = TypeVar('T', bound='ParserRuleStub')
