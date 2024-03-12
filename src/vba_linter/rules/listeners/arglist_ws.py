@@ -18,6 +18,8 @@ class ArglistWs(ListenerRuleBase):
     MiscSub (1 + 2)  ' Fine: parenthesised expression as arg
     Call MiscSub (1 + 2)  'Bad: space between name and arglist
     Foo = MiscFunc (1 + 2)  ' Bad: space between name and arglist
+    Whitespace is expected between a stringliteral and arglist
+    in declare statements.
     """
     def __init__(self: T) -> None:
         super().__init__()
@@ -75,18 +77,19 @@ class ArglistWs(ListenerRuleBase):
         """
         token = ctx.start
         parent = ctx.parentCtx
-        paren_index = token.tokenIndex
+        if not isinstance(vbaParser.ExternalFunctionContext, parent)
+            paren_index = token.tokenIndex
 
-        def predicate(x: object) -> bool:
-            return isinstance(x, vbaParser.WscContext)
+            def predicate(x: object) -> bool:
+                return isinstance(x, vbaParser.WscContext)
 
-        spaces = parent.getChildren(predicate)
-        for wsc in spaces:
-            if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
-                ws = wsc.getChild(0).symbol
-                msg = self.msg
-                line = ws.line
-                column = ws.column + 1
-                rule = self.rule_name
-                self.output.append((line, column, rule, msg))
-                break
+            spaces = parent.getChildren(predicate)
+            for wsc in spaces:
+                if wsc.getChild(0).symbol.tokenIndex == paren_index - 1:
+                    ws = wsc.getChild(0).symbol
+                    msg = self.msg
+                    line = ws.line
+                    column = ws.column + 1
+                    rule = self.rule_name
+                    self.output.append((line, column, rule, msg))
+                    break
