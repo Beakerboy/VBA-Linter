@@ -36,7 +36,7 @@ class Linter:
         output = e999.test(ts1)
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
-        filtered_output = []
+        
         if output == []:
             program = e999.program
             token = ts.LT(1)
@@ -57,22 +57,13 @@ class Linter:
             output.extend(listener.get_output())
             # Get the ignore list and remove violations
             # that should be removed.
-            rule_disabler = dir.get_rule_disabler()
-            ignored = rule_disabler.ignored
-            if len(ignored) > 0:
-                for violation in output:
-                    violated_rule = violation[2][-3:]
-                    if violated_rule in ignored:
-                        violation_line = violation[0]
-                        if violation_line not in ignored[violated_rule]:
-                            filtered_output.append(violation)
-                    else:
-                        filtered_output.append(violation)
-            else:
-                filtered_output = output
-            filtered_output.sort()
+            output = self._filter_output(
+                output,
+                dir.get_rule_disabler().ignored
+            )
+            output.sort()
         self.pretty = ts
-        return filtered_output
+        return output
 
     def get_pretty_code(self: T) -> str:
         code = ""
@@ -83,3 +74,18 @@ class Linter:
                 code += token.text
             i += 1
         return code
+
+    def _filter_output(self: T, output: list, ignored: list) -> list:
+        filtered_output = []
+        if len(ignored) > 0:
+            for violation in output:
+                violated_rule = violation[2][-3:]
+                if violated_rule in ignored:
+                    violation_line = violation[0]
+                    if violation_line not in ignored[violated_rule]:
+                        filtered_output.append(violation)
+                else:
+                    filtered_output.append(violation)
+        else:
+            filtered_output = output
+        return filtered_output
