@@ -118,12 +118,11 @@ class ExcessWhitespace(ListenerRuleBase):
         whitespace before a comma.
         """
         tokens = ListenerRuleBase.get_tokens(ctx)
-        if tokens[1].type == vbaLexer.COMMA:
+        if tokens[0].type == vbaLexer.COMMA:
             parent = ctx.parentCtx
             if isinstance(parent, Parser.CallStatementContext):
                 ws = parent.getChild(0, Parser.WscContext)
                 wsc = ws.getChild(0).symbol
-                raise Exception(str(wsc))
                 for item in self.output:
                     if item == (wsc.line, wsc.column + 1,
                                 "151:141", 'before', ','):
