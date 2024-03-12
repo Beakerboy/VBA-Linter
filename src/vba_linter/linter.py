@@ -36,7 +36,7 @@ class Linter:
         output = e999.test(ts1)
         lexer = self.get_lexer(code)
         ts = CommonTokenStream(lexer)
-        
+
         if output == []:
             program = e999.program
             token = ts.LT(1)
