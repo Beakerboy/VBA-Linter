@@ -25,3 +25,7 @@ class OptionalLet(ListenerRuleBase):
             name = self._rule_name
             output = (line, column + 1, name)
             self.output.append(output)
+
+    def enterArgumentList(self: T,  # noqa: N802
+                          ctx: Parser.ArgumentListContext) -> None:
+        exit()
