@@ -43,7 +43,7 @@ class RuleDirectory:
         self.add_rule(RuleDisabler())
 
     def add_rule(self: T, rule: RuleBase) -> None:
-        if isinstance(rule, ParseTreeListener):
+        if isinstance(rule, ListenerRuleBase):
             self._parser_rules[rule.get_rule_name()] = rule
         else:
             self._rules[rule.get_rule_name()] = rule
