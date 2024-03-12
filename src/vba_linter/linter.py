@@ -75,7 +75,7 @@ class Linter:
             i += 1
         return code
 
-    def _filter_output(self: T, output: list, ignored: list) -> list:
+    def _filter_output(self: T, output: list, ignored: dict) -> list:
         filtered_output = []
         if len(ignored) > 0:
             for violation in output:
