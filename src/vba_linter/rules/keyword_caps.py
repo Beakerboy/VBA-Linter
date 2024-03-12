@@ -45,7 +45,8 @@ class KeywordCaps(RuleBase):
             Lexer.CDEC: "CDec", Lexer.CINT: "CInt", Lexer.CLNG: "CLng",
             Lexer.CSNG: "CSng", Lexer.CSTR: "CStr", Lexer.ELSEIF: "ElseIf",
             Lexer.GOTO: "GoTo", Lexer.GOSUB: "GoSub", Lexer.LENB: "LenB",
-            Lexer.LBOUND: "LBound", Lexer.PARAMARRAY: "ParamArray",
+            Lexer.LBOUND: "LBound", Lexer.LONGPTR: "LongPtr",
+            Lexer.LONGLONG: "LongLong", Lexer.PARAMARRAY: "ParamArray",
             Lexer.PTRSAFE: "PtrSafe", Lexer.RAISEEVENT: "RaiseEvent",
             Lexer.REDIM: "ReDim", Lexer.TYPEOF: "TypeOf",
             Lexer.UBOUND: "UBound", Lexer.WITHEVENTS: "WithEvents"
