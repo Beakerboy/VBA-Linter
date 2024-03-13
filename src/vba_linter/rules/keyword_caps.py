@@ -24,6 +24,7 @@ class KeywordCaps(RuleBase):
         pattern = "^[A-Za-z][A-Za-z]+$"
         text = token.text
         type = token.type
+        # These can ezist in any context in user dictated cap
         generics = [
             Lexer.IDENTIFIER, Lexer.ACCESS, Lexer.ALIAS, Lexer.APPACTIVATE,
             Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN, Lexer.BEGINPROPERTY,
@@ -38,6 +39,7 @@ class KeywordCaps(RuleBase):
             Lexer.SENDKEYS, Lexer.SETATTR, Lexer.STEP, Lexer.TEXT,
             Lexer.TIME, Lexer.UNLOAD, Lexer.VERSION, Lexer.WIDTH
         ]
+        # These must be in this UpperCamel format.
         multi_cap = {
             Lexer.ADDRESSOF: "AddressOf", Lexer.BYREF: "ByRef",
             Lexer.BYVAL: "ByVal", Lexer.CBOOL: "CBool", Lexer.CBYTE: "CByte",
