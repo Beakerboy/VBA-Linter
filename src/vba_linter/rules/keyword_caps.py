@@ -25,7 +25,6 @@ class KeywordCaps(RuleBase):
         text = token.text
         type = token.type
         # These can ezist in any context in user dictated cap
-1234567890123456789212345678931234567894123456789512345678961234567897123456789
         generics = [
             Lexer.IDENTIFIER, Lexer.ACCESS, Lexer.ALIAS, Lexer.APPACTIVATE,
             Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN,
