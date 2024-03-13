@@ -1,3 +1,4 @@
+from antlr4 import ParserRuleContext
 from antlr4.tree.Tree import TerminalNode, TerminalNodeImpl
 from antlr4_vba.vbaParser import vbaParser as Parser
 from typing import Dict, TypeVar
@@ -31,6 +32,14 @@ class RuleDisabler(ListenerRuleBase):
     def enterClassBeginBlock(  # noqa: N802
             self: T,
             ctx: Parser.ClassBeginBlockContext) -> None:
+        self.begin_blocks(ctx)
+
+    def enterFormBeginBlock(  # noqa: N802
+            self: T,
+            ctx: Parser.FormBeginBlockContext) -> None:
+        self.begin_blocks(ctx)
+
+    def begin_blocks(self: T, ctx: ParserRuleContext) -> None:
         start = ctx.start.line
         stop = ctx.stop.line
         self.add_ignored_lines('305', start, stop)
