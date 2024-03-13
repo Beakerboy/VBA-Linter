@@ -26,12 +26,12 @@ class KeywordCaps(RuleBase):
         type = token.type
         generics = [
             Lexer.IDENTIFIER, Lexer.ACCESS, Lexer.ALIAS, Lexer.APPACTIVATE,
-            Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN, Lexer.BINARY,
-            Lexer.CLASS, Lexer.CHDIR, Lexer.CHDRIVE, Lexer.CLASS_INITIALIZE,
-            Lexer.CLASS_TERMINATE, Lexer.COLLECTION, Lexer.COMPARE,
-            Lexer.DATABASE, Lexer.DELETESETTING, Lexer.ERROR, Lexer.FILECOPY,
-            Lexer.GO, Lexer.KILL, Lexer.LOAD, Lexer.LIB, Lexer.LINE,
-            Lexer.MID, Lexer.MIDB, Lexer.MID_D, Lexer.MIDB_D, Lexer.MKDIR,
+            Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN, Lexer.BEGINPROPERTY,
+            Lexer.BINARY, Lexer.CLASS, Lexer.CHDIR, Lexer.CHDRIVE, 
+            Lexer.CLASS_INITIALIZE, Lexer.CLASS_TERMINATE, Lexer.COLLECTION,
+            Lexer.COMPARE, Lexer.DATABASE, Lexer.DELETESETTING, Lexer.ENDPROPERTY,
+            Lexer.ERROR, Lexer.FILECOPY, Lexer.GO, Lexer.KILL, Lexer.LOAD, Lexer.LIB,
+            Lexer.LINE, Lexer.MID, Lexer.MIDB, Lexer.MID_D, Lexer.MIDB_D, Lexer.MKDIR,
             Lexer.MODULE, Lexer.NAME, Lexer.OBJECT, Lexer.OUTPUT,
             Lexer.PROPERTY, Lexer.RANDOM, Lexer.RANDOMIZE, Lexer.READ,
             Lexer.RESET, Lexer.RMDIR, Lexer.SAVEPICTURE, Lexer.SAVESETTING,
