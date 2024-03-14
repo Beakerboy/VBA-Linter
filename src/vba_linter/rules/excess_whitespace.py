@@ -81,7 +81,7 @@ class ExcessWhitespace(ListenerRuleBase):
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
                 where = ""
-                self._rule_name + ':XXX'
+                rule = self._rule_name + ':XXX'
                 if pre_token.text in symbols:
                     symbol = pre_token.text
                     rule = self._rule_name + ':' + str(self.rules[symbol] + 3)
