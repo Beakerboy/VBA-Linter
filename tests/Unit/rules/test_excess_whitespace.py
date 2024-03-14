@@ -15,9 +15,9 @@ label1 : x  =  2
 End Function
 ''',  # noqa
         [
-            (2, 17, "151:114", "after", "Declare")
-            (2, 27, "151:114", "after", "Function")
-            (2, 32, "151:111", "before", "Lib")
+            (2, 17, "151:114", "after", "Declare"),
+            (2, 27, "151:114", "after", "Function"),
+            (2, 32, "151:111", "before", "Lib"),
             (3, 21, "151:124", 'after', '('),
             (3, 25, "151:131", 'before', ')'),
             (4, 13, "151:141", 'before', ','),
