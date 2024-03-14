@@ -20,7 +20,7 @@ class TokenText(RuleBase):
         targets = {
             Lexer.GT: ">=", Lexer.LT: "<=", Lexer.NEQ: "<>",
         }
-        tok = LT(1)
+        tok = ts.LT(1)
         if tok.type in targets and tok.text != targets[tok.type]:
             line = tok.line
             col = tok.column + 1
