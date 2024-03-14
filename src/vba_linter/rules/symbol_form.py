@@ -1,4 +1,4 @@
-from antlr4 import CommonTokenStream
+from antlr4 import CommonTokenStream, Token
 from antlr4_vba.vbaLexer import vbaLexer as Lexer
 from vba_linter.rules.rule_base import RuleBase
 from typing import TypeVar
@@ -21,6 +21,7 @@ class TokenText(RuleBase):
             Lexer.GT: ">=", Lexer.LT: "<=", Lexer.NEQ: "<>",
         }
         tok = ts.LT(1)
+        assert isinstance(tok, Token)
         if tok.type in targets and tok.text != targets[tok.type]:
             line = tok.line
             col = tok.column + 1
