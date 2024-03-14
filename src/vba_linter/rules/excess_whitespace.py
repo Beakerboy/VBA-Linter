@@ -86,12 +86,13 @@ class ExcessWhitespace(ListenerRuleBase):
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
                 where = ""
-                rule = self._rule_name + ':XXX'
+                sub_rule = 'XXX'
                 non_keywords = [vbaLexer.IDENTIFIER, vbaLexer.FOREIGNAME]
                 if pre_token.text in symbols or pre_token.type not in non_keywords:
                     symbol = pre_token.text
-                    sub_rule = self.rules[symbol] + 3 if symbol in self.rules else 114
-                    rule = self._rule_name + ':' + sub_rule
+                    sub_rule = 114
+                    if symbol in self.rules:
+                        sub_rule = str(self.rules[symbol] + 3)
                     where = 'after'
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
@@ -99,9 +100,10 @@ class ExcessWhitespace(ListenerRuleBase):
                     symbol = post_token.text
                     where = 'before'
                     if post_token.text in symbols:
-                        rule = self._rule_name + ':' + str(self.rules[symbol])
+                        sub_rule = str(self.rules[symbol])
                 if symbol == "":
                     symbol = "identifier"
+                rule = self._rule_name + ':' + sub_rule
                 output.append((line, column, rule, where, symbol))
         return output
 
