@@ -81,6 +81,7 @@ class ExcessWhitespace(ListenerRuleBase):
                 pre_token = ts.LT(1)
                 assert isinstance(pre_token, Token)
                 where = ""
+                self._rule_name + ':XXX'
                 if pre_token.text in symbols:
                     symbol = pre_token.text
                     rule = self._rule_name + ':' + str(self.rules[symbol] + 3)
@@ -88,10 +89,10 @@ class ExcessWhitespace(ListenerRuleBase):
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
                     assert isinstance(post_token, Token)
+                    symbol = post_token.text
+                    where = 'before'
                     if post_token.text in symbols:
-                        symbol = post_token.text
                         rule = self._rule_name + ':' + str(self.rules[symbol])
-                        where = 'before'
                 if symbol == "":
                     symbol = "identifier"
                 output.append((line, column, rule, where, symbol))
