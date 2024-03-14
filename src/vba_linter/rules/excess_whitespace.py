@@ -100,6 +100,7 @@ class ExcessWhitespace(ListenerRuleBase):
                     assert isinstance(post_token, Token)
                     symbol = post_token.text
                     where = 'before'
+                    sub_rule = "111"
                     if post_token.text in symbols:
                         sub_rule = str(self.rules[symbol])
                 if symbol == "":
