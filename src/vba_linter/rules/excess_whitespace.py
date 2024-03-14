@@ -91,7 +91,7 @@ class ExcessWhitespace(ListenerRuleBase):
                 if pre_token.text in symbols or pre_token.type not in non_keywords:
                     symbol = pre_token.text
                     sub_rule = self.rules[symbol] + 3 if symbol in self.rules else 114
-                    rule = self._rule_name + ':' + sub_rule)
+                    rule = self._rule_name + ':' + sub_rule
                     where = 'after'
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
