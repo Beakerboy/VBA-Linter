@@ -91,7 +91,7 @@ class ExcessWhitespace(ListenerRuleBase):
                 if (pre_token.text in symbols or
                         pre_token.type not in non_keywords):
                     symbol = pre_token.text
-                    sub_rule = 114
+                    sub_rule = "114"
                     if symbol in self.rules:
                         sub_rule = str(self.rules[symbol] + 3)
                     where = 'after'
