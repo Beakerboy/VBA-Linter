@@ -15,8 +15,10 @@ class ExcessWhitespace(ListenerRuleBase):
         self.output: list = []
         self._rule_name = "151"
         self._message = "Excess whitespace {3} '{4}'"
-        self.rules: Dict[str, int] = {'(': 121, ')': 131, ',': 141,
-                                      '=': 151, ':=': 161, ':': 191}
+        self.rules: Dict[str, int] = {
+            '(': 121, ')': 131, ',': 141, '=': 151, ':=': 161,
+            '+': 171, '-': 171, '/': 171, '*': 171, ':': 191
+        }
         self._fixable = True
 
     def test(self: T, ts: CommonTokenStream) -> list:
@@ -28,7 +30,10 @@ class ExcessWhitespace(ListenerRuleBase):
         # Tokens which must have no whitespace before.
         post_single_ws = [vbaLexer.COLON, vbaLexer.ASSIGN,
                           vbaLexer.COMMA, vbaLexer.RPAREN]
-        post_single_ws_exception = {vbaLexer.COMMA: [vbaLexer.COMMA]}
+        post_single_ws_exception = {
+            vbaLexer.COMMA: [vbaLexer.COMMA],
+            vbaLexer.RPAREN: [vbaLexer.LINECONTINUATION]
+        }
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
             assert isinstance(token, Token)
@@ -82,9 +87,11 @@ class ExcessWhitespace(ListenerRuleBase):
                 assert isinstance(pre_token, Token)
                 where = ""
                 rule = self._rule_name + ':XXX'
-                if pre_token.text in symbols:
+                non_keywords = [vbaLexer.IDENTIFIER, vbaLexer.FOREIGNAME]
+                if pre_token.text in symbols or pre_token.type not in non_keywords:
                     symbol = pre_token.text
-                    rule = self._rule_name + ':' + str(self.rules[symbol] + 3)
+                    sub_rule = self.rules[symbol] + 3 if symbol in self.rules else 114
+                    rule = self._rule_name + ':' + sub_rule)
                     where = 'after'
                 elif len(seq) > 2:
                     post_token = ts.LT(3)
