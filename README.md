@@ -8,7 +8,8 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 
 ### 100 Character errors
 * 110 Whitespace contains tabs
-* 114 Excess whitespace between keywords
+* 111 Excess whitespace before keyword
+* 114 Excess whitespace after keyword
 * 120 Missing whitespace before '('
 * 121 Excess whitespace before '('
 * 124 Excess whitespace after '('
@@ -30,6 +31,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 174 Excess whitespace after arithmetic operator
 * 180 Missing whitespace before comparison operator
 * 181 Excess whitespace before comparison operator
+* 182 Alternate comparison symbol form.
 * 183 Missing whitespace after comparison operator
 * 184 Excess whitespace after comparison operator
 * 191 Excess whitespace before ':'
