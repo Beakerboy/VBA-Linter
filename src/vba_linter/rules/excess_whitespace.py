@@ -88,7 +88,8 @@ class ExcessWhitespace(ListenerRuleBase):
                 where = ""
                 sub_rule = 'XXX'
                 non_keywords = [vbaLexer.IDENTIFIER, vbaLexer.FOREIGNAME]
-                if pre_token.text in symbols or pre_token.type not in non_keywords:
+                if (pre_token.text in symbols or
+                        pre_token.type not in non_keywords):
                     symbol = pre_token.text
                     sub_rule = 114
                     if symbol in self.rules:
