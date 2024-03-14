@@ -32,7 +32,7 @@ class ExcessWhitespace(ListenerRuleBase):
                           vbaLexer.COMMA, vbaLexer.RPAREN]
         post_single_ws_exception = {
             vbaLexer.COMMA: [vbaLexer.COMMA],
-            vbaLexer.RPAREN: [vbaLexer.LINECONTINUATION]
+            vbaLexer.RPAREN: [vbaLexer.LINE_CONTINUATION]
         }
         if seq[1] == vbaLexer.WS:
             token = ts.LT(2)
@@ -87,7 +87,7 @@ class ExcessWhitespace(ListenerRuleBase):
                 assert isinstance(pre_token, Token)
                 where = ""
                 sub_rule = 'XXX'
-                non_keywords = [vbaLexer.IDENTIFIER, vbaLexer.FOREIGNAME]
+                non_keywords = [vbaLexer.IDENTIFIER, vbaLexer.FOREIGN_NAME]
                 if (pre_token.text in symbols or
                         pre_token.type not in non_keywords):
                     symbol = pre_token.text
