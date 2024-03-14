@@ -1,7 +1,7 @@
 from antlr4 import CommonTokenStream
 from antlr4_vba.vbaLexer import vbaLexer as Lexer
 from vba_linter.rules.rule_base import RuleBase
-from typing import List, TypeVar
+from typing import TypeVar
 
 
 T = TypeVar('T', bound='TokenText')
