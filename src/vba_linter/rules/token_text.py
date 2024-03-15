@@ -19,7 +19,7 @@ class TokenText(RuleBase):
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         targets = {
-            Lexer.GT: ">=", Lexer.LT: "<=", Lexer.NEQ: "<>",
+            Lexer.GEQ: ">=", Lexer.LEQ: "<=", Lexer.NEQ: "<>",
         }
         tok = ts.LT(1)
         assert isinstance(tok, Token)
