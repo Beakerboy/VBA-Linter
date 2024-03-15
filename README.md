@@ -31,7 +31,7 @@ Check that code parses correctly. If so, check that the formatting meets a speci
 * 174 Excess whitespace after arithmetic operator
 * 180 Missing whitespace before comparison operator
 * 181 Excess whitespace before comparison operator
-* 182 Alternate comparison symbol form.
+* 182 Incorrect comparison symbol format.
 * 183 Missing whitespace after comparison operator
 * 184 Excess whitespace after comparison operator
 * 191 Excess whitespace before ':'
