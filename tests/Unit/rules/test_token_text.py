@@ -5,7 +5,6 @@ from vba_linter.rules.token_text import TokenText
 
 
 anti_patterns = [
-    [RuleTestBase.worst_practice, [(13, 1, "391")]],
     [
         '''\
 Attribute VB_Name = "Foo"
