@@ -24,6 +24,7 @@ class TokenText(RuleBase):
         tok = ts.LT(1)
         assert isinstance(tok, Token)
         if tok.type in targets and tok.text != targets[tok.type]:
+            raise Exception("Text Is: " + tok.text)
             line = tok.line
             col = tok.column + 1
             rule = self.rule_name
