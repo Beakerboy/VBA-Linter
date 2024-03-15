@@ -14,6 +14,7 @@ class TokenText(RuleBase):
     def __init__(self: T) -> None:
         super().__init__()
         self.rule_name = '183'
+        self._message = "Incorrect symbol format"
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output = []
