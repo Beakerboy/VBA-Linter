@@ -1,7 +1,7 @@
 import pytest
 from vba_linter.rules.rule_base import RuleBase
 from Unit.rules.rule_test_base import RuleTestBase
-from vba_linter.rules.symbol_form import SymbolForm
+from vba_linter.rules.token_text import TokenText
 
 
 anti_patterns = [
@@ -21,7 +21,7 @@ End Function
 ]
 
 
-rule = SymbolForm()
+rule = TokenText()
 
 
 @pytest.mark.parametrize('rule', [rule])
