@@ -5,6 +5,7 @@ Lint VBA code
 Check that code parses correctly. If so, check that the formatting meets a specified standard.
 
 ## Formatting Checks
+The detailed list of formatting rules can be found [here](https://beakerboy.github.io/VBA-Linter-Rules/)
 
 ### 100 Character errors
 * 110 Whitespace contains tabs
