@@ -1,5 +1,5 @@
-from typing import TypeVar
-from antlr4_vba.vbaLexer import vbaLexer
+from antlr4 import CommonTokenStream
+from typing import List, TypeVar
 from vba_linter.rules.rule_base import RuleBase
 
 
@@ -10,7 +10,7 @@ class RuleStub(RuleBase):
 
     def __init__(self: T) -> None:
         self._rule_name = ""
-        self._output: list[tuple] = []
+        self._output: List[tuple] = []
         self._message = ''
         self.test_count = 0
 
@@ -23,9 +23,9 @@ class RuleStub(RuleBase):
     def set_output(self: T, output: list) -> None:
         self._output = output
 
-    def test(self: T, lexer: vbaLexer) -> list:
+    def test(self: T, lexer: CommonTokenStream) -> list:
         self.test_count += 1
-        return self._output
+        return self._output if self.test_count == 1 else []
 
     def create_message(self: T, data: tuple) -> str:
         return self._message
