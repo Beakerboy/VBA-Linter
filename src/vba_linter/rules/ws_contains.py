@@ -27,13 +27,15 @@ class WsContains(RuleBase):
             # should the scope be checked to decide if this
             # is unexpeced indentation?
             i = 1
+            line = token.line
+            column = token.column
+            rule = "100:100"
             for char in token.text:
                 if char == self._bad_char:
-                    line = token.line
-                    rule = "100:100"
                     if token.column == 0:
                         rule = "100:405"
-                    output = [(line, i, rule)]
+                    output = [(line, column + i, rule)]
+                i += 1
         return output
 
     def create_message(self: T, data: tuple) -> str:
