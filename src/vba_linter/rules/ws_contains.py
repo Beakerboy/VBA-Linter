@@ -40,6 +40,6 @@ class WsContains(RuleBase):
         message = self._message
         data_list[2] = data_list[2][-3:]
         if data_list[2] == "405":
-            message = "Indentation contains tabs" 
+            message = "Indentation contains tabs"
         msg_str = ":{0}:{1}: " + self._severity + "{2} " + message
         return msg_str.format(*data_list)
