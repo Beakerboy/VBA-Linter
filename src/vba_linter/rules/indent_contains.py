@@ -13,16 +13,16 @@ class IndentContains(RuleBase):
     in the leading whitespace
     """
     def __init__(self: T) -> None:
-        self._severity = 'W'
-        self._rule_name = '191'
-        self._message = "indentation contains tabs"
+        self._severity = 'E'
+        self._rule_name = '100'
+        self._message = "Whitespace contains tabs"
         self._bad_char = '\t'
 
     def test(self: T, ts: CommonTokenStream) -> list:
         output: List[tuple] = []
         token = ts.LT(1)
         assert token is not None
-        if token.type == vbaLexer.WS and token.column == 0:
+        if token.type == vbaLexer.WS:
             # if next token exists and is not NEWLINE
             # should the scope be checked to decide if this
             # is unexpeced indentation?
@@ -30,6 +30,7 @@ class IndentContains(RuleBase):
             for char in token.text:
                 if char == self._bad_char:
                     line = token.line
-                    rule = self._rule_name
+                    if token.column == 0:
+                        rule = "100:300"
                     output = [(line, i, rule)]
         return output
