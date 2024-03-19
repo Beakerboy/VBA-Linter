@@ -2,7 +2,6 @@ from typing import Dict, List, TypeVar
 from antlr4_vba.vbaLexer import vbaLexer
 from vba_linter.rules.excess_whitespace import ExcessWhitespace
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.mixed_indent import MixedIndent
 from vba_linter.rules.trailing_whitespace import TrailingWhitespace
 from vba_linter.rules.newline_eof import NewlineEof
 from vba_linter.rules.token_seq_mismatch_nl import TokenSeqMismatchNL
@@ -14,6 +13,7 @@ from vba_linter.rules.line_ending import LineEnding
 from vba_linter.rules.line_too_long import LineTooLong
 from vba_linter.rules.parsing_error import ParsingError
 from vba_linter.rules.keyword_caps import KeywordCaps
+from vba_linter.rules.ws_contains import WsContains
 from vba_linter.rules.listeners.arglist_ws import ArglistWs
 from vba_linter.rules.listeners.optional_public import OptionalPublic
 from vba_linter.rules.listeners.listener_rule_base import ListenerRuleBase
@@ -73,6 +73,7 @@ class RuleDirectory:
         rule910.severity = 'F'
         ws = ExcessWhitespace()
         self._rules.update({
+            "100": WsContains(),
             "151": ws,
             "701": NewlineEof(),
             "220": KeywordCaps(),
