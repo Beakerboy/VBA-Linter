@@ -4,10 +4,10 @@ from vba_linter.rules.rule_base import RuleBase
 from typing import List, TypeVar
 
 
-T = TypeVar('T', bound='IndentContains')
+T = TypeVar('T', bound='WsContains')
 
 
-class IndentContains(RuleBase):
+class WsContains(RuleBase):
     """
     report if a non-blank line has a mix of chars
     in the leading whitespace
