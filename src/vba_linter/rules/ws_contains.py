@@ -31,6 +31,6 @@ class WsContains(RuleBase):
                 if char == self._bad_char:
                     line = token.line
                     if token.column == 0:
-                        rule = "100:300"
+                        rule = "100:405"
                     output = [(line, i, rule)]
         return output
