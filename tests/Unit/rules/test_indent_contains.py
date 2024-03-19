@@ -11,13 +11,13 @@ Public Function Foo(num)
 \tBar = 2
 End Function
 ''',  # noqa
-        [(2, 1, "191")]
+        [(2, 1, "100:200")]
     ],
 ]
 
 
 message_data = [
-    [(2, 1, "191"), ":2:1: W191 indentation contains tabs"],
+    [(2, 1, "100:200"), ":2:1: E200 Indentation contains tabs"],
  ]
 
 
