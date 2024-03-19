@@ -30,6 +30,7 @@ class WsContains(RuleBase):
             for char in token.text:
                 if char == self._bad_char:
                     line = token.line
+                    rule = "100:100"
                     if token.column == 0:
                         rule = "100:405"
                     output = [(line, i, rule)]
