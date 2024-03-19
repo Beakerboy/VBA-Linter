@@ -1,7 +1,7 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.indent_contains import IndentContains
+from vba_linter.rules.ws_contains import WsContains
 
 
 anti_patterns = [
@@ -21,7 +21,7 @@ message_data = [
  ]
 
 
-rule = IndentContains()
+rule = WsContains()
 
 
 @pytest.mark.parametrize('rule', [rule])
