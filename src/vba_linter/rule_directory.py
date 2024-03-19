@@ -91,8 +91,7 @@ class RuleDirectory:
 
         self._rules.update({
             "391": BlankLineEof(), "303": BlankLineNumber(),
-            "310": BlankLineWhitespace(),
-            "501": LineTooLong(), "101": MixedIndent()
+            "310": BlankLineWhitespace(), "501": LineTooLong()
         })
         self._parser_rules.update({
             '505': OptionalPublic(),
