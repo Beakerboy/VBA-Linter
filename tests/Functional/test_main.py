@@ -106,8 +106,9 @@ worst_expected = """\
 %s:12:1: E220 Keyword not capitalized
 %s:12:1: W510 Missing visibility
 %s:13:4: E100 Whitespace contains tabs
+%s:13:4: E151 Excess whitespace after End
 %s:14:1: W391 blank line at end of file
-24 Errors in 1 File
+27 Errors in 1 File
 """
 
 
@@ -158,8 +159,8 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:10:12: E400 incorrect line ending
 %s:12:1: E220 Keyword not capitalized
 %s:13:4: E100 Whitespace contains tabs
-
-15 Errors in 1 File
+%s:13:4: E151 Excess whitespace after End
+18 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
