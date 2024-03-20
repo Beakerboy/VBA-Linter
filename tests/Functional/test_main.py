@@ -55,7 +55,7 @@ worst_practice = (
     '\n' +
     '\r\n' +
     'I = (2 + 1)\n' +
-    '    foo_val=6\r\n'
+    '\tfoo_val=6\r\n'
     '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\n' +
     '\r\n' +
