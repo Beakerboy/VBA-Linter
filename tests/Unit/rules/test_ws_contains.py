@@ -1,27 +1,28 @@
 import pytest
 from Unit.rules.rule_test_base import RuleTestBase
 from vba_linter.rules.rule_base import RuleBase
-from vba_linter.rules.indent_contains import IndentContains
+from vba_linter.rules.ws_contains import WsContains
 
 
 anti_patterns = [
     [
         '''\
-Public Function Foo(num)
+Public\tFunction Foo(num)
 \tBar = 2
 End Function
 ''',  # noqa
-        [(2, 1, "191")]
+        [(1, 7, "100:100"), (2, 1, "100:405")]
     ],
 ]
 
 
 message_data = [
-    [(2, 1, "191"), ":2:1: W191 indentation contains tabs"],
+    [(2, 1, "100:405"), ":2:1: E405 Indentation contains tabs"],
+    [(2, 1, "100:100"), ":2:1: E100 Whitespace contains tabs"]
  ]
 
 
-rule = IndentContains()
+rule = WsContains()
 
 
 @pytest.mark.parametrize('rule', [rule])

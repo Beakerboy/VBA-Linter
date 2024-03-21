@@ -54,13 +54,14 @@ worst_practice = (
     '\r\n' +
     '\n' +
     '\r\n' +
+    '    Dim Bar\tAs String\r\n' +
     'I = (2 + 1)\n' +
-    '    foo_val=6\r\n'
+    '\tfoo_val=6\r\n'
     '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\n' +
     '\r\n' +
     'sub O()\r\n' +
-    'End Sub\r\n' +
+    'End\tSub\r\n' +
     '\r\n'
 )
 pretty = (
@@ -70,13 +71,14 @@ pretty = (
     ' \r\n' +
     '\r\n' +
     '\r\n' +
+    '    Dim Bar\tAs String\r\n' +
     'I = (2 + 1)\r\n' +
-    '    foo_val=6\r\n'
+    '\tfoo_val=6\r\n'
     '    Let BarVal  =  (7 + 2) / 3\r\n'
     'End Function\r\n' +
     '\r\n' +
     'sub O()\r\n' +
-    'End Sub\r\n'
+    'End\tSub\r\n'
 )
 
 
@@ -93,19 +95,23 @@ worst_expected = """\
 %s:3:1: W310 Blank line contains whitespace
 %s:5:0: E400 incorrect line ending
 %s:6:0: W303 Too many blank lines (3)
-%s:7:1: W201 Missing let
-%s:7:11: E400 incorrect line ending
-%s:8:5: W201 Missing let
-%s:8:12: E150 Missing whitespace before '='
-%s:8:13: E153 Missing whitespace after '='
-%s:9:5: W202 Optional let
-%s:9:16: E151 Excess whitespace before '='
-%s:9:19: E154 Excess whitespace after '='
-%s:10:12: E400 incorrect line ending
-%s:12:1: E220 Keyword not capitalized
-%s:12:1: W510 Missing visibility
-%s:14:1: W391 blank line at end of file
-24 Errors in 1 File
+%s:7:12: E100 Whitespace contains tabs
+%s:8:1: W201 Missing let
+%s:8:11: E400 incorrect line ending
+%s:9:1: E405 Indentation contains tabs
+%s:9:2: W201 Missing let
+%s:9:9: E150 Missing whitespace before '='
+%s:9:10: E153 Missing whitespace after '='
+%s:10:5: W202 Optional let
+%s:10:16: E151 Excess whitespace before '='
+%s:10:19: E154 Excess whitespace after '='
+%s:11:12: E400 incorrect line ending
+%s:13:1: E220 Keyword not capitalized
+%s:13:1: W510 Missing visibility
+%s:14:4: E100 Whitespace contains tabs
+%s:14:4: E114 Excess whitespace after 'End'
+%s:15:1: W391 blank line at end of file
+28 Errors in 1 File
 """
 
 
@@ -155,7 +161,9 @@ def test_worst_file_std(mocker: MockerFixture, capsys: CaptureFixture) -> None:
 %s:9:19: E154 Excess whitespace after '='
 %s:10:12: E400 incorrect line ending
 %s:12:1: E220 Keyword not capitalized
-15 Errors in 1 File
+%s:13:4: E100 Whitespace contains tabs
+%s:13:4: E151 Excess whitespace after End
+18 Errors in 1 File
 """.replace("%s", full_path)  # noqa
     mocker.patch(
         "sys.argv",
