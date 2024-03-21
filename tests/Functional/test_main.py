@@ -95,7 +95,7 @@ worst_expected = """\
 %s:3:1: W310 Blank line contains whitespace
 %s:5:0: E400 incorrect line ending
 %s:6:0: W303 Too many blank lines (3)
-%s:7:0: E100 Whitespace contains tabs
+%s:7:12: E100 Whitespace contains tabs
 %s:8:1: W201 Missing let
 %s:8:11: E400 incorrect line ending
 %s:9:1: E405 Indentation contains tabs
