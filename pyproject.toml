@@ -20,7 +20,7 @@ dependencies = [
   'PyYAML',
   'antlr4-python3-runtime',
   'antlr4-tools',
-  'antlr4-vba<0.0.11'
+  'antlr4-vba<0.0.16'
 ]
 [project.optional-dependencies]
 tests = [
