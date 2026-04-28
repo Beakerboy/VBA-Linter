@@ -27,7 +27,7 @@ class KeywordCaps(RuleBase):
         # These can ezist in any context in user dictated cap
         generics = [
             Lexer.IDENTIFIER, Lexer.ACCESS, Lexer.ALIAS, Lexer.APPACTIVATE,
-            Lexer.APPEND, Lexer.BASE, Lexer.BEEP, Lexer.BEGIN,
+            Lexer.APPEND, Lexer.BASE, Lexer.BEGIN,
             Lexer.BEGINPROPERTY, Lexer.BINARY, Lexer.CLASS, Lexer.CHDIR,
             Lexer.CHDRIVE, Lexer.CLASS_INITIALIZE, Lexer.CLASS_TERMINATE,
             Lexer.COLLECTION, Lexer.COMPARE, Lexer.DATABASE,
