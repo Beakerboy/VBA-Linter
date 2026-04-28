@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vba_linter"
-version = "0.0.4"
+version = "0.0.5"
 authors = [
   { name="Kevin Nowaczyk", email="beakerboy99@yahoo.com" },
 ]
@@ -24,23 +24,18 @@ dependencies = [
 ]
 [project.optional-dependencies]
 tests = [
+  'coveralls',
+  'flake8-annotations',
   'mypy',
+  'pep8-naming',
   'pytest',
   'pytest-cov',
   'pytest-mock',
-  'coveralls',
-  'pep8-naming',
-  'flake8-annotations'
+  'types-antlr4-python3-runtime',
 ]
 [project.urls]
 "Homepage" = "https://github.com/Beakerboy/VBA-Linter"
 "Bug Tracker" = "https://github.com/Beakerboy/VBA-Linter/issues"
-
-[tool.coverage.run]
-omit = [
-    # omit this directory
-    "src/antlr/*",
-    ]
     
 [tool.pytest.ini_options]
 pythonpath = "src:tests"
@@ -48,5 +43,5 @@ testpaths = [
     "tests",
 ]
 
-[tool.mypy]
-mypy_path = "./stubs"
+[tool.setuptools.package-data]
+"vba_linter" = ["py.typed"]

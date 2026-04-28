@@ -5,43 +5,75 @@ Lint VBA code
 Check that code parses correctly. If so, check that the formatting meets a specified standard.
 
 ## Formatting Checks
+The detailed list of formatting rules can be found [here](https://beakerboy.github.io/VBA-Linter-Rules/)
 
-### E1 Indentation
-* E101 indentation contains mixed spaces and tabs
-### E2 Whitespace errors
-* E201 whitespace after '('
-* E202 whitespace before ')'
-* E203 whitespace before ‘,’
-* E211 whitespace before (
-### W1 Indentation warning
-* W191 indentation contains tabs - should be error.
-### W2 Whitespace warning
-* W201 no newline at end of file
-* W291 trailing whitespace
-* W293 blank line contains whitespace
-
-### W3 Blank line warning
-* W391 blank line at end of file
-
-### W5 Line break warning
-* W500 incorrect line ending
-* W501 line too long
-
-## To Do
-* E221 multiple spaces before operator
-* E222 multiple spaces after operator
-* E712 comparison to True should be ‘If cond Then’
-* E713 comparison to False should be 'If Not cond Then'
-* F841 local variable 'foo' is assigned to but never used
-* W101 improper indentation level
-* W301 Too few blank lines before function
-* W302 Too many blank lines before function
-* N800 Keyword formating
-* N801 Module name format
-* N802 Function name format
-* N803 Variable name format
-* Missing Strict
-* Variable not initialized
-* return type not specified
-* parameter type not specified
-* missing function docbloc
+### 100 Character errors
+* 110 Whitespace contains tabs
+* 111 Excess whitespace before keyword
+* 114 Excess whitespace after keyword
+* 120 Missing whitespace before '('
+* 121 Excess whitespace before '('
+* 124 Excess whitespace after '('
+* 131 Excess whitespace before ')'
+* 133 Missing whitespace after ')'
+* 134 Excess whitespace after ')'
+* 141 Excess whitespace before ','
+* 143 Missing whitespace after ','
+* 144 Excess whitespace after ','
+* 150 Missing whitespace before '='
+* 151 Excess whitespace before '='
+* 153 Missing whitespace after '='
+* 154 Excess whitespace after '='
+* 161 Excess whitespace before ':='
+* 164 Excess whitespace after ':='
+* 170 Missing whitespace before arithmetic operator
+* 171 Excess whitespace before arithmetic operator
+* 173 Missing whitespace after arithmetic operator
+* 174 Excess whitespace after arithmetic operator
+* 180 Missing whitespace before comparison operator
+* 181 Excess whitespace before comparison operator
+* 182 Incorrect comparison symbol format.
+* 183 Missing whitespace after comparison operator
+* 184 Excess whitespace after comparison operator
+* 191 Excess whitespace before ':'
+* 193 Missing whitespace after ':'
+### 200 Parameter / Keyword errors
+* 201 Missing Let
+* 202 Optional Let
+* 210 parameter naming
+* 220 Keyword not capitalized
+* function / sub naming
+* property naming
+* parameter not defined (option explicit)
+* missing parameter type designation
+### 300 Expression Errors
+* = True
+* = False
+* Not X = Y
+### 400 Line errors
+* 400 Incorrect line ending
+* 303 Too many blank lines (3)
+* 305 Trailing whitespace
+* 310 Blank line contains whitespace
+* indent
+* miltiple statements not allowed
+* line continuation
+* line length
+### 500 Control Structures
+* one line if/then/else
+### 600 Function Errors
+* 510 Missing visibility
+* 511 Optional 'Public'
+* missing return type designation
+### 700 Module Errors
+* Blank line begining file
+* blank line end of file
+* 701 missing final eol
+* 601 missing module attributes
+* 602 Missing module declarations
+### 800 Documentation
+* Missing function documentation
+* Missing module documentation
+### 900 Syntax Errors
+* 910 Line longer than 1023
+* 999 Syntax Error
